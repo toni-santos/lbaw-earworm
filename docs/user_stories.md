@@ -1,43 +1,116 @@
+### User
+
+|Identifier|Name|Priority|Description|
+|---|---|---|---|
+|US001|See Homepage|High|As a User, I want to access the home page, so that I can see a brief presentation of the website and instantly start brows1ing through products|
+|US002|See About|High|As a User, I want to access the About Us page, so that I can see understand who is behind the website and what their goal is|
+|US003|See Contacts|High|As a User, I want to know of any of the site's contacts, so that I know who to go to if I need help|
+|US004|See Artist Page|High|As a User, I want to access an artist's musical catalog, so that I can search through artist-specific related products in an organized way|
+|US005|See Product Page|High|As a User, I want to access a product's information (name, artist's name, stock, price, etc.), so that I can be aware of what the product is|
+|US006|View Product List|High|As a User, I want to be able to look at the full list of products available, so that I can quickly have a rough idea of which products interest me|
+|US007|View Product Details|High|As a User, I want to check product details, so that I can be more informed about what I could be buying|
+|US008|View Product Reviews|High|As a User, I want to check product reviews, so that I can make sure the product is trustworthy and enjoyable|
+|US009|Browse Products|High|As a User, I want to be able to search through the site's database, so that I can find the product(s) I am looking for|
+|US010|Browse Products using Exact-Match Search|High|As a User, I want to be able to search through the site's database using an exact-math filter, so that I can easily find the product(s) I am looking for|
+|US011|Browse Products using Full-text Search|High|As a User, I want to be able to search through the site's database using a full-text search filter, so that I can easily find the product(s) I am looking for|
+|US012|Browse Products using Exact-Match Search|High|As a User, I want to be able to search through the site's database using an exact-math filter, so that I can find the produc(s) I am looking for|
+|US013|Browse Products through Multiple Attributes|High|As a User, I want to be able to search through the site's database by matching multiple attributes or categories, so that I can explicitly find the product(s) I am looking for|
+|US014|Browse Product Categories|High|As a User, I want to be able to search product categories, so that I can restrict my search to something more tailored to my preferences|
+|US015|Filter Products|High|As a User, I want to be able to search through the site's database more efficiently using filters like categories, so that I can find the product(s) I am looking for|
+|US016|Receive Help through Form-Input Placeholders|High| As a User, I want understandable placeholder text in any form inputs, so that I can navigate any on-site interaction easily|
+|US017|Receive Error Messages|High| As a User, I want to receive clear error messages as I browse the website, so that I am always aware of any problem I've encountered|
+|US018|Receive Contextual Help|Medium|As a User, I want to receive clear and understandable queues, so that I can easily navigate and use the site at any given moment|
+|US019|See FAQ|Low|As a User, I want to access a Frequently Asked Questions page, so that I can better understand how the platform functions|
+|US020|Send Tickets|Low| As a User, I want to be able to send tickets to the administration of the site, so that I can communicate efficiently (even if anonymously) any problem, error, bug or any general information I wish to share with the admins|
+
+
 ### Visitor
 
 |Identifier|Name|Priority|Description|
 |---|---|---|---|
-|US01|Sign-in|High|As a Visitor, I want to authenticate into the system, so that I can access privileged information|
-|US02|Sign-up|High|As a Visitor, I want to register myself into the system, so that I can authenticate myself into the system|
-|US03|See Homepage|High|As a Visitor, I want to access the home page, so that I can see a brief presentation of the website and instantly start browsing through products|
-|US04|See Artist Page|High|As a Visitor, I want to access an artist's musical catalog, so that I can search through artist-specific related products in an organized way|
-|US05|See Product Page|High|As a Visitor, I want to access a product's information (name, artist's name, stock, price, etc.), so that I can be aware of what the product is|
-|US06|Browse Products|high|As a Visitor, I want to be able to search through the site's database, so that I can find the product I am looking for|
-|US07|Filter Products|high|As a Visitor, I want to be able to search through the site's database more efficiently using filters like categories, so that I can find the product I am looking for|
-|US08|Add Product to Cart|high|As a Visitor, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
-|US09|Remove Product from Cart|high|As a Visitor, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
+|US101|Sign-in|High|As a Visitor, I want to authenticate into the system, so that I can access privileged information|
+|US102|Sign-up|High|As a Visitor, I want to register myself into the system, so that I can authenticate myself into the system|
+|US103|Add Product to Cart|High|As a Visitor, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
+|US104|Remove Product from Cart|High|As a Visitor, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
+
 
 ### Client
 
 |Identifier|Name|Priority|Description|
 |---|---|---|---|
-|US101|Sign-out|high|As a Client, I want to log out of my account, so that I am no longer signed in while using the website|
-|US102|Review Product|high|As a Client, I want to review the products I have acquired, so that I can be able to explain my experience with the product|
-|US103|Edit Review|medium|As a Client, I want to edit my past reviews of any product, so that I can always add any new information to my previous opinion of the product|
-|US104|Remove Review|high|As a Client, I want to be able to remove and delete any review I have made, so that I can make sure the information I am sharing with other people is up-to-date and reflects the current state of the product|
-|US105|Add Product to Wishlist|high|As a Client, I want to be able to add a product to my personal wishlist, so that I can track the products I am/might be interested in buying for future reference|
-|US106|Remove Product from Wishlist|high|As a Client, I want to be able to remove a product from my personal wishlist, so that I can can get rid of products I am no longer interested in|
-|US17|Checkout|high|As a Client, I want to be able to checkout, so that I can buy products|
-|US108|View Purchase History|high|As a Client, I want to be able to see my past purchases, so that I can keep track of everything I've bought from the website|
-|US109|Track Order|high|As a Client, I want to be able to track my order while it is being shipped, so that I am always aware of its state and when to expect its arrival|
-|US110|Cancel Order|high|As a Client, I want to be able to cancel my order after I have bought it, so that I can retract any purchase I regret|
-|US111|Receive Product Recommendations|medium|As a Client, I want to be given recommendations in products I may possibly be interested in|
+|US201|Sign-out|High|As a Client, I want to log out of my account, so that I am no longer signed in while using the website|
+|US202|Delete account|High|As a Client, I want to delete my account, so that I can remove my account from the platform should I not need it anymore|
+|US203|Recover Password|High|As a Client, I want to be able to recover my password, so that, in case I forget it, I don't need to create a new account and lose the information I had in my previous one, such as wishlist items.
+|US204|View Profile|High|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
+|US205|Edit Profile|High|As a Client, I want to be able to edit my profile, so that I can change my account's information if I want to|
+|US206|Insert Profile Picture|High|As a Client, I want to be able to have a profile picture, so that I can customize my account a bit more|
+|US207|Review Product|High|As a Client, I want to review the products I have acquired, so that I can be able to explain my experience with the product|
+|US208|Edit Review|High|As a Client, I want to edit my past reviews of any product, so that I can always add any new information to my previous opinion of the product|
+|US209|Remove Review|High|As a Client, I want to be able to remove and delete any review I have made, so that I can make sure the information I am sharing with other people is up-to-date and reflects the current state of the product|
+|US210|Add Product to Wishlist|High|As a Client, I want to be able to add a product to my personal wishlist, so that I can track the products I am/might be interested in buying for future reference|
+|US211|Remove Product from Wishlist|High|As a Client, I want to be able to remove a product from my personal wishlist, so that I can can get rid of products I am no longer interested in|
+|US212|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
+|US213|View Purchase History|High|As a Client, I want to be able to see my past purchases, so that I can keep track of everything I've bought from the website|
+|US214|Track Order|High|As a Client, I want to be able to track my order while it is being shipped, so that I am always aware of its state and when to expect its arrival|
+|US215|Cancel Order|High|As a Client, I want to be able to cancel my order after I have bought it, so that I can retract any purchase I regret|
+|US216|Receive Payment Approval Notification|High|As a Client, I want to be notified whenever the system has accepted my payment, so that I can be aware of my order's status|US217|View Personal Notification|High|As a Client, I want to be able to check notifications I've received, so that I can check and be aware of everything regarding my account|
+|US217|Receive Order Status Change Notification|High|As a Client, I want to be notified whenever my order changes state (left the warehouse, got shipped, etc.), so that I can be aware of my order's status|
+|US218|Receive Wishlist Product Available Notification|High|As a Client, I want to be notified whenever one of my wishlisted item is in stick, so that I always know of my wishlisted items' availability|
+|US219|Receive Product on Cart Price Change Notification|High|As a Client, I want to be notified whenever any item in my current shopping cart has a change in price, so that I always know of any change in any product's price|
+|US220|Receive Product Recommendations|Medium|As a Client, I want to be given recommendations in products I may possibly be interested in|
+|US221|Sign-in to Last.fm|Medium|As a Client, I want to connect my Last.fm account to my EarWorm account, so that I can get better product recommendations|
+|US222|Sign-out of Last.fm|Medium|As a Client, I want to remove my Last.fm account's connection to my EarWorm account, so that I can no longer receive product recommendations according to that account|
+|US223|Appeal for unblock|Low|As a Client, I want to make an appeal in order to be unblocked, so that I can be able to freely use my previously blocked account|
 
 ### Administrator
 
 |Identifier|Name|Priority|Description|
 |---|---|---|---|
-|US21|Add product|high|As an Administrator, I want to be able to add a product to the database, so that I can augment the catalog of available products|
-|US22|Manage product|high|As an Administrator, I want to be able to have control over a product's information, so that I can provide the most relevant information to a potential buyer|
-|US23|Manage product stock|high|As an Administrator, I want to be able to change the current stock of a given product, so that I can keep the clients updated on what products are available|
-|US24|Ban members|high|As an Administrator, I want to be able to ban certain accounts, so that I can keep the website free of users with malicious intent|
-|US25|Delete comments|high|As an Administrator, I want to be able to remove comments, so that I can make sure the platform remains a positive and friendly environment|
-|US26|Manage an Order's status|high|As an Administrator, I want to be able to alter an order's status, so that I can make sure that an order is updated as it progresses|
-|US27|Create Administrator|medium|As an Administrator, I want to be able to create other Administrator accounts, so that I can widen the roster of people managing the platform|
-|US28|View Client's purchase history|medium|As an Administrator, I want to be able to check a client's purchase history, so that I can be aware of what a given client has purchased, should a problem arise|
-|US29|Check a product's sales|low|As an Administrator, I want to able to check a product's sales, so that I can be aware of how interesting a given product is to our platform's users|
+|US301|Add product|High|As an Administrator, I want to be able to add a product to the database, so that I can augment the catalog of available products|
+|US302|Manage product|High|As an Administrator, I want to be able to have control over a product's information, so that I can provide the most relevant information to a potential buyer|
+|US303|Manage product stock|High|As an Administrator, I want to be able to change the current stock of a given product, so that I can keep the clients updated on what products are available|
+|US304|Manage artist page|High|As an Administrator, I want to be able to manage an artist's page, so that I can give the user more info on the creating artist of their product of interest|
+|US305|Block client accounts|High|As an Administrator, I want to be able to block certain accounts, so that I can keep the website free of users with malicious intent|
+|US306|Unblock client accounts|High|As an Administrator, I want to be able to unblock certain accounts, so that I can allow previously blocked users back on the platform|
+|US307|Delete client accounts|High|As an Administrator, I want to be able to delete client accounts, so that I can get rid of accounts that I no longer wish to remain on the platform|
+|US308|Delete comments|High|As an Administrator, I want to be able to remove comments, so that I can make sure the platform remains a positive and friendly environment|
+|US309|Manage an Order's status|High|As an Administrator, I want to be able to alter an order's status, so that I can make sure that an order is updated as it progresses|
+|US310|Create Administrator accounts|High|As an Administrator, I want to be able to create other Administrator accounts, so that I can widen the roster of people managing the platform|
+|US311|View Client's purchase history|Medium|As an Administrator, I want to be able to check a client's purchase history, so that I can be aware of what a given client has purchased, should a problem arise|
+|US312|Review tickets|Low|As an Administrator, I want to be able to check tickets sent by users, so that I am able to address issues found by our platform's users|
+|US313|Approve/refuse appeals for unblock|Low|As an Administrator, I want to be able to give a verdict to an unblock appeal, so that I can decide on whether or not to allow a client back into the platform|
+|US314|Check a product's sales|Low|As an Administrator, I want to able to check a product's sales, so that I can be aware of how interesting a given product is to our platform's users|
+
+
+----
+
+### Business Rules
+
+|Identifier|Name|Description|
+|----------|----|-----------|
+|BR01|Reviewer|Only users that have bought a product through the website are able to review said product|
+|BR02|Out Of Stock|When stock of a certain product runs out, even though the product is still visible, a tag or notice is added alerting the user for this fact and this product is no longer available to be added to a cart. Furthermore, users are prompted to add the product to their watchlist|
+|BR03|Cancelling orders|Orders can be cancelled whilst the product is not "on-route"|
+|BR04|Deleted Users|Users that have deleted their account have their information permanently stored in the database. If the same user wishes to create a new account with the same credentials, the information is not restored. Reviews of the deleted user are still visible however it is not possible for visitors or clients to access this profile|
+
+### Technical Requirements
+
+|Identifier|Name|Description|
+|----|----|----|
+|**TR01**|**Availability**|**The system must be available 99 percent of the time in each 24-hour period.**|
+|TR02|Accessibility|The system must ensure that everyone can access the pages, regardless of whether they have any handicap or not, or the web browser they use|
+|**TR03**|**Usability**|**The system should be simple and easy to use.**|
+|TR04|Performance|The system should have response times shorter than 2 s to ensure the user's attention|
+|TR05|Web application|The system should be implemented as a web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP)|
+|TR06|Portability|The server-side system should work across multiple platforms (Linux, Mac OS, etc.)|
+|TR07|Database|The PostgreSQL database management system must be used, with a version of 11 or Higher.|
+|TR08|Security|The system shall protect information from unauthorised access through the use of an authentication and verification system|
+|**TR09**|**Robustness**|**The system must be prepared to handle and continue operating when runtime errors occur**|
+|TR10|Scalability|The system must be prepared to deal with the growth in the number of users and their actions|
+|TR11|Ethics|The system must respect the ethical principles in software development (for example, personal user details, or usage data, should not be collected nor shared without full acknowledgement and authorization from its owner)|
+
+### Restrictions
+
+|Identifier|Name|Description|
+|--|--|--|
+|C01|Deadline|The system should be ready to be used by the end of this semester|
