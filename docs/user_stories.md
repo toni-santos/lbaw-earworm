@@ -3,25 +3,26 @@
 |Identifier|Name|Priority|Description|
 |---|---|---|---|
 |US001|See Homepage|High|As a User, I want to access the home page, so that I can see a brief presentation of the website and instantly start brows1ing through products|
-|US002|See About|High|As a User, I want to access the About Us page, so that I can see understand who is behind the website and what their goal is|
-|US003|See Contacts|High|As a User, I want to know of any of the site's contacts, so that I know who to go to if I need help|
-|US004|See Artist Page|High|As a User, I want to access an artist's musical catalog, so that I can search through artist-specific related products in an organized way|
-|US005|See Product Page|High|As a User, I want to access a product's information (name, artist's name, stock, price, etc.), so that I can be aware of what the product is|
-|US006|View Product List|High|As a User, I want to be able to look at the full list of products available, so that I can quickly have a rough idea of which products interest me|
-|US007|View Product Details|High|As a User, I want to check product details, so that I can be more informed about what I could be buying|
-|US008|View Product Reviews|High|As a User, I want to check product reviews, so that I can make sure the product is trustworthy and enjoyable|
-|US009|Browse Products|High|As a User, I want to be able to search through the site's database, so that I can find the product(s) I am looking for|
-|US010|Browse Products using Exact-Match Search|High|As a User, I want to be able to search through the site's database using an exact-math filter, so that I can easily find the product(s) I am looking for|
-|US011|Browse Products using Full-text Search|High|As a User, I want to be able to search through the site's database using a full-text search filter, so that I can easily find the product(s) I am looking for|
-|US012|Browse Products using Exact-Match Search|High|As a User, I want to be able to search through the site's database using an exact-math filter, so that I can find the produc(s) I am looking for|
-|US013|Browse Products through Multiple Attributes|High|As a User, I want to be able to search through the site's database by matching multiple attributes or categories, so that I can explicitly find the product(s) I am looking for|
-|US014|Browse Product Categories|High|As a User, I want to be able to search product categories, so that I can restrict my search to something more tailored to my preferences|
-|US015|Filter Products|High|As a User, I want to be able to search through the site's database more efficiently using filters like categories, so that I can find the product(s) I am looking for|
-|US016|Receive Help through Form-Input Placeholders|High| As a User, I want understandable placeholder text in any form inputs, so that I can navigate any on-site interaction easily|
-|US017|Receive Error Messages|High| As a User, I want to receive clear error messages as I browse the website, so that I am always aware of any problem I've encountered|
-|US018|Receive Contextual Help|Medium|As a User, I want to receive clear and understandable queues, so that I can easily navigate and use the site at any given moment|
-|US019|See FAQ|Low|As a User, I want to access a Frequently Asked Questions page, so that I can better understand how the platform functions|
-|US020|Send Tickets|Low| As a User, I want to be able to send tickets to the administration of the site, so that I can communicate efficiently (even if anonymously) any problem, error, bug or any general information I wish to share with the admins|
+|US002|See About Us|High|As a User, I want to access the About Us page, so that I can see understand who is behind the website and what their goal is|
+|US003|See Help|High|As a User, I want to access a Help page, so that I can better understand how the platform functions|
+|US004|See Contacts|High|As a User, I want to know of any of the site's contacts, so that I know who to go to if I need help|
+|US005|See Artist Page|High|As a User, I want to access an artist's musical catalog, so that I can search through artist-specific related products in an organized way|
+|US006|See Product Page|High|As a User, I want to access a product's information (name, artist's name, stock, price, etc.), so that I can be aware of what the product is|
+|US007|View Product List|High|As a User, I want to be able to look at the full list of products available, so that I can quickly have a rough idea of which products interest me|
+|US008|View Product Details|High|As a User, I want to check product details, so that I can be more informed about what I could be buying|
+|US009|View Product Reviews|High|As a User, I want to check product reviews, so that I can make sure the product is trustworthy and enjoyable|
+|US010|Browse Products|High|As a User, I want to be able to search through the site's database, so that I can find the product(s) I am looking for|
+|US011|Browse Products using Exact-Match Search|High|As a User, I want to be able to search through the site's database using an exact-math filter, so that I can easily find the product(s) I am looking for|
+|US012|Browse Products using Full-text Search|High|As a User, I want to be able to search through the site's database using a full-text search filter, so that I can easily find the product(s) I am looking for|
+|US013|Browse Products using Exact-Match Search|High|As a User, I want to be able to search through the site's database using an exact-math filter, so that I can find the produc(s) I am looking for|
+|US014|Browse Products through Multiple Attributes|High|As a User, I want to be able to search through the site's database by matching multiple attributes or categories, so that I can explicitly find the product(s) I am looking for|
+|US015|Browse Product Categories|High|As a User, I want to be able to search product categories, so that I can restrict my search to something more tailored to my preferences|
+|US016|Filter Products|High|As a User, I want to be able to search through the site's database more efficiently using filters like categories, so that I can find the product(s) I am looking for|
+|US017|Receive Help through Form-Input Placeholders|High| As a User, I want understandable placeholder text in any form inputs, so that I can navigate any on-site interaction easily|
+|US018|Receive Error Messages|High| As a User, I want to receive clear error messages as I browse the website, so that I am always aware of any problem I've encountered|
+|US019|Receive Contextual Help|Medium|As a User, I want to receive clear and understandable queues, so that I can easily navigate and use the site at any given moment|
+|US020|See FAQ|Low|As a User, I want to access a Frequently Asked Questions page, so that I can check answers for commonly made questions|
+|US021|Send Tickets|Low| As a User, I want to be able to send tickets to the administration of the site, so that I can communicate efficiently (even if anonymously) any problem, error, bug or any general information I wish to share with the admins|
 
 
 ### Visitor
