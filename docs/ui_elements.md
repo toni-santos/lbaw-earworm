@@ -1,3 +1,7 @@
+## Sitemap
+
+![Sitemap](sitemap.png)
+
 ## UI
 
 ### UI01
@@ -6,7 +10,7 @@
 |---|---|---|
 |UI01|Homepage|The website homepage, it's the landing page for all users and includes pathways to all other pages. A showcase of new and relevant releases and additions to the webiste is present in this page. A few endorsements and reviews of the shop can also be seen when scrolling along the page.|
 
-> Wireframe
+![Wireframe Home](wireframe_home.png)
 
 ### UI02
 
@@ -14,21 +18,24 @@
 |---|---|---|
 |UI02|Catalogue|The catalogue includes a search bar and filters that allow the user to browse and search, with great accuracy, for available products. Furthermore, this page also has some suggestions for registered users based on their purchase history or their last.fm account.|
 
-> Wireframe
-
 ### UI03
 
 |Identifier|Name|Description|
 |---|---|---|
 |UI03|Product Page|This page dynamically changes its contents based on the prodcut, it harbors information about the price, date, type and rating, as well as reviews, of said product. This page also lets users review products.|
 
-> Wireframe
+![Wireframe Product Page](wireframe_product.png)
+
 
 ### UI04
 
 |Identifier|Name|Description|
 |---|---|---|
-|UI04|User Profile|The user profile is a public reflection of a user's personal profile (UI06), a profile picture and the name of the user are showcased alongisde some personal, non-sensitive, information that the user may want to share. All of the users reviews are also grouped in this page in a dedicated tab.|
+|UI04|User Profile|The user profile is a public reflection of a user's personal profile (UI06), a profile picture and the name of the user are showcased alongisde some personal, 
+non-sensitive, information that the user may want to share. All of the users reviews are also grouped in this page in a dedicated tab.|
+
+![Wireframe User Profile](wireframe_profile.png)
+
 
 ### UI05
 
