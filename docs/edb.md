@@ -13,25 +13,24 @@
 |Relation Reference|Relation Compact Notation|
 |---|---|
 |R01|user(<ins>id</ins>, email **UK NN**, username **NN**, password **NN**)|
-|R02|client(<ins>user_id</ins>->user, email->user **UK NN**, username->user **NN**, password->User **NN**, is_blocked **NN**)|
-|R03|admin(<ins>user_id</ins>->user,email->user **UK NN**, username->user **NN**, password->User **NN**)|
+|R02|client(<ins>user_id</ins>->user, email->user **UK NN**, username->user **NN**, password->user **NN**, cart_id->cart **NN**, wishlist_id->wishlist **NN**, is_blocked **NN**)|
+|R03|admin(<ins>user_id</ins>->user,email->user **UK NN**, username->user **NN**, password->user **NN**)|
 |R04|artist(<ins>id</ins>, name **NN**, description)|
 |R05|client_artist(<ins>client_id</ins>->client, <ins>artist_id</ins>->artist)|
-|R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, price **NN**, format **NN CK** format **IN** Formats, year **NN**, rating **DF** NULL)|
-|R07|artist_product(<ins>artist_id</ins>->artist **NN**, <ins>product_id</ins>->product **NN**)|
-|R08|review(<ins>id</ins>->user, <ins>product_id</ins>->product, score **NN CK** score > 0 AND score <= 5, date **NN**, description DF NULL)|
-|R09|order(<ins>id</ins>, <ins>client_id</ins>->client, state **NN**)|
-|R10|order_product(<ins>order_id</ins> -> order, <ins>product_id</ins> -> product, quantity)
-|R11|wishlist(<ins>id</ins>, <ins>client_id</ins>->client)|
-|R12|wishlist_product(<ins>wishlist_id</ins> -> wishlist, <ins>product_id</ins> -> product)|
-|R13|cart(<ins>id</ins>, <ins>client_id</ins>->client)
-|R14|cart_product(<ins>cart_id</ins>->cart, <ins>product_id</ins>->product, quantity **NN**)
-|R15|notification(<ins>id</ins>, date, description DF NULL)|
-|R16|misc_notif(<ins>notification_id</ins>->notification)|
-|R17|wishlist_notif(<ins>notification_id</ins>->notification)|
-|R18|order_notif(<ins>notification_id</ins>->notification)|
-|R19|ticket(id, <ins>user_id</ins>->user, message **NN**)|
-|R20|report(id,  <ins>reporter_id</ins>->client, <ins>reported_id</ins>->client, message **NN**)
+|R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, genre, price **NN**, format **NN CK** format **IN** Formats, year **NN**, rating **DF** NULL)|
+|R07|review(<ins>id</ins>, client_id->client **NN**, product_id->product **NN**, score **NN CK** score > 0 AND score <= 5, date **NN**, description **DF** NULL)|
+|R08|order(<ins>id</ins>, client_id->client **NN**, state **NN CK** state **IN** orderStates)|
+|R09|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity)
+|R10|wishlist(<ins>id</ins>, client_id->client **NN**)|
+|R11|wishlist_product(<ins>wishlist_id</ins>->wishlist, <ins>product_id</ins>->product)|
+|R12|cart(<ins>id</ins>, client_id->client **NN**)
+|R13|cart_product(<ins>cart_id</ins>->cart, <ins>product_id</ins>->product, quantity **NN**)
+|R14|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
+|R15|misc_notif(<ins>notification_id</ins>->notification)|
+|R16|wishlist_notif(<ins>notification_id</ins>->notification)|
+|R17|order_notif(<ins>notification_id</ins>->notification)|
+|R18|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
+|R19|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
 
 ### Legend:
 
@@ -60,8 +59,8 @@
 |---|---|
 |**Keys**|{id}, {email}|
 |**Functional Dependencies**:||
-|FD0201|id -> {email, username, password}|
-|FD0202|email -> {id, username, password}|
+|FD0201|id -> {email, username, password, cart_id, wishlist_id, is_blocked}|
+|FD0202|email -> {id, username, password, cart_id, wishlist_id, is_blocked}|
 |**Normal Form**|BCNF|
 
 |**Table R03**|**Admin**|
@@ -76,7 +75,7 @@
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
-|FD0401|id -> {name}|
+|FD0401|id -> {name, description}|
 |**Normal Form**|BCNF|
 
 |**Table R05**|**Client_Artist**|
@@ -89,21 +88,21 @@
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
-|FD0601|id -> {name, price, format, year, rating}|
+|FD0601|id -> {name, artist_id, price, genre, format, year, rating}|
 |**Normal Form**|BCNF|
 
 |**Table R07**|**Review**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
-|FD0801|id -> {product_id, product, score, date, description}|
+|FD0801|id -> {client_id, product_id, score, date, description}|
 |**Normal Form**|BCNF|
 
 |**Table R08**|**Order**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
-|FD0901|id -> {user, product_id}|
+|FD0901|id -> {user, product_id, state}|
 |**Normal Form**|BCNF (?)|
 
 |**Table R09**|**Order_Product**|
@@ -216,11 +215,56 @@
 ## Proposed Indexes
 ### Performance Indexes
 
-|---|---|
 |**Index**|IDX01|
+|---|---|
 |**Index Relation**|Product|
 |**Index Attribute**|artist_id|
-|**Index Type**|IDX01|
-|**Cardinality**|IDX01|
-|**Clustering**|IDX01|
-|**Justification**|IDX01|
+|**Index Type**|B-tree|
+|**Cardinality**|High|
+|**Clustering**|Yes|
+|**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to the works by artist or category. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
+|**SQL CODE**|CREATE INDEX ArtistProduct<br> ON Product USING btree (id_artist);<br> CLUSTER product USING ArtistProduct;|
+
+|**Index**|IDX02|
+|---|---|
+|**Index Relation**|Product|
+|**Index Attribute**|genre|
+|**Index Type**|B-tree|
+|**Cardinality**|Medium|
+|**Clustering**|Yes|
+|**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to the works by artist or category. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
+|**SQL CODE**|CREATE INDEX ArtistGenre <br> ON Product USING btree (genre); <br> CLUSTER product USING ArtistGenre;|
+
+|**Index**|IDX03|
+|---|---|
+|**Index Relation**|Order|
+|**Index Attribute**|client_id|
+|**Index Type**|Hash|
+|**Cardinality**|High|
+|**Clustering**|No|
+|**Justification**|Table 'Order' is frequently accessed to obtain a user's orders. Filtering is done by exact match, thus an hash type index would be best suited. Update frequency is low and cardinality is high, so this is a good candidate for clustering: however, this is a hash-type index, so no clustering is performed. If clustering was proposed, 'client_id' would be the most suitable index for it.|
+|**SQL CODE**|;| 
+
+|**Index**|IDX04|
+|---|---|
+|**Index Relation**|CartProduct|
+|**Index Attribute**|client_id|
+|**Index Type**|Hash|
+|**Cardinality**|High|
+|**Clustering**|No|
+|**Justification**|Table 'Order' is frequently accessed to obtain a user's orders. Filtering is done by exact match, thus an hash type index would be best suited. Update frequency is low and cardinality is high, so this is a good candidate for clustering: however, this is a hash-type index, so no clustering is performed. If clustering was proposed, 'client_id' would be the most suitable index for it.|
+|**SQL CODE**|;| 
+
+|**Index**|IDX05|
+|---|---|
+|**Index Relation**|WishlistProduct|
+|**Index Attribute**|client_id|
+|**Index Type**|Hash|
+|**Cardinality**|High|
+|**Clustering**|No|
+|**Justification**|Table 'Order' is frequently accessed to obtain a user's orders. Filtering is done by exact match, thus an hash type index would be best suited. Update frequency is low and cardinality is high, so this is a good candidate for clustering: however, this is a hash-type index, so no clustering is performed. If clustering was proposed, 'client_id' would be the most suitable index for it.|
+|**SQL CODE**|;| 
+
+### Full-text Search Indexes
+
+
