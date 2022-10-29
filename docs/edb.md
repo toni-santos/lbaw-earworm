@@ -42,7 +42,7 @@
 ## Domains:
 |Domain Name|Domain Specification|
 |---|---|
-|**Formats**|ENUM('CD', 'Vynil', 'Cassette', 'DVD' 'Box Set')|
+|**Formats**|ENUM('CD', 'Vinyl', 'Cassette', 'DVD' 'Box Set')|
 |**orderStates**|ENUM('Order Placed', 'Processing', 'Preparing to Ship', 'Shipped', 'Delivered', 'Ready for Pickup', 'Picked up')|
 
 ## Schema Validation
