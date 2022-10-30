@@ -17,20 +17,21 @@
 |R03|admin(<ins>user_id</ins>->user,email->user **UK NN**, username->user **NN**, password->user **NN**)|
 |R04|artist(<ins>id</ins>, name **NN**, description)|
 |R05|client_artist(<ins>client_id</ins>->client, <ins>artist_id</ins>->artist)|
-|R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, genre, price **NN**, format **NN CK** format **IN** Formats, year **NN**, rating **DF** NULL)|
-|R07|review(<ins>id</ins>, client_id->client **NN**, product_id->product **NN**, score **NN CK** score > 0 AND score <= 5, date **NN**, description **DF** NULL)|
-|R08|order(<ins>id</ins>, client_id->client **NN**, state **NN CK** state **IN** orderStates)|
-|R09|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity)
-|R10|wishlist(<ins>id</ins>, client_id->client **NN**)|
-|R11|wishlist_product(<ins>wishlist_id</ins>->wishlist, <ins>product_id</ins>->product)|
-|R12|cart(<ins>id</ins>, client_id->client **NN**)
-|R13|cart_product(<ins>cart_id</ins>->cart, <ins>product_id</ins>->product, quantity **NN**)
-|R14|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
-|R15|misc_notif(<ins>notification_id</ins>->notification)|
-|R16|wishlist_notif(<ins>notification_id</ins>->notification)|
-|R17|order_notif(<ins>notification_id</ins>->notification)|
-|R18|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
-|R19|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
+|R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, genre, price **NN**, format **NN CK** format **IN** Formats, year **NN**, description **DF** NULL, rating **DF** NULL)|
+|R07|genre(<ins>id</ins>, name **NN**|
+|R08|review(<ins>id</ins>, client_id->client **NN**, product_id->product **NN**, score **NN CK** score > 0 AND score <= 5, date **NN**, description **DF** NULL)|
+|R09|order(<ins>id</ins>, client_id->client **NN**, state **NN CK** state **IN** orderStates)|
+|R10|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity)
+|R11|wishlist(<ins>id</ins>, client_id->client **NN**)|
+|R12|wishlist_product(<ins>wishlist_id</ins>->wishlist, <ins>product_id</ins>->product)|
+|R13|cart(<ins>id</ins>, client_id->client **NN**)
+|R14|cart_product(<ins>cart_id</ins>->cart, <ins>product_id</ins>->product, quantity **NN**)
+|R15|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
+|R16|misc_notif(<ins>notification_id</ins>->notification)|
+|R17|wishlist_notif(<ins>notification_id</ins>->notification)|
+|R18|order_notif(<ins>notification_id</ins>->notification)|
+|R19|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
+|R20|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
 
 ### Legend:
 
@@ -42,7 +43,7 @@
 ## Domains:
 |Domain Name|Domain Specification|
 |---|---|
-|**Formats**|ENUM('CD', 'Vinyl', 'Cassette', 'DVD' 'Box Set')|
+|**Formats**|ENUM('CD', 'Vinyl', 'Cassette', 'DVD', 'Box Set')|
 |**orderStates**|ENUM('Order Placed', 'Processing', 'Preparing to Ship', 'Shipped', 'Delivered', 'Ready for Pickup', 'Picked up')|
 
 ## Schema Validation
@@ -91,91 +92,98 @@
 |FD0601|id -> {name, artist_id, price, genre, format, year, rating}|
 |**Normal Form**|BCNF|
 
-|**Table R07**|**Review**|
+|**Table R07**|**Genre**|
+|---|---|
+|**Keys**|{id}|
+|**Functional Dependencies**:||
+|FD0701|id -> {name}|
+|**Normal Form**|BCNF|
+
+|**Table R08**|**Review**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD0801|id -> {client_id, product_id, score, date, description}|
 |**Normal Form**|BCNF|
 
-|**Table R08**|**Order**|
+|**Table R09**|**Order**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD0901|id -> {user, product_id, state}|
-|**Normal Form**|BCNF (?)|
+|**Normal Form**|BCNF|
 
-|**Table R09**|**Order_Product**|
+|**Table R10**|**Order_Product**|
 |---|---|
 |**Keys**|{order_id, product_id}|
 |**Functional Dependencies**:||
 |FD1001|{order_id, product_id} -> {quantity}|
 |**Normal Form**|BCNF|
 
-|**Table R10**|**Wishlist**|
+|**Table R11**|**Wishlist**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD1101|id -> {client_id}|
 |**Normal Form**|BCNF|
 
-|**Table R11**|**Wishlist_Product**|
+|**Table R12**|**Wishlist_Product**|
 |---|---|
 |**Keys**|{wishlist_id, product_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R12**|**Cart**|
+|**Table R13**|**Cart**|
 |---|---|
 |**Keys**|{id} |
 |**Functional Dependencies**:||
 |FD1301|id -> {client_id}|
 |**Normal Form**|BCNF|
 
-|**Table R13**|**Cart_Product**|
+|**Table R14**|**Cart_Product**|
 |---|---|
 |**Keys**|{cart_id, product_id}|
 |**Functional Dependencies**:||
 |FD1401|{cart_id, product_id} -> {quantity}|
 |**Normal Form**|BCNF|
 
-|**Table R14**|**Notification**|
+|**Table R15**|**Notification**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD1501|id -> {date, description}|
 |**Normal Form**|BCNF|
 
-|**Table R15**|**Misc_Notif**|
+|**Table R16**|**Misc_Notif**|
 |---|---|
 |**Keys**|{notification_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R16**|**Wishlist_Notif**|
+|**Table R17**|**Wishlist_Notif**|
 |---|---|
 |**Keys**|{notification_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R17**|**Order_Notif**|
+|**Table R18**|**Order_Notif**|
 |---|---|
 |**Keys**|{notification_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R18**|**Ticket**|
+|**Table R19**|**Ticket**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD1901|id -> {user_id, message}|
 |**Normal Form**|BCNF|
 
-|**Table R19**|**Report**|
+|**Table R20**|**Report**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
@@ -196,19 +204,20 @@
 |R04|artist|1k|10/day|
 |R05|client_artist|100|10/day|
 |R06|product|1k|100/day|
-|R07|review|100|10/day||
-|R08|order|100|10/day|
-|R09|order_product|10|1/day|
-|R10|wishlist|100|10/day|
-|R11|wishlist_product|1k|10/day|
-|R12|cart|100|10/day|
-|R13|cart_product|100|10/day|
-|R14|notification|100|10/day|
-|R15|misc_notif|10|1/day|
-|R16|wishlist_notif|10|1/day|
-|R17|order_notif|10|1/day|
-|R18|ticket|10|1/day|
-|R19|report|10|1/day|
+|R07|genre|10|1/day|
+|R08|review|100|10/day|
+|R09|order|100|10/day|
+|R10|order_product|10|1/day|
+|R11|wishlist|100|10/day|
+|R12|wishlist_product|1k|10/day|
+|R13|cart|100|10/day|
+|R14|cart_product|100|10/day|
+|R15|notification|100|10/day|
+|R16|misc_notif|10|1/day|
+|R17|wishlist_notif|10|1/day|
+|R18|order_notif|10|1/day|
+|R19|ticket|10|1/day|
+|R20|report|10|1/day|
 
 #
 
@@ -223,7 +232,7 @@
 |**Cardinality**|High|
 |**Clustering**|Yes|
 |**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to the works by artist or category. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
-|**SQL CODE**|CREATE INDEX ArtistProduct<br> ON Product USING btree (id_artist);<br> CLUSTER product USING ArtistProduct;|
+|**SQL CODE**|CREATE INDEX ProductArtist<br> ON Product USING btree (id_artist);<br> CLUSTER product USING ProductArtist;|
 
 |**Index**|IDX02|
 |---|---|
@@ -232,9 +241,30 @@
 |**Index Type**|B-tree|
 |**Cardinality**|Medium|
 |**Clustering**|Yes|
-|**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to the works by artist or category. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
-|**SQL CODE**|CREATE INDEX ArtistGenre <br> ON Product USING btree (genre); <br> CLUSTER product USING ArtistGenre;|
+|**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to products by genre. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
+|**SQL CODE**|CREATE INDEX ProductGenre <br> ON Product USING btree (genre); <br> CLUSTER product USING ProductGenre;|
 
+|**Index**|IDX03|
+|---|---|
+|**Index Relation**|Product|
+|**Index Attribute**|rating|
+|**Index Type**|B-tree|
+|**Cardinality**|medium|
+|**Clustering**|Yes|
+|**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to products by rating. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
+|**SQL CODE**|CREATE INDEX ProductRating <br> ON Product USING btree (rating); <br> CLUSTER product USING ProductRating;|
+
+|**Index**|IDX04|
+|---|---|
+|**Index Relation**|Product|
+|**Index Attribute**|format|
+|**Index Type**|B-tree|
+|**Cardinality**|medium|
+|**Clustering**|Yes|
+|**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to products by format. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
+|**SQL CODE**|CREATE INDEX ProductFormat <br> ON Product USING btree (rating); <br> CLUSTER product USING ProductFormat;|
+
+--FAKES
 |**Index**|IDX03|
 |---|---|
 |**Index Relation**|Order|
@@ -254,7 +284,9 @@
 |**Clustering**|No|
 |**Justification**|Table 'Order' is frequently accessed to obtain a user's orders. Filtering is done by exact match, thus an hash type index would be best suited. Update frequency is low and cardinality is high, so this is a good candidate for clustering: however, this is a hash-type index, so no clustering is performed. If clustering was proposed, 'client_id' would be the most suitable index for it.|
 |**SQL CODE**|;| 
+--
 
+--MAYBE?
 |**Index**|IDX05|
 |---|---|
 |**Index Relation**|WishlistProduct|
@@ -262,9 +294,28 @@
 |**Index Type**|Hash|
 |**Cardinality**|High|
 |**Clustering**|No|
-|**Justification**|Table 'Order' is frequently accessed to obtain a user's orders. Filtering is done by exact match, thus an hash type index would be best suited. Update frequency is low and cardinality is high, so this is a good candidate for clustering: however, this is a hash-type index, so no clustering is performed. If clustering was proposed, 'client_id' would be the most suitable index for it.|
+|**Justification**|Table 'WishlistProduct' is frequently accessed to obtain a user's wishlisted items. Filtering is done by exact match, thus an hash type index would be best suited. Update frequency is low and cardinality is high, so this is a good candidate for clustering: however, this is a hash-type index, so no clustering is performed. If clustering was proposed, 'client_id' would be the most suitable index for it.|
 |**SQL CODE**|;| 
 
 ### Full-text Search Indexes
 
+|**Index**|IDX11|
+|---|---|
+|**Index Relation**|Product|
+|**Index Attribute**|name, genre|
+|**Index Type**|Hash|
+|**Cardinality**|GIN|
+|**Clustering**|No|
+|**Justification**|Full-text search features to browse for products based on matching product names, **artist name** (through id) (!) or genre. Index type is GIN because these fields are not expected to change often, if at all.|
+|**SQL CODE**|;| 
+
+|**Index**|IDX12|
+|---|---|
+|**Index Relation**|Artist|
+|**Index Attribute**|name|
+|**Index Type**|Hash|
+|**Cardinality**|GIN|
+|**Clustering**|No|
+|**Justification**|Full-text search features to browse for artists based on matching names. Index type is GIN because these fields are not expected to change often, if at all.|
+|**SQL CODE**|;| 
 
