@@ -280,31 +280,8 @@
 |**Clustering**|Yes|
 |**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to products by format. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
 |**SQL CODE**|
-    CREATE INDEX ProductFormat ON Product USING btree (rating); 
+    CREATE INDEX ProductFormat ON Product USING btree (format); 
     CLUSTER product USING ProductFormat;
-
-
---FAKES
-|**Index**|IDX03|
-|---|---|
-|**Index Relation**|Order|
-|**Index Attribute**|client_id|
-|**Index Type**|Hash|
-|**Cardinality**|High|
-|**Clustering**|No|
-|**Justification**|Table 'Order' is frequently accessed to obtain a user's orders. Filtering is done by exact match, thus an hash type index would be best suited. Update frequency is low and cardinality is high, so this is a good candidate for clustering: however, this is a hash-type index, so no clustering is performed. If clustering was proposed, 'client_id' would be the most suitable index for it.|
-|**SQL CODE**|;| 
-
-|**Index**|IDX04|
-|---|---|
-|**Index Relation**|CartProduct|
-|**Index Attribute**|client_id|
-|**Index Type**|Hash|
-|**Cardinality**|High|
-|**Clustering**|No|
-|**Justification**|Table 'Order' is frequently accessed to obtain a user's orders. Filtering is done by exact match, thus an hash type index would be best suited. Update frequency is low and cardinality is high, so this is a good candidate for clustering: however, this is a hash-type index, so no clustering is performed. If clustering was proposed, 'client_id' would be the most suitable index for it.|
-|**SQL CODE**|;| 
---
 
 --MAYBE?
 |**Index**|IDX05|
@@ -326,7 +303,7 @@
 |**Index Type**|Hash|
 |**Cardinality**|GIN|
 |**Clustering**|No|
-|**Justification**|Full-text search features to browse for products based on matching product names, **artist name** (through id) (!) or genre. Index type is GIN because these fields are not expected to change often, if at all.|
+|**Justification**|Full-text search features to browse for products based on matching product name or genre. Index type is GIN because these fields are not expected to change often, if at all.|
 |**SQL CODE**|;| 
 
 |**Index**|IDX12|
@@ -407,7 +384,7 @@
     LANGUAGE plpgsql;
 
     CREATE TRIGGER update_stock
-        AFTER INSERT ON Order
+        AFTER INSERT ON OrderProduct
         FOR EACH ROW
         EXECUTE PROCEDURE update_stock();
 
@@ -433,3 +410,31 @@
         FOR EACH ROW
         EXECUTE PROCEDURE nostock_restriction()
 
+## Transactions
+
+|**Trigger**|TRAN01|
+|---|---|
+|**Description**||
+|**SQL CODE**|
+    CREATE FUNCTION review_product()
+    RETURNS TRIGGER AS 
+    $BODY$
+        BEGIN
+            CASE  
+                WHEN (COUNT(SELECT * FROM Product WHERE NEW.product_id = id)) = 0 THEN 
+                    UPDATE Product
+                    SET rating = (SUM(SELECT rating FROM Product WHERE NEW.product_id = id) + NEW.score)
+                ELSE
+                    UPDATE Product
+                    SET rating = (SUM(SELECT rating FROM Product WHERE NEW.product_id = id) + NEW.score) / COUNT(SELECT * FROM Product WHERE NEW.product_id = id)
+            END CASE;
+
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER review_product
+        AFTER INSERT OR UPDATE OR DELETE ON Review
+        FOR EACH ROW
+        EXECUTE PROCEDURE review_product();

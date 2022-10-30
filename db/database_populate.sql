@@ -226,7 +226,7 @@ INSERT INTO Ticket (ticketer_id, message) VALUES (5, "I'm also testing")
 INSERT INTO Ticket (ticketer_id, message) VALUES (7, "I'm testing to see what happens")
 INSERT INTO Ticket (ticketer_id, message) VALUES (18, "Wrong order")
 
-INSERT INTO Orders (user_id, state) VALUES (3, "Order Placed")
+INSERT INTO Orders (user_id, state) VALUES (3, Placed)
 INSERT INTO Orders (user_id, state) VALUES (11, Processing)
 INSERT INTO Orders (user_id, state) VALUES (12, Shipped)
 INSERT INTO Orders (user_id, state) VALUES (10, Delivered)
