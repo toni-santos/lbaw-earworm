@@ -3,6 +3,7 @@ import discogs_client
 import json
 import time
 import requests
+import random
 
 d = discogs_client.Client('ExampleApplication/0.1', user_token="direMLOPEjcyVavKsrpQNKPuyWjfZwEuqarCklLq")
 headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'}
@@ -40,11 +41,11 @@ def get_release(id, releases, artists, genres):
     print("photos: " + str(release.images[0]['uri']))
     release_dict['photo'] = str(release.images[0]['uri'])
 
-    print("tracklist: " + str([x.title for x in release.tracklist]))
-    release_dict['tracklist'] = str([str(x.title) for x in release.tracklist])
+    print("tracklist: " + "\n".join([str(x.title) for x in release.tracklist]))
+    release_dict['tracklist'] = "\n".join([str(x.title) for x in release.tracklist])
 
-    print("price: " + str(release.marketplace_stats.lowest_price.value) + "€")
-    release_dict['price'] = str(release.marketplace_stats.lowest_price.value)
+    print("price: " + str(int(release.marketplace_stats.lowest_price.value * 100)) + " cents")
+    release_dict['price'] = str(int(release.marketplace_stats.lowest_price.value * 100))
 
     releases.append(release_dict)
 
@@ -95,7 +96,7 @@ def generate_populate(releases, artists, genres):
     f.write("PRAGMA foreign_keys = ON;\n\n")
     
     product_table_name = "Product"
-    product_table_struct = "(artist_id, name, price, format, year, rating)"
+    product_table_struct = "(artist_id, name, description, stock, price, format, year, rating)"
     artists_table_name = "Artist"
     artists_table_struct = "(name, description)"
     genres_table_name = "Genres"
@@ -117,7 +118,7 @@ def generate_populate(releases, artists, genres):
 
     # Create product table
     for i in releases:
-        prod_line = "INSERT INTO " + product_table_name + " " + product_table_struct + " VALUES " + "(" + i['artist'] + ", \"" + i['name'] + "\", " + i['price'] + ", " + i['format'] + ", " + i['year'] + ", NULL);\n"
+        prod_line = "INSERT INTO " + product_table_name + " " + product_table_struct + " VALUES " + "(" + i['artist'] + ", \"" + i['name'] + "\", \"" + i['tracklist'] + "\", " + str(random.randrange(10)) + ", " + i['price'] + ", " + i['format'] + ", " + i['year'] + ", NULL);\n"
         f.write(prod_line)
     f.write('\n');
 
@@ -147,7 +148,7 @@ def main():
 
     # Create and write the populate file
     generate_populate(releases, artists, genres)
-    download_images(releases, artists)
+    # download_images(releases, artists)
     
 if __name__ == "__main__":
     main()

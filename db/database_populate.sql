@@ -77,25 +77,218 @@ INSERT INTO Artist (name, description) VALUES ("My Bloody Valentine", "My Bloody
 
 Initially active from 1985 to 1993, MBV reunited for an international tour in 2007, and, after a gap of 21 years, released its third LP in 2013. In addition to a steady stream of remasters, mainstay and leader [a20085] has promised, on numerous occasions, a variety of forthcoming EPs and full-lengths.");
 
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (0, "Hellfire", 8.14, CD, 2022, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (0, "Hellfire", 23.99, Vinyl, 2022, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (0, "Schlagenheim", 8.0, CD, 2019, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (0, "Schlagenheim", 15.0, Vinyl, 2019, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (1, "For The First Time", 8.08, CD, 2021, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (1, "For The First Time", 18.55, Vinyl, 2021, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (2, "Together", 17.95, Vinyl, 2022, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (2, "Contemporary Movement", 110.0, Vinyl, 2000, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (2, "Stratosphere", 231.4, Vinyl, 1998, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (2, "Stratosphere", 34.99, CD, 1998, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (3, "Fake It Flowers", 19.19, Vinyl, 2020, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (4, "Sling", 12.5, Vinyl, 2021, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (5, "Shogun", 2.2, CD, 2008, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (6, "Humanoid ", 1.15, CD, 2009, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (7, "Jubilee ", 58.14, Vinyl, 2021, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (8, "Spiderland", 10.54, CD, 0, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (8, "Spiderland", 20.0, Vinyl, 0, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (9, "E", 131.1, CD, 2020, NULL);
-INSERT INTO Product (artist_id, name, price, format, year, rating) VALUES (10, "Loveless", 22.99, CD, 2021, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (0, "Hellfire", "Hellfire
+Sugar / Tzu
+Eat Men Eat
+Welcome To Hell
+Still
+Half Time
+The Race Is About To Begin
+Dangerous Liaisons
+The Defence
+27 Questions", 0, 814, CD, 2022, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (0, "Hellfire", "Hellfire
+Sugar/Tzu
+Eat Men, Eat
+Welcome To Hell
+Still
+Half Time
+The Race Is About To Begin
+Dangerous Liaisons
+The Defence
+27 Questions", 7, 2399, Vinyl, 2022, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (0, "Schlagenheim", "953
+Speedway
+Reggae
+Near DT, MI
+Western
+Of Schlagenheim
+BMBMBM
+Years Ago
+Ducter", 0, 800, CD, 2019, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (0, "Schlagenheim", "953
+Speedway
+Reggae
+Near DT,MI
+Western
+Of Schlagenheim
+bmbmbm
+Years Ago
+Ducter", 2, 1500, Vinyl, 2019, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (1, "For The First Time", "Instrumental
+Athens, France
+Science Fair
+Sunglasses
+Track X
+Opus", 0, 808, CD, 2021, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (1, "For The First Time", "Instrumental
+Athens, France
+Science Fair
+Sunglasses
+Track X
+Opus", 9, 1855, Vinyl, 2021, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, "Together", "New Directions
+Retrograde
+N
+Time Glitch
+Teeth
+Escalator
+Familiar Fields
+Moonroam
+Sleepyhead
+Making Room
+Drifter
+Feel No Joy
+Sad Boys", 4, 1795, Vinyl, 2022, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, "Contemporary Movement", "Get The Dutch
+Operations
+Diamond
+Me And The Birds
+Travelogue
+The Phantom Facing Me
+Cooking
+Unrecovery
+The Breakup Suite
+Everything You See (Is Your Own)
+Now It's Coming Back
+Auto-Mobile", 2, 11000, Vinyl, 2000, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, "Stratosphere", "Moon Age
+Heading For The Door
+Gold Dust
+Topical Solution
+Docking The Pod
+The Landing
+Constellations
+The Queen Of Hearts
+Two Way Radio
+Inside Out
+Stratosphere
+Reed To Hillsborough
+Shadows Of Planes
+Earth Moon Transit
+The Twins/Romantica
+Sideria", 1, 23140, Vinyl, 1998, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, "Stratosphere", "Moon Age
+Heading For The Door
+Gold Dust
+Topical Solution
+Docking The Pod
+The Landing
+Echo, Bravo
+Constellations
+The Queen Of Hearts
+Two Way Radio
+Inside Out
+Stratosphere
+Reed To Hillsborough
+Shadows Of Planes
+Earth Moon Transit
+The Twins / Romantica
+Sideria", 2, 3499, CD, 1998, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (3, "Fake It Flowers", "Care
+Worth It
+Dye It Red
+Back To Mars
+Charlie Brown
+Emo Song
+Sorry
+Further Away 
+Horen Sarrison
+How Was Your Day?
+Together
+Yoshimi, Forest, Magdalene ", 0, 1900, Vinyl, 2020, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (4, "Sling", "Bambi
+Amoeba
+Partridge
+Zinnias
+Blouse
+Wade
+Harbor
+Just For Today
+Joanie
+Reaper
+Little Changes
+Management", 7, 1250, Vinyl, 2021, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (5, "Shogun", "Kirisute Gomen
+Torn Between Scylla And Charybdis
+Down From The Sky
+Into The Mouth Of Hell We March
+Throes Of Perdition
+Insurrection
+The Calamity
+He Who Spawned The Furies
+Of Prometheus And The Crucifix
+Like Callisto To A Star In Heaven
+Shogun", 6, 220, CD, 2008, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (6, "Humanoid ", "Noise
+Darkside Of The Sun
+Automatic
+World Behind My Wall
+Humanoid
+Forever Now
+Pain Of Love
+Dogs Unleashed
+Human Connect To Human
+Hey You
+Love & Death
+Zoom Into Me", 3, 114, CD, 2009, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (7, "Jubilee ", "Paprika 
+Be Sweet 
+Kokomo, IN
+Slide Tackle 
+Posing In Bondage
+Sit
+Savage Good Boy
+In Hell
+Tactics 
+Posing For Cars", 8, 5814, Vinyl, 2021, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (8, "Spiderland", "Breadcrumb Trail
+Nosferatu Man
+Don, Aman
+Washer
+For Dinner...
+Good Morning, Captain", 4, 1054, CD, 0, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (8, "Spiderland", "Breadcrumb Trail
+Nosferatu Man
+Don, Aman
+Washer
+For Dinner...
+Good Morning, Captain", 3, 2000, Vinyl, 0, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (9, "E", "AAA Powerline
+Peroxide
+Fragile
+Bliss Fields
+Fruit Bleed Juice
+Cc
+Calcium
+Sugar & Diesel
+Don't Ask
+Security!
+Time
+Blue Eyes
+Life After Life", 7, 13110, CD, 2020, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (10, "Loveless", "Only Shallow
+Loomer
+Touched
+To Here Knows When
+When You Sleep
+I Only Said
+Come In Alone
+Sometimes
+Blown A Wish
+What You Want
+Soon
+Only Shallow
+Loomer
+Touched
+To Here Knows When
+When You Sleep
+I Only Said
+Come In Alone
+Sometimes
+Blown A Wish
+What You Want
+Soon", 4, 2299, CD, 2021, NULL);
 
 INSERT INTO ProductGenre (product_id, genre_id) VALUES (1, 1);
 INSERT INTO ProductGenre (product_id, genre_id) VALUES (1, 2);
