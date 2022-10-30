@@ -17,9 +17,8 @@
 |R03|admin(<ins>user_id</ins>->user,email->user **UK NN**, username->user **NN**, password->user **NN**)|
 |R04|artist(<ins>id</ins>, name **NN**, description)|
 |R05|client_artist(<ins>client_id</ins>->client, <ins>artist_id</ins>->artist)|
-<<<<<<< Updated upstream
-|R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, genre, price **NN**, format **NN CK** format **IN** Formats, year **NN**, description **DF** NULL, rating **DF** NULL)|
-|R07|genre(<ins>id</ins>, name **NN**)
+|R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, genre, price **NN**, stock **NN**, format **NN CK** format **IN** Formats, year **NN**, description **DF** NULL, rating **DF** NULL)|
+|R07|genre(<ins>id</ins>, name **NN**)|
 |R08|genre_product(<ins>genre_id</ins>->genre, <ins>product_id</ins>->product)
 |R09|review(<ins>id</ins>, client_id->client **NN**, product_id->product **NN**, score **NN CK** score > 0 AND score <= 5, date **NN**, description **DF** NULL)|
 |R10|order(<ins>id</ins>, client_id->client **NN**, state **NN CK** state **IN** orderStates)|
@@ -34,23 +33,6 @@
 |R19|order_notif(<ins>notification_id</ins>->notification)|
 |R20|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
 |R21|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
-=======
-|R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, genre, price **NN**, stock **NN**, format **NN CK** format **IN** Formats, year **NN**, description **DF** NULL, rating **DF** NULL)|
-|R07|genre(<ins>id</ins>, name **NN**)|
-|R08|review(<ins>id</ins>, client_id->client **NN**, product_id->product **NN**, score **NN CK** score > 0 AND score <= 5, date **NN**, description **DF** NULL)|
-|R09|order(<ins>id</ins>, client_id->client **NN**, state **NN CK** state **IN** orderStates)|
-|R10|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity)
-|R11|wishlist(<ins>id</ins>, client_id->client **NN**)|
-|R12|wishlist_product(<ins>wishlist_id</ins>->wishlist, <ins>product_id</ins>->product)|
-|R13|cart(<ins>id</ins>, client_id->client **NN**)
-|R14|cart_product(<ins>cart_id</ins>->cart, <ins>product_id</ins>->product, quantity **NN**)
-|R15|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
-|R16|misc_notif(<ins>notification_id</ins>->notification)|
-|R17|wishlist_notif(<ins>notification_id</ins>->notification)|
-|R18|order_notif(<ins>notification_id</ins>->notification)|
-|R19|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
-|R20|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
->>>>>>> Stashed changes
 
 ### Legend:
 
@@ -438,7 +420,7 @@
     RETURNS TRIGGER AS 
     $BODY$
         BEGIN 
-        IF (SELECT stock FROM Product WHERE product_id = EEW.product_id) < NEW.quantity THEN 
+        IF (SELECT stock FROM Product WHERE product_id = NEW.product_id) < NEW.quantity THEN 
             RAISE EXCEPTION 'This product can't be bought due to lack of stock at the moment.';
         END IF;
         RETURN NEW;
