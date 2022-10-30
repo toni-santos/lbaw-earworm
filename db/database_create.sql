@@ -16,7 +16,8 @@ DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Artist;
 DROP TABLE IF EXISTS FavArtist;
 DROP TABLE IF EXISTS Product;
-DROP TABLE IF EXISTS ArtistProduct;
+DROP TABLE IF EXISTS Genre;
+DROP TABLE IF EXISTS ProductGenre;
 DROP TABLE IF EXISTS Review;
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS OrderProduct;
@@ -42,60 +43,70 @@ CREATE TABLE Users(
 
 CREATE TABLE Artist(
     id          SERIAL PRIMARY KEY,
-    name        VARCHAR(100) NOT NULL,
+    name        VARCHAR(100) UNIQUE NOT NULL,
     description TEXT DEFAULT NULL
 );
 
 CREATE TABLE FavArtist(
-    user_id     INTEGER REFERENCES Users(id),
-    artist_id   INTEGER REFERENCES Artist(id),
+    user_id     INTEGER REFERENCES Users(id) ON UPDATE CASCADE,
+    artist_id   INTEGER REFERENCES Artist(id) ON UPDATE CASCADE,
     CONSTRAINT favArtistPK PRIMARY KEY (user_id, artist_id)
+);
+
+CREATE TABLE Genre(
+    id          SERIAL PRIMARY KEY,
+    name        VARCHAR (100) UNIQUE NOT NULL
 );
 
 CREATE TABLE Product(
     id          SERIAL PRIMARY KEY,
-    artist_id   INTEGER REFERENCES Artist(id),
+    artist_id   INTEGER REFERENCES Artist(id) ON UPDATE CASCADE,
     name        VARCHAR(255) NOT NULL,
     price       BIGINT NOT NULL,
-    genre       VARCHAR(100) NOT NULL DEFAULT 'Unknown',
     format      PRODUCT_FORMAT NOT NULL,
     year        INTEGER,
     rating      INTEGER DEFAULT NULL
 );
 
+CREATE TABLE ProductGenre(
+    product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
+    genre_id    INTEGER REFERENCES Genre(id) ON UPDATE CASCADE,
+    CONSTRAINT productGenrePK PRIMARY KEY (product_id, genre_id)
+);
+
 CREATE TABLE Review(
-    reviewer_id INTEGER REFERENCES Users(id),
-    product_id  INTEGER REFERENCES Product(id),
+    reviewer_id INTEGER REFERENCES Users(id) ON UPDATE CASCADE,
+    product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
     score       INTEGER NOT NULL,
     date        DATE NOT NULL DEFAULT CURRENT_DATE,
-    description TEXT DEFAULT NULL,
+    message TEXT DEFAULT NULL,
     CHECK (score BETWEEN 0 AND 5),
     CONSTRAINT reviewPK PRIMARY KEY (reviewer_id, product_id)
 );
 
 CREATE TABLE Orders(
     id          SERIAL PRIMARY KEY,
-    user_id     INTEGER REFERENCES Users(id),
+    user_id     INTEGER REFERENCES Users(id) ON UPDATE CASCADE,
     state       ORDER_STATE NOT NULL
 );
 
 CREATE TABLE OrderProduct(
-    order_id    INTEGER REFERENCES Orders(id),
-    product_id  INTEGER REFERENCES Product(id),
+    order_id    INTEGER REFERENCES Orders(id) ON UPDATE CASCADE,
+    product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
     quantity    INTEGER NOT NULL,
     CONSTRAINT orderProductPK PRIMARY KEY (order_id, product_id)
 );
 
 CREATE TABLE CartProduct(
-    cart_id     INTEGER REFERENCES Users(cart_id),
-    product_id  INTEGER REFERENCES Product(id),
+    cart_id     INTEGER REFERENCES Users(cart_id) ON UPDATE CASCADE,
+    product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
     quantity    INTEGER NOT NULL,
     CONSTRAINT cartProductPK PRIMARY KEY (cart_id, product_id)
 );
 
 CREATE TABLE WishlistProduct(
-    wishlist_id INTEGER REFERENCES Users(wishlist_id),
-    product_id  INTEGER REFERENCES Product(id),
+    wishlist_id INTEGER REFERENCES Users(wishlist_id) ON UPDATE CASCADE,
+    product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
     CONSTRAINT wishlistProductPK PRIMARY KEY (wishlist_id, product_id)
 );
 
@@ -108,13 +119,50 @@ CREATE TABLE Notif(
 
 CREATE TABLE Ticket(
     id          SERIAL PRIMARY KEY,
-    ticketer_id INTEGER REFERENCES Users(id),
+    ticketer_id INTEGER REFERENCES Users(id) ON UPDATE CASCADE,
     message     VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Report(
     id          SERIAL PRIMARY KEY,
-    reporter_id INTEGER REFERENCES Users(id),
-    reported_id INTEGER REFERENCES Users(id),
+    reporter_id INTEGER REFERENCES Users(id) ON UPDATE CASCADE,
+    reported_id INTEGER REFERENCES Users(id) ON UPDATE CASCADE,
     message     VARCHAR(255) NOT NULL
 );
+
+-- Indexes
+
+CREATE INDEX product_artist ON Product USING hash (artist_id);
+
+-- Full text search
+-- On Product
+
+ALTER TABLE Product
+ADD COLUMN tsvectors TSVECTOR;
+
+CREATE FUNCTION product_search_update() RETURNS TRIGGER AS $$
+BEGIN
+
+    IF TG_OP = 'INSERT' THEN
+        NEW.tsvectors = (
+            setweight(to_tsvector('english', NEW.name), 'A')
+        );
+    END IF;
+    IF TG_OP = 'UPDATE' THEN
+        IF (NEW.name <> OLD.name) THEN
+            NEW.tsvectors = (
+                setweight(to_tsvector('english', NEW.name), 'A')
+            );
+        END IF;
+    END IF;
+    RETURN NEW;
+
+END $$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER product_search_update
+    BEFORE INSERT OR UPDATE ON Product
+    FOR EACH ROW
+    EXECUTE PROCEDURE product_search_update();
+
+-- Triggers
