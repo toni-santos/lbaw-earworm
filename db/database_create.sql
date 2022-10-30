@@ -8,7 +8,7 @@ SET search_path TO lbaw22123;
 
 -- Enumerations
 CREATE TYPE PRODUCT_FORMAT AS ENUM('Vinyl', 'CD', 'Cassette', 'DVD', 'Box Set');
-CREATE TYPE ORDER_STATE AS ENUM('Placed', 'Processing', 'Preparing to Ship', 'Shipped', 'Delivered', 'Ready for Pickup', 'Picked up');
+CREATE TYPE ORDER_STATE AS ENUM('Order Placed', 'Processing', 'Preparing to Ship', 'Shipped', 'Delivered', 'Ready for Pickup', 'Picked up');
 CREATE TYPE NOTIF_TYPE AS ENUM('Order', 'Wishlist', 'Misc');
 
 -- Drop existent tables
@@ -62,10 +62,13 @@ CREATE TABLE Product(
     id          SERIAL PRIMARY KEY,
     artist_id   INTEGER REFERENCES Artist(id) ON UPDATE CASCADE,
     name        VARCHAR(255) NOT NULL,
+    description TEXT,
+    stock       INTEGER NOT NULL DEFAULT 1,
     price       BIGINT NOT NULL,
     format      PRODUCT_FORMAT NOT NULL,
     year        INTEGER,
-    rating      FLOAT DEFAULT NULL
+    rating      INTEGER DEFAULT NULL,
+    CHECK (stock >= 0)
 );
 
 CREATE TABLE ProductGenre(
@@ -79,7 +82,7 @@ CREATE TABLE Review(
     product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
     score       INTEGER NOT NULL,
     date        DATE NOT NULL DEFAULT CURRENT_DATE,
-    message TEXT DEFAULT NULL,
+    message     TEXT DEFAULT NULL,
     CHECK (score BETWEEN 0 AND 5),
     CONSTRAINT reviewPK PRIMARY KEY (reviewer_id, product_id)
 );
@@ -112,6 +115,7 @@ CREATE TABLE WishlistProduct(
 
 CREATE TABLE Notif(
     id          SERIAL PRIMARY KEY,
+	user_id		INTEGER REFERENCES Users(id),
     date        DATE NOT NULL DEFAULT CURRENT_DATE,
     description TEXT DEFAULT NULL,
     type        NOTIF_TYPE NOT NULL
@@ -145,13 +149,15 @@ BEGIN
 
     IF TG_OP = 'INSERT' THEN
         NEW.tsvectors = (
-            setweight(to_tsvector('english', NEW.name), 'A')
+            setweight(to_tsvector('english', NEW.name), 'A') ||
+            setweight(to_tsvector('english', NEW.description), 'C')
         );
     END IF;
     IF TG_OP = 'UPDATE' THEN
         IF (NEW.name <> OLD.name) THEN
             NEW.tsvectors = (
-                setweight(to_tsvector('english', NEW.name), 'A')
+                setweight(to_tsvector('english', NEW.name), 'A') ||
+                setweight(to_tsvector('english', NEW.description), 'C')
             );
         END IF;
     END IF;
@@ -166,3 +172,89 @@ CREATE TRIGGER product_search_update
     EXECUTE PROCEDURE product_search_update();
 
 -- Triggers
+-- Trigger 01 - Removing Artist products on Artist deletion
+
+CREATE FUNCTION delete_artist_products() RETURNS TRIGGER AS 
+$BODY$
+BEGIN
+
+    DELETE FROM Product
+    WHERE artist_id = OLD.id;
+
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_artist_products
+    BEFORE DELETE ON Artist
+    FOR EACH ROW
+    EXECUTE PROCEDURE delete_artist_products();
+
+-- Trigger 02 - Update a product's rating after a new review
+
+CREATE FUNCTION review_product()
+RETURNS TRIGGER AS 
+$BODY$
+BEGIN
+
+    IF ((SELECT COUNT(*) FROM Product WHERE NEW.product_id = id) = 0) THEN 
+        UPDATE Product
+        SET rating = (SELECT SUM(rating) FROM Product WHERE NEW.product_id = id) + NEW.score;
+    ELSE
+        UPDATE Product
+        SET rating = ((SELECT SUM(rating) FROM Product WHERE NEW.product_id = id) + NEW.score) / (SELECT COUNT(*) FROM Product WHERE NEW.product_id = id);
+    END IF;
+
+    RETURN NEW;
+
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER review_product
+    AFTER INSERT OR UPDATE ON Review
+    FOR EACH ROW
+    EXECUTE PROCEDURE review_product();
+
+-- Trigger 03 - Notifications should not exceed 25
+
+CREATE FUNCTION limit_notification()
+RETURNS TRIGGER AS 
+$BODY$
+BEGIN 
+
+    IF ((SELECT COUNT(*) FROM Notif WHERE NEW.user_id = user_id) > 25) THEN 
+        DELETE FROM Notif
+        WHERE notification_id = (SELECT MIN(id) FROM Notif WHERE user_id = NEW.user_id);
+    END IF;
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER limit_notification
+    AFTER INSERT ON Notif
+    FOR EACH ROW
+    EXECUTE PROCEDURE limit_notification();
+
+-- Trigger 04 - Update a product's stock on purchase
+
+CREATE FUNCTION update_stock()
+RETURNS TRIGGER AS 
+$BODY$
+BEGIN 
+
+    UPDATE Product
+    SET stock = stock - NEW.quantity
+    WHERE product_id = NEW.product_id;
+    RETURN NEW;
+
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_stock
+    AFTER INSERT ON OrderProduct
+    FOR EACH ROW
+    EXECUTE PROCEDURE update_stock();

@@ -318,7 +318,6 @@
 
 ## Triggers
 
-|**Trigger**|TRIGGER01|
 |---|---|
 |**Description**|Every new review updates a product's rating.|
 |**SQL CODE**|
