@@ -18,20 +18,21 @@
 |R04|artist(<ins>id</ins>, name **NN**, description)|
 |R05|client_artist(<ins>client_id</ins>->client, <ins>artist_id</ins>->artist)|
 |R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, genre, price **NN**, format **NN CK** format **IN** Formats, year **NN**, description **DF** NULL, rating **DF** NULL)|
-|R07|genre(<ins>id</ins>, name **NN**|
-|R08|review(<ins>id</ins>, client_id->client **NN**, product_id->product **NN**, score **NN CK** score > 0 AND score <= 5, date **NN**, description **DF** NULL)|
-|R09|order(<ins>id</ins>, client_id->client **NN**, state **NN CK** state **IN** orderStates)|
-|R10|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity)
-|R11|wishlist(<ins>id</ins>, client_id->client **NN**)|
-|R12|wishlist_product(<ins>wishlist_id</ins>->wishlist, <ins>product_id</ins>->product)|
-|R13|cart(<ins>id</ins>, client_id->client **NN**)
-|R14|cart_product(<ins>cart_id</ins>->cart, <ins>product_id</ins>->product, quantity **NN**)
-|R15|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
-|R16|misc_notif(<ins>notification_id</ins>->notification)|
-|R17|wishlist_notif(<ins>notification_id</ins>->notification)|
-|R18|order_notif(<ins>notification_id</ins>->notification)|
-|R19|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
-|R20|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
+|R07|genre(<ins>id</ins>, name **NN**)
+|R08|genre_product(<ins>genre_id</ins>->genre, <ins>product_id</ins>->product)
+|R09|review(<ins>id</ins>, client_id->client **NN**, product_id->product **NN**, score **NN CK** score > 0 AND score <= 5, date **NN**, description **DF** NULL)|
+|R10|order(<ins>id</ins>, client_id->client **NN**, state **NN CK** state **IN** orderStates)|
+|R11|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity)
+|R12|wishlist(<ins>id</ins>, client_id->client **NN**)|
+|R13|wishlist_product(<ins>wishlist_id</ins>->wishlist, <ins>product_id</ins>->product)|
+|R14|cart(<ins>id</ins>, client_id->client **NN**)
+|R15|cart_product(<ins>cart_id</ins>->cart, <ins>product_id</ins>->product, quantity **NN**)
+|R16|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
+|R17|misc_notif(<ins>notification_id</ins>->notification)|
+|R18|wishlist_notif(<ins>notification_id</ins>->notification)|
+|R19|order_notif(<ins>notification_id</ins>->notification)|
+|R20|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
+|R21|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
 
 ### Legend:
 
@@ -99,91 +100,98 @@
 |FD0701|id -> {name}|
 |**Normal Form**|BCNF|
 
-|**Table R08**|**Review**|
+|**Table R08**|**Genre_Product**|
+|---|---|
+|**Keys**|{genre_id, product_id}|
+|**Functional Dependencies**:||
+|None||
+|**Normal Form**|BCNF|
+
+|**Table R09**|**Review**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD0801|id -> {client_id, product_id, score, date, description}|
 |**Normal Form**|BCNF|
 
-|**Table R09**|**Order**|
+|**Table R10**|**Order**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD0901|id -> {user, product_id, state}|
 |**Normal Form**|BCNF|
 
-|**Table R10**|**Order_Product**|
+|**Table R11**|**Order_Product**|
 |---|---|
 |**Keys**|{order_id, product_id}|
 |**Functional Dependencies**:||
 |FD1001|{order_id, product_id} -> {quantity}|
 |**Normal Form**|BCNF|
 
-|**Table R11**|**Wishlist**|
+|**Table R12**|**Wishlist**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD1101|id -> {client_id}|
 |**Normal Form**|BCNF|
 
-|**Table R12**|**Wishlist_Product**|
+|**Table R13**|**Wishlist_Product**|
 |---|---|
 |**Keys**|{wishlist_id, product_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R13**|**Cart**|
+|**Table R14**|**Cart**|
 |---|---|
 |**Keys**|{id} |
 |**Functional Dependencies**:||
 |FD1301|id -> {client_id}|
 |**Normal Form**|BCNF|
 
-|**Table R14**|**Cart_Product**|
+|**Table R15**|**Cart_Product**|
 |---|---|
 |**Keys**|{cart_id, product_id}|
 |**Functional Dependencies**:||
 |FD1401|{cart_id, product_id} -> {quantity}|
 |**Normal Form**|BCNF|
 
-|**Table R15**|**Notification**|
+|**Table R16**|**Notification**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD1501|id -> {date, description}|
 |**Normal Form**|BCNF|
 
-|**Table R16**|**Misc_Notif**|
+|**Table R17**|**Misc_Notif**|
 |---|---|
 |**Keys**|{notification_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R17**|**Wishlist_Notif**|
+|**Table R18**|**Wishlist_Notif**|
 |---|---|
 |**Keys**|{notification_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R18**|**Order_Notif**|
+|**Table R19**|**Order_Notif**|
 |---|---|
 |**Keys**|{notification_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R19**|**Ticket**|
+|**Table R20**|**Ticket**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD1901|id -> {user_id, message}|
 |**Normal Form**|BCNF|
 
-|**Table R20**|**Report**|
+|**Table R21**|**Report**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
@@ -205,19 +213,20 @@
 |R05|client_artist|100|10/day|
 |R06|product|1k|100/day|
 |R07|genre|10|1/day|
-|R08|review|100|10/day|
-|R09|order|100|10/day|
-|R10|order_product|10|1/day|
-|R11|wishlist|100|10/day|
-|R12|wishlist_product|1k|10/day|
-|R13|cart|100|10/day|
-|R14|cart_product|100|10/day|
-|R15|notification|100|10/day|
-|R16|misc_notif|10|1/day|
-|R17|wishlist_notif|10|1/day|
-|R18|order_notif|10|1/day|
-|R19|ticket|10|1/day|
-|R20|report|10|1/day|
+|R08|genre_product|1k|100/day|
+|R09|review|100|10/day|
+|R10|order|100|10/day|
+|R11|order_product|10|1/day|
+|R12|wishlist|100|10/day|
+|R13|wishlist_product|1k|10/day|
+|R14|cart|100|10/day|
+|R15|cart_product|100|10/day|
+|R16|notification|100|10/day|
+|R17|misc_notif|10|1/day|
+|R18|wishlist_notif|10|1/day|
+|R19|order_notif|10|1/day|
+|R20|ticket|10|1/day|
+|R21|report|10|1/day|
 
 #
 
