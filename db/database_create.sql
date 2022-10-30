@@ -65,7 +65,7 @@ CREATE TABLE Product(
     price       BIGINT NOT NULL,
     format      PRODUCT_FORMAT NOT NULL,
     year        INTEGER,
-    rating      INTEGER DEFAULT NULL
+    rating      FLOAT DEFAULT NULL
 );
 
 CREATE TABLE ProductGenre(

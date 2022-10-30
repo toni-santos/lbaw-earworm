@@ -12,11 +12,12 @@
 
 |Relation Reference|Relation Compact Notation|
 |---|---|
-|R01|user(<ins>id</ins>, email **UK NN**, username **NN**, password **NN**)|
+|R01|user(<ins>id</ins>, email **UK NN**, username **UK NN**, password **NN**)|
 |R02|client(<ins>user_id</ins>->user, email->user **UK NN**, username->user **NN**, password->user **NN**, cart_id->cart **NN**, wishlist_id->wishlist **NN**, is_blocked **NN**)|
 |R03|admin(<ins>user_id</ins>->user,email->user **UK NN**, username->user **NN**, password->user **NN**)|
 |R04|artist(<ins>id</ins>, name **NN**, description)|
 |R05|client_artist(<ins>client_id</ins>->client, <ins>artist_id</ins>->artist)|
+<<<<<<< Updated upstream
 |R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, genre, price **NN**, format **NN CK** format **IN** Formats, year **NN**, description **DF** NULL, rating **DF** NULL)|
 |R07|genre(<ins>id</ins>, name **NN**)
 |R08|genre_product(<ins>genre_id</ins>->genre, <ins>product_id</ins>->product)
@@ -33,6 +34,23 @@
 |R19|order_notif(<ins>notification_id</ins>->notification)|
 |R20|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
 |R21|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
+=======
+|R06|product(<ins>id</ins>, name **NN**, artist_id->artist **NN**, genre, price **NN**, stock **NN**, format **NN CK** format **IN** Formats, year **NN**, description **DF** NULL, rating **DF** NULL)|
+|R07|genre(<ins>id</ins>, name **NN**)|
+|R08|review(<ins>id</ins>, client_id->client **NN**, product_id->product **NN**, score **NN CK** score > 0 AND score <= 5, date **NN**, description **DF** NULL)|
+|R09|order(<ins>id</ins>, client_id->client **NN**, state **NN CK** state **IN** orderStates)|
+|R10|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity)
+|R11|wishlist(<ins>id</ins>, client_id->client **NN**)|
+|R12|wishlist_product(<ins>wishlist_id</ins>->wishlist, <ins>product_id</ins>->product)|
+|R13|cart(<ins>id</ins>, client_id->client **NN**)
+|R14|cart_product(<ins>cart_id</ins>->cart, <ins>product_id</ins>->product, quantity **NN**)
+|R15|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
+|R16|misc_notif(<ins>notification_id</ins>->notification)|
+|R17|wishlist_notif(<ins>notification_id</ins>->notification)|
+|R18|order_notif(<ins>notification_id</ins>->notification)|
+|R19|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
+|R20|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
+>>>>>>> Stashed changes
 
 ### Legend:
 
@@ -51,10 +69,11 @@
 
 |**Table R01**|**User**|
 |---|---|
-|**Keys**|{id}, {email}|
+|**Keys**|{id}, {username}, {email}|
 |**Functional Dependencies**:||
 |FD0101|id -> {email, username, password}|
 |FD0102|email -> {id, username, password}|
+|FD0103|username -> (id, email, password)|
 |**Normal Form**|BCNF|
 
 |**Table R02**|**Client**|
@@ -90,7 +109,7 @@
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
-|FD0601|id -> {name, artist_id, price, genre, format, year, rating}|
+|FD0601|id -> {name, artist_id, price, stock, genre, format, year, rating}|
 |**Normal Form**|BCNF|
 
 |**Table R07**|**Genre**|
@@ -241,7 +260,9 @@
 |**Cardinality**|High|
 |**Clustering**|Yes|
 |**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to the works by artist or category. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
-|**SQL CODE**|CREATE INDEX ProductArtist<br> ON Product USING btree (id_artist);<br> CLUSTER product USING ProductArtist;|
+|**SQL CODE**|
+    CREATE INDEX ProductArtist ON Product USING btree (id_artist);
+    CLUSTER product USING ProductArtist;
 
 |**Index**|IDX02|
 |---|---|
@@ -251,7 +272,9 @@
 |**Cardinality**|Medium|
 |**Clustering**|Yes|
 |**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to products by genre. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
-|**SQL CODE**|CREATE INDEX ProductGenre <br> ON Product USING btree (genre); <br> CLUSTER product USING ProductGenre;|
+|**SQL CODE**|
+    CREATE INDEX ProductGenre ON Product USING btree (genre);
+    CLUSTER product USING ProductGenre;
 
 |**Index**|IDX03|
 |---|---|
@@ -261,7 +284,10 @@
 |**Cardinality**|medium|
 |**Clustering**|Yes|
 |**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to products by rating. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
-|**SQL CODE**|CREATE INDEX ProductRating <br> ON Product USING btree (rating); <br> CLUSTER product USING ProductRating;|
+|**SQL CODE**|
+    CREATE INDEX ProductRating ON Product USING btree (rating); 
+    CLUSTER product USING ProductRating;
+
 
 |**Index**|IDX04|
 |---|---|
@@ -271,7 +297,10 @@
 |**Cardinality**|medium|
 |**Clustering**|Yes|
 |**Justification**|Table 'Product' is very large. Several queries need to frequently filter access to products by format. Filtering is done by exact match, thus an hash type index would be best suited. However, since we also want to apply clustering based on this index, and clustering is not possible on hash type indexes, we opted for a b-tree index. Update frequency is low and cardinality is medium so it's a good candidate for clustering.|
-|**SQL CODE**|CREATE INDEX ProductFormat <br> ON Product USING btree (rating); <br> CLUSTER product USING ProductFormat;|
+|**SQL CODE**|
+    CREATE INDEX ProductFormat ON Product USING btree (rating); 
+    CLUSTER product USING ProductFormat;
+
 
 --FAKES
 |**Index**|IDX03|
@@ -327,4 +356,98 @@
 |**Clustering**|No|
 |**Justification**|Full-text search features to browse for artists based on matching names. Index type is GIN because these fields are not expected to change often, if at all.|
 |**SQL CODE**|;| 
+
+## Triggers
+
+|**Trigger**|TRIGGER01|
+|---|---|
+|**Description**|Every new review updates a product's rating.|
+|**SQL CODE**|
+    CREATE FUNCTION review_product()
+    RETURNS TRIGGER AS 
+    $BODY$
+        BEGIN
+            CASE  
+                WHEN (COUNT(SELECT * FROM Product WHERE NEW.product_id = id)) = 0 THEN 
+                    UPDATE Product
+                    SET rating = (SUM(SELECT rating FROM Product WHERE NEW.product_id = id) + NEW.score)
+                ELSE
+                    UPDATE Product
+                    SET rating = (SUM(SELECT rating FROM Product WHERE NEW.product_id = id) + NEW.score) / COUNT(SELECT * FROM Product WHERE NEW.product_id = id)
+            END CASE;
+
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER review_product
+        AFTER INSERT OR UPDATE OR DELETE ON Review
+        FOR EACH ROW
+        EXECUTE PROCEDURE review_product();
+
+|**Trigger**|TRIGGER02|
+|---|---|
+|**Description**|Maximum number of stored notifications for a single user must not exceed 25.|
+|**SQL CODE**|
+    CREATE FUNCTION limit_notification()
+    RETURNS TRIGGER AS 
+    $BODY$
+        BEGIN 
+        IF (COUNT(SELECT * FROM Notification WHERE NEW.client_id = client_id)) > 25 THEN 
+            DELETE FROM Notification
+            WHERE notification_id = (SELECT MIN(notification_id) FROM Notification WHERE client_id = NEW.client_id)
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER limit_notification
+        AFTER INSERT ON Notification
+        FOR EACH ROW
+        EXECUTE PROCEDURE limit_notification();
+
+|**Trigger**|TRIGGER03|
+|---|---|
+|**Description**|Update stock when an item is purchased.|
+|**SQL CODE**|
+    CREATE FUNCTION update_stock()
+    RETURNS TRIGGER AS 
+    $BODY$
+        BEGIN 
+            UPDATE Product
+            SET stock = stock - NEW.quantity
+            WHERE product_id = NEW.product_id;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER update_stock
+        AFTER INSERT ON Order
+        FOR EACH ROW
+        EXECUTE PROCEDURE update_stock();
+
+
+|**Trigger**|TRIGGER04|
+|---|---|
+|**Description**|Do not allow products to be bought with a stock number of 0.|
+|**SQL CODE**|
+    CREATE FUNCTION nostock_restriction()
+    RETURNS TRIGGER AS 
+    $BODY$
+        BEGIN 
+        IF (SELECT stock FROM Product WHERE product_id = EEW.product_id) < NEW.quantity THEN 
+            RAISE EXCEPTION 'This product can't be bought due to lack of stock at the moment.';
+        END IF;
+        RETURN NEW;
+    END
+    $BODY$
+    LANGUAGE plpgsql;
+
+    CREATE TRIGGER nostock_restriction()
+        BEFORE INSERT ON OrderProduct
+        FOR EACH ROW
+        EXECUTE PROCEDURE nostock_restriction()
 
