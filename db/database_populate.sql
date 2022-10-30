@@ -1,37 +1,36 @@
-PRAGMA foreign_keys = ON;
 SET search_path TO lbaw22123;
 
-INSERT INTO Genres (name) VALUES ('Math Rock');
-INSERT INTO Genres (name) VALUES ('Prog Rock');
-INSERT INTO Genres (name) VALUES ('Jazz-Rock');
-INSERT INTO Genres (name) VALUES ('Jazz');
-INSERT INTO Genres (name) VALUES ('Rock');
-INSERT INTO Genres (name) VALUES ('Post-Punk');
-INSERT INTO Genres (name) VALUES ('Art Rock');
-INSERT INTO Genres (name) VALUES ('Noise');
-INSERT INTO Genres (name) VALUES ('Experimental');
-INSERT INTO Genres (name) VALUES ('Post Rock');
-INSERT INTO Genres (name) VALUES ('Lo-Fi');
-INSERT INTO Genres (name) VALUES ('Shoegaze');
-INSERT INTO Genres (name) VALUES ('Space Rock');
-INSERT INTO Genres (name) VALUES ('Indie Rock');
-INSERT INTO Genres (name) VALUES ('Alternative Rock');
-INSERT INTO Genres (name) VALUES ('Pop Rock');
-INSERT INTO Genres (name) VALUES ('Indie Pop');
-INSERT INTO Genres (name) VALUES ('Folk');
-INSERT INTO Genres (name) VALUES ('Pop');
-INSERT INTO Genres (name) VALUES ('Folk, World, & Country');
-INSERT INTO Genres (name) VALUES ('Heavy Metal');
-INSERT INTO Genres (name) VALUES ('Cloud Rap');
-INSERT INTO Genres (name) VALUES ('Contemporary R&B');
-INSERT INTO Genres (name) VALUES ('Electronic');
-INSERT INTO Genres (name) VALUES ('Hip Hop');
-INSERT INTO Genres (name) VALUES ('Funk / Soul');
+INSERT INTO Genre (name) VALUES ('Math Rock');
+INSERT INTO Genre (name) VALUES ('Prog Rock');
+INSERT INTO Genre (name) VALUES ('Jazz-Rock');
+INSERT INTO Genre (name) VALUES ('Jazz');
+INSERT INTO Genre (name) VALUES ('Rock');
+INSERT INTO Genre (name) VALUES ('Post-Punk');
+INSERT INTO Genre (name) VALUES ('Art Rock');
+INSERT INTO Genre (name) VALUES ('Noise');
+INSERT INTO Genre (name) VALUES ('Experimental');
+INSERT INTO Genre (name) VALUES ('Post Rock');
+INSERT INTO Genre (name) VALUES ('Lo-Fi');
+INSERT INTO Genre (name) VALUES ('Shoegaze');
+INSERT INTO Genre (name) VALUES ('Space Rock');
+INSERT INTO Genre (name) VALUES ('Indie Rock');
+INSERT INTO Genre (name) VALUES ('Alternative Rock');
+INSERT INTO Genre (name) VALUES ('Pop Rock');
+INSERT INTO Genre (name) VALUES ('Indie Pop');
+INSERT INTO Genre (name) VALUES ('Folk');
+INSERT INTO Genre (name) VALUES ('Pop');
+INSERT INTO Genre (name) VALUES ('Folk, World, & Country');
+INSERT INTO Genre (name) VALUES ('Heavy Metal');
+INSERT INTO Genre (name) VALUES ('Cloud Rap');
+INSERT INTO Genre (name) VALUES ('Contemporary R&B');
+INSERT INTO Genre (name) VALUES ('Electronic');
+INSERT INTO Genre (name) VALUES ('Hip Hop');
+INSERT INTO Genre (name) VALUES ('Funk / Soul');
 
 INSERT INTO Artist (name, description) VALUES ('Black Midi', 'Experimental rock band from London, UK. Met whilst studying at The BRIT School for Performing Arts & Technology, Croydon UK. Formed "properly" in 2017 as the four members graduated.');
 INSERT INTO Artist (name, description) VALUES ('Black Country, New Road', 'A six-piece post-rock group from England who released their first sell-out single "Athens, France" in early 2019 on the label Speedy Wunderground and follow-up single ''Sunglasses'' on Blank Editions. Subsequent releases include albums ''For The First Time'' in early 2021 and the critically-acclaimed ''Ants From Up There'' in early 2022. 
 ');
-INSERT INTO Artist (name, description) VALUES ('Duster', 'Duster is an American rock band from San-Jose California, consisting of multi-instrumentalists Clay Parton, Canaan Dove Amber, and Jason Albertini. Generally seen as indie rock, the group has been also associated with the space rock and slowcore movements by critics due to their unique sound. To produce this, the band typically recorded on cheap and older recording equipment, such as cassette decks, in their Low Earth Orbit studio. Years active 1996–2001 / 2018–present
+INSERT INTO Artist (name, description) VALUES ('Duster (2)', 'Duster is an American rock band from San-Jose California, consisting of multi-instrumentalists Clay Parton, Canaan Dove Amber, and Jason Albertini. Generally seen as indie rock, the group has been also associated with the space rock and slowcore movements by critics due to their unique sound. To produce this, the band typically recorded on cheap and older recording equipment, such as cassette decks, in their Low Earth Orbit studio. Years active 1996–2001 / 2018–present
 ');
 INSERT INTO Artist (name, description) VALUES ('beabadoobee', 'Born June 3, 2000, Iloilo City, Phillippines. Emigrated to England with her parents two years later. 
 
@@ -39,7 +38,7 @@ Also known as Bea Kristi or professionally as Beabadoobee, she released her firs
 She signed with Dirty Hit, who reissued her back catalog and released her next two EPs, Patched Up and Loveworm, while she was finishing high school.
 The latter EP started to point to a more electric sound, and in interviews beabadoobee namedropped the likes of Pavement, Sonic Youth, and Dinosaur Jr as influences on the songs.
 A solo acoustic version of the latter EP, called Loveworm (Bedroom Sessions), was released in June of 2019, followed by two singles, "She Plays Bass" and "I Wish I Was Stephen Malkmus" in August and September of 2019. beabadoobee undertook her first US tour opening for Clairo, during which her fourth EP Space Cadet, now fully dominated by electric indie rock arrangements, was released.');
-INSERT INTO Artist (name, description) VALUES ('Clairo', 'American singer-songwriter born August 18, 1998 in Atlanta, Georgia.');
+INSERT INTO Artist (name, description) VALUES ('Clairo (2)', 'American singer-songwriter born August 18, 1998 in Atlanta, Georgia.');
 INSERT INTO Artist (name, description) VALUES ('Trivium', 'Heavy metal / thrash / metalcore band from Orlando, Florida, USA.
 
 Trivium was formed as a trio in 1999 by Brad Lewter (vocals, bass), Jarred Bonaparte (guitar) and Travis Smith (drums).
@@ -78,7 +77,7 @@ INSERT INTO Artist (name, description) VALUES ('My Bloody Valentine', 'My Bloody
 
 Initially active from 1985 to 1993, MBV reunited for an international tour in 2007, and, after a gap of 21 years, released its third LP in 2013. In addition to a steady stream of remasters, mainstay and leader [a20085] has promised, on numerous occasions, a variety of forthcoming EPs and full-lengths.');
 
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (0, 'Hellfire', 'Hellfire
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (1, 'Hellfire', 'Hellfire
 Sugar / Tzu
 Eat Men Eat
 Welcome To Hell
@@ -87,8 +86,8 @@ Half Time
 The Race Is About To Begin
 Dangerous Liaisons
 The Defence
-27 Questions', 6, 814, CD, 2022, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (0, 'Hellfire', 'Hellfire
+27 Questions', 100, 814, 'CD', 2022, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (1, 'Hellfire', 'Hellfire
 Sugar/Tzu
 Eat Men, Eat
 Welcome To Hell
@@ -97,8 +96,8 @@ Half Time
 The Race Is About To Begin
 Dangerous Liaisons
 The Defence
-27 Questions', 4, 2399, Vinyl, 2022, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (0, 'Schlagenheim', '953
+27 Questions', 100, 2399, 'Vinyl', 2022, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (1, 'Schlagenheim', '953
 Speedway
 Reggae
 Near DT, MI
@@ -106,8 +105,8 @@ Western
 Of Schlagenheim
 BMBMBM
 Years Ago
-Ducter', 4, 800, CD, 2019, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (0, 'Schlagenheim', '953
+Ducter', 100, 800, 'CD', 2019, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (1, 'Schlagenheim', '953
 Speedway
 Reggae
 Near DT,MI
@@ -115,20 +114,20 @@ Western
 Of Schlagenheim
 bmbmbm
 Years Ago
-Ducter', 4, 1500, Vinyl, 2019, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (1, 'For The First Time', 'Instrumental
+Ducter', 100, 1500, 'Vinyl', 2019, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, 'For The First Time', 'Instrumental
 Athens, France
 Science Fair
 Sunglasses
 Track X
-Opus', 3, 808, CD, 2021, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (1, 'For The First Time', 'Instrumental
+Opus', 100, 808, 'CD', 2021, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, 'For The First Time', 'Instrumental
 Athens, France
 Science Fair
 Sunglasses
 Track X
-Opus', 7, 1855, Vinyl, 2021, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, 'Together', 'New Directions
+Opus', 100, 1855, 'Vinyl', 2021, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (3, 'Together', 'New Directions
 Retrograde
 N
 Time Glitch
@@ -140,8 +139,8 @@ Sleepyhead
 Making Room
 Drifter
 Feel No Joy
-Sad Boys', 1, 1795, Vinyl, 2022, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, 'Contemporary Movement', 'Get The Dutch
+Sad Boys', 100, 1795, 'Vinyl', 2022, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (3, 'Contemporary Movement', 'Get The Dutch
 Operations
 Diamond
 Me And The Birds
@@ -152,8 +151,8 @@ Unrecovery
 The Breakup Suite
 Everything You See (Is Your Own)
 Now It''s Coming Back
-Auto-Mobile', 4, 11000, Vinyl, 2000, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, 'Stratosphere', 'Moon Age
+Auto-Mobile', 100, 11000, 'Vinyl', 2000, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (3, 'Stratosphere', 'Moon Age
 Heading For The Door
 Gold Dust
 Topical Solution
@@ -168,8 +167,8 @@ Reed To Hillsborough
 Shadows Of Planes
 Earth Moon Transit
 The Twins/Romantica
-Sideria', 0, 23140, Vinyl, 1998, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (2, 'Stratosphere', 'Moon Age
+Sideria', 100, 23140, 'Vinyl', 1998, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (3, 'Stratosphere', 'Moon Age
 Heading For The Door
 Gold Dust
 Topical Solution
@@ -185,8 +184,8 @@ Reed To Hillsborough
 Shadows Of Planes
 Earth Moon Transit
 The Twins / Romantica
-Sideria', 7, 3499, CD, 1998, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (3, 'Fake It Flowers', 'Care
+Sideria', 100, 3499, 'CD', 1998, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (4, 'Fake It Flowers', 'Care
 Worth It
 Dye It Red
 Back To Mars
@@ -197,8 +196,8 @@ Further Away
 Horen Sarrison
 How Was Your Day?
 Together
-Yoshimi, Forest, Magdalene ', 3, 1900, Vinyl, 2020, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (4, 'Sling', 'Bambi
+Yoshimi, Forest, Magdalene ', 100, 1900, 'Vinyl', 2020, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (5, 'Sling', 'Bambi
 Amoeba
 Partridge
 Zinnias
@@ -209,19 +208,19 @@ Just For Today
 Joanie
 Reaper
 Little Changes
-Management', 9, 1250, Vinyl, 2021, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (5, 'Shogun', 'Kirisute Gomen
+Management', 100, 1250, 'Vinyl', 2021, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (6, 'Shogun', 'Kirisute Gomen
 Torn Between Scylla And Charybdis
 Down From The Sky
 Into The Mouth Of Hell We March
 Throes Of Perdition
 Insurrection
 The Calamity
-He Who Spawned The FuriesOrder
+He Who Spawned The Furies
 Of Prometheus And The Crucifix
 Like Callisto To A Star In Heaven
-Shogun', 7, 220, CD, 2008, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (6, 'Humanoid ', 'Noise
+Shogun', 100, 220, 'CD', 2008, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (7, 'Humanoid ', 'Noise
 Darkside Of The Sun
 Automatic
 World Behind My Wall
@@ -232,8 +231,8 @@ Dogs Unleashed
 Human Connect To Human
 Hey You
 Love & Death
-Zoom Into Me', 1, 114, CD, 2009, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (7, 'Jubilee ', 'Paprika 
+Zoom Into Me', 100, 114, 'CD', 2009, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (8, 'Jubilee ', 'Paprika 
 Be Sweet 
 Kokomo, IN
 Slide Tackle 
@@ -242,20 +241,20 @@ Sit
 Savage Good Boy
 In Hell
 Tactics 
-Posing For Cars', 1, 5814, Vinyl, 2021, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (8, 'Spiderland', 'Breadcrumb Trail
+Posing For Cars', 100, 5814, 'Vinyl', 2021, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (9, 'Spiderland', 'Breadcrumb Trail
 Nosferatu Man
 Don, Aman
 Washer
 For Dinner...
-Good Morning, Captain', 6, 1054, CD, 0, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (8, 'Spiderland', 'Breadcrumb Trail
+Good Morning, Captain', 100, 1054, 'CD', 0, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (9, 'Spiderland', 'Breadcrumb Trail
 Nosferatu Man
 Don, Aman
 Washer
 For Dinner...
-Good Morning, Captain', 7, 2000, Vinyl, 0, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (9, 'E', 'AAA Powerline
+Good Morning, Captain', 100, 2000, 'Vinyl', 0, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (10, 'E', 'AAA Powerline
 Peroxide
 Fragile
 Bliss Fields
@@ -267,8 +266,8 @@ Don''t Ask
 Security!
 Time
 Blue Eyes
-Life After Life', 5, 13110, CD, 2020, NULL);
-INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (10, 'Loveless', 'Only Shallow
+Life After Life', 100, 13110, 'CD', 2020, NULL);
+INSERT INTO Product (artist_id, name, description, stock, price, format, year, rating) VALUES (11, 'Loveless', 'Only Shallow
 Loomer
 Touched
 To Here Knows When
@@ -289,7 +288,7 @@ Come In Alone
 Sometimes
 Blown A Wish
 What You Want
-Soon', 5, 2299, CD, 2021, NULL);
+Soon', 100, 2299, 'CD', 2021, NULL);
 
 INSERT INTO ProductGenre (product_id, genre_id) VALUES (1, 1);
 INSERT INTO ProductGenre (product_id, genre_id) VALUES (1, 2);
@@ -384,7 +383,6 @@ INSERT INTO Users (cart_id, wishlist_id, email, username, password, is_blocked, 
 INSERT INTO Users (cart_id, wishlist_id, email, username, password, is_blocked, is_admin) VALUES (20, 20, 'jcoathamj@4shared.com', 'cdodimeadj', '7fqv5gPRyST', false, false);
 
 INSERT INTO FavArtist (user_id, artist_id) VALUES (13,1);
-INSERT INTO FavArtist (user_id, artist_id) VALUES (13,1);
 INSERT INTO FavArtist (user_id, artist_id) VALUES (3,4);
 INSERT INTO FavArtist (user_id, artist_id) VALUES (12,5);
 INSERT INTO FavArtist (user_id, artist_id) VALUES (4,7);
@@ -394,13 +392,13 @@ INSERT INTO FavArtist (user_id, artist_id) VALUES (7,3);
 INSERT INTO FavArtist (user_id, artist_id) VALUES (10,11);
 INSERT INTO FavArtist (user_id, artist_id) VALUES (12,2);
 
-INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (15, 5, 2, 21/08/2022, 'Terrible');
-INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (11, 11, 3, 24/06/2022, 'It''s okay ig');
-INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (7, 12, 5, 12/07/2022, 'AOTY');
-INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (8, 10, 2, 01/08/2022, 'Atrocious');
-INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (5, 6, 3, 20/09/2022, 'Decent tbh');
-INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (20, 15, 4, 20/10/2022, 'Pretty good');
-INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (10, 12, 1, 02/11/2022, 'I''d rather die than listen to this again');
+INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (15, 5, 2, '2022-08-21', 'Terrible');
+INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (11, 11, 3, '2022-06-24', 'It''s okay ig');
+INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (7, 12, 5, '2022-07-12', 'AOTY');
+INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (8, 10, 2, '2022-08-01', 'Atrocious');
+INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (5, 6, 3, '2022-09-20', 'Decent tbh');
+INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (20, 15, 4, '2022-10-20', 'Pretty good');
+INSERT INTO Review (reviewer_id, product_id, score, date, message) VALUES (10, 12, 1, '2022-11-02', 'I''d rather die than listen to this again');
 
 INSERT INTO Report (reporter_id, reported_id, message) VALUES (18, 13, 'Bad review');
 INSERT INTO Report (reporter_id, reported_id, message) VALUES (3, 11, 'Worst taste');
@@ -420,21 +418,21 @@ INSERT INTO Ticket (ticketer_id, message) VALUES (5, 'I''m also testing');
 INSERT INTO Ticket (ticketer_id, message) VALUES (7, 'I''m testing to see what happens');
 INSERT INTO Ticket (ticketer_id, message) VALUES (18, 'Wrong order');
 
-INSERT INTO Orders (user_id, state) VALUES (3, 'Placed');
+INSERT INTO Orders (user_id, state) VALUES (3, 'Processing');
 INSERT INTO Orders (user_id, state) VALUES (11, 'Processing');
 INSERT INTO Orders (user_id, state) VALUES (12, 'Shipped');
 INSERT INTO Orders (user_id, state) VALUES (10, 'Delivered');
-INSERT INTO Orders (user_id, state) VALUES (4, 'Picked up');
-INSERT INTO Orders (user_id, state) VALUES (8, 'Picked up');
-INSERT INTO Orders (user_id, state) VALUES (20, 'Picked up');
+INSERT INTO Orders (user_id, state) VALUES (4, 'Processing');
+INSERT INTO Orders (user_id, state) VALUES (8, 'Shipped');
+INSERT INTO Orders (user_id, state) VALUES (20, 'Delivered');
 
-INSERT INTO Notif (date, description, type) VALUES (21/08/2022, 'Order has been sent', 'Order');
-INSERT INTO Notif (date, description, type) VALUES (24/06/2022, 'Order has been sent', 'Order');
-INSERT INTO Notif (date, description, type) VALUES (12/07/2022, 'Order has been sent', 'Order');
-INSERT INTO Notif (date, description, type) VALUES (01/08/2022, 'Order has been sent', 'Order');
-INSERT INTO Notif (date, description, type) VALUES (20/09/2022, 'Item on sale', 'Wishlist');
-INSERT INTO Notif (date, description, type) VALUES (20/10/2022, 'WOW new sale', 'Wishlist');
-INSERT INTO Notif (date, description, type) VALUES (02/11/2022, 'Test message', 'Misc');
+INSERT INTO Notif (date, description, type) VALUES ('2022-08-21', 'Order has been sent', 'Order');
+INSERT INTO Notif (date, description, type) VALUES ('2022-06-24', 'Order has been sent', 'Order');
+INSERT INTO Notif (date, description, type) VALUES ('2022-07-12', 'Order has been sent', 'Order');
+INSERT INTO Notif (date, description, type) VALUES ('2022-08-01', 'Order has been sent', 'Order');
+INSERT INTO Notif (date, description, type) VALUES ('2022-09-20', 'Item on sale', 'Wishlist');
+INSERT INTO Notif (date, description, type) VALUES ('2022-10-20', 'WOW new sale', 'Wishlist');
+INSERT INTO Notif (date, description, type) VALUES ('2022-11-02', 'Test message', 'Misc');
 
 INSERT INTO WishlistProduct (wishlist_id, product_id) VALUES (8, 13);
 INSERT INTO WishlistProduct (wishlist_id, product_id) VALUES (20, 14);

@@ -8,7 +8,7 @@ SET search_path TO lbaw22123;
 
 -- Enumerations
 CREATE TYPE PRODUCT_FORMAT AS ENUM('Vinyl', 'CD', 'Cassette', 'DVD', 'Box Set');
-CREATE TYPE ORDER_STATE AS ENUM('Order Placed', 'Processing', 'Preparing to Ship', 'Shipped', 'Delivered', 'Ready for Pickup', 'Picked up');
+CREATE TYPE ORDER_STATE AS ENUM('Processing', 'Shipped', 'Delivered');
 CREATE TYPE NOTIF_TYPE AS ENUM('Order', 'Wishlist', 'Misc');
 
 -- Drop existent tables
@@ -134,12 +134,16 @@ CREATE TABLE Report(
     message     VARCHAR(255) NOT NULL
 );
 
--- Indexes
+-- Performance Indexes
 
 CREATE INDEX product_artist ON Product USING hash (artist_id);
 
+CREATE INDEX product_price ON Product USING btree (price);
+CLUSTER Product USING product_price;
+
+CREATE INDEX product_genre ON ProductGenre USING hash (genre_id);
+
 -- Full text search
--- On Product
 
 ALTER TABLE Product
 ADD COLUMN tsvectors TSVECTOR;
@@ -172,23 +176,28 @@ CREATE TRIGGER product_search_update
     EXECUTE PROCEDURE product_search_update();
 
 -- Triggers
--- Trigger 01 - Removing Artist products on Artist deletion
+-- Trigger 01 - Removing Artist while removing all its associations
 
-CREATE FUNCTION delete_artist_products() RETURNS TRIGGER AS 
+CREATE FUNCTION delete_artist() RETURNS TRIGGER AS 
 $BODY$
 BEGIN
 
     DELETE FROM Product
     WHERE artist_id = OLD.id;
 
+    DELETE FROM FavArtist
+    WHERE artist_id = OLD.id;
+
+    RETURN NEW;
+    
 END
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER delete_artist_products
+CREATE TRIGGER delete_artist
     BEFORE DELETE ON Artist
     FOR EACH ROW
-    EXECUTE PROCEDURE delete_artist_products();
+    EXECUTE PROCEDURE delete_artist();
 
 -- Trigger 02 - Update a product's rating after a new review
 
@@ -197,14 +206,29 @@ RETURNS TRIGGER AS
 $BODY$
 BEGIN
 
-    IF ((SELECT COUNT(*) FROM Product WHERE NEW.product_id = id) = 0) THEN 
+    IF TG_OP = 'INSERT' THEN
         UPDATE Product
-        SET rating = (SELECT SUM(rating) FROM Product WHERE NEW.product_id = id) + NEW.score;
-    ELSE
-        UPDATE Product
-        SET rating = ((SELECT SUM(rating) FROM Product WHERE NEW.product_id = id) + NEW.score) / (SELECT COUNT(*) FROM Product WHERE NEW.product_id = id);
+        SET rating = ((SELECT SUM(score) FROM Review WHERE NEW.product_id = product_id)) / (SELECT COUNT(*) FROM Review WHERE NEW.product_id = product_id)
+        WHERE id = NEW.product_id;
     END IF;
-
+    IF TG_OP = 'UPDATE' THEN
+        IF (NEW.score <> OLD.score) THEN
+            UPDATE Product
+            SET rating = ((SELECT SUM(score) FROM Review WHERE NEW.product_id = product_id)) / (SELECT COUNT(*) FROM Review WHERE NEW.product_id = product_id)
+            WHERE id = NEW.product_id;
+        END IF;
+    END IF;
+    IF TG_OP = 'DELETE' THEN
+        IF ((SELECT COUNT(*) FROM Review WHERE OLD.product_id = product_id) = 0) THEN
+            UPDATE Product
+            SET rating = NULL
+            WHERE id = OLD.product_id;
+        ELSE
+            UPDATE Product
+            SET rating = ((SELECT SUM(score) FROM Review WHERE OLD.product_id = product_id)) / (SELECT COUNT(*) FROM Review WHERE OLD.product_id = product_id)
+            WHERE id = OLD.product_id;
+        END IF;
+    END IF;
     RETURN NEW;
 
 END
@@ -225,7 +249,7 @@ BEGIN
 
     IF ((SELECT COUNT(*) FROM Notif WHERE NEW.user_id = user_id) > 25) THEN 
         DELETE FROM Notif
-        WHERE notification_id = (SELECT MIN(id) FROM Notif WHERE user_id = NEW.user_id);
+        WHERE id = (SELECT MIN(id) FROM Notif WHERE user_id = NEW.user_id);
     END IF;
 
     RETURN NEW;
@@ -247,7 +271,7 @@ BEGIN
 
     UPDATE Product
     SET stock = stock - NEW.quantity
-    WHERE product_id = NEW.product_id;
+    WHERE id = NEW.product_id;
     RETURN NEW;
 
 END
@@ -258,3 +282,35 @@ CREATE TRIGGER update_stock
     AFTER INSERT ON OrderProduct
     FOR EACH ROW
     EXECUTE PROCEDURE update_stock();
+
+-- Trigger 05 - Remove a Product and all its associations
+
+CREATE FUNCTION delete_product() RETURNS TRIGGER AS 
+$BODY$
+BEGIN
+
+    DELETE FROM ProductGenre
+    WHERE product_id = OLD.id;
+
+    DELETE FROM Review
+    WHERE product_id = OLD.id;
+
+    DELETE FROM OrderProduct
+    WHERE product_id = OLD.id;
+
+    DELETE FROM CartProduct
+    WHERE product_id = OLD.id;
+
+    DELETE FROM WishlistProduct
+    WHERE product_id = OLD.id;
+
+    RETURN NEW;
+
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_product
+    BEFORE DELETE ON Product
+    FOR EACH ROW
+    EXECUTE PROCEDURE delete_product();
