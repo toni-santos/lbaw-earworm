@@ -92,7 +92,7 @@
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
-|FD0601|id -> {name, artist_id, price, stock, genre, format, year, rating}|
+|FD0601|id -> {name, artist_id, price, stock, genre, format, year, description, rating}|
 |**Normal Form**|BCNF|
 
 |**Table R07**|**Genre**|
@@ -120,7 +120,7 @@
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
-|FD1001|id -> {user, product_id, state}|
+|FD1001|id -> {client_id, product_id, state}|
 |**Normal Form**|BCNF|
 
 |**Table R11**|**Order_Product**|
