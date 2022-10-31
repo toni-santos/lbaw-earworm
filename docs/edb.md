@@ -717,29 +717,7 @@ CREATE TRIGGER review_product
     FOR EACH ROW
     EXECUTE PROCEDURE review_product();
 
--- Trigger 03 - Notifications should not exceed 25
-
-CREATE FUNCTION limit_notification()
-RETURNS TRIGGER AS 
-$BODY$
-BEGIN 
-
-    IF ((SELECT COUNT(*) FROM Notif WHERE NEW.user_id = user_id) > 25) THEN 
-        DELETE FROM Notif
-        WHERE id = (SELECT MIN(id) FROM Notif WHERE user_id = NEW.user_id);
-    END IF;
-
-    RETURN NEW;
-END
-$BODY$
-LANGUAGE plpgsql;
-
-CREATE TRIGGER limit_notification
-    AFTER INSERT ON Notif
-    FOR EACH ROW
-    EXECUTE PROCEDURE limit_notification();
-
--- Trigger 04 - Update a product's stock on purchase
+-- Trigger 03 - Update a product's stock on purchase
 
 CREATE FUNCTION update_stock()
 RETURNS TRIGGER AS 
@@ -760,7 +738,7 @@ CREATE TRIGGER update_stock
     FOR EACH ROW
     EXECUTE PROCEDURE update_stock();
 
--- Trigger 05 - Remove a Product and all its associations
+-- Trigger 04 - Remove a Product and all its associations
 
 CREATE FUNCTION delete_product() RETURNS TRIGGER AS 
 $BODY$
