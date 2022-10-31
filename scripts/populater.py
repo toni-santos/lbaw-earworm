@@ -15,16 +15,16 @@ def get_release(id, releases, artists, genres):
 
     release = d.release(id)
 
-    print("name: " + str(release.title))
-    release_dict['name'] = str(release.title)
+    print("name: " + str(release.title).replace("'", "''"))
+    release_dict['name'] = str(release.title).replace("'", "''")
     
     print("format: " + str(release.formats[0]['name']))
     release_dict['format'] = str(release.formats[0]['name'])
     
-    artist = str([x.name for x in release.artists][0])
-    print("artists: " + str([x.name for x in release.artists][0]))
+    artist = str([x.name for x in release.artists][0].replace("'", "''"))
+    print("artists: " + artist)
     if artist not in artists:
-        artists.append([x.name for x in release.artists][0])
+        artists.append(artist)
     release_dict['artist'] = str(artists.index(artist))
     
     print("genres: " + str(release.styles + release.genres))
@@ -33,7 +33,7 @@ def get_release(id, releases, artists, genres):
     for i in genres_list:
         if i not in genres:
             genres.append(i)
-        release_dict['genres'].append(str(genres.index(i)))        
+        release_dict['genres'].append(str(genres.index(i)))   
 
     print("year: " + str(release.year))
     release_dict['year'] = str(release.year)
@@ -42,7 +42,7 @@ def get_release(id, releases, artists, genres):
     release_dict['photo'] = str(release.images[0]['uri'])
 
     print("tracklist: " + "\n".join([str(x.title) for x in release.tracklist]))
-    release_dict['tracklist'] = "\n".join([str(x.title) for x in release.tracklist])
+    release_dict['tracklist'] = ("\n".join([str(x.title) for x in release.tracklist])).replace("'", "''")
 
     print("price: " + str(int(release.marketplace_stats.lowest_price.value * 100)) + " cents")
     release_dict['price'] = str(int(release.marketplace_stats.lowest_price.value * 100))
@@ -64,7 +64,7 @@ def get_artist(artist, artists):
     artist_dict['pfp'] = str(artist.images[0]['uri'])
 
     print(artist.profile)
-    artist_dict['description'] = str(artist.profile).replace('"', "'")
+    artist_dict['description'] = str(artist.profile).replace("'", "''")
 
     artists.append(artist_dict)
 
@@ -99,26 +99,26 @@ def generate_populate(releases, artists, genres):
     product_table_struct = "(artist_id, name, description, stock, price, format, year, rating)"
     artists_table_name = "Artist"
     artists_table_struct = "(name, description)"
-    genres_table_name = "Genres"
+    genres_table_name = "Genre"
     genres_table_struct = "(name)"
     genprod_table_name = "ProductGenre"
     genprod_table_struct = "(product_id, genre_id)"
 
     # Create genres table
     for i in genres:
-        gen_line = "INSERT INTO " + genres_table_name + " " + genres_table_struct + " VALUES " + "(\"" + i + "\");\n"
+        gen_line = "INSERT INTO " + genres_table_name + " " + genres_table_struct + " VALUES " + "(\'" + i + "\');\n"
         f.write(gen_line)
     f.write('\n');
 
     # Create artists table
     for i in artists:
-        art_line = "INSERT INTO " + artists_table_name + " " + artists_table_struct + " VALUES " + "(\"" + i['name'] + "\", \"" + i['description'] + "\");\n"
+        art_line = "INSERT INTO " + artists_table_name + " " + artists_table_struct + " VALUES " + "(\'" + i['name'] + "\', \'" + i['description'] + "\');\n"
         f.write(art_line)
     f.write('\n');
 
     # Create product table
     for i in releases:
-        prod_line = "INSERT INTO " + product_table_name + " " + product_table_struct + " VALUES " + "(" + i['artist'] + ", \"" + i['name'] + "\", \"" + i['tracklist'] + "\", " + str(random.randrange(10)) + ", " + i['price'] + ", " + i['format'] + ", " + i['year'] + ", NULL);\n"
+        prod_line = "INSERT INTO " + product_table_name + " " + product_table_struct + " VALUES " + "(" + str(int(i['artist']) + 1)+ ", \'" + i['name'] + "\', \'" + i['tracklist'] + "\', " + str(random.randrange(10)) + ", " + i['price'] + ", \'" + i['format'] + "\', " + i['year'] + ", NULL);\n"
         f.write(prod_line)
     f.write('\n');
 
