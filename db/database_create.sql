@@ -154,14 +154,14 @@ BEGIN
     IF TG_OP = 'INSERT' THEN
         NEW.tsvectors = (
             setweight(to_tsvector('english', NEW.name), 'A') ||
-            setweight(to_tsvector('english', NEW.description), 'C')
+            setweight(to_tsvector('english', COALESCE(NEW.description, '')), 'C')
         );
     END IF;
     IF TG_OP = 'UPDATE' THEN
         IF (NEW.name <> OLD.name) THEN
             NEW.tsvectors = (
                 setweight(to_tsvector('english', NEW.name), 'A') ||
-                setweight(to_tsvector('english', NEW.description), 'C')
+                setweight(to_tsvector('english', COALESCE(NEW.description, '')), 'C')
             );
         END IF;
     END IF;
@@ -174,6 +174,8 @@ CREATE TRIGGER product_search_update
     BEFORE INSERT OR UPDATE ON Product
     FOR EACH ROW
     EXECUTE PROCEDURE product_search_update();
+
+CREATE INDEX product_fts ON Product USING GIN(tsvectors);
 
 -- Triggers
 -- Trigger 01 - Removing Artist while removing all its associations
