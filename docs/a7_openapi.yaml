@@ -36,11 +36,11 @@ paths:
        - 'M01: Authentication and Individual Profile'
      responses:
        '200':
-         description: 'Ok. Show Log-in UI'
+         description: 'Ok. Show Login UI'
    post:
      operationId: R102
      summary: 'R102: Login Action'
-     description: 'Processes the login form submission. Access: VIS'
+     description: 'Process the login form submission. Access: VIS'
      tags:
        - 'M01: Authentication and Individual Profile'
 
@@ -68,7 +68,7 @@ paths:
                type: string
              examples:
                302Success:
-                 description: 'Successful authentication. Redirect to user profile.'
+                 description: 'Successful authentication. Redirect to client profile.'
                  value: '/client/{id}'
                302Error:
                  description: 'Failed authentication. Redirect to login form.'
@@ -97,7 +97,7 @@ paths:
     get:
       operationId: R104
       summary: 'R104: Register Form'
-      description: 'Provide new user registration form. Access: VIS'
+      description: 'Provide new client registration form. Access: VIS'
       tags:
         - 'M01: Authentication and Individual Profile'
       responses:
@@ -107,7 +107,7 @@ paths:
     post:
       operationId: R105
       summary: 'R105: Register Action'
-      description: 'Processes the new user registration form submission. Access: VIS'
+      description: 'Process the new client registration form submission. Access: VIS'
       tags:
         - 'M01: Authentication and Individual Profile'
 
@@ -125,52 +125,141 @@ paths:
                 picture:
                   type: string
                   format: binary
+                password:
+                  type: string
               required:
                 - email
                 - password
 
       responses:
         '302':
-          description: 'Redirect after processing the new user information.'
+          description: 'Redirect after processing the new client information.'
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to user profile.'
+                  description: 'Successful authentication. Redirect to client profile.'
                   value: '/clients/{id}'
                 302Failure:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
 
   /clients/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
     get:
       operationId: R106
       summary: 'R106: View client profile'
-      description: 'Show the individual client profile. Access: CLI'
+      description: 'Show the individual client profile. Access: OWN, ADM'
       tags:
         - 'M01: Authentication and Individual Profile'
-
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
 
       responses:
         '200':
           description: 'Ok. Show Client Profile UI'
+    
+    delete:
+      operationId: R107
+      summary: 'R107: Delete Individual Account Action'
+      description: 'Process the delete individual account action. Access: OWN, ADM'
+      tags:
+        - 'M01: Authentication and profile'
+ 
+      parameters:
+        - in: path
+          name: id
+          description: User ID
+          schema:
+            type: integer
+          required: true
+           
+      responses:
+        '302':
+          description: 'Redirect after processing the account deletion.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful deletion. Redirect to home page.'
+                  value: '/home'
+                302Error:
+                  description: 'Failed deletion. Redirect to client profile page.'
+                  value: '/clients/{id}'
+
+  /clients/{id}/edit:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+    
+    get:
+      operationId: R108
+      summary: 'R108: Edit Profile Form'
+      description: 'Provide edit profile form. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show Edit Profile UI'
+
+    patch:
+      operationId: R109
+      summary: 'R109: Edit Profile Action'
+      description: 'Process the edit profile form submission. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                picture:
+                  type: string
+                  format: binary
+                password:
+                  type: string
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new client information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful edit. Redirect to client profile.'
+                  value: '/clients/{id}'
+                302Failure:
+                  description: 'Failed edit. Redirect to client profile.'
+                  value: '/clients/{id}'               
 
   # -------------- #
   # M02 - Products #
  
-  /api/works:
+  /api/products:
     get:
       operationId: R201
-      summary: 'R201: Search Products API'
-      description: 'Searches for products and returns the results as JSON. Access: VIS.'
+      summary: 'R201: Search products API'
+      description: 'Search for products and return the results as JSON. Access: VIS, CLI, ADM'
 
       tags:
         - 'M02: Products'
@@ -185,21 +274,21 @@ paths:
 
         - in: query
           name: genre
-          description: 'Genre of the products'
+          description: 'Genre of the product'
           schema:
             type: string
           required: false
 
         - in: query
-          name: min_rating
-          description: 'Minimum rating of the product'
+          name: min_score
+          description: 'Minimum score of the product'
           schema:
             type: float
           required: false
           
         - in: query
-          name: max_rating
-          description: 'Maximum rating of the product'
+          name: max_score
+          description: 'Maximum score of the product'
           schema:
             type: float
           required: false
@@ -212,7 +301,7 @@ paths:
             application/json:
               schema:
                 type: array
-                items:
+                products:
                   type: object
                   properties:
                     id:
@@ -233,10 +322,285 @@ paths:
                       type: integer
                     description:
                       type: string
-                    rating:
+                    score:
                       type: float
-                examples:
-                  - id: 1
-                    title: Example
-                    
+                example:
+                - id: 1
+                  name: "GOAA (Greatest Of All Albums)"
+                  artist_id: 109
+                  price: 12.00
+                  stock: 300
+                  format: "Vinyl"
+                  genre: "Pop"
+                  year: "2020"
+                  description: "The greatest album ever made!!"
+                  score: 1.25
+                - id: 2
+                  name: "Mixtape no.1"
+                  artist_id: 127
+                  price: 5.00
+                  stock: 20
+                  format: "Cassette"
+                  genre: "Rap"
+                  year: "2021"
+                  description: "I was bored and made some music."
+                  score: 4.99
 
+
+  /product/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Product ID
+        schema:
+          type: integer
+        required: true
+        
+    get:
+      operationId: R202
+      summary: 'R202: View product page'
+      description: "Show a specific product page, where all of its information is displayed. Access: VIS, CLI, ADM"
+
+      tags:
+        - 'M02: Products'
+
+      responses:
+        '200':
+          description: 'Ok. Show Product Page UI'
+        '404':
+          description: 'This product does not exist in our store.'
+        
+  # -------------- #
+  # M03 - Artists  #
+
+  /artist/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Artist ID
+        schema:
+          type: integer
+        required: true
+
+  get:
+    operationId: R301
+    summary: 'R301: View artist page'
+    description: "Show a specific artist page, where all of its information is displayed. Access: VIS, CLI, ADM"
+
+    tags:
+      - 'M02: Products'
+
+    responses:
+      '200':
+        description: 'Ok. Show Artist Page UI'
+      '404':
+        description: 'This artist does not exist in our store.'
+
+  # -------------- #
+  # M04 - Reviews  #
+
+  /product/{id}/review:
+    parameters:
+      - in: path
+        name: id
+        description: Product ID
+        schema:
+          type: integer
+        required: true
+        
+    post:
+      operationId: R401
+      summary: 'R401: Review product'
+      description: "Submit a review of a product, with an associated review score. Access: CLI"
+      tags:
+        - 'M04: Reviews'
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                review_description:
+                  type: string
+                score:
+                  type: integer
+              required:
+                - score
+
+      responses:
+        '201':
+          description: "Successfully reviewed product."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  message:
+                    type: string
+                  score:
+                    type: integer
+
+              example:
+                id: 1
+                message: "I love the arrowhead song!"
+                score: 5
+        '401':
+          description: "Unauthenticated users cannot review products."
+        '403':
+          description: "Client has already reviewed this product."
+  
+  # ------------ #
+  # M07 - Carts  #
+  
+  /cart/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Cart ID
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: R701
+      summary: 'R701: Add product to cart'
+      description: 'Add a certain amount of a product to the cart. Access: VIS, OWN'
+      tags:
+        -  'M07: Cart'
+      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer 
+                quantity:
+                  type: integer
+                  
+      responses:
+        '200':
+          description: 'Successfully added product to cart.'
+        '403':
+          description: 'Product out of stock.'
+        '406':
+          description: 'Product not in the cart.'
+        
+    patch:
+      operationId: R702
+      summary: 'R702: Edit product quantity in cart'
+      description: 'Edit the quantity of a product in the cart. Access: VIS, OWN'
+      tags:
+        - 'M07: Cart'
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productID:
+                  type: integer 
+                quantity:
+                  type: integer
+      
+      responses:
+        '200':
+          description: 'Successfully updated product quantity.'
+        '406':
+          description: 'Product not in the cart.'
+
+  /cart/{id}/product/{product_id}:
+    parameters:
+      - in: path
+        name: id
+        description: Cart ID
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: product_id
+        description: Product ID
+        schema:
+          type: integer
+        required: true
+  
+    delete:
+      operationId: R703
+      summary: 'R703: Remove product from cart'
+      description: "Remove a product from the cart. Access: VIS, OWN"
+      tags:
+        -  'M07: Cart'
+          
+      responses:
+        '200':
+          description: 'Successfully removed product from cart.'
+        '406':
+          description: 'Product not in the cart.'
+
+  /checkout:
+    get:
+      operationId: R704
+      summary: 'R704: Checkout Form'
+      description: 'Provide checkout form. Access: VIS, OWN'
+      tags:
+        - 'M07: Cart'
+      responses:
+        '200':
+          description: 'Ok. Show Checkout UI'
+
+    post:
+      operationId: R705
+      summary: 'R705: Checkout Action'
+      description: 'Process the checkout form submission. Access: VIS, OWN'
+      tags:
+        - 'M07: Cart'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: object
+                  properties:
+                    street:
+                      type: string
+                    zip-code:
+                      type: string
+                    city:
+                      type: string
+                    country:
+                      type: string
+                shipping_method:
+                  type: string
+                payment_method:
+                  type: string
+              required:
+                - address
+                - shipping_method
+                - payment_method
+
+      responses:
+        '302':
+          description: 'Redirect after processing checkout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful checkout. Redirect to home.'
+                  value: '/home'
+                302Failure:
+                  description: 'Failed checkout. Redirect to checkout.'
+                  value: '/checkout'

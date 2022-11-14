@@ -2,7 +2,7 @@
 
 |Identifier|Name|Priority|Description|
 |---|---|---|---|
-|US001|See Homepage|High|As a User, I want to access the home page, so that I can see a brief presentation of the website and instantly start brows1ing through products|
+|US001|See Homepage|High|As a User, I want to access the home page, so that I can see a brief presentation of the website and instantly start browsing through products|
 |US002|See About Us|Medium|As a User, I want to access the About Us page, so that I can see understand who is behind the website and what their goal is|
 |US003|See Help|Medium|As a User, I want to access a Help page, so that I can better understand how the platform functions|
 |US004|See Contacts|Medium|As a User, I want to know of any of the site's contacts, so that I know who to go to if I need help|
