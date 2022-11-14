@@ -1,0 +1,242 @@
+openapi: 3.0.0
+
+info:
+ version: '1.0'
+ title: 'LBAW EarWorm Web API'
+ description: 'Web Resources Specification (A7) for MediaLibrary'
+
+servers:
+- url: http://lbaw.fe.up.pt
+  description: Production server
+
+externalDocs:
+
+tags:
+ - name: 'M01: Authentication and Individual Profile'
+ - name: 'M02: Products'
+ - name: 'M03: Artists'
+ - name: 'M04: Reviews'
+ - name: 'M05: Wishlist'
+ - name: 'M06: Orders'
+ - name: 'M07: Cart'
+ - name: 'M08: Reports and Tickets'
+ - name: 'M09: User Administration and Static pages'
+
+paths:
+
+  # -------------- #
+  # M01 - Authentication and Individual Profile #
+
+  /login:
+   get:
+     operationId: R101
+     summary: 'R101: Login Form'
+     description: 'Provide login form. Access: VIS'
+     tags:
+       - 'M01: Authentication and Individual Profile'
+     responses:
+       '200':
+         description: 'Ok. Show Log-in UI'
+   post:
+     operationId: R102
+     summary: 'R102: Login Action'
+     description: 'Processes the login form submission. Access: VIS'
+     tags:
+       - 'M01: Authentication and Individual Profile'
+
+     requestBody:
+       required: true
+       content:
+         application/x-www-form-urlencoded:
+           schema:
+             type: object
+             properties:
+               email:          # <!--- form field name
+                 type: string
+               password:    # <!--- form field name
+                 type: string
+             required:
+                  - email
+                  - password
+
+     responses:
+       '302':
+         description: 'Redirect after processing the login credentials.'
+         headers:
+           Location:
+             schema:
+               type: string
+             examples:
+               302Success:
+                 description: 'Successful authentication. Redirect to user profile.'
+                 value: '/client/{id}'
+               302Error:
+                 description: 'Failed authentication. Redirect to login form.'
+                 value: '/login'
+
+  /logout:
+    post:
+      operationId: R103
+      summary: 'R103: Logout Action'
+      description: 'Logout the current authenticated user. Access: CLI, ADM'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '302':
+          description: 'Redirect after processing logout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful logout. Redirect to login form.'
+                  value: '/login'
+
+  /register:
+    get:
+      operationId: R104
+      summary: 'R104: Register Form'
+      description: 'Provide new user registration form. Access: VIS'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show Sign-Up UI'
+
+    post:
+      operationId: R105
+      summary: 'R105: Register Action'
+      description: 'Processes the new user registration form submission. Access: VIS'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                picture:
+                  type: string
+                  format: binary
+              required:
+                - email
+                - password
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to user profile.'
+                  value: '/clients/{id}'
+                302Failure:
+                  description: 'Failed authentication. Redirect to login form.'
+                  value: '/login'
+
+  /clients/{id}:
+    get:
+      operationId: R106
+      summary: 'R106: View client profile'
+      description: 'Show the individual client profile. Access: CLI'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '200':
+          description: 'Ok. Show Client Profile UI'
+
+  # -------------- #
+  # M02 - Products #
+ 
+  /api/works:
+    get:
+      operationId: R201
+      summary: 'R201: Search Products API'
+      description: 'Searches for products and returns the results as JSON. Access: VIS.'
+
+      tags:
+        - 'M02: Products'
+
+      parameters:
+        - in: query
+          name: query
+          description: 'String to use for full-text search'
+          schema:
+            type: string
+          required: false
+
+        - in: query
+          name: genre
+          description: 'Genre of the products'
+          schema:
+            type: string
+          required: false
+
+        - in: query
+          name: min_rating
+          description: 'Minimum rating of the product'
+          schema:
+            type: float
+          required: false
+          
+        - in: query
+          name: max_rating
+          description: 'Maximum rating of the product'
+          schema:
+            type: float
+          required: false
+        
+        
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    artist_id:
+                      type: integer
+                    price:
+                      type: float
+                    stock:
+                      type: integer
+                    format:
+                      type: string
+                    genre:
+                      type: string
+                    year:
+                      type: integer
+                    description:
+                      type: string
+                    rating:
+                      type: float
+                examples:
+                  - id: 1
+                    title: Example
+                    
+
