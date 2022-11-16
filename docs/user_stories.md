@@ -57,7 +57,7 @@
 |US217|Track Order|Medium|As a Client, I want to be able to track my order while it is being shipped, so that I am always aware of its state and when to expect its arrival|
 |US218|Cancel Order|Medium|As a Client, I want to be able to cancel my order after I have bought it, so that I can retract any purchase I regret|
 |US219|Receive Payment Approval Notification|Medium|As a Client, I want to be notified whenever the system has accepted my payment, so that I can be aware of my order's status
-|US220|View Personal Notification|High|As a Client, I want to be able to check notifications I've received, so that I can check and be aware of everything regarding my account|
+|US220|View Personal Notification|Medium|As a Client, I want to be able to check notifications I've received, so that I can check and be aware of everything regarding my account|
 |US221|Receive Order Status Change Notification|Medium|As a Client, I want to be notified whenever my order changes state (left the warehouse, got shipped, etc.), so that I can be aware of my order's status|
 |US222|Receive Wishlist Product Available Notification|Medium|As a Client, I want to be notified whenever one of my wishlisted item is in stick, so that I always know of my wishlisted items' availability|
 |US223|Receive Product on Cart Price Change Notification|Medium|As a Client, I want to be notified whenever any item in my current shopping cart has a change in price, so that I always know of any change in any product's price|
