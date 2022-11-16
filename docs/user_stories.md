@@ -44,29 +44,30 @@
 |US204|View Profile|High|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
 |US205|Edit Profile|High|As a Client, I want to be able to edit my profile, so that I can change my account's private and public information if I want to|
 |US206|Insert Profile Picture|Medium|As a Client, I want to be able to have a profile picture, so that I can customize my account a bit more|
-|US207|Review Product|Medium|As a Client, I want to review the products I have acquired, so that I can be able to explain my experience with the product|
-|US208|Edit Review|Medium|As a Client, I want to edit my past reviews of any product, so that I can always add any new information to my previous opinion of the product|
-|US209|View Reviews|Medium|As a Client, I want to be able to see my own profile's reviews, so that I can always easily access them if I choose to|
-|US210|Remove Review|Medium|As a Client, I want to be able to remove and delete any review I have made, so that I can make sure the information I am sharing with other people is up-to-date and reflects the current state of the product|
-|US211|Add Product to Wishlist|Medium|As a Client, I want to be able to add a product to my personal wishlist, so that I can track the products I am/might be interested in buying for future reference|
-|US212|Remove Product from Wishlist|Medium|As a Client, I want to be able to remove a product from my personal wishlist, so that I can can get rid of products I am no longer interested in|
-|US213|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
-|US214|Add Product to Cart|High|As a Client, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
-|US215|Remove Product from Cart|High|As a Client, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
+|US207|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
+|US208|Add Product to Cart|High|As a Client, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
+|US209|Remove Product from Cart|High|As a Client, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
+|US210|Review Product|Medium|As a Client, I want to review the products I have acquired, so that I can be able to explain my experience with the product|
+|US211|Edit Review|Medium|As a Client, I want to edit my past reviews of any product, so that I can always add any new information to my previous opinion of the product|
+|US212|View Reviews|Medium|As a Client, I want to be able to see my own profile's reviews, so that I can always easily access them if I choose to|
+|US213|Remove Review|Medium|As a Client, I want to be able to remove and delete any review I have made, so that I can make sure the information I am sharing with other people is up-to-date and reflects the current state of the product|
+|US214|Add Product to Wishlist|Medium|As a Client, I want to be able to add a product to my personal wishlist, so that I can track the products I am/might be interested in buying for future reference|
+|US215|Remove Product from Wishlist|Medium|As a Client, I want to be able to remove a product from my personal wishlist, so that I can can get rid of products I am no longer interested in|
 |US216|View Purchase History|Medium|As a Client, I want to be able to see my past purchases, so that I can keep track of everything I've bought from the website|
 |US217|Track Order|Medium|As a Client, I want to be able to track my order while it is being shipped, so that I am always aware of its state and when to expect its arrival|
 |US218|Cancel Order|Medium|As a Client, I want to be able to cancel my order after I have bought it, so that I can retract any purchase I regret|
-|US219|Receive Payment Approval Notification|Medium|As a Client, I want to be notified whenever the system has accepted my payment, so that I can be aware of my order's status|US217|View Personal Notification|High|As a Client, I want to be able to check notifications I've received, so that I can check and be aware of everything regarding my account|
-|US220|Receive Order Status Change Notification|Medium|As a Client, I want to be notified whenever my order changes state (left the warehouse, got shipped, etc.), so that I can be aware of my order's status|
-|US221|Receive Wishlist Product Available Notification|Medium|As a Client, I want to be notified whenever one of my wishlisted item is in stick, so that I always know of my wishlisted items' availability|
-|US222|Receive Product on Cart Price Change Notification|Medium|As a Client, I want to be notified whenever any item in my current shopping cart has a change in price, so that I always know of any change in any product's price|
-|US223|Receive Product Recommendations|Medium|As a Client, I want to be given recommendations in products I may possibly be interested in|
-|US224|Sign-in to Last.fm|Medium|As a Client, I want to connect my Last.fm account to my EarWorm account, so that I can get better product recommendations|
-|US225|Sign-out of Last.fm|Medium|As a Client, I want to remove my Last.fm account's connection to my EarWorm account, so that I can no longer receive product recommendations according to that account|
-|US226|Appeal for unblock|Low|As a Client, I want to make an appeal in order to be unblocked, so that I can be able to freely use my previously blocked account|
-|US227|Manage Account Credit Information|Low|As a Client, I want to be able to manage my account's credit information, so that I can change it if I need to in order to make my paying experience easier|
-|US228|Manage Multiple Payment Methods|Low|As a Client, I want to be able to manage multiple payment methods, so that I am able to easily pay in whichever way I feel more comfortable with|
-|US229|Report Review|Low|As a Client, I want to be able to report any review I see, so that I can make sure it is brought up to the site's administration as a possible breach of conduct|
+|US219|Receive Payment Approval Notification|Medium|As a Client, I want to be notified whenever the system has accepted my payment, so that I can be aware of my order's status
+|US220|View Personal Notification|High|As a Client, I want to be able to check notifications I've received, so that I can check and be aware of everything regarding my account|
+|US221|Receive Order Status Change Notification|Medium|As a Client, I want to be notified whenever my order changes state (left the warehouse, got shipped, etc.), so that I can be aware of my order's status|
+|US222|Receive Wishlist Product Available Notification|Medium|As a Client, I want to be notified whenever one of my wishlisted item is in stick, so that I always know of my wishlisted items' availability|
+|US223|Receive Product on Cart Price Change Notification|Medium|As a Client, I want to be notified whenever any item in my current shopping cart has a change in price, so that I always know of any change in any product's price|
+|US224|Receive Product Recommendations|Medium|As a Client, I want to be given recommendations in products I may possibly be interested in|
+|US225|Sign-in to Last.fm|Medium|As a Client, I want to connect my Last.fm account to my EarWorm account, so that I can get better product recommendations|
+|US226|Sign-out of Last.fm|Medium|As a Client, I want to remove my Last.fm account's connection to my EarWorm account, so that I can no longer receive product recommendations according to that account|
+|US227|Appeal for unblock|Low|As a Client, I want to make an appeal in order to be unblocked, so that I can be able to freely use my previously blocked account|
+|US228|Manage Account Credit Information|Low|As a Client, I want to be able to manage my account's credit information, so that I can change it if I need to in order to make my paying experience easier|
+|US229|Manage Multiple Payment Methods|Low|As a Client, I want to be able to manage multiple payment methods, so that I am able to easily pay in whichever way I feel more comfortable with|
+|US230|Report Review|Low|As a Client, I want to be able to report any review I see, so that I can make sure it is brought up to the site's administration as a possible breach of conduct|
 
 ### Administrator
 

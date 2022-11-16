@@ -36,6 +36,7 @@
 ## A8: Vertical Prototype
 
 ### 1. Implemented Features
+The features present in this section limit themselves to basic functionalities pertaining to site visitors, logged in clients and site administrators. Products and artists are present for basic interaction, lik
 
 #### 1.1 Implemented User Stories
 
