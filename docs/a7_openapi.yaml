@@ -397,62 +397,74 @@ paths:
         description: 'This artist does not exist in our store.'
 
   # -------------- #
-  # M04 - Reviews  #
+  # M05 - Wishlist  #
 
-  /product/{id}/review:
-    parameters:
-      - in: path
-        name: id
-        description: Product ID
-        schema:
-          type: integer
-        required: true
-        
-    post:
-      operationId: R401
-      summary: 'R401: Review product'
-      description: "Submit a review of a product, with an associated review score. Access: CLI"
-      tags:
-        - 'M04: Reviews'
+  #/wishlist/{id}:
+   # parameters:
+    #  - in: path
+     #   name: id
+      #  description: Wishlist ID
+       # schema:
+        #  type: integer
+        #required: true
 
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                review_description:
-                  type: string
-                score:
-                  type: integer
-              required:
-                - score
+#    post:
+ #     operationId: R501
+  #    summary: 'R501: Add product to wishlist'
+   #   description: 'Add a product to a wishlist. Access: CLI'
+    #  tags:
+     #   -  'M05: Wishlist'
+      #
+      #requestBody:
+       # required: true
+        #content:
+         # application/json:
+          #  schema:
+           #   type: object
+            #  properties:
+             #   id:
+              #    type: integer 
+                  
+      #responses:
+       # '200':
+        #  description: 'Successfully added product to wishlist.' 
+        #'404':
+         # description: 'Product with the specified ID not found.'
 
-      responses:
-        '201':
-          description: "Successfully reviewed product."
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  message:
-                    type: string
-                  score:
-                    type: integer
-
-              example:
-                id: 1
-                message: "I love the arrowhead song!"
-                score: 5
-        '401':
-          description: "Unauthenticated users cannot review products."
-        '403':
-          description: "Client has already reviewed this product."
+  #/wishlist/{id}/product/{product_id}:
+   # parameters:
+    #  - in: path
+     #   name: id
+      #  description: Wishlist ID
+       # schema:
+        #  type: integer
+        #required: true
+      #- in: path
+       # name: product_id
+        #description: Product ID
+        #schema:
+         # type: integer
+        #required: true
   
+    #delete:
+     # operationId: R502
+      #summary: 'R502: Remove product from wishlist'
+      #description: "Remove a product from wishlist. Access: CLI"
+      #tags:
+       # -  'M05: Wishlist'
+          
+      #responses:
+       # '200':
+        #  description: 'Successfully removed product from Wishlist.'
+        #'404':
+         # description: 'Product with the specified ID not found.'
+        #'406':
+         # description: 'Product not in wishlist.'
+  #
+
+  # ------------ #
+  # M06 - Orders  #
+
   # ------------ #
   # M07 - Carts  #
   

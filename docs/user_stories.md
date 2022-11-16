@@ -32,8 +32,6 @@
 |---|---|---|---|
 |US101|Sign-in|High|As a Visitor, I want to authenticate into the system, so that I can access privileged information|
 |US102|Sign-up|High|As a Visitor, I want to register myself into the system, so that I can authenticate myself into the system|
-|US103|Add Product to Cart|High|As a Visitor, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
-|US104|Remove Product from Cart|High|As a Visitor, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
 
 
 ### Client
@@ -53,20 +51,22 @@
 |US211|Add Product to Wishlist|Medium|As a Client, I want to be able to add a product to my personal wishlist, so that I can track the products I am/might be interested in buying for future reference|
 |US212|Remove Product from Wishlist|Medium|As a Client, I want to be able to remove a product from my personal wishlist, so that I can can get rid of products I am no longer interested in|
 |US213|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
-|US214|View Purchase History|Medium|As a Client, I want to be able to see my past purchases, so that I can keep track of everything I've bought from the website|
-|US215|Track Order|Medium|As a Client, I want to be able to track my order while it is being shipped, so that I am always aware of its state and when to expect its arrival|
-|US216|Cancel Order|Medium|As a Client, I want to be able to cancel my order after I have bought it, so that I can retract any purchase I regret|
-|US217|Receive Payment Approval Notification|Medium|As a Client, I want to be notified whenever the system has accepted my payment, so that I can be aware of my order's status|US217|View Personal Notification|High|As a Client, I want to be able to check notifications I've received, so that I can check and be aware of everything regarding my account|
-|US218|Receive Order Status Change Notification|Medium|As a Client, I want to be notified whenever my order changes state (left the warehouse, got shipped, etc.), so that I can be aware of my order's status|
-|US219|Receive Wishlist Product Available Notification|Medium|As a Client, I want to be notified whenever one of my wishlisted item is in stick, so that I always know of my wishlisted items' availability|
-|US220|Receive Product on Cart Price Change Notification|Medium|As a Client, I want to be notified whenever any item in my current shopping cart has a change in price, so that I always know of any change in any product's price|
-|US221|Receive Product Recommendations|Medium|As a Client, I want to be given recommendations in products I may possibly be interested in|
-|US222|Sign-in to Last.fm|Medium|As a Client, I want to connect my Last.fm account to my EarWorm account, so that I can get better product recommendations|
-|US223|Sign-out of Last.fm|Medium|As a Client, I want to remove my Last.fm account's connection to my EarWorm account, so that I can no longer receive product recommendations according to that account|
-|US224|Appeal for unblock|Low|As a Client, I want to make an appeal in order to be unblocked, so that I can be able to freely use my previously blocked account|
-|US225|Manage Account Credit Information|Low|As a Client, I want to be able to manage my account's credit information, so that I can change it if I need to in order to make my paying experience easier|
-|US226|Manage Multiple Payment Methods|Low|As a Client, I want to be able to manage multiple payment methods, so that I am able to easily pay in whichever way I feel more comfortable with|
-|US227|Report Review|Low|As a Client, I want to be able to report any review I see, so that I can make sure it is brought up to the site's administration as a possible breach of conduct|
+|US214|Add Product to Cart|High|As a Client, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
+|US215|Remove Product from Cart|High|As a Client, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
+|US216|View Purchase History|Medium|As a Client, I want to be able to see my past purchases, so that I can keep track of everything I've bought from the website|
+|US217|Track Order|Medium|As a Client, I want to be able to track my order while it is being shipped, so that I am always aware of its state and when to expect its arrival|
+|US218|Cancel Order|Medium|As a Client, I want to be able to cancel my order after I have bought it, so that I can retract any purchase I regret|
+|US219|Receive Payment Approval Notification|Medium|As a Client, I want to be notified whenever the system has accepted my payment, so that I can be aware of my order's status|US217|View Personal Notification|High|As a Client, I want to be able to check notifications I've received, so that I can check and be aware of everything regarding my account|
+|US220|Receive Order Status Change Notification|Medium|As a Client, I want to be notified whenever my order changes state (left the warehouse, got shipped, etc.), so that I can be aware of my order's status|
+|US221|Receive Wishlist Product Available Notification|Medium|As a Client, I want to be notified whenever one of my wishlisted item is in stick, so that I always know of my wishlisted items' availability|
+|US222|Receive Product on Cart Price Change Notification|Medium|As a Client, I want to be notified whenever any item in my current shopping cart has a change in price, so that I always know of any change in any product's price|
+|US223|Receive Product Recommendations|Medium|As a Client, I want to be given recommendations in products I may possibly be interested in|
+|US224|Sign-in to Last.fm|Medium|As a Client, I want to connect my Last.fm account to my EarWorm account, so that I can get better product recommendations|
+|US225|Sign-out of Last.fm|Medium|As a Client, I want to remove my Last.fm account's connection to my EarWorm account, so that I can no longer receive product recommendations according to that account|
+|US226|Appeal for unblock|Low|As a Client, I want to make an appeal in order to be unblocked, so that I can be able to freely use my previously blocked account|
+|US227|Manage Account Credit Information|Low|As a Client, I want to be able to manage my account's credit information, so that I can change it if I need to in order to make my paying experience easier|
+|US228|Manage Multiple Payment Methods|Low|As a Client, I want to be able to manage multiple payment methods, so that I am able to easily pay in whichever way I feel more comfortable with|
+|US229|Report Review|Low|As a Client, I want to be able to report any review I see, so that I can make sure it is brought up to the site's administration as a possible breach of conduct|
 
 ### Administrator
 

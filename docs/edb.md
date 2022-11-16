@@ -11,7 +11,7 @@
 |Relation Reference|Relation Compact Notation|
 |---|---|
 |R01|user(<ins>id</ins>, email **UK NN**, username **UK NN**, password **NN**)|
-|R02|client(<ins>user_id</ins>->user, email->user **UK NN**, username->user **NN**, password->user **NN**, cart_id->cart **NN**, wishlist_id->wishlist **NN**, is_blocked **NN**)|
+|R02|client(<ins>user_id</ins>->user, email->user **UK NN**, username->user **NN**, password->user **NN**, birthdate, cart_id->cart **NN**, wishlist_id->wishlist **NN**, is_blocked **NN**)|
 |R03|admin(<ins>user_id</ins>->user,email->user **UK NN**, username->user **NN**, password->user **NN**)|
 |R04|artist(<ins>id</ins>, name **NN**, description)|
 |R05|client_artist(<ins>client_id</ins>->client, <ins>artist_id</ins>->artist)|
@@ -63,8 +63,8 @@
 |---|---|
 |**Keys**|{id}, {email}|
 |**Functional Dependencies**:||
-|FD0201|id -> {email, username, password, cart_id, wishlist_id, is_blocked}|
-|FD0202|email -> {id, username, password, cart_id, wishlist_id, is_blocked}|
+|FD0201|id -> {email, username, password, birthdate, cart_id, wishlist_id, is_blocked}|
+|FD0202|email -> {id, username, password, birthdate, cart_id, wishlist_id, is_blocked}|
 |**Normal Form**|BCNF|
 
 |**Table R03**|**Admin**|

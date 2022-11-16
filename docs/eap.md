@@ -31,5 +31,11 @@
 
 ## 3. OpenAPI Specification
 
+#
 
+## A8: Vertical Prototype
+
+### 1. Implemented Features
+
+#### 1.1 Implemented User Stories
 
