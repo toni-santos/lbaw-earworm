@@ -67,7 +67,6 @@ As of this date (17/11/2022), the features present in this section limit themsel
 |---|---|---|---|
 |US201|Sign-out|High|As a Client, I want to log out of my account, so that I am no longer signed in while using the website|
 |US202|Delete account|High|As a Client, I want to delete my account, so that I can remove my account from the platform should I not need it anymore|
-|US203|Recover Password|Medium|As a Client, I want to be able to recover my password, so that, in case I forget it, I don't need to create a new account and lose the information I had in my previous one, such as wishlist items.
 |US204|View Profile|High|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
 |US205|Edit Profile|High|As a Client, I want to be able to edit my profile, so that I can change my account's private and public information if I want to|
 |US206|Insert Profile Picture|Medium|As a Client, I want to be able to have a profile picture, so that I can customize my account a bit more|
