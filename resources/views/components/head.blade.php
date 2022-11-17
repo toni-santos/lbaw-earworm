@@ -38,7 +38,9 @@
     <link href="{{ asset('css/review.css') }}" rel="stylesheet">
     @elseif ($page == 'checkout')
     <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
     <script type="text/javascript" src={{ asset('js/index.js') }} defer></script>
+    <script type="text/javascript" src={{ asset('js/checkout.js') }} defer></script>
     @endif
 
     <script type="text/javascript">

@@ -1,0 +1,133 @@
+#payment-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 40%;
+    margin-inline: 40px;
+    margin-top: 20px;
+    padding: 20px;
+    height: 750px;
+}
+
+#items-wrapper {
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 20px;
+    overflow-y: scroll;
+}
+
+#payment-info {
+    border-left: 1px solid white;
+    margin-left: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#payment-method, #checkout-total,
+#billing-info, #payment-description {
+    display: flex;
+    flex-direction: column
+}
+
+#payment-description {
+    padding: 10px;
+    gap: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 400px;
+}
+
+.pay-desc-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#payment-method {
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+#confirm-checkout {
+    margin-inline: 10px;
+    margin-top: 20px;
+}
+
+.checkout-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.subtitle-container {
+    padding: 0;
+    font-size: medium;
+    padding-bottom: 5px;
+}
+
+.subtitle-container > p {
+    border-bottom: none;
+}
+
+.left-item {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.right-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.radio {
+    margin: 0.5rem;
+}
+
+.radio input[type=radio] {
+    position: absolute;
+    opacity: 0;
+}
+
+.radio input[type=radio] + .radio-label:before {
+    content: "";
+    background: #f4f4f4;
+    border-radius: 100%;
+    border: 1px solid #b4b4b4;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    position: relative;
+    top: -0.2em;
+    margin-right: 1em;
+    vertical-align: top;
+    cursor: pointer;
+    text-align: center;
+    transition: all 250ms ease;
+}
+
+.radio input[type=radio]:checked + .radio-label:before {
+    background-color: #3197EE;
+    box-shadow: inset 0 0 0 4px #f4f4f4;
+}
+
+.radio input[type=radio]:focus + .radio-label:before {
+    outline: none;
+    border-color: #3197EE;
+}
+
+.radio input[type=radio]:disabled + .radio-label:before {
+    box-shadow: inset 0 0 0 4px #f4f4f4;
+    border-color: #b4b4b4;
+    background: #b4b4b4;
+}
+
+.radio input[type=radio] + .radio-label:empty:before {
+    margin-right: 0;
+}
