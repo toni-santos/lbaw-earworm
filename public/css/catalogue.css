@@ -1,0 +1,124 @@
+main {
+    padding-bottom: 0px;
+}
+
+#content-wrapper {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+}
+
+#filters {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--subtle-color);
+    padding: 25px;
+    width: 100%;
+}
+
+#results {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    height: fit-content;
+}
+
+@media (max-width: 768px) {
+    #content-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+#filters-form {
+    width: 100%;
+}
+
+#filters-wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: none;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#ord-filter {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    background-color: var(--shadow-color);
+    color: var(--text-color);
+    padding: 5px;
+}
+
+.scroll-filter {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.box-filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    padding-top: 25px;
+}
+
+.box-filter label {
+    position: absolute;
+}
+
+label[for="min-rating"] {
+    top: 0;
+    left: 35px;
+}
+
+label[for="min-price"] {
+    top: 0;
+    left: 40px;
+}
+
+label[for="max-rating"]{
+    top: 0;
+    right: 35px;
+}
+
+label[for="max-price"] {
+    top: 0;
+    right: 40px;
+}
+
+#min-price, #max-price,
+#min-rating, #max-rating {
+    width: 70px;
+    border: 1px solid var(--border-color);
+    background-color: var(--shadow-color);
+    color: var(--text-color);
+    padding: 5px;
+}
+
+.scroll-filter input {
+    display: none;
+    position: relative;
+}
+
+.scroll-filter span {
+    padding: 6px;
+    display: block;
+    width: 100%;
+}
+
+.genre-check, .year-check, .artist-check {
+    font-size: medium;
+}
+
+.checkbox:checked+span {
+    background-color: var(--shadow-color);
+}

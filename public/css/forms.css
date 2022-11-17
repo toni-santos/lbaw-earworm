@@ -1,0 +1,105 @@
+#content-wrapper {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    padding-bottom: 0;
+    gap: 0px;
+}
+
+#side-image {
+    background-image: url("https://picsum.photos/1920/1080?random=1");
+}
+
+@media (max-width: 768px) {
+    #side-image {
+        display: none;
+    }
+}
+
+#sign-wrapper {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#obscure-bg {
+    pointer-events: none;
+}
+
+#inputs-box {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+    width: 300px;
+    position: relative;;
+}
+
+.text-input {
+    border: none;
+    border: 1px solid var(--border-color);
+    font-size: large;
+    padding: 10px;
+    background-color: var(--input-color);
+    vertical-align: middle;
+    color: var(--text-soft-color);
+}
+
+.input-label {
+    font-size: large;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+#password-input {
+    padding-right: 40px;
+}
+
+#password-cnt {
+    position: absolute;
+    right: 10px;
+    top: 50px;
+}
+
+#password-eye {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.required-alert {
+    opacity: 0%;
+    color: red;
+    transition: all 0.2s ease-in-out;
+    padding-top: 3px;
+}
+
+.text-input:is(:not(:placeholder-shown), :focus)+label {
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    font-size: meduum;
+}
+
+.confirm-button {
+    padding: 10px;
+    width: 100%;
+    font-size: larger;
+    margin-top: 20px;
+    border: none;
+    background-color: var(--border-color);
+    color: var(--text-soft-color);
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+}
+
+.confirm-button:disabled {
+    background-color: var(--input-color);
+}
