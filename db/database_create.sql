@@ -97,14 +97,8 @@ CREATE TABLE OrderProduct(
     order_id    INTEGER REFERENCES Orders(id) ON UPDATE CASCADE,
     product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
     quantity    INTEGER NOT NULL,
+    price       FLOAT NOT NULL,
     CONSTRAINT orderProductPK PRIMARY KEY (order_id, product_id)
-);
-
-CREATE TABLE CartProduct(
-    cart_id     INTEGER REFERENCES Users(cart_id) ON UPDATE CASCADE,
-    product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
-    quantity    INTEGER NOT NULL,
-    CONSTRAINT cartProductPK PRIMARY KEY (cart_id, product_id)
 );
 
 CREATE TABLE WishlistProduct(
@@ -273,12 +267,6 @@ BEGIN
     WHERE product_id = OLD.id;
 
     DELETE FROM Review
-    WHERE product_id = OLD.id;
-
-    DELETE FROM OrderProduct
-    WHERE product_id = OLD.id;
-
-    DELETE FROM CartProduct
     WHERE product_id = OLD.id;
 
     DELETE FROM WishlistProduct

@@ -20,7 +20,7 @@
 |R08|genre_product(<ins>genre_id</ins>->genre, <ins>product_id</ins>->product)
 |R09|review(<ins>id</ins>, client_id->client **NN**, product_id->product **NN**, score **NN CK** score > 0 AND score <= 5, date **NN**, description **DF** NULL)|
 |R10|order(<ins>id</ins>, client_id->client **NN**, state **NN CK** state **IN** orderStates)|
-|R11|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity)
+|R11|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity, price **ǸN**)
 |R12|wishlist(<ins>id</ins>, client_id->client **NN**)|
 |R13|wishlist_product(<ins>wishlist_id</ins>->wishlist, <ins>product_id</ins>->product)|
 |R14|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
@@ -118,14 +118,14 @@
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
-|FD1001|id -> {client_id, product_id, state}|
+|FD1001|id -> {client_id, state}|
 |**Normal Form**|BCNF|
 
 |**Table R11**|**Order_Product**|
 |---|---|
 |**Keys**|{order_id, product_id}|
 |**Functional Dependencies**:||
-|FD1101|{order_id, product_id} -> {quantity}|
+|FD1101|{order_id, product_id} -> {quantity, price}|
 |**Normal Form**|BCNF|
 
 |**Table R12**|**Wishlist**|
@@ -408,9 +408,6 @@ BEGIN
     WHERE product_id = OLD.id;
 
     DELETE FROM Review
-    WHERE product_id = OLD.id;
-
-    DELETE FROM OrderProduct
     WHERE product_id = OLD.id;
 
     DELETE FROM WishlistProduct
@@ -718,9 +715,6 @@ BEGIN
     WHERE product_id = OLD.id;
 
     DELETE FROM Review
-    WHERE product_id = OLD.id;
-
-    DELETE FROM OrderProduct
     WHERE product_id = OLD.id;
 
     DELETE FROM WishlistProduct
