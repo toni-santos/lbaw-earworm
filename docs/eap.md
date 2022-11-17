@@ -12,9 +12,8 @@
 |M04: Reviews|Web resources associated with reviews. Includes the following system features: add reviews, view reviews, edit reviews and delete reviews.|
 |M05: Wishlist|Web resources associated with wishlists. Includes the following system features: add products to wishlist and remove products from wishlist.
 |M06: Orders|Web resources associated with orders. Includes the following system features: add order, view orders, track order, delete order.|
-|M07: Cart|Web resources associated with carts. Includes the following system features: Add product to cart and remove product from cart.
-|M08: Reports and Tickets|Web resources associated with reports and tickets. Includes the following system features: add report, view report, delete report, add ticket, view ticket and delete ticket.|
-|M09: User Administration and Static pages|Web resources associated with user management, specifically: view users, delete or block user accounts, view and change user information, view system access details for each user. Web resources with static content are associated with this module: dashboard, about, contact, services and faq.|
+|M07: Reports and Tickets|Web resources associated with reports and tickets. Includes the following system features: add report, view report, delete report, add ticket, view ticket and delete ticket.|
+|M08: User Administration and Static pages|Web resources associated with user management, specifically: view users, delete or block user accounts, view and change user information, view system access details for each user. Web resources with static content are associated with this module: dashboard, about, contact, services and faq.|
 
 #
 
@@ -58,6 +57,8 @@ As of this date (17/11/2022), the features present in this section limit themsel
 |---|---|---|---|
 |US101|Sign-in|High|As a Visitor, I want to authenticate into the system, so that I can access privileged information|
 |US102|Sign-up|High|As a Visitor, I want to register myself into the system, so that I can authenticate myself into the system|
+|US103|Add Product to Cart|High|As a Visitor, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
+|US104|Remove Product from Cart|High|As a Visitor, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
 
 ##### Client:
 
@@ -66,5 +67,3 @@ As of this date (17/11/2022), the features present in this section limit themsel
 |US201|Sign-out|High|As a Client, I want to log out of my account, so that I am no longer signed in while using the website|
 |US204|View Profile|High|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
 |US207|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
-|US208|Add Product to Cart|High|As a Client, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
-|US209|Remove Product from Cart|High|As a Client, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
