@@ -1,0 +1,65 @@
+[id^="carousel-"] {
+    width: 60%;
+}
+
+.carousel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.flickity-slider > *:not(.is-selected) {
+    opacity: 0%;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.flickity-slider > *:has(.is-selected) {
+    opacity: 100%;
+}
+
+#carousel-promos {
+    width: 100%;
+}
+
+.promocard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-image: url("https://picsum.photos/1920/1080?random=1");
+    width: 100%;
+    height: 40vh;
+}
+
+#carousel-promos .flickity-slider > * {
+    opacity: 100%;
+}
+
+.promo-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    height: 30%;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    gap: 10px;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); 
+}
+
+.promo-desc > p {
+    margin: 0;
+}
+
+.promo-desc-text {
+    font-size: x-large;
+    font-weight: bold;
+    color: white;
+}
+
+.promo-desc-subtext {
+    font-weight: bold;
+    color: white;
+    padding-left: 10px;
+}

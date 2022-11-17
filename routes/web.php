@@ -11,7 +11,20 @@
 |
 */
 // Home
-Route::get('/', 'Auth\LoginController@home');
+Route::get('/', function () {
+    return view('pages.index');
+});
+
+// Pages
+Route::get('/catalogue', function () {
+    return view('pages.catalogue');
+});
+Route::get('/signin', function () {
+    return view('pages.signin');
+});
+Route::get('/signup', function () {
+    return view('pages.signup');
+});
 
 // Cards
 Route::get('cards', 'CardController@list');

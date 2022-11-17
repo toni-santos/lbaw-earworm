@@ -1,0 +1,44 @@
+.product-card {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 10px;
+}
+
+.product-desc {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;;
+}
+
+.product-fav-price {
+    padding-block: 5px;
+}
+
+.prod-genres {
+    display: flex;
+    padding-block: 5px;
+    justify-content: center;
+}
+
+.product-specs {
+    border-top: solid 1px var(--text-color);
+    width: 100%;
+}
+
+.product-fav-price {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    border-top: solid 1px var(--text-color);
+
+}
+
+.prod-name {
+    font-size: large;
+}
