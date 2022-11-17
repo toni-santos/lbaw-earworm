@@ -382,19 +382,19 @@ paths:
           type: integer
         required: true
 
-  get:
-    operationId: R301
-    summary: 'R301: View artist page'
-    description: "Show a specific artist page, where all of its information is displayed. Access: VIS, CLI, ADM"
+    get:
+      operationId: R301
+      summary: 'R301: View artist page'
+      description: "Show a specific artist page, where all of its information is displayed. Access: VIS, CLI, ADM"
 
-    tags:
-      - 'M02: Products'
+      tags:
+        - 'M02: Products'
 
-    responses:
-      '200':
-        description: 'Ok. Show Artist Page UI'
-      '404':
-        description: 'This artist does not exist in our store.'
+      responses:
+        '200':
+          description: 'Ok. Show Artist Page UI'
+        '404':
+          description: 'This artist does not exist in our store.'
 
   # -------------- #
   # M05 - Wishlist  #
@@ -465,115 +465,24 @@ paths:
   # ------------ #
   # M06 - Orders  #
 
-  # ------------ #
-  # M07 - Carts  #
-  
-  /cart/{id}:
-    parameters:
-      - in: path
-        name: id
-        description: Cart ID
-        schema:
-          type: integer
-        required: true
-
-    post:
-      operationId: R701
-      summary: 'R701: Add product to cart'
-      description: 'Add a certain amount of a product to the cart. Access: VIS, OWN'
-      tags:
-        -  'M07: Cart'
-      
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer 
-                quantity:
-                  type: integer
-                  
-      responses:
-        '200':
-          description: 'Successfully added product to cart.'
-        '403':
-          description: 'Product out of stock.'
-        '406':
-          description: 'Product not in the cart.'
-        
-    patch:
-      operationId: R702
-      summary: 'R702: Edit product quantity in cart'
-      description: 'Edit the quantity of a product in the cart. Access: VIS, OWN'
-      tags:
-        - 'M07: Cart'
-
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                productID:
-                  type: integer 
-                quantity:
-                  type: integer
-      
-      responses:
-        '200':
-          description: 'Successfully updated product quantity.'
-        '406':
-          description: 'Product not in the cart.'
-
-  /cart/{id}/product/{product_id}:
-    parameters:
-      - in: path
-        name: id
-        description: Cart ID
-        schema:
-          type: integer
-        required: true
-      - in: path
-        name: product_id
-        description: Product ID
-        schema:
-          type: integer
-        required: true
-  
-    delete:
-      operationId: R703
-      summary: 'R703: Remove product from cart'
-      description: "Remove a product from the cart. Access: VIS, OWN"
-      tags:
-        -  'M07: Cart'
-          
-      responses:
-        '200':
-          description: 'Successfully removed product from cart.'
-        '406':
-          description: 'Product not in the cart.'
-
   /checkout:
     get:
-      operationId: R704
-      summary: 'R704: Checkout Form'
+      operationId: R601
+      summary: 'R601: Checkout Form'
       description: 'Provide checkout form. Access: VIS, OWN'
       tags:
-        - 'M07: Cart'
+        - 'M06: Order'
       responses:
         '200':
           description: 'Ok. Show Checkout UI'
 
-    post:
-      operationId: R705
-      summary: 'R705: Checkout Action'
-      description: 'Process the checkout form submission. Access: VIS, OWN'
-      tags:
-        - 'M07: Cart'
+    /checkout/order/:
+      post:
+        operationId: R602
+        summary: 'R602: Checkout Action'
+        description: 'Process the checkout form submission. Access: VIS, OWN'
+        tags:
+          - 'M06: Order'
 
       requestBody:
         required: true
@@ -597,10 +506,22 @@ paths:
                   type: string
                 payment_method:
                   type: string
+                products:
+                  type: array
+                  product:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      price:
+                        type: float
+                      quantity:
+                        type: integer
               required:
                 - address
                 - shipping_method
                 - payment_method
+                - products
 
       responses:
         '302':

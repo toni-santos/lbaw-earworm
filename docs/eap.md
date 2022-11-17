@@ -23,7 +23,7 @@
 |---|---|---|
 |VIS|Visitor|Users without privileges|
 |CLI|Client|Authenticated users|
-|OWN|Owner| Clients that are owners of information, like personal profile or wishlisted products|
+|OWN|Owner|Clients that are owners of information, like personal profile or wishlisted products|
 |ADM|Administrator|System administrators|
 
 #
