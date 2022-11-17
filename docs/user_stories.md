@@ -89,7 +89,6 @@
 |US314|Approve/refuse appeals for unblock|Low|As an Administrator, I want to be able to give a verdict to an unblock appeal, so that I can decide on whether or not to allow a client back into the platform|
 |US315|Check a product's sales|Low|As an Administrator, I want to able to check a product's sales, so that I can be aware of how interesting a given product is to our platform's users|
 
-
 ----
 
 ### Business Rules

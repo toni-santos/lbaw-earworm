@@ -45,9 +45,6 @@ As of this date (17/11/2022), the features present in this section limit themsel
 |Identifier|Name|Priority|Description|
 |---|---|---|---|
 |US001|See Homepage|High|As a User, I want to access the home page, so that I can see a brief presentation of the website and instantly start browsing through products|
-|US002|See About Us|Medium|As a User, I want to access the About Us page, so that I can see understand who is behind the website and what their goal is|
-|US003|See Help|Medium|As a User, I want to access a Help page, so that I can better understand how the platform functions|
-|US004|See Contacts|Medium|As a User, I want to know of any of the site's contacts, so that I know who to go to if I need help|
 |US005|See Other Person's Page|High|As a User, I want to access another person's profile page, so that I can see info about them|
 |US006|See Artist Page|High|As a User, I want to access an artist's musical catalog, so that I can search through artist-specific related products in an organized way|
 |US007|See Product Page|High|As a User, I want to access a product's information (name, artist's name, stock, price, etc.), so that I can be aware of what the product is|
@@ -77,7 +74,6 @@ As of this date (17/11/2022), the features present in this section limit themsel
 |US207|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
 |US208|Add Product to Cart|High|As a Client, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
 |US209|Remove Product from Cart|High|As a Client, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
-
 
 ##### Admin: 
 
