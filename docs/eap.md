@@ -69,7 +69,6 @@ As of this date (17/11/2022), the features present in this section limit themsel
 |US202|Delete account|High|As a Client, I want to delete my account, so that I can remove my account from the platform should I not need it anymore|
 |US204|View Profile|High|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
 |US205|Edit Profile|High|As a Client, I want to be able to edit my profile, so that I can change my account's private and public information if I want to|
-|US206|Insert Profile Picture|Medium|As a Client, I want to be able to have a profile picture, so that I can customize my account a bit more|
 |US207|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
 |US208|Add Product to Cart|High|As a Client, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
 |US209|Remove Product from Cart|High|As a Client, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
