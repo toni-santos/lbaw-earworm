@@ -3,6 +3,7 @@
 # A7: Web Resources Specification
 
 ### 1. Overview:
+These are the modules that will be part of the application. They were aggregated in accordance to the needs of the platform.
 
 |Module name|Description|
 |---|---|
@@ -18,6 +19,7 @@
 #
 
 ## 2. Permissions
+Permissions are divided into 4 categories, as described below.
 
 |Tag|Name|Description|
 |---|---|---|
@@ -35,7 +37,7 @@
 ## A8: Vertical Prototype
 
 ### 1. Implemented Features
-As of this date (17/11/2022), the features present in this section limit themselves to basic functionalities pertaining to site visitors, logged in clients and site administrators. Products and artists are present for basic interaction, like adding products to cart, but medium priority user stories like wishlisting an item will be added only further down the development process. 
+As of this date (17/11/2022), the features present in this section limit themselves to basic functionalities pertaining to site visitors and logged in clients, as they are the only users able to interact with the soon-to-be deployed vertical prototype. Products and artists are present for basic interaction features, like adding products to the user's cart, but medium priority user stories like wishlisting an item will be added only further down the development process. 
 
 #### 1.1 Implemented User Stories
 
@@ -67,3 +69,5 @@ As of this date (17/11/2022), the features present in this section limit themsel
 |US201|Sign-out|High|As a Client, I want to log out of my account, so that I am no longer signed in while using the website|
 |US204|View Profile|High|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
 |US207|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
+
+#### 1.2 Implemented Web Resources
