@@ -25,6 +25,12 @@ Route::get('/signin', function () {
 Route::get('/signup', function () {
     return view('pages.signup');
 });
+Route::get('/checkout', function () {
+    return view('pages.checkout');
+});
+Route::get('/user', function () {
+    return view('pages.user');
+});
 
 // Cards
 Route::get('cards', 'CardController@list');

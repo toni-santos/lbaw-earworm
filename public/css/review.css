@@ -1,0 +1,29 @@
+.review-item {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.review-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-head {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.review-name {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.review-score {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: large;
+}

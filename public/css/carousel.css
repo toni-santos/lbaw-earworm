@@ -1,0 +1,58 @@
+
+/* UNCOMMENT THIS WHEN ENABLING FLICKR */
+
+/* .flickity-slider > *:not(.is-selected) {
+    opacity: 0%;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.flickity-slider > *:has(.is-selected) {
+    opacity: 100%;
+}
+
+#carousel-promos .flickity-slider > * {
+    opacity: 100%;
+}
+
+[id^="carousel-"] {
+    width: 60%;
+}
+*/
+
+
+/* REMOVE EVERYTHING UNDERNEATH THIS WHEN ENABLING FLICKR */
+
+.carousel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    #carousel-trending > :first-child, #carousel-fy > :first-child
+    #carousel-fav-artists > :first-child, #carousel-lastfm-recs > :first-child{
+            display: none;
+    }
+}
+
+
+@media (max-width: 500px) {
+    #carousel-trending > :first-child, #carousel-fy > :first-child
+    #carousel-fav-artists > :first-child, #carousel-lastfm-recs > :first-child{
+        display: none;
+    }
+}
+
+#carousel-promos {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+#carousel-trending, #carousel-fy,
+#carousel-fav-artists, #carousel-lastfm-recs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

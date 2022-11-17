@@ -542,11 +542,12 @@ body {
 }
 
 .subtitle-container {
-  padding-left: 5%;
+  padding-inline: 70px;
   padding-block: 10px;
 }
 
 .subtitle-container > p {
   font-size: large;
   font-weight: bold;
+  border-bottom: 1px solid var(--light-color);
 }
