@@ -11,7 +11,7 @@
 |Relation Reference|Relation Compact Notation|
 |---|---|
 |R01|user(<ins>id</ins>, email **UK NN**, username **UK NN**, password **NN**)|
-|R02|client(<ins>user_id</ins>->user, email->user **UK NN**, username->user **NN**, password->user **NN**, birthdate, cart_id->cart **NN**, wishlist_id->wishlist **NN**, is_blocked **NN**)|
+|R02|client(<ins>user_id</ins>->user, email->user **UK NN**, username->user **NN**, password->user **NN**, birthdate, wishlist_id->wishlist **NN**, is_blocked **NN**)|
 |R03|admin(<ins>user_id</ins>->user,email->user **UK NN**, username->user **NN**, password->user **NN**)|
 |R04|artist(<ins>id</ins>, name **NN**, description)|
 |R05|client_artist(<ins>client_id</ins>->client, <ins>artist_id</ins>->artist)|
@@ -23,14 +23,12 @@
 |R11|order_product(<ins>order_id</ins>->order, <ins>product_id</ins>->product, quantity)
 |R12|wishlist(<ins>id</ins>, client_id->client **NN**)|
 |R13|wishlist_product(<ins>wishlist_id</ins>->wishlist, <ins>product_id</ins>->product)|
-|R14|cart(<ins>id</ins>, client_id->client **NN**)
-|R15|cart_product(<ins>cart_id</ins>->cart, <ins>product_id</ins>->product, quantity **NN**)
-|R16|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
-|R17|misc_notif(<ins>notification_id</ins>->notification)|
-|R18|wishlist_notif(<ins>notification_id</ins>->notification)|
-|R19|order_notif(<ins>notification_id</ins>->notification)|
-|R20|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
-|R21|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
+|R14|notification(<ins>id</ins>, date **NN**, description **DF** NULL)|
+|R15|misc_notif(<ins>notification_id</ins>->notification)|
+|R16|wishlist_notif(<ins>notification_id</ins>->notification)|
+|R17|order_notif(<ins>notification_id</ins>->notification)|
+|R18|ticket(<ins>id</ins>, user_id->user **NN**, message **NN**)|
+|R19|report(<ins>id</ins>, reporter_id->client **NN**, reported_id->client **NN**, message **NN**)
 
 ### Legend:
 
@@ -63,8 +61,8 @@
 |---|---|
 |**Keys**|{id}, {email}|
 |**Functional Dependencies**:||
-|FD0201|id -> {email, username, password, birthdate, cart_id, wishlist_id, is_blocked}|
-|FD0202|email -> {id, username, password, birthdate, cart_id, wishlist_id, is_blocked}|
+|FD0201|id -> {email, username, password, birthdate, wishlist_id, is_blocked}|
+|FD0202|email -> {id, username, password, birthdate, wishlist_id, is_blocked}|
 |**Normal Form**|BCNF|
 
 |**Table R03**|**Admin**|
@@ -144,56 +142,42 @@
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R14**|**Cart**|
-|---|---|
-|**Keys**|{id} |
-|**Functional Dependencies**:||
-|FD1401|id -> {client_id}|
-|**Normal Form**|BCNF|
-
-|**Table R15**|**Cart_Product**|
-|---|---|
-|**Keys**|{cart_id, product_id}|
-|**Functional Dependencies**:||
-|FD1501|{cart_id, product_id} -> {quantity}|
-|**Normal Form**|BCNF|
-
-|**Table R16**|**Notification**|
+|**Table R14**|**Notification**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD1601|id -> {date, description}|
 |**Normal Form**|BCNF|
 
-|**Table R17**|**Misc_Notif**|
+|**Table R15**|**Misc_Notif**|
 |---|---|
 |**Keys**|{notification_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R18**|**Wishlist_Notif**|
+|**Table R16**|**Wishlist_Notif**|
 |---|---|
 |**Keys**|{notification_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R19**|**Order_Notif**|
+|**Table R17**|**Order_Notif**|
 |---|---|
 |**Keys**|{notification_id}|
 |**Functional Dependencies**:||
 |None||
 |**Normal Form**|BCNF|
 
-|**Table R20**|**Ticket**|
+|**Table R18**|**Ticket**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
 |FD2001|id -> {user_id, message}|
 |**Normal Form**|BCNF|
 
-|**Table R21**|**Report**|
+|**Table R19**|**Report**|
 |---|---|
 |**Keys**|{id}|
 |**Functional Dependencies**:||
@@ -221,14 +205,12 @@
 |R11|order_product|100|10/day|
 |R12|wishlist|100|10/day|
 |R13|wishlist_product|1k|10/day|
-|R14|cart|100|10/day|
-|R15|cart_product|100|10/day|
-|R16|notification|100|10/day|
-|R17|misc_notif|10|1/day|
-|R18|wishlist_notif|10|1/day|
-|R19|order_notif|10|1/day|
-|R20|ticket|10|1/day|
-|R21|report|10|1/day|
+|R14|notification|100|10/day|
+|R15|misc_notif|10|1/day|
+|R16|wishlist_notif|10|1/day|
+|R17|order_notif|10|1/day|
+|R18|ticket|10|1/day|
+|R19|report|10|1/day|
 
 ## Proposed Indexes
 ### Performance Indexes
@@ -431,9 +413,6 @@ BEGIN
     DELETE FROM OrderProduct
     WHERE product_id = OLD.id;
 
-    DELETE FROM CartProduct
-    WHERE product_id = OLD.id;
-
     DELETE FROM WishlistProduct
     WHERE product_id = OLD.id;
 
@@ -498,7 +477,6 @@ DROP TABLE IF EXISTS ProductGenre;
 DROP TABLE IF EXISTS Review;
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS OrderProduct;
-DROP TABLE IF EXISTS CartProduct;
 DROP TABLE IF EXISTS WishlistProduct;
 DROP TABLE IF EXISTS Notif;
 DROP TABLE IF EXISTS Ticket;
@@ -509,7 +487,6 @@ DROP TABLE IF EXISTS Report;
 
 CREATE TABLE Users(
     id          SERIAL PRIMARY KEY,
-    cart_id     SERIAL UNIQUE,
     wishlist_id SERIAL UNIQUE,
     email       VARCHAR(255) UNIQUE NOT NULL,
     username    VARCHAR(30) NOT NULL,
@@ -575,13 +552,6 @@ CREATE TABLE OrderProduct(
     product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
     quantity    INTEGER NOT NULL,
     CONSTRAINT orderProductPK PRIMARY KEY (order_id, product_id)
-);
-
-CREATE TABLE CartProduct(
-    cart_id     INTEGER REFERENCES Users(cart_id) ON UPDATE CASCADE,
-    product_id  INTEGER REFERENCES Product(id) ON UPDATE CASCADE,
-    quantity    INTEGER NOT NULL,
-    CONSTRAINT cartProductPK PRIMARY KEY (cart_id, product_id)
 );
 
 CREATE TABLE WishlistProduct(
@@ -751,9 +721,6 @@ BEGIN
     WHERE product_id = OLD.id;
 
     DELETE FROM OrderProduct
-    WHERE product_id = OLD.id;
-
-    DELETE FROM CartProduct
     WHERE product_id = OLD.id;
 
     DELETE FROM WishlistProduct

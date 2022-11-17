@@ -7,7 +7,7 @@
 |US003|See Help|Medium|As a User, I want to access a Help page, so that I can better understand how the platform functions|
 |US004|See Contacts|Medium|As a User, I want to know of any of the site's contacts, so that I know who to go to if I need help|
 |US005|See Other Person's Page|High|As a User, I want to access another person's profile page, so that I can see info about them|
-|US006|See Artist Page|High|As a User, I want to access an artist's musical catalog, so that I can search through artist-specific related products in an organized way|
+|US006|See Artist Page|Medium|As a User, I want to access an artist's musical catalog, so that I can search through artist-specific related products in an organized way|
 |US007|See Product Page|High|As a User, I want to access a product's information (name, artist's name, stock, price, etc.), so that I can be aware of what the product is|
 |US008|View Product List|High|As a User, I want to be able to look at the full list of products available, so that I can quickly have a rough idea of which products interest me|
 |US009|View Product Details|High|As a User, I want to check product details, so that I can be more informed about what I could be buying|
@@ -17,8 +17,8 @@
 |US013|Browse Products using Full-text Search|Medium|As a User, I want to be able to search through the site's database using a full-text search filter, so that I can easily find the product(s) I am looking for|
 |US014|Browse Products using Exact-Match Search|Medium|As a User, I want to be able to search through the site's database using an exact-math filter, so that I can find the produc(s) I am looking for|
 |US015|Browse Products through Multiple Attributes|High|As a User, I want to be able to search through the site's database by matching multiple attributes or categories, so that I can explicitly find the product(s) I am looking for|
-|US016|Browse Product Categories|High|As a User, I want to be able to search product categories, so that I can restrict my search to something more tailored to my preferences|
-|US017|Filter Products|High|As a User, I want to be able to search through the site's database more efficiently using filters like categories, so that I can find the product(s) I am looking for|
+|US016|Browse Product Categories|Medium|As a User, I want to be able to search product categories, so that I can restrict my search to something more tailored to my preferences|
+|US017|Filter Products|Medium|As a User, I want to be able to search through the site's database more efficiently using filters like categories, so that I can find the product(s) I am looking for|
 |US018|Receive Help through Form-Input Placeholders|Medium| As a User, I want understandable placeholder text in any form inputs, so that I can navigate any on-site interaction easily|
 |US019|Receive Error Messages|Medium| As a User, I want to receive clear error messages as I browse the website, so that I am always aware of any problem I've encountered|
 |US020|Receive Contextual Help|Medium|As a User, I want to receive clear and understandable queues, so that I can easily navigate and use the site at any given moment|
@@ -32,6 +32,8 @@
 |---|---|---|---|
 |US101|Sign-in|High|As a Visitor, I want to authenticate into the system, so that I can access privileged information|
 |US102|Sign-up|High|As a Visitor, I want to register myself into the system, so that I can authenticate myself into the system|
+|US103|Add Product to Cart|High|As a Visitor, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
+|US104|Remove Product from Cart|High|As a Visitor, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
 
 
 ### Client
@@ -39,47 +41,44 @@
 |Identifier|Name|Priority|Description|
 |---|---|---|---|
 |US201|Sign-out|High|As a Client, I want to log out of my account, so that I am no longer signed in while using the website|
-|US202|Delete account|High|As a Client, I want to delete my account, so that I can remove my account from the platform should I not need it anymore|
+|US202|Delete account|Medium|As a Client, I want to delete my account, so that I can remove my account from the platform should I not need it anymore|
 |US203|Recover Password|Medium|As a Client, I want to be able to recover my password, so that, in case I forget it, I don't need to create a new account and lose the information I had in my previous one, such as wishlist items.
-|US204|View Profile|High|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
-|US205|Edit Profile|High|As a Client, I want to be able to edit my profile, so that I can change my account's private and public information if I want to|
+|US204|View Profile|Medium|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
+|US205|Edit Profile|Medium|As a Client, I want to be able to edit my profile, so that I can change my account's private and public information if I want to|
 |US206|Insert Profile Picture|Medium|As a Client, I want to be able to have a profile picture, so that I can customize my account a bit more|
-|US207|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
-|US208|Add Product to Cart|High|As a Client, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
-|US209|Remove Product from Cart|High|As a Client, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
-|US210|Review Product|Medium|As a Client, I want to review the products I have acquired, so that I can be able to explain my experience with the product|
-|US211|Edit Review|Medium|As a Client, I want to edit my past reviews of any product, so that I can always add any new information to my previous opinion of the product|
-|US212|View Reviews|Medium|As a Client, I want to be able to see my own profile's reviews, so that I can always easily access them if I choose to|
-|US213|Remove Review|Medium|As a Client, I want to be able to remove and delete any review I have made, so that I can make sure the information I am sharing with other people is up-to-date and reflects the current state of the product|
-|US214|Add Product to Wishlist|Medium|As a Client, I want to be able to add a product to my personal wishlist, so that I can track the products I am/might be interested in buying for future reference|
-|US215|Remove Product from Wishlist|Medium|As a Client, I want to be able to remove a product from my personal wishlist, so that I can can get rid of products I am no longer interested in|
-|US216|View Purchase History|Medium|As a Client, I want to be able to see my past purchases, so that I can keep track of everything I've bought from the website|
-|US217|Track Order|Medium|As a Client, I want to be able to track my order while it is being shipped, so that I am always aware of its state and when to expect its arrival|
-|US218|Cancel Order|Medium|As a Client, I want to be able to cancel my order after I have bought it, so that I can retract any purchase I regret|
-|US219|Receive Payment Approval Notification|Medium|As a Client, I want to be notified whenever the system has accepted my payment, so that I can be aware of my order's status
-|US220|View Personal Notification|Medium|As a Client, I want to be able to check notifications I've received, so that I can check and be aware of everything regarding my account|
-|US221|Receive Order Status Change Notification|Medium|As a Client, I want to be notified whenever my order changes state (left the warehouse, got shipped, etc.), so that I can be aware of my order's status|
-|US222|Receive Wishlist Product Available Notification|Medium|As a Client, I want to be notified whenever one of my wishlisted item is in stick, so that I always know of my wishlisted items' availability|
-|US223|Receive Product on Cart Price Change Notification|Medium|As a Client, I want to be notified whenever any item in my current shopping cart has a change in price, so that I always know of any change in any product's price|
-|US224|Receive Product Recommendations|Medium|As a Client, I want to be given recommendations in products I may possibly be interested in|
-|US225|Sign-in to Last.fm|Medium|As a Client, I want to connect my Last.fm account to my EarWorm account, so that I can get better product recommendations|
-|US226|Sign-out of Last.fm|Medium|As a Client, I want to remove my Last.fm account's connection to my EarWorm account, so that I can no longer receive product recommendations according to that account|
-|US227|Appeal for unblock|Low|As a Client, I want to make an appeal in order to be unblocked, so that I can be able to freely use my previously blocked account|
-|US228|Manage Account Credit Information|Low|As a Client, I want to be able to manage my account's credit information, so that I can change it if I need to in order to make my paying experience easier|
-|US229|Manage Multiple Payment Methods|Low|As a Client, I want to be able to manage multiple payment methods, so that I am able to easily pay in whichever way I feel more comfortable with|
-|US230|Report Review|Low|As a Client, I want to be able to report any review I see, so that I can make sure it is brought up to the site's administration as a possible breach of conduct|
+|US207|Review Product|Medium|As a Client, I want to review the products I have acquired, so that I can be able to explain my experience with the product|
+|US208|Edit Review|Medium|As a Client, I want to edit my past reviews of any product, so that I can always add any new information to my previous opinion of the product|
+|US209|View Reviews|Medium|As a Client, I want to be able to see my own profile's reviews, so that I can always easily access them if I choose to|
+|US210|Remove Review|Medium|As a Client, I want to be able to remove and delete any review I have made, so that I can make sure the information I am sharing with other people is up-to-date and reflects the current state of the product|
+|US211|Add Product to Wishlist|Medium|As a Client, I want to be able to add a product to my personal wishlist, so that I can track the products I am/might be interested in buying for future reference|
+|US212|Remove Product from Wishlist|Medium|As a Client, I want to be able to remove a product from my personal wishlist, so that I can can get rid of products I am no longer interested in|
+|US213|Checkout|High|As a Client, I want to be able to checkout, so that I can buy products|
+|US214|View Purchase History|Medium|As a Client, I want to be able to see my past purchases, so that I can keep track of everything I've bought from the website|
+|US215|Track Order|Medium|As a Client, I want to be able to track my order while it is being shipped, so that I am always aware of its state and when to expect its arrival|
+|US216|Cancel Order|Medium|As a Client, I want to be able to cancel my order after I have bought it, so that I can retract any purchase I regret|
+|US217|Receive Payment Approval Notification|Medium|As a Client, I want to be notified whenever the system has accepted my payment, so that I can be aware of my order's status|US217|View Personal Notification|Medium|As a Client, I want to be able to check notifications I've received, so that I can check and be aware of everything regarding my account|
+|US218|Receive Order Status Change Notification|Medium|As a Client, I want to be notified whenever my order changes state (left the warehouse, got shipped, etc.), so that I can be aware of my order's status|
+|US219|Receive Wishlist Product Available Notification|Medium|As a Client, I want to be notified whenever one of my wishlisted item is in stick, so that I always know of my wishlisted items' availability|
+|US220|Receive Product on Cart Price Change Notification|Medium|As a Client, I want to be notified whenever any item in my current shopping cart has a change in price, so that I always know of any change in any product's price|
+|US221|Receive Product Recommendations|Medium|As a Client, I want to be given recommendations in products I may possibly be interested in|
+|US222|Sign-in to Last.fm|Medium|As a Client, I want to connect my Last.fm account to my EarWorm account, so that I can get better product recommendations|
+|US223|Sign-out of Last.fm|Medium|As a Client, I want to remove my Last.fm account's connection to my EarWorm account, so that I can no longer receive product recommendations according to that account|
+|US224|Appeal for unblock|Low|As a Client, I want to make an appeal in order to be unblocked, so that I can be able to freely use my previously blocked account|
+|US225|Manage Account Credit Information|Low|As a Client, I want to be able to manage my account's credit information, so that I can change it if I need to in order to make my paying experience easier|
+|US226|Manage Multiple Payment Methods|Low|As a Client, I want to be able to manage multiple payment methods, so that I am able to easily pay in whichever way I feel more comfortable with|
+|US227|Report Review|Low|As a Client, I want to be able to report any review I see, so that I can make sure it is brought up to the site's administration as a possible breach of conduct|
 
 ### Administrator
 
 |Identifier|Name|Priority|Description|
 |---|---|---|---|
-|US301|Add product|High|As an Administrator, I want to be able to add a product to the database, so that I can augment the catalog of available products|
+|US301|Add product|Medium|As an Administrator, I want to be able to add a product to the database, so that I can augment the catalog of available products|
 |US302|Manage product|Medium|As an Administrator, I want to be able to have control over a product's information, so that I can provide the most relevant information to a potential buyer|
 |US303|Manage product stock|Medium|As an Administrator, I want to be able to change the current stock of a given product, so that I can keep the clients updated on what products are available|
 |US304|Manage artist page|Medium|As an Administrator, I want to be able to manage an artist's page, so that I can give the user more info on the creating artist of their product of interest|
 |US305|Block client accounts|Medium|As an Administrator, I want to be able to block certain accounts, so that I can keep the website free of users with malicious intent|
 |US306|Unblock client accounts|Medium|As an Administrator, I want to be able to unblock certain accounts, so that I can allow previously blocked users back on the platform|
-|US307|Delete client accounts|High|As an Administrator, I want to be able to delete client accounts, so that I can get rid of accounts that I no longer wish to remain on the platform|
+|US307|Delete client accounts|Medium|As an Administrator, I want to be able to delete client accounts, so that I can get rid of accounts that I no longer wish to remain on the platform|
 |US308|Delete comments|Medium|As an Administrator, I want to be able to remove comments, so that I can make sure the platform remains a positive and friendly environment|
 |US309|Manage an Order's status|Medium|As an Administrator, I want to be able to alter an order's status, so that I can make sure that an order is updated as it progresses|
 |US310|Create Administrator accounts|Medium|As an Administrator, I want to be able to create other Administrator accounts, so that I can widen the roster of people managing the platform|
@@ -88,6 +87,7 @@
 |US313|Review tickets|Low|As an Administrator, I want to be able to check tickets sent by users, so that I am able to address issues found by our platform's users|
 |US314|Approve/refuse appeals for unblock|Low|As an Administrator, I want to be able to give a verdict to an unblock appeal, so that I can decide on whether or not to allow a client back into the platform|
 |US315|Check a product's sales|Low|As an Administrator, I want to able to check a product's sales, so that I can be aware of how interesting a given product is to our platform's users|
+
 
 ----
 
