@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Order extends Model
 {
   // Don't add create and update timestamps in database.
   public $timestamps  = false;
 
-  /**
-   * The card this item belongs to.
+    /**
+   * The table associated with the model.
+   *
+   * @var string
    */
-  public function card() {
-    return $this->belongsTo('App\Models\Card');
-  }
+  protected $table = 'Order';
 }
