@@ -31,11 +31,30 @@ class User extends Authenticatable
     ];
 
     /**
-     * The cards this user owns.
+     * The products this user has wishlisted.
      */
-     public function cards() {
-      return $this->hasMany('App\Models\Card');
+    public function wishlist() {
+        return $this->belongsToMany(Product::class, 'wishlist_product', 'user_id', 'product_id');
     }
 
-    
+    /**
+     * The artists this user has favourited.
+     */
+    public function favouriteArtists() {
+        return $this->belongsToMany(Artist::class, 'fav_artist', 'user_id', 'artist_id');
+    }
+
+    /**
+     * The orders this user has made.
+     */
+    public function orders() {
+        return $this->hasMany(Order::class, 'orders', 'user_id', 'order_id')->withPivot('quantity');
+    }
+
+    /**
+   * The table associated with the model.
+   *
+   * @var string
+   */
+  protected $table = 'users';
 }

@@ -29,7 +29,7 @@ class Artist extends Model
    * The clients that have this artist in their favorites.
    */
   public function inFavorites() {
-    return $this->belongsToMany(User::class, 'FavouriteArtist', 'product_id', 'user_id')->withPivot('quantity');
+    return $this->belongsToMany(User::class, 'fav_artist', 'artist_id', 'user_id');
   }
 
   /**

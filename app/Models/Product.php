@@ -29,20 +29,20 @@ class Product extends Model
    * The genres that classify this product.
    */
   public function genres() {
-    return $this->belongsToMany(Genre::class, 'GenreProduct', 'product_id', 'genre_id');
+    return $this->belongsToMany(Genre::class, 'genre_product', 'product_id', 'genre_id');
   }
   /**
    * The orders this product is associated with.
    */
   public function orders() {
-    return $this->belongsToMany(Order::class, 'OrderProduct', 'product_id', 'order_id');
+    return $this->belongsToMany(Order::class, 'order_product', 'product_id', 'order_id')->withPivot('quantity');
   }
 
   /**
    * The products (and their quantities) that are in a client's wishlist.
    */
   public function inWishlist() {
-    return $this->belongsToMany(User::class, 'Wishlist', 'product_id', 'user_id')->withPivot('quantity');
+    return $this->belongsToMany(User::class, 'wishlist', 'product_id', 'user_id');
   }
 
   /**
