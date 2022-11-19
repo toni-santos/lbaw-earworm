@@ -1,8 +1,12 @@
+@props([
+    'product'
+])
+
 <div class="product-card">
-    <a><img src="https://via.placeholder.com/200.png/"></a>
+    <a href="/products/{{$product['id']}}"><img src="https://via.placeholder.com/200.png/"></a>
     <div class="product-desc">
-        <a class="prod-name" title="Product Name">Product Name</a>
-        <a class="prod-artist-name" title="Artist Name">Artist Name</a>
+        <a href="/products/{{$product['id']}}" class="prod-name" title="Product Name">{{$product['name']}}</a>
+        <a href="/artists/{{$product['artist_id']}}" class="prod-artist-name" title="Artist Name">{{$product['artist_name']}}</a>
         <div class="product-specs">
             <a class="prod-genres" title="Genres">Genres</a>
             <div class="product-fav-price">

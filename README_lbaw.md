@@ -37,7 +37,6 @@ We recommend using an __Ubuntu__ distribution that ships PHP 8.1 (e.g Ubuntu 22.
 sudo apt install git composer php8.1 php8.1-mbstring php8.1-xml php8.1-pgsql
 ```
 
-
 The following links provide instructions for installing [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
 Please note that if you are using an ARM CPU, you need to explicitly build an AMD64 Docker image. Docker suppors multi-platform building. Create a multi-platform builder and adjust your `upload_image.sh` file to use it, as described in [this guide](https://docs.docker.com/build/building/multi-platform/).

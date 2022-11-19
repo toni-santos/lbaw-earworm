@@ -1,14 +1,14 @@
 @props([
     'id',
-    'promo'
+    'promo',
+    'products'
 ])
-
 
 <div id={{$id}}>
     @if ($promo == false)
-        @for ($i = 0; $i < 3; $i++)
-            <x-ProductCard />
-        @endfor
+        @foreach ($products as $product)
+            <x-ProductCard :product='$product'/>
+        @endforeach
     @else
         @for ($i = 0; $i < 1; $i++)
             @include('partials.promocard')

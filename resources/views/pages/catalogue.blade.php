@@ -67,9 +67,9 @@
         </form>
     </section>
     <section id="results">
-        @for ($i = 0; $i < 50; $i++)
-            <x-ProductCard />
-        @endfor
+        @foreach ($products as $product)
+            <x-ProductCard :product="$product"/>
+        @endforeach
     </section>
 </main>
 <x-Foot/>

@@ -37,5 +37,5 @@ class Artist extends Model
    *
    * @var string
    */
-  protected $table = 'Artist';
+  protected $table = 'artist';
 }

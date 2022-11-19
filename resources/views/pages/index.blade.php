@@ -3,17 +3,20 @@
     @include('partials.carousel', [
         'carouselTitle' => '',
         'carouselId' => 'carousel-promos',
-        'promo' => true
+        'promo' => true,
+        'products' => []
     ])
     @include('partials.carousel', [
         'carouselTitle' => 'Trending Products',
         'carouselId' => 'carousel-trending',
-        'promo' => false
+        'promo' => false,
+        'products' => $trendingProducts
     ])
     @include('partials.carousel', [
         'carouselTitle' => 'For You',
         'carouselId' => 'carousel-fy',
-        'promo' => false
+        'promo' => false,
+        'products' => $fyProducts
     ])
 </main>
 <x-Foot/>

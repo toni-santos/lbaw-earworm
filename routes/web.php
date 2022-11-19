@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,26 +13,34 @@
 |
 */
 // Home
-Route::get('/', function () {
-    return view('pages.index');
-});
+Route::get('/', 'ProductController@homepage');
 
 // Pages
-Route::get('/catalogue', function () {
-    return view('pages.catalogue');
+
+// Products
+Route::get('/products', 'ProductController@index');
+
+Route::get('/products/{id}', function($id) {
+    return view('pages.product');
 });
-Route::get('/signin', function () {
+//
+
+Route::get('signin', function () {
     return view('pages.signin');
 });
-Route::get('/signup', function () {
+Route::get('signup', function () {
     return view('pages.signup');
 });
-Route::get('/checkout', function () {
+Route::get('checkout', function () {
     return view('pages.checkout');
 });
-Route::get('/user', function () {
+Route::get('user', function () {
     return view('pages.user');
 });
+
+// Products
+Route::get('products', 'ProductController@list');
+Route::get('products/{id}', 'ProductController@show');
 
 // Cards
 Route::get('cards', 'CardController@list');

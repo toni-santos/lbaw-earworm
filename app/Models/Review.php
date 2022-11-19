@@ -28,5 +28,5 @@ class Review extends Model
    *
    * @var string
    */
-  protected $table = 'Review';
+  protected $table = 'review';
 }

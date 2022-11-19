@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Product extends Model
 {
   // Don't add create and update timestamps in database.
   public $timestamps  = false;
@@ -15,7 +15,7 @@ class Item extends Model
    * @var array
    */
   protected $fillable = [
-    'genre', 'price', 'stock', 'format', 'year', 'description'
+    'name', 'genre', 'price', 'stock', 'format', 'year', 'description'
   ];
 
   /**
@@ -57,5 +57,5 @@ class Item extends Model
    *
    * @var string
    */
-  protected $table = 'Product';
+  protected $table = 'product';
 }
