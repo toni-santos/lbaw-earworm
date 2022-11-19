@@ -20,35 +20,45 @@
     {{-- UNCOMMENT THIS WHEN ENABLING FLICKR --}}
     {{-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> --}}
     
-    @if ($page == 'index')
-    <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/index.css') }}" rel="stylesheet">
-    <script type="text/javascript" src={{ asset('js/index.js') }} defer></script>
-    @elseif ($page == 'catalogue')
-    <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/catalogue.css') }}" rel="stylesheet">
-    @elseif ($page == 'sign')
-    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
-    <script type="text/javascript" src={{ asset('js/forms.js') }} defer></script>
-    @elseif ($page == 'user')
-    <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/user.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/review.css') }}" rel="stylesheet">
-    @elseif ($page == 'checkout')
-    <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
-    <script type="text/javascript" src={{ asset('js/index.js') }} defer></script>
-    <script type="text/javascript" src={{ asset('js/checkout.js') }} defer></script>
-    @endif
+    @switch($page)
+      @case('catalogue')
+        <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/catalogue.css') }}" rel="stylesheet">
+        @break
+
+      @case('sign')
+        <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/forms.js') }} defer></script>
+        @break
+      
+      @case('user')
+        <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/user.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/review.css') }}" rel="stylesheet">
+        @break
+
+      @case('checkout')
+        <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/index.js') }} defer></script>
+        <script type="text/javascript" src={{ asset('js/checkout.js') }} defer></script>
+        @break
+      
+      @default
+        <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/index.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/index.js') }} defer></script>
+        
+    @endswitch
 
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     <script type="text/javascript" src={{ asset('js/global.js') }} defer></script>
-    {{-- UNCOMMENT THIS WHEN ENABLING FLICKR --}}
+    {{-- UNCOMMENT THIS WHEN ENABLING FLICKR (copium)--}}
     {{-- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> --}}
 
   </head>
