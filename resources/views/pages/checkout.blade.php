@@ -3,16 +3,24 @@
     <form method="POST" action="">
         <div id="payment-wrapper">
             <section id="items-wrapper">
-                @for ($i = 0; $i < 5; $i++)
-                    @include('partials.checkoutitem', ['id' => $i])
-                @endfor
+                @if (session('cart'))
+                    @foreach (session('cart') as $id => $details)
+                        @include('partials.checkoutitem', ['id' => $id, 'details' => $details])
+                    @endforeach
+                @else
+                    <h2> Nothing in cart. </h2>
+                @endif
             </section>
             <aside id="payment-info">
                 <x-Subtitle title="Payment Information" />
                 <div id="payment-description">
-                    @for ($i = 0; $i < 5; $i++)
-                        @include('partials.itemprice', ['id' => $i])                    
-                    @endfor
+                    @if (session('cart'))
+                        @foreach (session('cart') as $id => $details)
+                            @include('partials.itemprice', ['id' => $id, 'details' => $details])
+                        @endforeach
+                    @else
+                        <h2> Nothing in cart. </h2>
+                    @endif
                 </div>
                 <div id="billing-info">
                     <x-Subtitle title="Billing Information" />

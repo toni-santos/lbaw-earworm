@@ -24,11 +24,14 @@ Route::get('/products/{id}', function($id) {
 });
 
 // Cart
-Route::get('/cart', 'ProductController@cart')->name('cart');
-Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
-Route::patch('/update-cart', 'ProductController@update')->name('removeFromCart');
-Route::delete('/remove-from-cart', 'ProductController@remove')->name('updateCart');
 
+//test func
+Route::get('/cart', 'ProductController@cart')->name('cart');
+
+Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
+Route::get('/decrease-from-cart/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
+Route::delete('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
+Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 
 // User 
 Route::get('signin', function () {
@@ -36,9 +39,6 @@ Route::get('signin', function () {
 });
 Route::get('signup', function () {
     return view('pages.signup');
-});
-Route::get('checkout', function () {
-    return view('pages.checkout');
 });
 Route::get('user', function () {
     return view('pages.user');

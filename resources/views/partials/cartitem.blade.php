@@ -10,9 +10,9 @@
     </div>
     <div class="cart-item-left">
         <div class="cart-item-amnt">
-            <p class="dec-cart-item">-</p>
+            <a href="{{ route('decreaseFromCart', [ 'id' => $id ]) }}" class="dec-cart-item">-</a>
             <p>{{$details['quantity']}}</p>
-            <p class="inc-cart-item">+</p>
+            <a href="{{ route('addToCart', [ 'id' => $id ]) }}" class="inc-cart-item">+</a>
         </div>
         <a><span class="material-symbols-outlined">delete</span></a>
     </div>
