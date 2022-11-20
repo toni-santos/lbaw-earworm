@@ -14,6 +14,6 @@
             <p>{{$details['quantity']}}</p>
             <a href="{{ route('addToCart', [ 'id' => $id ]) }}" class="inc-cart-item">+</a>
         </div>
-        <a><span class="material-symbols-outlined">delete</span></a>
+        <a href="{{ route('removeFromCart', [ 'id' => $id ]) }}"><span class="material-symbols-outlined">delete</span></a>
     </div>
 </div>

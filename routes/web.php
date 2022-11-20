@@ -30,7 +30,7 @@ Route::get('/cart', 'ProductController@cart')->name('cart');
 
 Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
 Route::get('/decrease-from-cart/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
-Route::delete('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
+Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 
 // User 
