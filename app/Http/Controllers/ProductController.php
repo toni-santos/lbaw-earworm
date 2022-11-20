@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Listing;
 use App\Models\Product;
 use App\Models\Artist;
 
@@ -21,7 +22,8 @@ class ProductController extends Controller
     // used for 
     public static function catalogue()
     {
-        $products = Product::all()->take(30);
+        
+        $products = Product::search(request('search'))->paginate(20);
 
         foreach ($products as $product) {
             $product['artist_name'] = $product->artist->name;

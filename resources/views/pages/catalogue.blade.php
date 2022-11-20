@@ -67,9 +67,15 @@
         </form>
     </section>
     <section id="results">
-        @foreach ($products as $product)
-            <x-ProductCard :product="$product"/>
-        @endforeach
+        @if (!empty($products)) 
+            @foreach ($products as $product)
+                <x-ProductCard :product="$product"/>
+            @endforeach
+        @else
+            <script> 
+                alert("hi");
+            </script>
+        @endif
     </section>
 </main>
 <x-Foot/>

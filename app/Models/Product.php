@@ -18,6 +18,16 @@ class Product extends Model
     'name', 'genre', 'price', 'stock', 'format', 'year', 'description'
   ];
 
+  public function scopeSearch($query, $search) {
+    //dd($search);
+    $sqlSearch = str_replace(' ', '%', $search);
+    if($search ?? false) {
+      return $query->whereRaw('tsvectors @@ to_tsquery(\'english\', ?)', $sqlSearch)
+                  ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', $sqlSearch);
+    }
+  }
+
+
   /**
    * The artist that authored this product.
    */
