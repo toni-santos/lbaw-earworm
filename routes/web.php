@@ -19,11 +19,16 @@ Route::get('/', 'ProductController@homepage')->name('home');
 
 // Products
 Route::get('/products', 'ProductController@catalogue')->name('catalogue');
-
 Route::get('/products/{id}', function($id) {
     return view('pages.product');
 });
-//
+
+// Cart
+Route::get('/cart', 'ProductController@cart')->name('cart');
+Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
+Route::patch('/update-cart', 'ProductController@update')->name('removeFromCart');
+Route::delete('/remove-from-cart', 'ProductController@remove')->name('updateCart');
+
 
 
 
