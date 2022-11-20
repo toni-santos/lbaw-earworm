@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Product;
@@ -34,12 +35,13 @@ class ProductController extends Controller
 
     public static function homepage()
     {
-        $trendingProducts = Product::all()->take(5);
-        $fyProducts = Product::all()->take(5);
+        $trendingProducts = Product::all()->take(3);
+        $fyProducts = Product::all()->take(3);
 
         foreach ($trendingProducts as $trendingProduct) {
             $trendingProduct['artist_name'] = $trendingProduct->artist->name;
         }
+
         foreach ($fyProducts as $fyProduct) {
             $fyProduct['artist_name'] = $fyProduct->artist->name;
         }

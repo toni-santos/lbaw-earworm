@@ -25,25 +25,28 @@ Route::get('/products/{id}', function($id) {
 });
 //
 
-// User 
-Route::get('signin', function () {
-    return view('pages.signin');
-});
-Route::get('signup', function () {
-    return view('pages.signup');
-});
-Route::get('checkout', function () {
-    return view('pages.checkout');
-});
+
+
 Route::get('user', function () {
     return view('pages.user');
 });
 
 // API
 
+// User 
+Route::get('signin', function () {
+    return view('pages.signin');
+}) ->name('signin');
+Route::get('signup', function () {
+    return view('pages.signup');
+})->name('signup');
+Route::get('checkout', function () {
+    return view('pages.checkout');
+})->name('checkout');
+
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@authenticate')->name('login');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::get('register', 'Auth\RegisterController@show')->name('register');
+Route::post('register', 'Auth\RegisterController@register')->name('register');

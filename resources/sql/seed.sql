@@ -31,12 +31,11 @@ DROP TABLE IF EXISTS report;
 
 CREATE TABLE users(
     id          SERIAL PRIMARY KEY,
-    wishlist_id SERIAL UNIQUE,
     email       VARCHAR(255) UNIQUE NOT NULL,
-    username    VARCHAR(30) NOT NULL,
-    password    VARCHAR(30) NOT NULL,
-    is_blocked  BOOLEAN NOT NULL,
-    is_admin    BOOLEAN NOT NULL
+    username    VARCHAR(60) NOT NULL,
+    password    VARCHAR(255) NOT NULL,
+    is_blocked  BOOLEAN NOT NULL DEFAULT FALSE,
+    is_admin    BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE artist(
@@ -99,7 +98,7 @@ CREATE TABLE order_product(
 );
 
 CREATE TABLE wishlist_product(
-    wishlist_id INTEGER REFERENCES users(wishlist_id) ON UPDATE CASCADE,
+    wishlist_id INTEGER REFERENCES users(id) ON UPDATE CASCADE,
     product_id  INTEGER REFERENCES product(id) ON UPDATE CASCADE,
     CONSTRAINT wishlistProductPK PRIMARY KEY (wishlist_id, product_id)
 );
@@ -660,26 +659,26 @@ INSERT INTO product_genre (product_id, genre_id) VALUES (18, 19);
 INSERT INTO product_genre (product_id, genre_id) VALUES (19, 12);
 INSERT INTO product_genre (product_id, genre_id) VALUES (19, 5);
 
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (1, 'vgritsunov0@jigsy.com', 'fharniman0', 'Bw4Zz9I', true, true);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (2, 'ocowope1@mail.ru', 'jspitell1', 'DUyfyhZdT', false, true);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (3, 'ehampe2@howstuffworks.com', 'ssoldan2', 'SucaFYzEoyR', true, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (4, 'rresun3@amazon.de', 'mpenniall3', 'JvCTegKpU', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (5, 'bblesdill4@oakley.com', 'wwyman4', 'cVo4PcTMH', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (6, 'wwheelband5@msu.edu', 'tfeatherstone5', 'CtTLXAqk', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (7, 'lairy6@princeton.edu', 'ykeetley6', 'UjhgQLeyX', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (8, 'ccasper7@usatoday.com', 'bocurrigan7', 'pY6cdAFi7gF', true, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (9, 'bfarry8@blogs.com', 'gcoulter8', 'zMrvIF', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (10, 'hquainton9@google.de', 'njobb9', '9AstPKE1', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (11, 'rclipshama@tumblr.com', 'rhaingea', 'qwFNPyp', true, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (12, 'lofihilyb@bloomberg.com', 'kdoyleyb', 'oq4ysf5LyEB5', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (13, 'fellamc@cafepress.com', 'mbilstonc', 'Rll7YQEHjx', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (14, 'nbaystond@springer.com', 'hfairholmed', 'gt7hUW', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (15, 'jjoppe@flickr.com', 'vstreake', 'sZZfRop', true, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (16, 'melmsf@sciencedaily.com', 'abeauvaisf', 'XLYHJV', true, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (17, 'svezeyg@google.it', 'btolputtg', 'r4MOaMCvzv', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (18, 'bdulantyh@usgs.gov', 'gcrookesh', 'dmbKPWOu3t7', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (19, 'pjessetti@japanpost.jp', 'cheffroni', 'qADH94j', false, false);
-INSERT INTO users (wishlist_id, email, username, password, is_blocked, is_admin) VALUES (20, 'jcoathamj@4shared.com', 'cdodimeadj', '7fqv5gPRyST', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('vgritsunov0@jigsy.com', 'fharniman0', 'Bw4Zz9I', true, true);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('ocowope1@mail.ru', 'jspitell1', 'DUyfyhZdT', false, true);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('ehampe2@howstuffworks.com', 'ssoldan2', 'SucaFYzEoyR', true, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('rresun3@amazon.de', 'mpenniall3', 'JvCTegKpU', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('bblesdill4@oakley.com', 'wwyman4', 'cVo4PcTMH', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('wwheelband5@msu.edu', 'tfeatherstone5', 'CtTLXAqk', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('lairy6@princeton.edu', 'ykeetley6', 'UjhgQLeyX', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('ccasper7@usatoday.com', 'bocurrigan7', 'pY6cdAFi7gF', true, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('bfarry8@blogs.com', 'gcoulter8', 'zMrvIF', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('hquainton9@google.de', 'njobb9', '9AstPKE1', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('rclipshama@tumblr.com', 'rhaingea', 'qwFNPyp', true, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('lofihilyb@bloomberg.com', 'kdoyleyb', 'oq4ysf5LyEB5', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('fellamc@cafepress.com', 'mbilstonc', 'Rll7YQEHjx', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('nbaystond@springer.com', 'hfairholmed', 'gt7hUW', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('jjoppe@flickr.com', 'vstreake', 'sZZfRop', true, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('melmsf@sciencedaily.com', 'abeauvaisf', 'XLYHJV', true, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('svezeyg@google.it', 'btolputtg', 'r4MOaMCvzv', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('bdulantyh@usgs.gov', 'gcrookesh', 'dmbKPWOu3t7', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('pjessetti@japanpost.jp', 'cheffroni', 'qADH94j', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('jcoathamj@4shared.com', 'cdodimeadj', '7fqv5gPRyST', false, false);
 
 INSERT INTO fav_artist (user_id, artist_id) VALUES (13,1);
 INSERT INTO fav_artist (user_id, artist_id) VALUES (3,4);

@@ -1,8 +1,10 @@
-<form id="form-signup" method="POST" action="">
+<form id="form-signup" method="POST" action= {{ route('login') }}>
+    {{ csrf_field() }}
+
     <section class="inputs-box">
         <div class="input-container">
-            <input class="text-input" type="text" name="username" autocomplete="off" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" required>
-            <label class="input-label" for="username" onclick="setFocus(event)">Username</label>
+            <input class="text-input" type="email" name="email" autocomplete="email" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" required>
+            <label class="input-label" for="username" onclick="setFocus(event)">Email</label>
             <span class="required-alert">Required</span>
         </div>
         <div class="input-container">
