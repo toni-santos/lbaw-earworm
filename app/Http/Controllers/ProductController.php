@@ -9,6 +9,7 @@ use App\Models\Artist;
 class ProductController extends Controller
 {
     
+    // will be used for product page
     public function show() {
 
     }
@@ -17,12 +18,13 @@ class ProductController extends Controller
 
     }
 
+    // used for 
     public static function catalogue()
     {
-        $products = Product::all();
+        $products = Product::all()->take(30);
 
         foreach ($products as $product) {
-            $product['artist_name'] = $product->artist();
+            $product['artist_name'] = $product->artist->name;
         }
 
         return view('pages.catalogue', ['products' => $products]);

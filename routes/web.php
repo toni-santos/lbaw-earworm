@@ -13,12 +13,12 @@ use App\Http\Controllers\ProductController;
 |
 */
 // Home
-Route::get('/', 'ProductController@homepage');
+Route::get('/', 'ProductController@homepage')->name('home');
 
 // Pages
 
 // Products
-Route::get('/products', 'ProductController@index');
+Route::get('/products', 'ProductController@catalogue');
 
 Route::get('/products/{id}', function($id) {
     return view('pages.product');

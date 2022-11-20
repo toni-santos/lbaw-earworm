@@ -1,8 +1,8 @@
 <nav id="navbar-wide" class="navbar">
     <div id="wide-top" class="sub-bar">
         <div id="logo-div">
-            <img id="logo" src="https://img.icons8.com/fluency/512/earth-worm.png">
-            <p id="site-name">EarWorm</p>
+            <a href={{route('home')}}> <img id="logo" src="https://img.icons8.com/fluency/512/earth-worm.png"> </a> 
+            <a href={{route('home')}}> <p id="site-name">EarWorm</p> </a>
         </div>
         <div class="search-container">
             <x-SearchBar />
