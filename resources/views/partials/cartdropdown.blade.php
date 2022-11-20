@@ -9,5 +9,5 @@
             <h2> Nothing in cart. </h2>
         @endif
     </div>
-    <button id="cart-dropdown-purchase" type="submit">Purchase</button>
+    <a href="{{ route('checkout')}}"> Purchase </a>
 </div>

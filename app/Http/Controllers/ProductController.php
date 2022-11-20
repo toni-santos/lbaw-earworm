@@ -48,11 +48,10 @@ class ProductController extends Controller
         return view('pages.catalogue', ['products' => $products]);
     }
 
+    //test function
     public static function cart() {
-        ProductController::addToCart(18);
+        ProductController::addToCart(2);
         ProductController::homepage();
-
-        //return view('homepage');
     }
 
     public static function addToCart($id) {
@@ -69,7 +68,7 @@ class ProductController extends Controller
                     $id => [
                         "name" => $product->name,
                         "quantity" => 1,
-                        "price" => $product->price,
+                        "price" => $product->price / 100,
                     ]
             ];
             session()->put('cart', $cart);
@@ -85,31 +84,41 @@ class ProductController extends Controller
         $cart[$id] = [
             "name" => $product->name,
             "quantity" => 1,
-            "price" => $product->price,
+            "price" => $product->price / 100,
             "photo" => $product->photo
         ];
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
-    public function update(Request $request) {
-        if ($request->id and $request->quantity) {
+    public function decreaseFromCart($id) {
+        if ($id) {
             $cart = session()->get('cart');
-            $cart[$request->id]['quantity'] = $request->quantity;
-            session()->put('cart', $cart);
-            session()->flash('success', 'Cart updated successfully');
-        }
-    }
-
-    public function remove(Request $request) {
-        if ($request->id) {
-            $cart = session()->get('cart');
-            if(isset($cart[$request->id])) {
-                unset($cart[$request->id]);
+            if ($cart[$id]['quantity'] - 1 == 0) {
+                unset($cart[$id]);
                 session()->put('cart', $cart);
             }
-            session()->flash('success', 'Product removed successfully');
+            else {
+                $cart[$id]['quantity']--;
+                session()->put('cart', $cart);
+            }
+            return redirect()->back()->with('success', 'Product quantity decreased successfully!');
         }
     }
 
+    public function removeFromCart($id) {
+        if ($id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$id])) {
+                unset($cart[$id]);
+                session()->put('cart', $cart);
+            }
+            return redirect()->back()->with('success', 'Product removed from cart successfully!');
+        }
+    }
+
+    public static function checkout() {
+
+        return view('pages.checkout');
+    }
 }
