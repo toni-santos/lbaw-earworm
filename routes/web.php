@@ -19,38 +19,23 @@ Route::get('/', 'ProductController@homepage')->name('home');
 
 // Products
 Route::get('/products', 'ProductController@catalogue')->name('catalogue');
-Route::get('/products/{id}', function($id) {
-    return view('pages.product');
-});
+Route::get('/product/{id}', 'ProductController@show')->name('product');
 
 // Cart
 
 //test func
 Route::get('/cart', 'ProductController@cart')->name('cart');
 
-Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
-Route::get('/decrease-from-cart/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
-Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
+//Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
+//Route::get('/decrease-from-cart/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
+//Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 
-Route::get('user', function () {
-    return view('pages.user');
-});
-
-// API
-
 // User 
-Route::get('signin', function () {
-    return view('pages.signin');
-}) ->name('signin');
-Route::get('signup', function () {
-    return view('pages.signup');
-})->name('signup');
-Route::get('user', function () {
-    return view('pages.user');
-});
-
-// API
+Route::get('/user/{id}', 'UserController@show')->name('profile');
+Route::get('/user', 'UserController@ownprofile')->name('ownprofile');
+Route::get('/user/{id}/settings', 'UserController@editProfile')->name('editprofile');
+Route::post('/user/{id}/settings', 'UserController@update')->name('editprofile');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

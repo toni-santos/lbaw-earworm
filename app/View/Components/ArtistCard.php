@@ -4,11 +4,8 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Carousel extends Component
+class ArtistCard extends Component
 {
-
-    private bool $promo = false;
-
     /**
      * Create a new component instance.
      *
@@ -16,7 +13,7 @@ class Carousel extends Component
      */
     public function __construct()
     {
-        $this->promo = false;
+        //
     }
 
     /**
@@ -26,10 +23,6 @@ class Carousel extends Component
      */
     public function render()
     {
-        if ($this->promo) {
-            return view('components.promos');
-        } else {
-            return view('components.carousel');
-        }
+        return view('components.artist-card');
     }
 }

@@ -21,5 +21,6 @@
         </div>
     </section>
     <button class="confirm-button" id="confirm-button" type="submit" name="submit" value="Signup" disabled>Sign Up</button>
+    <a href="{{route('login')}}" id="register-text">Already have an account? Login here!</a>
 </form>
 

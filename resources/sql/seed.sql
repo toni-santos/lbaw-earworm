@@ -389,7 +389,8 @@ INSERT INTO product (artist_id, name, description, stock, price, format, year, r
 Sugar/Tzu
 Eat Men, Eat
 Welcome To Hell
-Still
+Still        dd()
+
 Half Time
 The Race Is About To Begin
 Dangerous Liaisons

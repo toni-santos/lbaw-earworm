@@ -9,12 +9,18 @@
         </div>
         <div id="icons">
             <!-- account_circle is a placeholder for the users pfp -->
+            @if (Auth::check())
             <a href="" id="wishlist-icon"><span class="material-symbols-outlined">favorite</span></a>
             <a href="" id="cart-icon"><span class="material-symbols-outlined">shopping_basket</span></a>
             <a href="" id="profile-icon"><span class="material-symbols-outlined">account_circle</span></a>
             @include('partials.profiledropdown')
             @include('partials.cartdropdown')
             @include('partials.wishlistdropdown')
+            @else
+            <a href="" id="cart-icon"><span class="material-symbols-outlined">shopping_basket</span></a>
+            <a href="{{route('login')}}" id="profile-icon" title="Login"><span class="material-symbols-outlined">login</span></a>
+            @include('partials.cartdropdown')
+            @endif
         </div>
     </div>
     <div id="wide-bot" class="sub-bar">

@@ -35,7 +35,6 @@
 |US103|Add Product to Cart|High|As a Visitor, I want to be able to add a product to my online shopping cart, so that I can track the products I am interested in buying|
 |US104|Remove Product from Cart|High|As a Visitor, I want to be able to remove a product from my online shopping cart, so that I can discard the products I am no longer interested in buying|
 
-
 ### Client
 
 |Identifier|Name|Priority|Description|
@@ -43,8 +42,8 @@
 |US201|Sign-out|High|As a Client, I want to log out of my account, so that I am no longer signed in while using the website|
 |US202|Delete account|Medium|As a Client, I want to delete my account, so that I can remove my account from the platform should I not need it anymore|
 |US203|Recover Password|Medium|As a Client, I want to be able to recover my password, so that, in case I forget it, I don't need to create a new account and lose the information I had in my previous one, such as wishlist items.
-|US204|View Profile|Medium|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
-|US205|Edit Profile|Medium|As a Client, I want to be able to edit my profile, so that I can change my account's private and public information if I want to|
+|US204|View Profile|High|As a Client, I want to be able to see my own profile, so that I can check information regarding my account|
+|US205|Edit Profile|High|As a Client, I want to be able to edit my profile, so that I can change my account's private and public information if I want to|
 |US206|Insert Profile Picture|Medium|As a Client, I want to be able to have a profile picture, so that I can customize my account a bit more|
 |US207|Review Product|Medium|As a Client, I want to review the products I have acquired, so that I can be able to explain my experience with the product|
 |US208|Edit Review|Medium|As a Client, I want to edit my past reviews of any product, so that I can always add any new information to my previous opinion of the product|
@@ -76,8 +75,8 @@
 |US302|Manage product|Medium|As an Administrator, I want to be able to have control over a product's information, so that I can provide the most relevant information to a potential buyer|
 |US303|Manage product stock|Medium|As an Administrator, I want to be able to change the current stock of a given product, so that I can keep the clients updated on what products are available|
 |US304|Manage artist page|Medium|As an Administrator, I want to be able to manage an artist's page, so that I can give the user more info on the creating artist of their product of interest|
-|US305|Block client accounts|Medium|As an Administrator, I want to be able to block certain accounts, so that I can keep the website free of users with malicious intent|
-|US306|Unblock client accounts|Medium|As an Administrator, I want to be able to unblock certain accounts, so that I can allow previously blocked users back on the platform|
+|US305|Block client accounts|High|As an Administrator, I want to be able to block certain accounts, so that I can keep the website free of users with malicious intent|
+|US306|Unblock client accounts|High|As an Administrator, I want to be able to unblock certain accounts, so that I can allow previously blocked users back on the platform|
 |US307|Delete client accounts|Medium|As an Administrator, I want to be able to delete client accounts, so that I can get rid of accounts that I no longer wish to remain on the platform|
 |US308|Delete comments|Medium|As an Administrator, I want to be able to remove comments, so that I can make sure the platform remains a positive and friendly environment|
 |US309|Manage an Order's status|Medium|As an Administrator, I want to be able to alter an order's status, so that I can make sure that an order is updated as it progresses|
@@ -87,6 +86,7 @@
 |US313|Review tickets|Low|As an Administrator, I want to be able to check tickets sent by users, so that I am able to address issues found by our platform's users|
 |US314|Approve/refuse appeals for unblock|Low|As an Administrator, I want to be able to give a verdict to an unblock appeal, so that I can decide on whether or not to allow a client back into the platform|
 |US315|Check a product's sales|Low|As an Administrator, I want to able to check a product's sales, so that I can be aware of how interesting a given product is to our platform's users|
+
 
 
 ----

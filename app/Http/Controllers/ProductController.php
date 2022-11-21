@@ -7,17 +7,31 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Product;
 use App\Models\Artist;
+use App\Http\Controllers\DB;
 
 class ProductController extends Controller
 {
-    
+
     // will be used for product page
-    public function show() {
+    public function show($id) {
+
+        $product = Product::findOrFail($id);
+        $product['price'] /= 100;
+        return view('pages.product', [
+            'product' => $product,
+            'products' => Product::all()->take(5),
+            'genres' => $product->genres->toArray()
+        ]);
 
     }
 
     public function list() {
 
+    }
+
+    public function addProduct() {
+        $this->authorize('create', Product::class);
+        
     }
 
     public static function homepage()
@@ -26,6 +40,7 @@ class ProductController extends Controller
         $fyProducts = Product::all()->take(5);
 
         foreach ($trendingProducts as $trendingProduct) {
+
             $trendingProduct['artist_name'] = $trendingProduct->artist->name;
         }
         foreach ($fyProducts as $fyProduct) {
@@ -38,10 +53,11 @@ class ProductController extends Controller
     // used for open catalogue & search catalogue 
     public static function catalogue()
     {
-        
         $products = Product::search(request('search'))->paginate(20);
 
         foreach ($products as $product) {
+
+            dd($product->genres);
             $product['artist_name'] = $product->artist->name;
         }
 
@@ -51,50 +67,50 @@ class ProductController extends Controller
     //test function
     public static function cart() {
         ProductController::addToCart(2);
-        ProductController::homepage();
     }
 
     public static function addToCart($id) {
-
         $product = Product::find($id);
         if (!$product) {
             abort(404);
         }
-
         $cart = session()->get('cart');
+        var_dump(session()->get('cart'));
         // if cart is empty then this the first product
         if (!$cart) {
             $cart = [
-                    $id => [
-                        "name" => $product->name,
-                        "quantity" => 1,
-                        "price" => $product->price / 100,
+                $id => [
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $product->price / 100,
                     ]
-            ];
+                ];
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
-        }
-        // if cart not empty then check if this product exist then increment quantity
-        if (isset($cart[$id])) {
+            echo "hi";
+        } else if (isset($cart[$id])) {
+            // if cart not empty then check if this product exist then increment quantity
             $cart[$id]['quantity']++;
             session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        } else {
+            // if item doesn't exist in cart then add to cart with quantity = 1
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price / 100,
+                "photo" => $product->photo
+            ];
+            session()->put('cart', $cart);
         }
-        // if item doesn't exist in cart then add to cart with quantity = 1
-        $cart[$id] = [
-            "name" => $product->name,
-            "quantity" => 1,
-            "price" => $product->price / 100,
-            "photo" => $product->photo
-        ];
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        var_dump(session()->get('cart'));
     }
 
     public function decreaseFromCart($id) {
         if ($id) {
             $cart = session()->get('cart');
-            if ($cart[$id]['quantity'] - 1 == 0) {
+            if ($cart[$id]['quantity'] == 0) 
+                return redirect()->back()->with('success', 'Product quantity already at 0.');
+            
+            else if ($cart[$id]['quantity'] - 1 == 0) {
                 unset($cart[$id]);
                 session()->put('cart', $cart);
             }
@@ -102,7 +118,7 @@ class ProductController extends Controller
                 $cart[$id]['quantity']--;
                 session()->put('cart', $cart);
             }
-            return redirect()->back()->with('success', 'Product quantity decreased successfully!');
+            //return redirect()->back()->with('success', 'Product quantity decreased successfully!');
         }
     }
 
@@ -113,7 +129,7 @@ class ProductController extends Controller
                 unset($cart[$id]);
                 session()->put('cart', $cart);
             }
-            return redirect()->back()->with('success', 'Product removed from cart successfully!');
+            //return redirect()->back()->with('success', 'Product removed from cart successfully!');
         }
     }
 

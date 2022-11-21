@@ -103,3 +103,14 @@
 .confirm-button:disabled {
     background-color: var(--input-color);
 }
+
+#form-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#register-text {
+    padding-top: 10px;
+    text-decoration: underline;
+}

@@ -39,7 +39,7 @@ class Product extends Model
    * The genres that classify this product.
    */
   public function genres() {
-    return $this->belongsToMany(Genre::class, 'genre_product', 'product_id', 'genre_id');
+    return $this->belongsToMany(Genre::class, 'product_genre', 'product_id', 'genre_id');
   }
   /**
    * The orders this product is associated with.

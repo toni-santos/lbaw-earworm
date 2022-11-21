@@ -1,0 +1,93 @@
+#content-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 120px;
+}
+
+#product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: column;
+}
+
+.product-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-description > p {
+    text-align: start;
+    width: 100%;
+    font-size: xx-large;
+}
+
+#product-purchase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#amnt-select {
+    display: flex;
+    flex-direction: row;
+}
+
+#genres-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+#product-artist {
+    font-size: large;
+}
+
+#product-img-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#genres-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(min-content, 100px));
+    gap: 10px;
+}
+
+.product-genre {
+    width: 100%;
+}
+
+.confirm-button {
+    padding: 10px;
+    width: 100%;
+    font-size: larger;
+    margin-inline: 20px;
+    border: none;
+    background-color: var(--border-color);
+    color: var(--text-soft-color);
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+}
+
+.confirm-button:disabled {
+    background-color: var(--input-color);
+}
+
+#product-price {
+    font-size:larger;
+}
+
+#product-tracklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 100px;
+    padding-top: 10px;
+}
+
+#track {
+
+}

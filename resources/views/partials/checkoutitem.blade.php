@@ -5,9 +5,9 @@
     </div>
     <div class="right-item">
         <div class="right-item-top">
-            <span class="" onclick="decreaseAmount(event)">-</span>
+            <span class="" onclick="decreaseAmount(event, {{$id}})">-</span>
             <a class="item-amnt">{{ $details['quantity'] }}</a>
-            <span class="" onclick="increaseAmount(event)">+</span>
+            <span class="" onclick="increaseAmount(event, {{$id}})">+</span>
             <p class="">{{ $details['price'] }}€</p>
         </div>
         <p class="" onclick="removeItem(event)">Remove</p>

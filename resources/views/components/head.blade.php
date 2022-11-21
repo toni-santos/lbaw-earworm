@@ -45,6 +45,19 @@
         <script type="text/javascript" src={{ asset('js/checkout.js') }} defer></script>
         @break
       
+      @case('product')
+        <link href="{{ asset('css/product.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/product.js') }} defer></script>
+        @break
+
+      @case('settings')
+        <link href="{{ asset('css/settings.css') }}" rel="stylesheet">   
+        <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/forms.js') }} defer></script>
+        @break
+
       @default
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">

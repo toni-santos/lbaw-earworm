@@ -2,7 +2,7 @@
 <main>
     <div id="profile-header">
         <img id="profile-pic" src="https://picsum.photos/250/400?random=1">
-        <p id="profile-name">User</p>
+        <p id="profile-name">{{ $user['username'] }}</p>
     </div>
     <section id="content-select">
         <div>
@@ -28,25 +28,24 @@
             @include('partials.carousel', [
                 'carouselTitle' => 'User Favorite Artists',
                 'carouselId' => 'carousel-fav-artists',
-                'promo' => false
+                'type' => 'artist',
+                'content' => $favArtists,
             ])
         </section>
         <section id="buy-history">
             <x-Subtitle title="Purchase History"/>
             <div id="buy-history-wrapper">
-                @include('partials.buyhistory')
-                @include('partials.buyhistory')
-                @include('partials.buyhistory')
-                @include('partials.buyhistory')
-                @include('partials.buyhistory')
-                @include('partials.buyhistory')
+                @foreach ($purchaseHistory as $product)
+                    @include('partials.buyhistory', ['product' => $product])
+                @endforeach
             </div>
         </section>
         <section id="lastfm-recs">
             @include('partials.carousel', [
                 'carouselTitle' => 'Last.fm Recommendations',
                 'carouselId' => 'carousel-lastfm-recs',
-                'promo' => false
+                'type' => 'product',
+                'content' => $recommendedProducts,
             ])
         </section>
     </div>

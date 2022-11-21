@@ -48,6 +48,11 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            if (Auth::User()->is_admin) {
+                return to_route('adminpage');
+            }
+            
             return redirect()->intended('/');
         }
 
@@ -66,7 +71,8 @@ class LoginController extends Controller
 
     /*
     public function getUser(){
-        return $request->user();
+        return $request->user();        echo "auth attempt";
+
     }
 
     public function home() {

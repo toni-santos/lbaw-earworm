@@ -1,4 +1,4 @@
-.product-card {
+.product-card, .artist-card {
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -12,14 +12,14 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    align-items: center;;
+    align-items: center;
 }
 
 .product-fav-price {
     padding-block: 5px;
 }
 
-.prod-genres {
+.prod-format {
     display: flex;
     padding-block: 5px;
     justify-content: center;
@@ -39,6 +39,6 @@
 
 }
 
-.prod-name {
+.prod-name, .artist-name {
     font-size: large;
 }

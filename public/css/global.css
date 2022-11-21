@@ -234,7 +234,7 @@ body {
   display: none;
   flex-direction: column;
   position: absolute;
-  width: auto;
+  width: 270px;
   height: auto;
   padding: 10px;
   background-color: var(--border-color);
@@ -243,6 +243,7 @@ body {
 }
 
 #profile-dropdown {
+  gap: 0px;
   top: 25px;
   right: -20px;
 }
@@ -550,4 +551,18 @@ body {
   font-size: large;
   font-weight: bold;
   border-bottom: 1px solid var(--light-color);
+}
+
+.dropdown-warning {
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-button {
+  text-align: center;
+  background-color: var(--subtle-color);
+  width: 100%;
+  padding: 4px;
 }

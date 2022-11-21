@@ -1,0 +1,24 @@
+#form-aux-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+#aux-wrapper {
+    display: grid;
+    align-items:center;
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    justify-content: center;
+}
+
+#form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.aux {
+
+}

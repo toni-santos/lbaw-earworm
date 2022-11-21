@@ -1,33 +1,55 @@
 "use strict"
 
-async function decreaseAmount(event) {
+async function decreaseAmount(event, id) {
     const input = event.composedPath()[1].children[1];
     const removable = event.composedPath()[3];
     const sideValueRemovable = document.getElementById('item-desc-' + event.composedPath()[3].id.split('-')[2]);
     const sideValue = document.querySelector(`#item-desc-${event.composedPath()[3].id.split('-')[2]} > a:last-child > span`);
     
     if (parseInt(input.textContent) == 1) {
+        removeItem(event);
         removeItemDecreasing(removable, sideValueRemovable);
+
     } else if (parseInt(input.textContent) >= 2) {
+        const response = await fetch('/cart/{id}/decrease', {
+            method: "POST",
+            body: JSON.stringify({
+                id: event.composedPath()[3].id.split('-')[2]
+            }),
+        });
+        const success = await response.json();
+        
         input.textContent = parseInt(input.textContent) - 1;
         sideValue.textContent = input.textContent;
     }
-   
     updateTotal();
 }
 
-async function increaseAmount(event) {
-    const input = event.composedPath()[1].children[1];
+async function increaseAmount(event, id) {
+    const input = event.composedPath()[1].children[1]
 
     if (parseInt(input.textContent) < 98) {
+        const response = await fetch(`api/cart/increase/${id}`, {
+            method: "POST",
+        });
+        const success = await response.json();
+
         input.textContent = parseInt(input.textContent) + 1;
-        document.querySelector(`#item-desc-${event.composedPath()[3].id.split('-')[2]} > a:last-child > span`).textContent = input.textContent;
+        document.querySelector(`#checkout-item-${id} > .rigt-item > .right-item-top > a:last-child`).textContent = input.textContent;
     }
 
     updateTotal();
 }
 
 async function removeItem(event) {
+
+    const id = event.composedPath()[3].id.split('-')[2];
+
+    const response = await fetch(`/cart/remove/${id}`, {
+        method: "POST",
+    });
+    const success = await response.json();
+
     event.composedPath()[2].remove();
     document.getElementById('item-desc-' + event.composedPath()[2].id.split('-')[2]).remove();
 

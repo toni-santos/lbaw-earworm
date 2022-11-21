@@ -28,13 +28,27 @@
     justify-content: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     #carousel-trending > :first-child, #carousel-fy > :first-child
     #carousel-fav-artists > :first-child, #carousel-lastfm-recs > :first-child{
             display: none;
     }
 }
 
+@media (max-width: 1100px) {
+    #carousel-trending > :nth-child(2), #carousel-fy > :nth-child(2)
+    #carousel-fav-artists > :nth-child(2), #carousel-lastfm-recs > :nth-child(2){
+            display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    #carousel-trending > :nth-child(3), #carousel-fy > :nth-child(3)
+    #carousel-fav-artists > :nth-child(3), #carousel-lastfm-recs > :nth-child(3){
+            display: none;
+    }
+
+}
 
 @media (max-width: 500px) {
     #carousel-trending > :first-child, #carousel-fy > :first-child
