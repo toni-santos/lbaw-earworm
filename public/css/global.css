@@ -35,7 +35,8 @@
   :root {
     --bg-color: rgba(32,32,32, 1);
     --text-color: rgba(177,128,107, 1);
-    --text-soft-color: rgba(156,112,94, 1);
+    /* --text-soft-color: rgba(156,112,94, 1); */
+    --text-soft-color: white;
     --text-strong-color: rgba(222,161,136, 1);
     --subtle-color: rgba(43,34,31, 1);
     --border-color: rgba(86,58,46, 1);
@@ -245,7 +246,7 @@ body {
 #profile-dropdown {
   gap: 0px;
   top: 25px;
-  right: -20px;
+  right: -80px;
 }
 
 #cart-dropdown {
@@ -255,7 +256,7 @@ body {
 
 #wishlist-dropdown {
   top: 25px;
-  right: -90px;
+  right: -80px;
 }
 
 #cart-wrapper, #wishlist-wrapper {
@@ -278,19 +279,23 @@ body {
   outline: inherit;
 }
 
+div[class^='cart-item-'] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 
-.cart-item, .wishlist-item {
+div[class^='wishlist-item'] {
   display: flex;
   flex-direction: row;
   justify-content:space-between;
   align-items: center;
-  width: 250px;
+  width: 100%;
   padding: 5px;
 }
 
-.wishlist-item-desc, .cart-item-desc {
+div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 3px;
 }
 

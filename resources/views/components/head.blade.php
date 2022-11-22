@@ -56,7 +56,17 @@
       @case('settings')
         <link href="{{ asset('css/settings.css') }}" rel="stylesheet">   
         <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
         <script type="text/javascript" src={{ asset('js/forms.js') }} defer></script>
+        <script type="text/javascript" src={{ asset('js/admin.js') }} defer></script>
+
+        @break
+
+      @case('admin')
+        <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/forms.js') }} defer></script>
+        <script type="text/javascript" src={{ asset('js/admin.js') }} defer></script>
         @break
 
       @default

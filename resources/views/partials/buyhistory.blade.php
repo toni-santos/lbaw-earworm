@@ -1,4 +1,4 @@
 <section class="buy-history-item">
-    <img class="buy-history-img" src="https://picsum.photos/100/100?random=1">
+    <img class="buy-history-img" src={{ url('/images/products/'.$product['id'].'.jpg') }}>
     <p class="buy-history-name">{{ $product['name'] }}</p>
 </section>

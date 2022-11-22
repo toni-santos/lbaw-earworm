@@ -15,15 +15,9 @@
                 <!-- filters: genre artist year price rating -->
                 <p>Genre</p>
                 <div class="scroll-filter" id="fiter-genre">
-                    <label><input type="checkbox" class="checkbox"><span class="genre-check">GENRE</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="genre-check">GENRE</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="genre-check">GENRE</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="genre-check">GENRE</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="genre-check">GENRE</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="genre-check">GENRE</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="genre-check">GENRE</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="genre-check">GENRE</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="genre-check">GENRE</span></label>
+                    @foreach ($genres as $genre)
+                    <label><input type="checkbox" class="checkbox"><span class="genre-check">{{$genre->name}}</span></label>
+                    @endforeach
                 </div>
                 <p>Year</p>
                 <div class="scroll-filter" id="filter-year">
@@ -39,15 +33,11 @@
                 </div>
                 <p>Artist</p>
                 <div class="scroll-filter" id="filter-artist">
-                    <label><input type="checkbox" class="checkbox"><span class="artist-check">ARTIST</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="artist-check">ARTIST</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="artist-check">ARTIST</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="artist-check">ARTIST</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="artist-check">ARTIST</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="artist-check">ARTIST</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="artist-check">ARTIST</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="artist-check">ARTIST</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="artist-check">ARTIST</span></label>
+                    <label><input type="checkbox" class="checkbox"><span class="artist-check">CD</span></label>
+                    <label><input type="checkbox" class="checkbox"><span class="artist-check">Vinyl</span></label>
+                    <label><input type="checkbox" class="checkbox"><span class="artist-check">Cassette</span></label>
+                    <label><input type="checkbox" class="checkbox"><span class="artist-check">DVD</span></label>
+                    <label><input type="checkbox" class="checkbox"><span class="artist-check">Box Set</span></label>
                 </div>
                 <p>Price</p>
                 <div class="box-filter" id="filter-price">

@@ -1,6 +1,7 @@
 <x-Head page="checkout"/>
 <main>
     <form method="POST" action="">
+        {{ csrf_field() }}
         <div id="payment-wrapper">
             <section id="items-wrapper">
                 @if (session()->get('cart'))

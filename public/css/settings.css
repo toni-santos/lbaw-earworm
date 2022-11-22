@@ -13,12 +13,14 @@
     justify-content: center;
 }
 
+.inputs-box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 #form-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.aux {
-
 }

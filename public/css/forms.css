@@ -58,6 +58,11 @@
     transition: all 0.2s ease-in-out;
 }
 
+.static-label {
+    font-size: large;
+    width: fit-content;
+}
+
 #password-input {
     padding-right: 40px;
 }

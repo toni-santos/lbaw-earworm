@@ -1,4 +1,4 @@
-<form id="form-signup" method="POST" action={{ route('register') }}>
+<form id="form-signup" method="POST" action={{ route('registrate') }}>
     {{ csrf_field() }}
 
     <section id="inputs-box">

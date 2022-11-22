@@ -16,6 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('api')->group(function () {
 
     Route::middleware('auth')->get('/user', 'Auth\LoginController@getUser');
-    
 });
 

@@ -66,5 +66,9 @@ main {
     gap: 30px;
     font-size: larger;
     font-weight: bold;
+}
 
+.buy-history-img {
+    width: 100px;
+    height: 100px;
 }

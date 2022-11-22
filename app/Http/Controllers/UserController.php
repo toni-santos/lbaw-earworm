@@ -78,6 +78,7 @@ class UserController extends Controller
 
     public function editProfile(int $id) {
         $user = User::findOrFail($id);
+        if (!(Auth::user()->is_admin || Auth::id() == $id)) abort(403);
         return view('pages.settings', ['user' => $user]);
     }
 

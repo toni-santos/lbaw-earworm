@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
 class AdminController extends Controller
 {
     /**
@@ -13,12 +12,10 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $user = User::findOrFail($id);
-        if ($user->is_blocked) {
-            abort(404);
-        }
+        $users = User::where('is_admin', 0)->get();//->paginate(20);
+        return view('pages.admin', ['users' => $users]);
     }
 
    /**
@@ -55,11 +52,23 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, int $id)
     {
-        $this->authorize('update', [User::class, $user]);
+        $user = User::findOrFail($id);
+        $data = $request->toArray();
 
-        dd(json_encode($request), $user);
+        $user->username = $data['username'] ?? $user->username;
+        $user->email = $data['email'] ?? $user->email;
+        $user->is_blocked = array_key_exists('block', $data); 
+
         $user->save();
+
+        return to_route('adminpage');
+    }
+
+    public function findUser() {
+        // $users = User::search(request('search'))->paginate(20);
+
+        // return view('pages.admin', ['users' => $users]);
     }
 }

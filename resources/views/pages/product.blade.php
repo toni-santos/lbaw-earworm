@@ -2,7 +2,7 @@
 <main id="content-wrapper">
     <div id="product-grid">
         <div id="product-img-wrapper">
-            <img src="https://picsum.photos/300/300?random=1" id="product-img">
+            <img src={{ url('/images/products/'.$product['id'].'.jpg') }} id="product-img">
         </div>
         <div class="product-description">
             <p id="product-name">{{$product->name}}</p>
@@ -15,11 +15,6 @@
         </div>
         <div id="product-purchase">
             <p id="product-price">{{$product->price}} €</p>
-            <div id="amnt-select">
-                <a>-</a>
-                <p>1</p>
-                <a>+</a>
-            </div>
             <button class="confirm-button">BUY</button>
         </div>
     </div>

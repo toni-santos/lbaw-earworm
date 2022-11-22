@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Product;
+use App\Models\Genre;
 use App\Models\Artist;
 use App\Http\Controllers\DB;
 
@@ -42,26 +43,31 @@ class ProductController extends Controller
 
         foreach ($trendingProducts as $trendingProduct) {
             $trendingProduct['artist_name'] = $trendingProduct->artist->name;
+            $trendingProduct['price'] = $trendingProduct->price/100;
+
         }
         foreach ($fyProducts as $fyProduct) {
             $fyProduct['artist_name'] = $fyProduct->artist->name;
+            $fyProduct['price'] = $fyProduct->price/100;
+
         }
 
         return view('pages.index', ['trendingProducts' => $trendingProducts, 'fyProducts' => $fyProducts]);
     }
 
-    // used for open catalogue & search catalogue 
+    // used to open catalogue & search catalogue 
     public static function catalogue()
     {
         $products = Product::search(request('search'))->paginate(20);
+        $genres = Genre::all();
 
         foreach ($products as $product) {
-
-            dd($product->genres);
             $product['artist_name'] = $product->artist->name;
+            $product['price'] = $product->price/100;
         }
 
-        return view('pages.catalogue', ['products' => $products]);
+        return view('pages.catalogue', ['products' => $products, 'genres' => $genres]);
+
     }
 
     //test function

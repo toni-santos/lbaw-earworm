@@ -1,0 +1,67 @@
+#user-admin-top {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding-inline: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+#user-sb {
+    width: 100%;
+}
+
+#create-user-button {
+    flex-grow: 1;
+    text-align: center;
+    padding: 5px;
+    background-color: var(--subtle-color);
+}
+
+div[class^='user-top-'] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-inline: 40px;
+    padding: 40px 20px;
+    background-color: var(--input-color);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.expand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20px;
+}
+
+div[class^='user-bot-'] {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-inline: 40px;
+    padding-block: 20px;
+    justify-content: center;
+    background-color: var(--subtle-color);
+}
+
+.confirm-button {
+    width: 300px;
+}
+
+.form-bot {
+    width: fit-content;
+}
+
+#user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+

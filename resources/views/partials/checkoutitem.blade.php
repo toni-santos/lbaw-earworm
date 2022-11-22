@@ -1,7 +1,7 @@
 
 <article class="checkout-item" id="checkout-item-{{$id}}">
     <div class="left-item">
-        <img alt="Item picture" class="item-img" src="https://picsum.photos/100/100?random=1">
+        <img alt="Item picture" class="item-img" src={{ url('/images/products/'. $id .'.jpg') }}>
         <p class="item-name">{{ $details['name'] }} </p>
     </div>
     <div class="right-item">
