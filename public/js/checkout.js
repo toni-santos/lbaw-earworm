@@ -3,12 +3,10 @@
 async function decreaseAmountCheckout(event, id) {
     const input = event.composedPath()[1].children[1];
     const removable = event.composedPath()[3];
-    const sideValueRemovable = document.getElementById('item-desc-' + id);
     const sideValue = document.querySelector(`#item-desc-${id} > a:last-child > span`);
     
     if (parseInt(input.textContent) == 1) {
         removeItemCheckout(event, id);
-        removeItemDecreasing(removable, sideValueRemovable);
 
     } else if (parseInt(input.textContent) >= 2) {
         const response = await fetch(`/cart/decrease/${id}`, {
