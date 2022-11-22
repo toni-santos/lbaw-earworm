@@ -1,7 +1,6 @@
-<!-- MISSING AN ID FOR NOW AS THERE IS NO BE --> 
 
-<div class="cart-item">
-    <div class="cart-item-desc">
+<div class="cart-item-{{$id}}">
+    <div class="cart-item-desc-{{$id}}">
         <a><img src="https://picsum.photos/48/48?random=1" class="cart-img"></a>
         <div class="cart-item-specs">
             <a href="/products/{{$id}}">{{$details['name']}}</a>
@@ -10,10 +9,10 @@
     </div>
     <div class="cart-item-left">
         <div class="cart-item-amnt">
-            <a href="{{ route('decreaseFromCart', [ 'id' => $id ]) }}" class="dec-cart-item">-</a>
+            <span onclick="decreaseAmountCart(event, {{$id}})" class="dec-cart-item">-</span>
             <p>{{$details['quantity']}}</p>
-            <a href="{{ route('addToCart', [ 'id' => $id ]) }}" class="inc-cart-item">+</a>
+            <span onclick="increaseAmountCart(event, {{$id}})" class="inc-cart-item">+</span>
         </div>
-        <a href="{{ route('removeFromCart', [ 'id' => $id ]) }}"><span class="material-symbols-outlined">delete</span></a>
+        <span onclick="removeItemCart(event, {{$id}})" class="material-symbols-outlined">delete</span>
     </div>
 </div>

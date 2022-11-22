@@ -43,6 +43,7 @@
         <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
         <script type="text/javascript" src={{ asset('js/index.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/checkout.js') }} defer></script>
+        <script type="text/javascript" src={{ asset('js/cart.js') }} defer></script>
         @break
       
       @case('product')
@@ -66,6 +67,7 @@
         
     @endswitch
 
+    <script type="text/javascript" src={{ asset('js/cart.js') }} defer></script>
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951

@@ -3,9 +3,8 @@
     <form method="POST" action="">
         <div id="payment-wrapper">
             <section id="items-wrapper">
-                <?php var_dump(session()->get('cart')); ?>
-                @if (session('cart'))
-                    @foreach (session('cart') as $id => $details)
+                @if (session()->get('cart'))
+                    @foreach (session()->get('cart') as $id => $details)
                         @include('partials.checkoutitem', ['id' => $id, 'details' => $details])
                     @endforeach
                 @else
