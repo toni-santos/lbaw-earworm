@@ -9,7 +9,7 @@ function checkDone(event) {
     // activate button
     let activate = true;
     const form = event.composedPath()[3];
-    const button = document.getElementById('confirm-button')
+    const button = document.getElementById('confirm-checkout')
     Object.values(form.children[0].getElementsByTagName("input")).forEach(element => {
         if (element.value.length == 0) {
             activate = false;

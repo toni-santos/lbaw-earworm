@@ -1,6 +1,10 @@
 <x-Head page="checkout"/>
 <main>
-    <form method="POST" action="{{route('buy')}}">
+    @if (Auth::check())
+        <form method="POST" action="{{route('buy')}}">
+    @else
+        <form method="GET" action="{{route('login')}}">
+    @endif
         {{ csrf_field() }}
         <div id="payment-wrapper">
             <section id="items-wrapper">
@@ -23,26 +27,29 @@
                         <h2> Nothing in cart. </h2>
                     @endif
                 </div>
-                <div id="billing-info">
-                    <x-Subtitle title="Billing Information" />
-                    <input placeholder="Address" class="text-input" type="text" id="address" name="address" onkeyup="checkDone(event)" required>
-                    <label class="input-label" for="address">Address</label>
-                </div>
-                <div id="payment-method">
-                    <x-Subtitle title="Payment Method" />
-                    <label for="mbway" class="radio-label">
-                    <input type="radio" class="radio" name="payment-method" id="mbway" value="mbway" checked required>MBWay</label>
-                    <label for="billing" class="radio-label">
-                    <input type="radio" class="radio" name="payment-method" id="billing" value="billing" required>Billing</label>
-                </div>
+                @if (Auth::check())                    
+                    <div id="billing-info">
+                        <x-Subtitle title="Billing Information" />
+                        <input placeholder="Address" class="text-input" type="text" id="address" name="address" onkeyup="checkDone(event)" required>
+                        <label class="input-label" for="address">Address</label>
+                    </div>
+                    <div id="payment-method">
+                        <x-Subtitle title="Payment Method" />
+                        <label for="mbway" class="radio-label">
+                        <input type="radio" class="radio" name="payment-method" id="mbway" value="mbway" checked required>MBWay</label>
+                        <label for="billing" class="radio-label">
+                        <input type="radio" class="radio" name="payment-method" id="billing" value="billing" required>Billing</label>
+                    </div>
+                    <div id="checkout-total">
+                        <a class="subtitle1" id="checkout-value">0€</a>
+                            <button type="submit" class="confirm-button" id="confirm-checkout" disabled>Confirm</button>
+                @else 
                 <div id="checkout-total">
                     <a class="subtitle1" id="checkout-value">0€</a>
-                    @if (Auth::user())
-                        <button type="submit" class="confirm-button" id="confirm-checkout" disabled>Confirm</button>
-                    @else 
-                        <button type="submit" class="confirm-button" id="confirm-checkout">Register to Buy</button>
-                    @endif
+                
+                    <button type="submit" class="confirm-button" id="confirm-checkout">Register to Buy</button>
                 </div>
+                @endif
             </aside>
         </div>
     </form>
