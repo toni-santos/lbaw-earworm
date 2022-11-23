@@ -30,6 +30,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function scopeSearch($query, $search) {
+        //dd($search);
+        if($search ?? false) {
+          return $query->where('username', 'LIKE', "%{$search}")
+                      ->orWhere('id', 'LIKE', "%{$search}%");
+                      -orWhere('email', 'LIKE', '%{$search}%');
+        }
+      }
+
     /**
      * The products this user has wishlisted.
      */

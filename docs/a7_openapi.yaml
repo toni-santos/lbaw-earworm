@@ -325,7 +325,7 @@ paths:
                   description: "I was bored and made some music."
                   score: 4.99
 
-  /product/{id}:
+  /products/{id}:
     parameters:
       - in: path
         name: id
@@ -362,31 +362,18 @@ paths:
         '200':
           description: 'Ok. Show Catalogue UI'
 
-  # -------------- #
-  # M03 - Artists  #
-
-  /artist/{id}:
-    parameters:
-      - in: path
-        name: id
-        description: Artist ID
-        schema:
-          type: integer
-        required: true
-
+  /product/buy/{id}
     get:
-      operationId: R301
-      summary: 'R301: View Artist Page'
-      description: "Show a specific artist page, where all of its information is displayed. Access: VIS, CLI, ADM"
+      operationId: R204
+      summary: 'R204: Add Product to Cart'
+      description: "Add displayed product to cart."
 
       tags:
-        - 'M03: Artists'
+        - 'M02: Products'
 
       responses:
         '200':
-          description: 'Ok. Show Artist Page UI'
-        '404':
-          description: 'This artist does not exist in our store.'
+          description: 'Ok. Show Product Page UI'
 
   # ------------ #
   # M06 - Orders #
@@ -473,6 +460,8 @@ paths:
       responses:
         '200':
           description: 'Ok. Product successfully added'
+        '404':
+          description: 'Product not found.'
 
   /cart/decrease/{id}:
     parameters:
@@ -498,6 +487,8 @@ paths:
       responses:
         '200':
           description: 'Ok. Product amount successfully decreased'
+        '404':
+          description: 'Product not found in cart.'
 
   /cart/remove/{id}:
     parameters:
@@ -523,6 +514,8 @@ paths:
       responses:
         '200':
           description: 'Ok. Product successfully removed from cart'
+        '404':
+          description: 'Product not found in cart.'
 
   # ----------------------------------------- #
   # M09: User Administration and Static pages #

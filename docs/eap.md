@@ -13,8 +13,9 @@ These are the modules that will be part of the application. They were aggregated
 |M04: Reviews|Web resources associated with reviews. Includes the following system features: add reviews, view reviews, edit reviews and delete reviews.|
 |M05: Wishlist|Web resources associated with wishlists. Includes the following system features: add products to wishlist and remove products from wishlist.
 |M06: Orders|Web resources associated with orders. Includes the following system features: add order, view orders, track order, delete order.|
-|M07: Reports and Tickets|Web resources associated with reports and tickets. Includes the following system features: add report, view report, delete report, add ticket, view ticket and delete ticket.|
-|M08: User Administration and Static pages|Web resources associated with user management, specifically: view users, delete or block user accounts, view and change user information, view system access details for each user. Web resources with static content are associated with this module: dashboard, about, contact, services and faq.|
+|M07: Cart|Web resources associated with carts. Includes the following system features: add product to cart, decrease product amount in cart, remove product from cart.|
+|M08: Reports and Tickets|Web resources associated with reports and tickets. Includes the following system features: add report, view report, delete report, add ticket, view ticket and delete ticket.|
+|M09: User Administration and Static pages|Web resources associated with user management, specifically: view users, delete or block user accounts, view and change user information, view system access details for each user. Web resources with static content are associated with this module: dashboard, about, contact, services and faq.|
 
 #
 
@@ -623,7 +624,7 @@ paths:
 ## A8: Vertical Prototype
 
 ### 1. Implemented Features
-As of this date (17/11/2022), the features present in this section limit themselves to basic functionalities pertaining to site visitors and logged in clients, as they are the only users able to interact with the soon-to-be deployed vertical prototype. Products and artists are present for basic interaction features, like adding products to the users cart, but medium priority user stories like wishlisting an item will be added only further down the development process. 
+As of this date (24/11/2022), the features present in this section limit themselves to basic functionalities pertaining to site visitors and logged-in clients, as they are the only users able to interact with the deployed vertical prototype. Products are present for basic interaction features, like adding products to the users cart, but medium priority user stories like wishlisting an item will only be added further down the development process. 
 
 #### 1.1 Implemented User Stories
 
