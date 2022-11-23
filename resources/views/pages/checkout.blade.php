@@ -37,7 +37,11 @@
                 </div>
                 <div id="checkout-total">
                     <a class="subtitle1" id="checkout-value">0€</a>
-                    <button type="submit" class="confirm-button" id="confirm-checkout" disabled>Confirm</button>
+                    @if (Auth::user())
+                        <button type="submit" class="confirm-button" id="confirm-checkout" disabled>Confirm</button>
+                    @else 
+                        <button type="submit" class="confirm-button" id="confirm-checkout">Register to Buy</button>
+                    @endif
                 </div>
             </aside>
         </div>
