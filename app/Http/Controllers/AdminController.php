@@ -19,7 +19,9 @@ class AdminController extends Controller
     {
         if (!Auth::user() || !Auth::user()->is_admin) abort(403);
 
-        $users = User::search($request->toArray()['user'])->where('is_admin', 0)->get();//->paginate(20);
+        $search = !empty($request->toArray()) ? $request->toArray()['user'] : '';
+        
+        $users = User::search($search)->where('is_admin', 0)->get();//->paginate(20);
         return view('pages.admin', ['users' => $users]);
     }
 
