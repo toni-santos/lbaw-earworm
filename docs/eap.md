@@ -661,8 +661,10 @@ As of this date (24/11/2022), the features present in this section limit themsel
 
 |Identifier|Name|Priority|Description|
 |---|---|---|---|
-|US305|Block client accounts|High|As an Administrator, I want to be able to block certain accounts, so that I can keep the website free of users with malicious intent|
-|US306|Unblock client accounts|High|As an Administrator, I want to be able to unblock certain accounts, so that I can allow previously blocked users back on the platform|
+|US305|Manage client accounts|High|As an Administrator, I want to be able to edit certain client accounts, so that I can keep the website running as intended|
+|US306|Block client accounts|High|As an Administrator, I want to be able to block certain accounts, so that I can keep the website free of users with malicious intent|
+|US307|Unblock client accounts|High|As an Administrator, I want to be able to unblock certain accounts, so that I can allow previously blocked users back on the platform|
+|US308|Delete client accounts|High|As an Administrator, I want to be able to delete client accounts, so that I can get rid of accounts that I no longer wish to remain on the platform|
 
 
 #### 1.2 Implemented Web Resources

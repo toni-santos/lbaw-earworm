@@ -389,13 +389,12 @@ paths:
         '200':
           description: 'Ok. Show Checkout UI'
 
-    /checkout/order/:
-      post:
-        operationId: R602
-        summary: 'R602: Checkout Action'
-        description: 'Process the checkout form submission. Access: VIS, OWN'
-        tags:
-          - 'M06: Order'
+    post:
+      operationId: R602
+      summary: 'R602: Checkout Action'
+      description: 'Process the checkout form submission. Access: VIS, OWN'
+      tags:
+        - 'M06: Order'
 
       requestBody:
         required: true

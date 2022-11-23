@@ -75,17 +75,18 @@
 |US302|Manage product|Medium|As an Administrator, I want to be able to have control over a product's information, so that I can provide the most relevant information to a potential buyer|
 |US303|Manage product stock|Medium|As an Administrator, I want to be able to change the current stock of a given product, so that I can keep the clients updated on what products are available|
 |US304|Manage artist page|Medium|As an Administrator, I want to be able to manage an artist's page, so that I can give the user more info on the creating artist of their product of interest|
-|US305|Block client accounts|High|As an Administrator, I want to be able to block certain accounts, so that I can keep the website free of users with malicious intent|
-|US306|Unblock client accounts|High|As an Administrator, I want to be able to unblock certain accounts, so that I can allow previously blocked users back on the platform|
-|US307|Delete client accounts|Medium|As an Administrator, I want to be able to delete client accounts, so that I can get rid of accounts that I no longer wish to remain on the platform|
-|US308|Delete comments|Medium|As an Administrator, I want to be able to remove comments, so that I can make sure the platform remains a positive and friendly environment|
-|US309|Manage an Order's status|Medium|As an Administrator, I want to be able to alter an order's status, so that I can make sure that an order is updated as it progresses|
-|US310|Create Administrator accounts|Medium|As an Administrator, I want to be able to create other Administrator accounts, so that I can widen the roster of people managing the platform|
-|US311|View Client's purchase history|Medium|As an Administrator, I want to be able to check a client's purchase history, so that I can be aware of what a given client has purchased, should a problem arise|
-|US312|Review reports|Low|As an Administrator, I want to be able to check review reports sent in by users, so that I am able to correctly manage the situation if it goes against our guidelines|
-|US313|Review tickets|Low|As an Administrator, I want to be able to check tickets sent by users, so that I am able to address issues found by our platform's users|
-|US314|Approve/refuse appeals for unblock|Low|As an Administrator, I want to be able to give a verdict to an unblock appeal, so that I can decide on whether or not to allow a client back into the platform|
-|US315|Check a product's sales|Low|As an Administrator, I want to able to check a product's sales, so that I can be aware of how interesting a given product is to our platform's users|
+|US305|Manage client accounts|High|As an Administrator, I want to be able to edit certain client accounts, so that I can keep the website running as intended|
+|US306|Block client accounts|High|As an Administrator, I want to be able to block certain accounts, so that I can keep the website free of users with malicious intent|
+|US307|Unblock client accounts|High|As an Administrator, I want to be able to unblock certain accounts, so that I can allow previously blocked users back on the platform|
+|US308|Delete client accounts|High|As an Administrator, I want to be able to delete client accounts, so that I can get rid of accounts that I no longer wish to remain on the platform|
+|US309|Delete comments|Medium|As an Administrator, I want to be able to remove comments, so that I can make sure the platform remains a positive and friendly environment|
+|US310|Manage an Order's status|Medium|As an Administrator, I want to be able to alter an order's status, so that I can make sure that an order is updated as it progresses|
+|US311|Create Administrator accounts|Medium|As an Administrator, I want to be able to create other Administrator accounts, so that I can widen the roster of people managing the platform|
+|US312|View Client's purchase history|Medium|As an Administrator, I want to be able to check a client's purchase history, so that I can be aware of what a given client has purchased, should a problem arise|
+|US313|Review reports|Low|As an Administrator, I want to be able to check review reports sent in by users, so that I am able to correctly manage the situation if it goes against our guidelines|
+|US314|Review tickets|Low|As an Administrator, I want to be able to check tickets sent by users, so that I am able to address issues found by our platform's users|
+|US315|Approve/refuse appeals for unblock|Low|As an Administrator, I want to be able to give a verdict to an unblock appeal, so that I can decide on whether or not to allow a client back into the platform|
+|US316|Check a product's sales|Low|As an Administrator, I want to able to check a product's sales, so that I can be aware of how interesting a given product is to our platform's users|
 
 
 
