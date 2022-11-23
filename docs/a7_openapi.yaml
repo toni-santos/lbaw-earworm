@@ -68,8 +68,8 @@ paths:
                type: string
              examples:
                302Success:
-                 description: 'Successful authentication. Redirect to client profile.'
-                 value: '/client/{id}'
+                 description: 'Successful authentication. Redirect to user profile.'
+                 value: '/user/{id}'
                302Error:
                  description: 'Failed authentication. Redirect to login form.'
                  value: '/login'
@@ -97,7 +97,7 @@ paths:
     get:
       operationId: R104
       summary: 'R104: Register Form'
-      description: 'Provide new client registration form. Access: VIS'
+      description: 'Provide new user registration form. Access: VIS'
       tags:
         - 'M01: Authentication and Individual Profile'
       responses:
@@ -107,7 +107,7 @@ paths:
     post:
       operationId: R105
       summary: 'R105: Register Action'
-      description: 'Process the new client registration form submission. Access: VIS'
+      description: 'Process the new user registration form submission. Access: VIS'
       tags:
         - 'M01: Authentication and Individual Profile'
 
@@ -133,20 +133,20 @@ paths:
 
       responses:
         '302':
-          description: 'Redirect after processing the new client information.'
+          description: 'Redirect after processing the new user information.'
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to client profile.'
-                  value: '/clients/{id}'
-                302Failure:
+                  description: 'Successful authentication. Redirect to user profile.'
+                  value: '/user/{id}'
+                302Error:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
 
-  /clients/{id}:
+  /user/{id}:
     parameters:
       - in: path
         name: id
@@ -156,46 +156,16 @@ paths:
 
     get:
       operationId: R106
-      summary: 'R106: View client profile'
-      description: 'Show the individual client profile. Access: OWN, ADM'
+      summary: 'R106: View User Profile'
+      description: 'Show a user profile page. Access: VIS, OWN, ADM'
       tags:
         - 'M01: Authentication and Individual Profile'
 
       responses:
         '200':
-          description: 'Ok. Show Client Profile UI'
-    
-    delete:
-      operationId: R107
-      summary: 'R107: Delete Individual Account Action'
-      description: 'Process the delete individual account action. Access: OWN, ADM'
-      tags:
-        - 'M01: Authentication and profile'
- 
-      parameters:
-        - in: path
-          name: id
-          description: User ID
-          schema:
-            type: integer
-          required: true
-           
-      responses:
-        '302':
-          description: 'Redirect after processing the account deletion.'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: 'Successful deletion. Redirect to home page.'
-                  value: '/home'
-                302Error:
-                  description: 'Failed deletion. Redirect to client profile page.'
-                  value: '/clients/{id}'
+          description: 'Ok. Show User Profile UI'
 
-  /clients/{id}/edit:
+  /user/{id}/settings:
     parameters:
       - in: path
         name: id
@@ -204,18 +174,20 @@ paths:
         required: true
     
     get:
-      operationId: R108
-      summary: 'R108: Edit Profile Form'
+      operationId: R107
+      summary: 'R107: Edit Profile Form'
       description: 'Provide edit profile form. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
       responses:
         '200':
           description: 'Ok. Show Edit Profile UI'
+        '403':
+          description: 'You do not have the required permissions to access this page.'
 
-    patch:
-      operationId: R109
-      summary: 'R109: Edit Profile Action'
+    post:
+      operationId: R108
+      summary: 'R108: Edit Profile Action'
       description: 'Process the edit profile form submission. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -227,30 +199,37 @@ paths:
             schema:
               type: object
               properties:
-                name:
+                username:
                   type: string
                 email:
-                  type: string
-                picture:
-                  type: string
-                  format: binary
-                password:
                   type: string
 
       responses:
         '302':
-          description: 'Redirect after processing the new client information.'
+          description: 'Redirect after processing the new user information.'
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful edit. Redirect to client profile.'
-                  value: '/clients/{id}'
-                302Failure:
-                  description: 'Failed edit. Redirect to client profile.'
-                  value: '/clients/{id}'               
+                  description: 'Successful edit. Redirect to user profile.'
+                  value: '/user/{id}'
+                302Error:
+                  description: 'Failed edit. Redirect to user profile.'
+                  value: '/user/{id}'               
+
+  /user:
+    get:
+      operationId: 'R109'
+      summary: 'R109: View Own Profile'
+      description: 'Show individual user profile page. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      responses:
+        '200':
+          description: 'Ok. Show User Profile UI'
 
   # -------------- #
   # M02 - Products #
@@ -258,7 +237,7 @@ paths:
   /api/products:
     get:
       operationId: R201
-      summary: 'R201: Search products API'
+      summary: 'R201: Search Products API'
       description: 'Search for products and return the results as JSON. Access: VIS, CLI, ADM'
 
       tags:
@@ -346,7 +325,6 @@ paths:
                   description: "I was bored and made some music."
                   score: 4.99
 
-
   /product/{id}:
     parameters:
       - in: path
@@ -358,7 +336,7 @@ paths:
         
     get:
       operationId: R202
-      summary: 'R202: View product page'
+      summary: 'R202: View Product Page'
       description: "Show a specific product page, where all of its information is displayed. Access: VIS, CLI, ADM"
 
       tags:
@@ -370,6 +348,20 @@ paths:
         '404':
           description: 'This product does not exist in our store.'
         
+
+  /products:
+    get:
+      operationId: R203
+      summary: 'R203: View Catalogue'
+      description: "Show a page with all of the available products."
+
+      tags:
+        - 'M02: Products'
+
+      responses:
+        '200':
+          description: 'Ok. Show Catalogue UI'
+
   # -------------- #
   # M03 - Artists  #
 
@@ -384,11 +376,11 @@ paths:
 
     get:
       operationId: R301
-      summary: 'R301: View artist page'
+      summary: 'R301: View Artist Page'
       description: "Show a specific artist page, where all of its information is displayed. Access: VIS, CLI, ADM"
 
       tags:
-        - 'M02: Products'
+        - 'M03: Artists'
 
       responses:
         '200':
@@ -396,74 +388,8 @@ paths:
         '404':
           description: 'This artist does not exist in our store.'
 
-  # -------------- #
-  # M05 - Wishlist  #
-
-  #/wishlist/{id}:
-   # parameters:
-    #  - in: path
-     #   name: id
-      #  description: Wishlist ID
-       # schema:
-        #  type: integer
-        #required: true
-
-#    post:
- #     operationId: R501
-  #    summary: 'R501: Add product to wishlist'
-   #   description: 'Add a product to a wishlist. Access: CLI'
-    #  tags:
-     #   -  'M05: Wishlist'
-      #
-      #requestBody:
-       # required: true
-        #content:
-         # application/json:
-          #  schema:
-           #   type: object
-            #  properties:
-             #   id:
-              #    type: integer 
-                  
-      #responses:
-       # '200':
-        #  description: 'Successfully added product to wishlist.' 
-        #'404':
-         # description: 'Product with the specified ID not found.'
-
-  #/wishlist/{id}/product/{product_id}:
-   # parameters:
-    #  - in: path
-     #   name: id
-      #  description: Wishlist ID
-       # schema:
-        #  type: integer
-        #required: true
-      #- in: path
-       # name: product_id
-        #description: Product ID
-        #schema:
-         # type: integer
-        #required: true
-  
-    #delete:
-     # operationId: R502
-      #summary: 'R502: Remove product from wishlist'
-      #description: "Remove a product from wishlist. Access: CLI"
-      #tags:
-       # -  'M05: Wishlist'
-          
-      #responses:
-       # '200':
-        #  description: 'Successfully removed product from Wishlist.'
-        #'404':
-         # description: 'Product with the specified ID not found.'
-        #'406':
-         # description: 'Product not in wishlist.'
-  #
-
   # ------------ #
-  # M06 - Orders  #
+  # M06 - Orders #
 
   /checkout:
     get:
@@ -491,21 +417,6 @@ paths:
             schema:
               type: object
               properties:
-                address:
-                  type: object
-                  properties:
-                    street:
-                      type: string
-                    zip-code:
-                      type: string
-                    city:
-                      type: string
-                    country:
-                      type: string
-                shipping_method:
-                  type: string
-                payment_method:
-                  type: string
                 products:
                   type: array
                   product:
@@ -518,9 +429,6 @@ paths:
                       quantity:
                         type: integer
               required:
-                - address
-                - shipping_method
-                - payment_method
                 - products
 
       responses:
@@ -533,7 +441,143 @@ paths:
               examples:
                 302Success:
                   description: 'Successful checkout. Redirect to home.'
-                  value: '/home'
-                302Failure:
+                  value: '/'
+                302Error:
                   description: 'Failed checkout. Redirect to checkout.'
                   value: '/checkout'
+
+  # ------------ #
+  # M07 - Cart   #
+
+  /cart/increase/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Product ID
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: 'R701'
+      summary: 'R701: Increase Product Amount on Cart'
+      description: 'Increases the amount of a product on the cart by one, or adds it to the cart if it is not there already. Access: VIS, CLI'
+      tags:
+        - 'M07 - Cart'
+
+      requestBody:
+        required: true
+        content:
+          application/json: {}
+
+      responses:
+        '200':
+          description: 'Ok. Product successfully added'
+
+  /cart/decrease/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Product ID
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: 'R702'
+      summary: 'R702: Decrease Product Amount on Cart'
+      description: 'Decreases the amount of a product on the cart by one. Access: VIS, CLI'
+      tags:
+        - 'M07 - Cart'
+
+      requestBody:
+        required: true
+        content:
+          application/json: {}
+
+      responses:
+        '200':
+          description: 'Ok. Product amount successfully decreased'
+
+  /cart/remove/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Product ID
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: 'R703'
+      summary: 'R703: Remove Product from Cart'
+      description: 'Removes a product from the cart. Access: VIS, CLI'
+      tags:
+        - 'M07 - Cart'
+
+      requestBody:
+        required: true
+        content:
+          application/json: {}
+
+      responses:
+        '200':
+          description: 'Ok. Product successfully removed from cart'
+
+  # ----------------------------------------- #
+  # M09: User Administration and Static pages #
+
+  /admin:
+    get:
+      operationId: R901
+      summary: 'R901: Admin Page'
+      description: 'Show admin page. Access: ADM'
+      tags:
+        - 'M09: User Administration and Static pages'
+      responses:
+        '200':
+          description: 'Ok. Show Admin Page UI'
+
+  /admin/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: R902
+      summary: 'R902: Admin Edit User Action'
+      description: 'Processes the changes made by an admin to a user. Access: ADM'
+      tags:
+        - 'M09: User Administration and Static pages'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                is_blocked:
+                  type: bool
+
+      responses:
+        '302':
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful edit. Redirect to admin page.'
+                  value: '/admin'
+                302Error:
+                  description: 'Failed edit. Redirect to admin page.'
+                  value: '/admin'
