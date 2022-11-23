@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Product;
 use App\Models\Genre;
 use App\Models\Artist;
-use App\Http\Controllers\DB;
+use App\Models\Order;
+use App\Models\OrderProduct;
 
 class ProductController extends Controller
 {
@@ -31,9 +33,15 @@ class ProductController extends Controller
 
     }
 
+    public function buyProduct(int $id) {
+
+        $this->addToCart($id);
+        return to_route('product', ['id' => $id]);
+
+    }
+
     public function addProduct() {
         $this->authorize('create', Product::class);
-        
     }
 
     public static function homepage()
@@ -92,7 +100,7 @@ class ProductController extends Controller
                     ]
                 ];
             session(['cart' => $cart]);
-        } else if ($cart[$id]) {
+        } else if (isset($cart[$id])) {
             // if cart not empty then check if this product exist then increment quantity
             $cart[$id]['quantity']++;
             session(['cart' => $cart]);
@@ -114,6 +122,10 @@ class ProductController extends Controller
     public function decreaseFromCart($id) {
         if ($id) {
             $cart = session()->get('cart');
+            if(!isset($cart[$id])) {
+                abort('404');
+            }
+            
             if ($cart[$id]['quantity'] == 0) 
                 return redirect()->back()->with('success', 'Product quantity already at 0.');
             
@@ -136,12 +148,37 @@ class ProductController extends Controller
                 unset($cart[$id]);
                 session()->put('cart', $cart);
             }
+            else {
+                abort('404');
+            }
             return 200;
         }
     }
 
     public static function checkout() {
-
         return view('pages.checkout');
+    }
+
+    public function buy() {
+
+        $cart = session()->get('cart');
+
+        $order = Order::create([
+            'user_id' => Auth::id(),
+            'state' => 'Delivered'
+        ]);
+
+        foreach ($cart as $id => $product) {
+
+            DB::table('order_product')->insert([
+                'order_id' => $order->id,
+                'product_id' => $id,
+                'quantity' => $product['quantity']
+            ]);
+
+            $this->removeFromCart($id);
+
+        }
+        return to_route('home');
     }
 }

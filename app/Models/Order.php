@@ -9,6 +9,10 @@ class Order extends Model
   // Don't add create and update timestamps in database.
   public $timestamps  = false;
 
+  protected $fillable = [
+      'user_id', 'state'
+  ];
+
   /**
      * The user this order belongs to.
      */
@@ -28,5 +32,5 @@ class Order extends Model
    *
    * @var string
    */
-  protected $table = 'order';
+  protected $table = 'orders';
 }

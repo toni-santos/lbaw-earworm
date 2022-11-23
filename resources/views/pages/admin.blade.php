@@ -8,7 +8,7 @@
                 <span class="material-symbols-outlined">search</span>
             </button>        
         </form>
-        <p id="create-user-button">Create User</p>
+        <a href="{{route('adminCreatePage')}}" id="create-user-button">Create User</a>
     </div>
     <div id="user-list">
         @foreach ($users as $user)

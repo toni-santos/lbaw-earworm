@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+
 class AdminController extends Controller
 {
     /**
@@ -12,10 +15,19 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
-        $users = User::where('is_admin', 0)->get();//->paginate(20);
+        if (!Auth::user() || !Auth::user()->is_admin) abort(403);
+
+        $users = User::search($request->toArray()['user'])->where('is_admin', 0)->get();//->paginate(20);
         return view('pages.admin', ['users' => $users]);
+    }
+
+    public function showUserCreate() 
+    {
+        if (!Auth::user() || !Auth::user()->is_admin) abort(403);
+
+        return view('auth.admin-create');
     }
 
    /**
@@ -24,14 +36,23 @@ class AdminController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data) {
-        return User::create([
-            'name' => $data['name'],
+    public function create(Request $request) {
+
+        $data = $request->toArray();
+
+        $user = User::where('email', $data['email'])->first();
+        
+        if (!is_null($user))
+            return back()->withErrors('User already exists.');
+
+        User::create([
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'is_admin' => $data['is_admin'] ?? false,
-            'is_blocked' => false
+            'username' => $data['username'],
+            'password' => bcrypt($data['pwd']),
+            'is_admin' => array_key_exists('admin', $data)
         ]);
+
+        return to_route('adminpage');
     }
 
     /**

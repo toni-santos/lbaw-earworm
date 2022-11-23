@@ -2,7 +2,7 @@
 <main id="content-wrapper">
     <div id="product-grid">
         <div id="product-img-wrapper">
-            <img src={{ url('/images/products/'.$product['id'].'.jpg') }} id="product-img">
+            <img src={{ url('/images/products/' . $product['id'] . '.jpg') }} id="product-img">
         </div>
         <div class="product-description">
             <p id="product-name">{{$product->name}}</p>
@@ -15,7 +15,9 @@
         </div>
         <div id="product-purchase">
             <p id="product-price">{{$product->price}} €</p>
-            <button class="confirm-button">BUY</button>
+            <button class="confirm-button">
+                <a href="{{route('buyProduct', ['id' => $product->id])}}">BUY</a>
+            </button>
         </div>
     </div>
     <div id="product-tracklist-wrapper">

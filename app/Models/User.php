@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username', 'email', 'password', 'is_admin'
     ];
 
     /**
@@ -34,10 +34,11 @@ class User extends Authenticatable
         //dd($search);
         if($search ?? false) {
           return $query->where('username', 'LIKE', "%{$search}")
-                      ->orWhere('id', 'LIKE', "%{$search}%");
-                      -orWhere('email', 'LIKE', '%{$search}%');
+                      ->orWhere('id', 'LIKE', "%{$search}%")
+                      ->orWhere('email', 'LIKE', "%{$search}%");
         }
       }
+
 
     /**
      * The products this user has wishlisted.
@@ -57,7 +58,7 @@ class User extends Authenticatable
      * The orders this user has made.
      */
     public function orders() {
-        return $this->hasMany(Order::class, 'orders', 'user_id', 'order_id')->withPivot('quantity');
+        return $this->hasMany(Order::class, 'user_id');
     }
 
     /**
@@ -65,5 +66,5 @@ class User extends Authenticatable
    *
    * @var string
    */
-  protected $table = 'users';
+    protected $table = 'users';
 }

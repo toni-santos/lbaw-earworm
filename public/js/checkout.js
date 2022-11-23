@@ -97,13 +97,11 @@ window.addEventListener('load', () => {
 function checkDone(event) {
     // activate button
     let activate = false;
-    const form = event.composedPath()[4];
-    const button = document.getElementById('confirm-checkout')
-    Object.values(form.children[0].getElementsByTagName("input")).forEach(element => {
-        if (element.value.length != 0) {
-            activate = true;
-        }
-    });
+    const button = document.getElementById('confirm-checkout');
+    const pm = document.getElementById('address');
+    if (pm.value.length != 0) {
+        activate = true;
+    }
 
     if (activate) {
         button.disabled = false;

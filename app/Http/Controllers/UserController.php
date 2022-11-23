@@ -35,11 +35,21 @@ class UserController extends Controller
         }
         
         $favArtists = $user->favouriteArtists->toArray();
-        
+        $orders = $user->orders;
+
+        $boughtProducts = [];
+
+        foreach ($orders as $order) {
+            foreach ($order->products as $product) {
+                array_push($boughtProducts, $product);
+            }
+
+        }
+
         return view('pages.user', [
             'user' => $user,
             'favArtists' => $favArtists,
-            'purchaseHistory' => Product::all()->take(5),
+            'purchaseHistory' => $boughtProducts,
             'recommendedProducts' => Product::all()->take(5)
         ]);
     }

@@ -47,6 +47,12 @@ class LoginController extends Controller
         ];
 
         if (Auth::attempt($credentials)) {
+        
+            if (Auth::user()->is_blocked){ 
+                $this->logout($request);
+                return back();
+            }
+
             $request->session()->regenerate();
 
             if (Auth::User()->is_admin) {

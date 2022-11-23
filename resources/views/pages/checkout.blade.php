@@ -1,6 +1,6 @@
 <x-Head page="checkout"/>
 <main>
-    <form method="POST" action="">
+    <form method="POST" action="{{route('buy')}}">
         {{ csrf_field() }}
         <div id="payment-wrapper">
             <section id="items-wrapper">
@@ -25,15 +25,15 @@
                 </div>
                 <div id="billing-info">
                     <x-Subtitle title="Billing Information" />
-                    <input placeholder=" " class="text-input" type="text" id="address" name="address" onkeyup="checkDone(event)" required>
+                    <input placeholder="Address" class="text-input" type="text" id="address" name="address" onkeyup="checkDone(event)" required>
                     <label class="input-label" for="address">Address</label>
                 </div>
                 <div id="payment-method">
                     <x-Subtitle title="Payment Method" />
                     <label for="mbway" class="radio-label">
-                    <input type="radio" class="radio" name="payment-method" id="mbway" value="mbway" onclick="checkDone(event)" required>MBWay</label>
+                    <input type="radio" class="radio" name="payment-method" id="mbway" value="mbway" checked required>MBWay</label>
                     <label for="billing" class="radio-label">
-                    <input type="radio" class="radio" name="payment-method" id="billing" value="billing" onclick="checkDone(event)" required>Billing</label>
+                    <input type="radio" class="radio" name="payment-method" id="billing" value="billing" required>Billing</label>
                 </div>
                 <div id="checkout-total">
                     <a class="subtitle1" id="checkout-value">0€</a>

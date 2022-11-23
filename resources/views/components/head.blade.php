@@ -44,6 +44,7 @@
         <script type="text/javascript" src={{ asset('js/index.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/checkout.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/cart.js') }} defer></script>
+        <script type="text/javascript" src={{ asset('js/cart.js') }} defer></script>
         @break
       
       @case('product')

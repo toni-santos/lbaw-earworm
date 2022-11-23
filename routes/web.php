@@ -20,6 +20,7 @@ Route::get('/', 'ProductController@homepage')->name('home');
 // Products
 Route::get('/product/{id}', 'ProductController@show')->name('product');
 Route::get('/products', 'ProductController@catalogue')->name('catalogue');
+Route::get('/product/buy/{id}', 'ProductController@buyProduct')->name('buyProduct');
 
 //test func
 Route::get('/cart', 'ProductController@cart')->name('cart');
@@ -28,20 +29,23 @@ Route::get('/cart', 'ProductController@cart')->name('cart');
 //Route::get('/decrease-from-cart/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
 //Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
+Route::post('/checkout', 'ProductController@buy')->name('buy');
 
 
 // User 
+Route::get('/user/settings/{id}', 'UserController@editProfile')->name('editprofile');
+Route::post('/user/settings/{id}', 'UserController@update')->name('editprofilepost');
 Route::get('/user/{id}', 'UserController@show')->name('profile');
 Route::get('/user', 'UserController@ownprofile')->name('ownprofile');
-Route::get('/user/{id}/settings', 'UserController@editProfile')->name('editprofile');
-Route::post('/user/{id}/settings', 'UserController@update')->name('editprofilepost');
 Route::post('/cart/increase/{id}', 'ProductController@addToCart')->name('addToCart');
 Route::post('/cart/decrease/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
 Route::post('/cart/remove/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
 
 // Admin
-Route::get('/admin', 'AdminController@show')->name('adminpage');
+Route::get('/admin/create', 'AdminController@showUserCreate')->name('adminCreatePage');
+Route::post('/admin/create', 'AdminController@create')->name('adminCreateAction');
 Route::post('/admin/{id}', 'AdminController@update')->name('adminedit');
+Route::get('/admin', 'AdminController@show')->name('adminpage');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

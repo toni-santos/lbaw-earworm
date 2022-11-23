@@ -59,7 +59,7 @@ class RegisterController extends Controller
             return back()->withErrors([
                 'message' => 'Invalid credentials'
             ]);
-
+        
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
