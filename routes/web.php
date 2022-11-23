@@ -44,6 +44,7 @@ Route::post('/cart/remove/{id}', 'ProductController@removeFromCart')->name('remo
 // Admin
 Route::get('/admin/create', 'AdminController@showUserCreate')->name('adminCreatePage');
 Route::post('/admin/create', 'AdminController@create')->name('adminCreateAction');
+Route::post('/admin/delete', 'AdminController@deleteUser')->name('deleteUser');
 Route::post('/admin/{id}', 'AdminController@update')->name('adminedit');
 Route::get('/admin', 'AdminController@show')->name('adminpage');
 

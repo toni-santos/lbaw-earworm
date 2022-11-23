@@ -34,7 +34,8 @@
         </section>
         <button class="confirm-button" type="submit">Change</button>
     </form>
-    <form method="POST" class="form-bot" action="">
+    <form method="POST" class="form-bot" action="{{route('deleteUser', ['user' => $user])}}">
+        {{ csrf_field() }}
         <button class="confirm-button" type="submit">Delete</button>
     </form>
 </div>

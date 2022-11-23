@@ -17,17 +17,17 @@ class AdminController extends Controller
      */
     public function show(Request $request)
     {
-        if (!Auth::user() || !Auth::user()->is_admin) abort(403);
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
         $search = !empty($request->toArray()) ? $request->toArray()['user'] : '';
         
-        $users = User::search($search)->where('is_admin', 0)->get();//->paginate(20);
+        $users = User::search($search)->where('is_admin', 0)->where('is_deleted', 0)->get();//->paginate(20);
         return view('pages.admin', ['users' => $users]);
     }
 
     public function showUserCreate() 
     {
-        if (!Auth::user() || !Auth::user()->is_admin) abort(403);
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
         return view('auth.admin-create');
     }
@@ -87,6 +87,23 @@ class AdminController extends Controller
         $user->save();
 
         return to_route('adminpage');
+    }
+
+    public function deleteUser(Request $request) {
+
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
+
+        $user = User::findOrFail(intval($request->toArray()['user']));
+
+        $user->email = sha1(rand());
+        $user->username = sha1(rand());
+        $user->password = sha1(rand());;
+        $user->is_deleted = true;
+
+        $user->save();
+        
+        return to_route('adminpage');
+
     }
 
     public function findUser() {

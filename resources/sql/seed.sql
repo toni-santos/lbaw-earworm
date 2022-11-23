@@ -35,7 +35,8 @@ CREATE TABLE users(
     username    VARCHAR(60) NOT NULL,
     password    VARCHAR(255) NOT NULL,
     is_blocked  BOOLEAN NOT NULL DEFAULT FALSE,
-    is_admin    BOOLEAN NOT NULL DEFAULT FALSE
+    is_admin    BOOLEAN NOT NULL DEFAULT FALSE,
+    is_deleted  BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE artist(
