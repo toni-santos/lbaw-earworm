@@ -573,3 +573,66 @@ paths:
                 302Error:
                   description: 'Failed edit. Redirect to admin page.'
                   value: '/admin'
+
+  /admin/create:
+    get:
+      operationId: R903
+      summary: 'R903: Admin User Creation Page'
+      description: 'Show user creation for admin page. Access: ADM'
+      tags:
+        - 'M09: User Administration and Static pages'
+      responses:
+        '200':
+          description: 'Ok. Show User Creation Page UI'
+
+    post:
+      post:
+      operationId: R904
+      summary: 'R904: Admin User Creation Action'
+      description: 'Process the new user registration form submission by an admin. Access: ADM'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                picture:
+                  type: string
+                  format: binary
+                password:
+                  type: string
+              required:
+                - email
+                - password
+
+
+  /admin/delete:
+    post:
+      operationId: R905
+      summary: 'R905: Admin Delete User Action'
+      description: 'Delete admin page. Access: ADM'
+      tags:
+        - 'M09: User Administration and Static pages'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: int
+
+      responses:
+        '200':
+          description: 'Successful user deletion. Redirect to admin page'
+

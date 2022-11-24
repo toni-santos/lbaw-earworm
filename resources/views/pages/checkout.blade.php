@@ -46,7 +46,6 @@
                 @else 
                 <div id="checkout-total">
                     <a class="subtitle1" id="checkout-value">0€</a>
-                
                     <button type="submit" class="confirm-button" id="confirm-checkout">Register to Buy</button>
                 </div>
                 @endif

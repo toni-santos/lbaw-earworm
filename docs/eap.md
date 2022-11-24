@@ -718,6 +718,10 @@ As of this date (24/11/2022), the features present in this section limit themsel
 |---|---|
 |R901: Admin Page|GET /admin|
 |R902: Admin Edit User Action|POST /admin/{id}|
+|R903: Admin User Creation Page|POST /admin/create|
+|R904: Admin User Creation Action|POST /admin/create|
+|R905: Admin Delete User Action|POST /admin/delete|
+
 
 ### 2. Prototype
 
