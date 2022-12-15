@@ -1,7 +1,3 @@
-@props([
-    'artist'
-])
-
 <div class="artist-card">
     <a href="/artist/{{$artist['id']}}"><img src="https://via.placeholder.com/200.png/"></a>
     <div class="artist-desc">

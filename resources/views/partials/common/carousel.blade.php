@@ -1,6 +1,6 @@
 <div>
     @if ($carouselTitle != '')
-        <x-Subtitle title="{{$carouselTitle}}"/>
+        @include('partials.common.subtitle', ['title' => $carouselTitle])
     @endif
     
     <div class="carousel-container">
@@ -8,18 +8,17 @@
             @switch($type)
                 @case("artist")
                     @foreach ($content as $artist)
-                        <x-ArtistCard :artist='$artist'/>
+                        @include('partials.common.artist-card', ['artist' => $artist])
                     @endforeach
                     @break
                 @case("product")
                     @foreach ($content as $product)
-                        <x-ProductCard :product='$product'/>
+                        @include('partials.common.product-card', ['product' => $product])
                     @endforeach
                     @break
                 @case("promo")
-                    {{-- SWITCH $i TO 3 WHEN CAROUSEL IMPLEMENTED --}}
-                    @for ($i = 0; $i < 1; $i++)
-                        @include('partials.promocard')
+                    @for ($i = 0; $i < 3; $i++)
+                        @include('partials.common.promocard')
                     @endfor
                     @break
                 @default

@@ -1,4 +1,4 @@
 @extends('layouts.sign')
 @section('content')
-    <x-SignUpForm />
+    @include('partials.forms.sign-up-form')
 @endsection

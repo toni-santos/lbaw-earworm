@@ -5,7 +5,7 @@
             <a href="{{route('home')}}"> <p id="site-name">EarWorm</p> </a>
         </div>
         <div class="search-container">
-            <x-SearchBar />
+            @include('partials.nav.search-bar')
         </div>
         <div id="icons">
             <!-- account_circle is a placeholder for the users pfp -->
@@ -13,20 +13,15 @@
             <a href="" id="wishlist-icon"><span class="material-symbols-outlined">favorite</span></a>
             <a href="{{route('checkout')}}" id="cart-icon"><span class="material-symbols-outlined">shopping_basket</span></a>
             <a href="{{route('ownprofile')}}" id="profile-icon"><span class="material-symbols-outlined">account_circle</span></a>
-            @include('partials.profiledropdown')
-            @include('partials.cartdropdown')
-            @include('partials.wishlistdropdown')
+            @include('partials.nav.profile-dropdown')
+            @include('partials.nav.cart-dropdown')
+            @include('partials.nav.wishlist-dropdown')
             @else
             <a href="{{route('checkout')}}" id="cart-icon"><span class="material-symbols-outlined">shopping_basket</span></a>
             <a href="{{route('login')}}" id="profile-icon" title="Login"><span class="material-symbols-outlined">login</span></a>
-            @include('partials.cartdropdown')
+            @include('partials.nav.cart-dropdown')
             @endif
         </div>
-    </div>
-    <div id="wide-bot" class="sub-bar">
-        <a href="">New Deals</a>
-        <a href="">Trending</a>
-        <a href="">Indievember</a>
     </div>
 </nav>
 
@@ -41,7 +36,7 @@
 </nav>
 <div id="mobile-content">
     <div class="search-container">
-        <x-SearchBar />
+        @include('partials.nav.search-bar')
     </div>
     <div id="mobile-content-screen">
         <div id="mobile-nav-promos">

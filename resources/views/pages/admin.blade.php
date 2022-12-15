@@ -1,6 +1,6 @@
-<x-Head page="admin"/>
+@include('partials.common.head', ['page' => "admin"])
 <main >
-    <x-Subtitle title="User Administration"/>
+    @include('partials.common.subtitle', ['title' => "User Administration"])
     <div id="user-admin-top">
         <form id="user-sb" method="GET" action="{{route('adminpage') }}">
             <input name="user" type="text" class="searchbar" placeholder="Search">
@@ -12,8 +12,8 @@
     </div>
     <div id="user-list">
         @foreach ($users as $user)
-            @include('partials.adminuser', ['user' => $user])
+            @include('partials.backoffice.user-card', ['user' => $user])
         @endforeach
     </div>
 </main>
-<x-Foot/>
+@include('partials.common.foot')

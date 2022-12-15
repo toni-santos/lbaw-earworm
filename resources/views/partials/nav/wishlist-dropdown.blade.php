@@ -2,7 +2,7 @@
     <p>Wishlist</p>
     <div id="wishlist-wrapper">
         @for ($i = 0; $i < 5; $i++)
-            @include('partials.wishlistitem')
+            @include('partials.wishlist-item')
         @endfor
     </div>
 </div>

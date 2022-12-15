@@ -1,4 +1,4 @@
-<x-Head page="product"/>
+@include('partials.common.head', ['page' => "product"])
 <main id="content-wrapper">
     <div id="product-grid">
         <div id="product-img-wrapper">
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div id="product-tracklist-wrapper">
-        <x-Subtitle title="Tracklist"/>
+        @include('partials.common.subtitle', ['title' => "Tracklist"])
         <div id="product-tracklist">
             <?php
                 $arr = explode("\n", $product->description);
@@ -30,11 +30,11 @@
             <?php } ?>
         </div>
     </div>
-    @include('partials.carousel', [
+    @include('partials.common.carousel', [
         'carouselTitle' => 'More like this...',
         'carouselId' => 'carousel-fy',
         'type' => 'product',
         'content' => $products
     ])
 </main>
-<x-Foot/>
+@include('partials.common.foot')

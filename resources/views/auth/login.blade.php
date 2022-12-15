@@ -1,4 +1,4 @@
 @extends('layouts.sign')
 @section('content')
-    <x-SignInForm />
+    @include('partials.forms.sign-in-form')
 @endsection

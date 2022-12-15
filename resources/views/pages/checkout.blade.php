@@ -1,4 +1,4 @@
-<x-Head page="checkout"/>
+@include('partials.common.head', ['page' => "checkout"])
 <main>
     @if (Auth::check())
         <form method="POST" action="{{route('buy')}}">
@@ -10,18 +10,18 @@
             <section id="items-wrapper">
                 @if (session()->get('cart'))
                     @foreach (session()->get('cart') as $id => $details)
-                        @include('partials.checkoutitem', ['id' => $id, 'details' => $details])
+                        @include('partials.cart.checkout-item', ['id' => $id, 'details' => $details])
                     @endforeach
                 @else
                     <h2> Nothing in cart. </h2>
                 @endif
             </section>
             <aside id="payment-info">
-                <x-Subtitle title="Payment Information" />
+                @include('partials.common.subtitle', ['title' => "Payment Information"])
                 <div id="payment-description">
                     @if (session('cart'))
                         @foreach (session('cart') as $id => $details)
-                            @include('partials.itemprice', ['id' => $id, 'details' => $details])
+                            @include('partials.cart.item-price', ['id' => $id, 'details' => $details])
                         @endforeach
                     @else
                         <h2> Nothing in cart. </h2>
@@ -29,12 +29,12 @@
                 </div>
                 @if (Auth::check())                    
                     <div id="billing-info">
-                        <x-Subtitle title="Billing Information" />
+                        @include('partials.common.subtitle', ['title' => "Billing Information"])
                         <input placeholder="Address" class="text-input" type="text" id="address" name="address" onkeyup="checkDone(event)" required>
                         <label class="input-label" for="address">Address</label>
                     </div>
                     <div id="payment-method">
-                        <x-Subtitle title="Payment Method" />
+                        @include('partials.common.subtitle', ['title' => "Payment Method"])
                         <label for="mbway" class="radio-label">
                         <input type="radio" class="radio" name="payment-method" id="mbway" value="mbway" checked required>MBWay</label>
                         <label for="billing" class="radio-label">
@@ -53,4 +53,4 @@
         </div>
     </form>
 </main>
-<x-Foot/>
+@include('partials.common.foot')

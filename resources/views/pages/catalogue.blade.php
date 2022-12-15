@@ -1,4 +1,4 @@
-<x-Head page="catalogue"/>
+@include('partials.common.head', ['page' => "catalogue"])
 <main id="content-wrapper">
     <section id="filters">
         <!-- form to actually do stuff (in the future) -->
@@ -59,7 +59,7 @@
     <section id="results">
         @if (!empty($products)) 
             @foreach ($products as $product)
-                <x-ProductCard :product="$product"/>
+                @include('partials.common.product-card', ['product' => $product])
             @endforeach
         @else
             <script> 
@@ -68,4 +68,4 @@
         @endif
     </section>
 </main>
-<x-Foot/>
+@include('partials.common.foot')

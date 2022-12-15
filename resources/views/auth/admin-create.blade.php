@@ -2,7 +2,8 @@
 @section('content')
 <form id="form-signup" method="POST" action={{ route('adminCreateAction') }}>
     {{ csrf_field() }}
-    <x-Subtitle title="User Creation (Admin)"/>
+    
+    @include('partials.common.subtitle', ['title' => "User Creation (Admin)"])
 
     <section id="inputs-box" class="inputs-box-admin">
         <div class="input-container">

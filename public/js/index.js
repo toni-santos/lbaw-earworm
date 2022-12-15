@@ -1,14 +1,14 @@
 // carousels
 
-let carouselPromos = new Flickity('#carousel-promos', {
-    draggable: true,
-    wrapAround: true,
-    groupCells: false,
-    autoPlay: true,
-    dragThreshold: 10,
-    prevNextButtons: false,
-    resize: true
-});
+// let carouselPromos = new Flickity('#carousel-promos', {
+//     draggable: true,
+//     wrapAround: true,
+//     groupCells: false,
+//     autoPlay: true,
+//     dragThreshold: 10,
+//     prevNextButtons: false,
+//     resize: true
+// });
 
 let carouselTrending = new Flickity('#carousel-trending', {
     draggable: true,
@@ -30,4 +30,21 @@ let carouselForYou = new Flickity('#carousel-fy', {
     prevNextButtons: false,
     resize: true,
     cellSelector: '.product-card',
+});
+
+// navbar
+
+const navbar = document.getElementById('navbar-wide');
+const navbarInside = document.getElementById('wide-top');
+const scrollCap = window.screen.height / 2;
+
+window.addEventListener('scroll' , () => {
+    
+    let scrollPercentage = window.scrollY / scrollCap;
+    navbarInside.style.background = 'rgba(86,58,46,' + scrollPercentage + ')';
+    if (window.scrollY >= scrollCap) {
+        navbar.style.background = 'var(--border-color)';
+    } else {
+        navbar.style.background = 'linear-gradient(0deg, rgb(0,0,0,0) 0%, var(--border-color) 100%)';
+    }
 });

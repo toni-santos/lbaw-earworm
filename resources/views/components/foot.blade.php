@@ -1,3 +1,0 @@
-    </body>
-    <x-Footer />
-</html>

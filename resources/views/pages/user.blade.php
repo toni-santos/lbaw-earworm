@@ -1,4 +1,4 @@
-<x-Head page="user"/>
+@include('partials.common.head', ['page' => "user"])
 <main>
     <div id="profile-header">
         <img id="profile-pic" src="https://picsum.photos/250/400?random=1">
@@ -14,18 +14,18 @@
     </section>
     <div id="content-wrapper">
         <section id="reviews">
-            <x-Subtitle title="Reviews"/>
+            @include('partials.common.subtitle', ['title' => "Reviews"])
             <div id="review-wrapper">
-                @include('partials.review')
-                @include('partials.review')
-                @include('partials.review')
-                @include('partials.review')
-                @include('partials.review')
-                @include('partials.review')
+                @include('partials.user.review')
+                @include('partials.user.review')
+                @include('partials.user.review')
+                @include('partials.user.review')
+                @include('partials.user.review')
+                @include('partials.user.review')
             </div>
         </section>
         <section id="fav-artists">
-            @include('partials.carousel', [
+            @include('partials.common.carousel', [
                 'carouselTitle' => 'User Favorite Artists',
                 'carouselId' => 'carousel-fav-artists',
                 'type' => 'artist',
@@ -33,15 +33,15 @@
             ])
         </section>
         <section id="buy-history">
-            <x-Subtitle title="Purchase History"/>
+            @include('partials.common.subtitle', ['title' => "Purchase History"])
             <div id="buy-history-wrapper">
                 @foreach ($purchaseHistory as $product)
-                    @include('partials.buyhistory', ['product' => $product])
+                    @include('partials.user.buy-history', ['product' => $product])
                 @endforeach
             </div>
         </section>
         <section id="lastfm-recs">
-            @include('partials.carousel', [
+            @include('partials.common.carousel', [
                 'carouselTitle' => 'Last.fm Recommendations',
                 'carouselId' => 'carousel-lastfm-recs',
                 'type' => 'product',
@@ -50,4 +50,4 @@
         </section>
     </div>
 </main>
-<x-Foot />
+@include('partials.common.foot')

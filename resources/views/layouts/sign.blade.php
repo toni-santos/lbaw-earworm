@@ -1,4 +1,4 @@
-<x-Head page="sign"/>
+@include('partials.common.head', ['page' => "sign"])
 <main id="content-wrapper">
     <div id="side-image"></div>
     <section id="sign-wrapper">
@@ -6,4 +6,4 @@
         @show
     </section>
 </main>
-<x-Foot/>
+@include('partials.common.foot')

@@ -23,7 +23,7 @@ class ProductController extends Controller
         $product['price'] /= 100;
         return view('pages.product', [
             'product' => $product,
-            'products' => Product::all()->take(5),
+            'products' => Product::inRandomOrder()->limit(10)->get(),
             'genres' => $product->genres->toArray()
         ]);
 
@@ -46,8 +46,8 @@ class ProductController extends Controller
 
     public static function homepage()
     {
-        $trendingProducts = Product::all()->take(5);
-        $fyProducts = Product::all()->take(5);
+        $trendingProducts = Product::inRandomOrder()->limit(10)->get();
+        $fyProducts = Product::inRandomOrder()->limit(10)->get();
 
         foreach ($trendingProducts as $trendingProduct) {
             $trendingProduct['artist_name'] = $trendingProduct->artist->name;

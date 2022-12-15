@@ -1,7 +1,3 @@
-@props([
-    'product'
-])
-
 <div class="product-card">
     <a href="/product/{{$product['id']}}"><img class="product-card-img" src={{ url('/images/products/'.$product['id'].'.jpg') }}></a>
     <div class="product-desc">

@@ -17,8 +17,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="{{ asset('css/global.css') }}" rel="stylesheet">
-    {{-- UNCOMMENT THIS WHEN ENABLING FLICKR --}}
-    {{-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> --}}
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     
     @switch($page)
       @case('catalogue')
@@ -84,9 +83,8 @@
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     <script type="text/javascript" src={{ asset('js/global.js') }} defer></script>
-    {{-- UNCOMMENT THIS WHEN ENABLING FLICKR (copium)--}}
-    {{-- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> --}}
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
   </head>
-  <x-Navbar/>
+  @include('partials.nav.navbar')
   <body>
