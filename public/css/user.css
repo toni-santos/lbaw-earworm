@@ -16,7 +16,7 @@ main {
     font-size: xx-large;
     position: absolute;
     font-weight: bold;
-    color: white;
+    color: var(--light-text);
     left: 370px;
     bottom: 10px;
 }
@@ -32,7 +32,7 @@ main {
 }
 
 #content-select {
-    background-color: var(--subtle-color);
+    background-color: var(--main-accent);
     font-size: large;
     display: grid;
     grid-template-columns: 35% 1fr;

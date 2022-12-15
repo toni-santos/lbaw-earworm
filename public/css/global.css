@@ -1,13 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 :root {
-  --raisin-black: #2d2a32ff;
-  --orange-yellow: #f2bb05ff;
-  --alice-blue: #eff7ffff;
-  --mint: #6ab48fff;
-  --red-orange-color-wheel: #ff521bff;
+  --forest-green-traditional: #185229;
+  --british-racing-green: #123F20;
+  --spanish-green: #288F49;
+  --white: #fdfdffff;
+  --silver: #c6c5b9ff;
+  --raisin-black: #2e282aff;
+  --cedar-chest: #cd5334ff;
+
+  --main-accent: var(--forest-green-traditional);
+  --sub-accent: var(--cedar-chest);
+  --dark-accent: var(--british-racing-green);
+  --light-accent: var(--spanish-green);
+  --light-contrast: var(--silver);
+  
+  --background-light: var(--white);
+  --background-dark: var(--raisin-black);
+  
+  --light-text: var(--white);
+  --dark-text: var(--raisin-black);
+
 }
 
+/* 
 :root {
   --bg-color: rgba(255,255,255, 1);
   --text-color: rgba(150,104,84, 1);
@@ -43,7 +59,7 @@
   :root {
     --bg-color: rgba(32,32,32, 1);
     --text-color: rgba(177,128,107, 1);
-    /* --text-soft-color: rgba(156,112,94, 1); */
+    --text-soft-color: rgba(156,112,94, 1);
     --text-soft-color: white;
     --text-strong-color: rgba(222,161,136, 1);
     --subtle-color: rgba(43,34,31, 1);
@@ -137,7 +153,7 @@
     --dark-color-rgb: 74,45,45;
     --light-color-rgb: 251,221,221;
   }
-}
+} */
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -183,19 +199,20 @@ p {
 
 body {
   min-height: 100vh;
-  background-color: var(--bg-color);
+  background-color: var(--background-light);
   margin: 0;
   padding: 0;
-  color: var(--text-soft-color);
+  color: var(--dark-text);
 }
 
 .navbar {
-  background-color: var(--border-color);
+  background-color: var(--main-accent);
   display: flex;
   flex-direction: column;
   position: fixed;
   width: 100vw;
   z-index: 99999;
+  color: var(--light-text);
 }
 
 .sub-bar {
@@ -224,7 +241,7 @@ body {
 }
 
 #wide-top {
-  background-color: var(--border-color);
+  background-color: var(--main-accent);
   height: 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -246,7 +263,7 @@ body {
   width: 270px;
   height: auto;
   padding: 10px;
-  background-color: var(--border-color);
+  background-color: var(--main-accent);
   padding-top: 20px;
   gap: 10px;
 }
@@ -278,7 +295,8 @@ body {
 #cart-dropdown-purchase {
   all: unset;
   cursor: pointer;
-  background-color: var(--subtle-color);
+  background-color: var(--background-dark);
+  color: var(--light-text);
   padding: 4px;
   text-align: center;
 }
@@ -322,7 +340,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 }
 
 .cart-item-amnt a {
-  background-color: black;
+  background-color: var(--background-dark);
 }
 
 .dec-cart-item, .inc-cart-item {
@@ -367,11 +385,11 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 }
 
 .searchbar {
-  background-color: var(--input-color);
+  background-color: var(--dark-accent);
   width: 100%;
   border: 3px;
-  border-color: var(--border-color);
-  color: var(--text-strong-color);
+  border-color: var(--light-accent);
+  color: var(--light-text);
   padding: 7px;
   padding-right: 37px;
 }
@@ -416,13 +434,14 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
     padding-block: 10px;
   }
 
-  #mobile-content {
+  /* #mobile-content {
     transform: translateY(-200%);
-  }
+  } */
 }
 
 #mobile-content {
-  background-color: var(--border-color);
+  color: var(--light-text);
+  background-color: var(--main-accent);
   position: absolute;
   transform: translateY(-200%);
   width: 100%;
@@ -431,43 +450,18 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   align-items: center;
   align-content: center;
   z-index: 20;
-  
+  padding-top: 60px;
+  justify-content: space-between;
 }
 
 #mobile-content-screen {
-  background-color: var(--subtle-color);
+  background-color: var(--main-accent);
   width: 100%;
   font-size: larger;
-  min-height: 40vh;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-#mobile-nav-promos {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#mobile-nav-promos > * {
-  width: 100%;
-  text-align: center;
-  padding-inline: 10px;
-  padding-block: 20px;
-}
-
-#mobile-nav-promos > * :hover {
-  background-color: var(--light-color);
-}
-
-#mobile-nav-promos > :first-child {
-  padding-top: 20px;
-}
-
-#mobile-nav-promos > :last-child {
-  padding-bottom: 20px;
 }
 
 #mobile-icons {
@@ -476,7 +470,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding-bottom: 20px;
+  padding-block: 20px;
 }
 
 #mobile-icons a {
@@ -503,6 +497,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 #mobile-nav-profile-icon {
   display: flex;
   flex-direction: row;
+  gap: 10px;
 }
 
 #obscure-bg {
@@ -511,7 +506,9 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   height: 100%;
   opacity: 0%;
   background-color: black;
-  pointer-events: none;
+  pointer-events:all;
+  z-index: 19;
+  top: -200%;
 }
 
 #footer {
@@ -519,7 +516,8 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   flex-wrap: wrap;
-  background-color: var(--subtle-color);
+  background-color: var(--main-accent);
+  color: var(--light-text);
 }
 
 #footer-links {
@@ -544,7 +542,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 }
 
 #footer-finds {
-  border-left: 1px solid var(--light-color);
+  border-left: 1px solid var(--light-accent);
 }
 
 #footer-locations {
@@ -555,6 +553,23 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   gap: 15px;
 }
 
+@media (max-width: 768px) {
+  #footer {
+    grid-template-columns: 1fr;
+  }
+
+  #footer-finds {
+    margin-inline: 20%;
+    border-left: 0px;
+    border-top: 1px solid var(--light-accent);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+
 .subtitle-container {
   padding-inline: 70px;
   padding-block: 10px;
@@ -563,7 +578,8 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 .subtitle-container > p {
   font-size: large;
   font-weight: bold;
-  border-bottom: 1px solid var(--light-color);
+  border-bottom: 1px solid var(--dark-text);
+  padding-bottom: 5px;
 }
 
 .dropdown-warning {
@@ -575,7 +591,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 
 .nav-button {
   text-align: center;
-  background-color: var(--subtle-color);
+  background-color: var(--light-tex);
   width: 100%;
   padding: 4px;
 }

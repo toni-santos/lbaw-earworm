@@ -16,7 +16,7 @@ let carouselTrending = new Flickity('#carousel-trending', {
     groupCells: '100%',
     autoPlay: true,
     dragThreshold: 10,
-    prevNextButtons: false,
+    prevNextButtons: true,
     resize: true,
     cellSelector: '.product-card',
 });
@@ -27,7 +27,7 @@ let carouselForYou = new Flickity('#carousel-fy', {
     groupCells: '100%',
     autoPlay: true,
     dragThreshold: 10,
-    prevNextButtons: false,
+    prevNextButtons: true,
     resize: true,
     cellSelector: '.product-card',
 });
@@ -41,10 +41,10 @@ const scrollCap = window.screen.height / 2;
 window.addEventListener('scroll' , () => {
     
     let scrollPercentage = window.scrollY / scrollCap;
-    navbarInside.style.background = 'rgba(86,58,46,' + scrollPercentage + ')';
+    navbarInside.style.background = 'rgba(24, 82, 41,' + scrollPercentage + ')';
     if (window.scrollY >= scrollCap) {
-        navbar.style.background = 'var(--border-color)';
+        navbar.style.background = 'var(--main-accent)';
     } else {
-        navbar.style.background = 'linear-gradient(0deg, rgb(0,0,0,0) 0%, var(--border-color) 100%)';
+        navbar.style.background = 'linear-gradient(0deg, rgb(0,0,0,0) 0%, rgb(0,0,0,0) 50%, rgba(24, 82, 41, 0.5) 100%)';
     }
 });

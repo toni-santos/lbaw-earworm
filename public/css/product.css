@@ -66,14 +66,14 @@
     font-size: larger;
     margin-inline: 20px;
     border: none;
-    background-color: var(--border-color);
-    color: var(--text-soft-color);
+    background-color: var(--main-accent);
+    color: var(--light-text);
     transition: all 0.2s ease-in-out;
     cursor: default;
 }
 
 .confirm-button:disabled {
-    background-color: var(--input-color);
+    background-color: var(--dark-accent);
 }
 
 #product-price {

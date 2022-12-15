@@ -27,8 +27,8 @@
 
 <nav id="navbar-mobile" class="navbar">
     <div id="logo-div">
-        <img id="logo" src="https://img.icons8.com/fluency/512/earth-worm.png">
-        <p id="site-name">EarWorm</p>
+        <a href="{{route('home')}}"><img id="logo" src="https://img.icons8.com/fluency/512/earth-worm.png"></a>
+        <a href="{{route('home')}}"><p id="site-name">EarWorm</p></a>
     </div>
     <div id="hamburger" data-show="false">
         <span id="hamburger-icon" class="material-symbols-outlined">menu</span>
@@ -39,14 +39,10 @@
         @include('partials.nav.search-bar')
     </div>
     <div id="mobile-content-screen">
-        <div id="mobile-nav-promos">
-            <a>New Deals</a>
-            <a>Trending</a>
-            <a>Indievember</a>
-        </div>
         <div id="mobile-icons">
+            @if (Auth::check())
             <a><span class="material-symbols-outlined">favorite</span>Wishlist</a>
-            <a><span class="material-symbols-outlined">shopping_basket</span>Cart</a>
+            <a href="{{route('checkout')}}"><span class="material-symbols-outlined">shopping_basket</span>Cart</a>
             <div id="mobile-nav-profile">
                 <div id="mobile-nav-profile-icon">
                     <span class="material-symbols-outlined">account_circle</span>
@@ -54,6 +50,10 @@
                 </div>
                 <a><span class="material-symbols-outlined">logout</span></a>
             </div>
+            @else
+            <a href="{{route('checkout')}}"><span class="material-symbols-outlined">shopping_basket</span>Cart</a>
+            <a href="{{route('login')}}" id="profile-icon" title="Login"><span class="material-symbols-outlined">login</span>Login</a>
+            @endif
         </div>
     </div>
 </div>
