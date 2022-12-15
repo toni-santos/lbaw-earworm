@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
 
     // will be used for product page
-    public function show($id) {
+    public function show(int $id) {
 
         $product = Product::findOrFail($id);
         $product['price'] /= 100;
@@ -64,9 +64,32 @@ class ProductController extends Controller
     }
 
     // used to open catalogue & search catalogue 
-    public static function catalogue()
-    {
+    public static function catalogue() {
+
         $products = Product::search(request('search'))->paginate(20);
+
+        // rough idea for genre filter
+
+        /*
+        $real_products = [];
+        $test = ["Jazz"];
+
+        foreach($products as $product) {
+
+            $product_genres = $product->genres->toArray();
+            $genre_names = [];
+
+            foreach($product_genres as $product_genre) {
+                array_push($genre_names, $product_genre['name']);
+            }
+
+            if(!array_diff($test, $genre_names)) {
+                array_push($real_products, $product);
+            }
+
+        }
+        */
+
         $genres = Genre::all();
 
         foreach ($products as $product) {
@@ -83,7 +106,7 @@ class ProductController extends Controller
         ProductController::addToCart(8);
     }
 
-    public static function addToCart($id) {
+    public static function addToCart(int $id) {
         $product = Product::find($id);
         if (!$product) {
             abort(404);
@@ -119,7 +142,7 @@ class ProductController extends Controller
 
     }
 
-    public function decreaseFromCart($id) {
+    public function decreaseFromCart(int $id) {
         if ($id) {
             $cart = session()->get('cart');
             if(!isset($cart[$id])) {
@@ -141,7 +164,7 @@ class ProductController extends Controller
         }
     }
 
-    public function removeFromCart($id) {
+    public function removeFromCart(int $id) {
         if ($id) {
             $cart = session()->get('cart');
             if(isset($cart[$id])) {
