@@ -10,7 +10,7 @@
             <span onclick="increaseAmountCart(event, {{$id}})" class="inc-cart-item">+</span>
         </div>
     </div>
-    <div class="cart-item-left">
+    <div class="cart-remove">
         <span onclick="removeItemCart(event, {{$id}})" class="material-symbols-outlined">delete</span>
     </div>
 </div>

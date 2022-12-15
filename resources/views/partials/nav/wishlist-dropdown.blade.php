@@ -1,8 +1,8 @@
-<div class="nav-dropdowns" id="wishlist-dropdown">
+<article class="nav-dropdowns" id="wishlist-dropdown">
     <p>Wishlist</p>
-    <div id="wishlist-wrapper">
+    <article id="wishlist-wrapper">
         @for ($i = 0; $i < 5; $i++)
-            @include('partials.wishlist-item')
+            @include('partials.nav.wishlist-item')
         @endfor
-    </div>
-</div>
+    </article>
+</article>

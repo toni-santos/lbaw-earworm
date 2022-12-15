@@ -286,10 +286,16 @@ body {
 
 #cart-wrapper, #wishlist-wrapper {
   height: 260px;
-  width: fit-content;
+  width: auto;
   display: flex;
   flex-direction: column;
   overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#cart-wrapper::-webkit-scrollbar, #wishlist-wrapper::-webkit-scrollbar { 
+  display: none;
 }
 
 #cart-dropdown-purchase {
@@ -307,16 +313,34 @@ body {
 
 div[class^='cart-item-'] {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 2fr 2fr 1fr;
+}
+
+.cart-remove {
+  margin-left: auto;
+  height: fit-content;
+  cursor: pointer;
 }
 
 div[class^='wishlist-item'] {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  width: 100%;
+}
+
+.wishlist-item-desc + a {
+  grid-area: 1 / 2 / 2 / 3;
+  margin-left: auto;
+}
+
+.wishlist-item-specs {
   display: flex;
   flex-direction: row;
-  justify-content:space-between;
-  align-items: center;
-  width: 100%;
-  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.wishlist-item-specs p {
+  text-align: right;
 }
 
 div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
@@ -337,6 +361,10 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   gap: 3px;
   align-items: center;
   align-content: center;
+}
+
+.cart-item-left {
+  padding-left: auto;
 }
 
 .cart-item-amnt a {
@@ -413,6 +441,28 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   justify-content: space-between;
   padding-inline: 20px;
   height: 50px;
+}
+
+.confirm-button {
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: larger;
+  margin-top: 20px;
+  border: none;
+  background-color: var(--main-accent);
+  color: var(--light-text);
+  transition: all 0.2s ease-in-out;
+  cursor: default;
+}
+
+.confirm-button:hover {
+  background-color: var(--light-accent);
+  cursor: pointer;
+}
+
+.confirm-button:disabled {
+  cursor: default;
 }
 
 @media (max-width: 768px) {
@@ -589,9 +639,15 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   transform: translate(-50%, -50%);
 }
 
-.nav-button {
+/*Same problem as in "a.confirm-button" from global.css. In this case it doesn't
+matter because the color we would inherit would be from the navbar, which is
+the one we want. Still, we want to be able to change things logically and
+so I added extra specificity for now.*/
+
+a.nav-button {
   text-align: center;
-  background-color: var(--light-tex);
+  background-color: var(--dark-accent);
+  color: var(--light-text);
   width: 100%;
   padding: 4px;
 }

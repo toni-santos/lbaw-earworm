@@ -86,23 +86,11 @@
     position: absolute;
     top: -20px;
     left: 5px;
-    font-size: meduum;
-}
-
-.confirm-button {
-    padding: 10px;
-    width: 100%;
-    font-size: larger;
-    margin-top: 20px;
-    border: none;
-    background-color: var(--border-color);
-    color: var(--text-soft-color);
-    transition: all 0.2s ease-in-out;
-    cursor: default;
+    font-size: medium;
 }
 
 .confirm-button:disabled {
-    background-color: var(--input-color);
+    background-color: var(--background-dark);
 }
 
 #form-signup {

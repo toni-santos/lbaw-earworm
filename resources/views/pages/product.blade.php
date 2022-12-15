@@ -15,9 +15,7 @@
         </div>
         <div id="product-purchase">
             <p id="product-price">{{$product->price}} €</p>
-            <button class="confirm-button">
-                <a href="{{route('buyProduct', ['id' => $product->id])}}">BUY</a>
-            </button>
+            <a class="confirm-button" href="{{route('buyProduct', ['id' => $product->id])}}">BUY</a>
         </div>
     </div>
     <div id="product-tracklist-wrapper">

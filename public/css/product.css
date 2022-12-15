@@ -13,7 +13,7 @@
 .product-description {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
@@ -39,6 +39,7 @@
 #genres-wrapper {
     display: flex;
     flex-direction: row;
+    padding-top: 12px;
 }
 
 #product-artist {
@@ -60,22 +61,6 @@
     width: 100%;
 }
 
-.confirm-button {
-    padding: 10px;
-    width: 100%;
-    font-size: larger;
-    margin-inline: 20px;
-    border: none;
-    background-color: var(--main-accent);
-    color: var(--light-text);
-    transition: all 0.2s ease-in-out;
-    cursor: default;
-}
-
-.confirm-button:disabled {
-    background-color: var(--dark-accent);
-}
-
 #product-price {
     font-size:larger;
 }
@@ -93,6 +78,12 @@
     height: 300px;
 }
 
-#track {
+/* Using only ".confirm-button" does not work in this case because of css specificity issues.
+The "a:link" rule in global.css has higher specificity than the mentioned selector,
+and as such the "color: inherit" property would be used instead of the one below,
+which would inherit the color from "body". Maybe we should change this.
+*/
 
+a.confirm-button {
+    color: var(--light-text)
 }

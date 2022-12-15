@@ -35,10 +35,10 @@
                     </div>
                     <div id="payment-method">
                         @include('partials.common.subtitle', ['title' => "Payment Method"])
-                        <label for="mbway" class="radio-label">
-                        <input type="radio" class="radio" name="payment-method" id="mbway" value="mbway" checked required>MBWay</label>
-                        <label for="billing" class="radio-label">
-                        <input type="radio" class="radio" name="payment-method" id="billing" value="billing" required>Billing</label>
+                        <input type="radio" class="radio" name="payment-method" id="mbway" value="mbway" checked required>
+                        <label for="mbway" class="radio-label">MBWay</label>
+                        <input type="radio" class="radio" name="payment-method" id="billing" value="billing" required>
+                        <label for="billing" class="radio-label">Billing</label>
                     </div>
                     <div id="checkout-total">
                         <a class="subtitle1" id="checkout-value">0€</a>

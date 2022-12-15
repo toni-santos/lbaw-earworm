@@ -1,3 +1,3 @@
-<div class="subtitle-container">
+<article class="subtitle-container">
     <p>{{$title}}</p>
-</div>
+</article>

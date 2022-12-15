@@ -682,7 +682,7 @@ INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('bdu
 INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('pjessetti@japanpost.jp', 'cheffroni', 'qADH94j', false, false);
 INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('jcoathamj@4shared.com', 'cdodimeadj', '7fqv5gPRyST', false, false);
 INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('admin@example.com', 'admin', '$2y$10$YWJ2.jsmikDPTcOlrOFBD..Gfk5pylm/Qyy2M4XWK/rs.4PUOn78e', false, true);
-INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('insectlover@gmail.com', 'insectlover3000', '$2a$10$FaHcdytZiRLl.sNcNzKz.OAHAMzZm6PKKWmEwunHkkfPHYle0QpEW', false, false);
+INSERT INTO users (email, username, password, is_blocked, is_admin) VALUES ('annelidlover@gmail.com', 'annelidlover3000', '$2a$10$FaHcdytZiRLl.sNcNzKz.OAHAMzZm6PKKWmEwunHkkfPHYle0QpEW', false, false);
 
 INSERT INTO fav_artist (user_id, artist_id) VALUES (13,1);
 INSERT INTO fav_artist (user_id, artist_id) VALUES (3,4);
