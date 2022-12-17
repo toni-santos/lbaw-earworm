@@ -66,7 +66,7 @@ class ProductController extends Controller
     // used to open catalogue & search catalogue 
     public static function catalogue() {
 
-        $products = Product::search(request('search'))->paginate(20);
+        $products = Product::search(request('search'))->paginate(21);
 
         // rough idea for genre filter
 

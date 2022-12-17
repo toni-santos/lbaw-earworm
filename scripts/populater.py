@@ -148,7 +148,7 @@ def main():
 
     # Create and write the populate file
     generate_populate(releases, artists, genres)
-    # download_images(releases, artists)
+    download_images(releases, artists)
     
 if __name__ == "__main__":
     main()

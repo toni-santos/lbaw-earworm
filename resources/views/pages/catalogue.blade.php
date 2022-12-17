@@ -62,10 +62,9 @@
                 @include('partials.common.product-card', ['product' => $product])
             @endforeach
         @else
-            <script> 
-                alert("hi");
-            </script>
+            <p>No products correspond to your search!</p>
         @endif
     </section>
+    {{ $products->links('vendor.pagination.default') }}
 </main>
 @include('partials.common.foot')

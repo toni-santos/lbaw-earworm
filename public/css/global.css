@@ -21,6 +21,8 @@
   --light-text: var(--white);
   --dark-text: var(--raisin-black);
 
+  --black: var(--raisin-black);
+
 }
 
 /* 
@@ -650,4 +652,17 @@ a.nav-button {
   color: var(--light-text);
   width: 100%;
   padding: 4px;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 10px;
+  font-size: large;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  padding: 0px;
+  justify-items: center;
 }

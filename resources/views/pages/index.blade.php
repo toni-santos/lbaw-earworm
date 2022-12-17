@@ -19,5 +19,12 @@
         'type' => 'product',
         'content' => $fyProducts
     ])
+    {{-- 
+    TODO: NOT AUTHENTICATED STORE PROMO
+
+    @if (Auth::check())
+    @else
+    @include('partials.common.index-promos')'
+    @endif --}}
 </main>
 @include('partials.common.foot')

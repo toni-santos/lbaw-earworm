@@ -28,10 +28,10 @@
     display: flex;
     padding-block: 5px;
     justify-content: center;
+    border-block: solid 1px var(--black);
 }
 
 .product-specs {
-    border-top: solid 1px var(--text-color);
     width: 100%;
 }
 
@@ -40,10 +40,17 @@
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    border-top: solid 1px var(--text-color);
-
 }
 
 .prod-name, .artist-name {
     font-size: large;
+}
+
+.fav-album {
+    transition: all 0.2s ease-in-out;
+}
+
+.fav-album:hover {
+    scale: 1.2;
+    color: var(--sub-accent);
 }
