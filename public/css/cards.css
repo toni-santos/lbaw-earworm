@@ -5,6 +5,7 @@
     justify-content: center;
     width: fit-content;
     padding: 10px;
+    max-width: 220px;
 }
 
 .product-card-img {
@@ -43,7 +44,12 @@
 }
 
 .prod-name, .artist-name {
+    text-align: center;
+    width: 200px;
     font-size: large;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .fav-album {

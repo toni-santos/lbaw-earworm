@@ -1,17 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 :root {
-  --forest-green-traditional: #185229;
-  --british-racing-green: #123F20;
-  --spanish-green: #288F49;
+  --forest-green-traditional: #185229ff;
+  --british-racing-green: #123F20ff;
+  --spanish-green: #288F49ff;
   --white: #fdfdffff;
   --silver: #c6c5b9ff;
   --raisin-black: #2e282aff;
   --cedar-chest: #cd5334ff;
+  --chinese-red: #b4482dff;
 
   --main-accent: var(--forest-green-traditional);
   --sub-accent: var(--cedar-chest);
   --dark-accent: var(--british-racing-green);
+  --sub-dark-accent: var(--chinese-red);
   --light-accent: var(--spanish-green);
   --light-contrast: var(--silver);
   
@@ -22,7 +24,6 @@
   --dark-text: var(--raisin-black);
 
   --black: var(--raisin-black);
-
 }
 
 /* 
@@ -188,6 +189,7 @@ main {
   gap: 20px;
   min-height: 100vh;
   padding-block: 90px;
+  padding-top: 60px;
 }
 
 a:link, a:visited, a:hover, a:active {
@@ -215,6 +217,9 @@ body {
   width: 100vw;
   z-index: 99999;
   color: var(--light-text);
+  -webkit-box-shadow: 0px -5px 50px 0px rgba(0,0,0,0.75);;
+  -moz-box-shadow: 0px -5px 50px 0px rgba(0,0,0,0.75);;
+  box-shadow: 0px -5px 50px 0px rgba(0,0,0,0.75);;
 }
 
 .sub-bar {
@@ -662,7 +667,8 @@ a.nav-button {
   font-size: large;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   padding: 0px;
   justify-items: center;
+  
 }

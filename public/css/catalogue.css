@@ -5,14 +5,19 @@ main {
 #content-wrapper {
     display: grid;
     grid-template-columns: 350px 1fr;
+    gap: 0px;
 }
 
 #filters {
     display: flex;
     flex-direction: column;
-    background-color: var(--subtle-color);
+    background-color: var(--sub-accent);
     padding: 25px;
     width: 100%;
+    color: var(--light-text);
+    -webkit-box-shadow: -10px 0px 50px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -10px 0px 50px 0px rgba(0,0,0,0.75);
+    box-shadow: -10px 0px 50px 0px rgba(0,0,0,0.75);
 }
 
 #results {
@@ -24,6 +29,7 @@ main {
     justify-content: center;
     height: fit-content;
 }
+
 
 @media (max-width: 768px) {
     #content-wrapper {
@@ -50,10 +56,11 @@ main {
 #ord-filter {
     display: block;
     width: 100%;
-    border: 1px solid var(--border-color);
-    background-color: var(--shadow-color);
-    color: var(--text-color);
+    border: none;
+    background-color: var(--sub-dark-accent);
+    color: var(--light-text);
     padding: 5px;
+    font-size:medium;
 }
 
 .scroll-filter {
@@ -61,6 +68,28 @@ main {
     flex-direction: column;
     max-height: 200px;
     overflow-y: scroll;
+    background:
+        /* Shadow covers */
+        linear-gradient(var(--sub-accent) 30%, rgba(255,255,255,0)),
+        linear-gradient(rgba(255,255,255,0), var(--sub-accent) 70%) 0 100%,
+        
+        /* Shadows */
+        radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)),
+        radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background:
+        /* Shadow covers */
+        linear-gradient(var(--sub-accent) 30%, rgba(255,255,255,0)),
+        linear-gradient(rgba(255,255,255,0), var(--sub-accent) 70%) 0 100%,
+        
+        /* Shadows */
+        radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+        radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background-repeat: no-repeat;
+    background-color: var(--sub-accent);
+    background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+
+    /* Opera doesn't support this in the shorthand */
+    background-attachment: local, local, scroll, scroll;
 }
 
 .box-filter {
@@ -98,8 +127,8 @@ label[for="max-price"] {
 #min-price, #max-price,
 #min-rating, #max-rating {
     width: 70px;
-    border: 1px solid var(--border-color);
-    background-color: var(--shadow-color);
+    border: none;
+    background-color: var(--sub-dark-accent);
     color: var(--text-color);
     padding: 5px;
 }
@@ -120,5 +149,10 @@ label[for="max-price"] {
 }
 
 .checkbox:checked+span {
-    background-color: var(--shadow-color);
+    background-color: var(--sub-dark-accent);
+}
+
+.filter-title {
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 2px;
 }

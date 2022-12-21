@@ -2,6 +2,12 @@ main {
     padding-top: 0px;
 }
 
+.navbar {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
 .promocard {
     position: relative;
     display: flex;
