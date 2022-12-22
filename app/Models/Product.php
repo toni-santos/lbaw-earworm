@@ -41,6 +41,7 @@ class Product extends Model
   public function genres() {
     return $this->belongsToMany(Genre::class, 'product_genre', 'product_id', 'genre_id');
   }
+  
   /**
    * The orders this product is associated with.
    */

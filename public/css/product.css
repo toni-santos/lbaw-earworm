@@ -59,6 +59,7 @@
 
 .product-genre {
     width: 100%;
+    font-style: italic;
 }
 
 #product-price {
