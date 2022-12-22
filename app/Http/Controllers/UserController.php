@@ -88,6 +88,13 @@ class UserController extends Controller
 
     public function editProfile(int $id) {
         $user = User::findOrFail($id);
+        $email = $user['email'];
+        $em   = explode("@",$email);
+        $name = implode('@', array_slice($em, 0, count($em)-1));
+        $len  = floor(strlen($name)/2);
+        $concealedEmail = substr($name,0, $len) . str_repeat('*', $len) . "@" . end($em); 
+
+        $user['email'] = $concealedEmail;
         if (!(Auth::user()->is_admin || Auth::id() == $id)) abort(403);
         return view('pages.settings', ['user' => $user]);
     }
@@ -113,6 +120,27 @@ class UserController extends Controller
         }
 
         $user->username = $data['username'] ?? $user->username;
+        $user->email = $data['email'] ?? $user->email;
+
+        $user->save();
+
+        return to_route('profile', ['id' => $id]);
+    }
+
+    public function updatePassword(Request $request, int $id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->is_blocked) {
+            abort(404);
+        }
+        
+        $data = $request->toArray();
+
+        if ($user->is_admin) {
+            $user->is_blocked = array_key_exists('block', $data);
+        }
+
+        $user->password = $data['username'] ?? $user->username;
         $user->email = $data['email'] ?? $user->email;
 
         $user->save();

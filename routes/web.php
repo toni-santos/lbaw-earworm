@@ -31,10 +31,11 @@ Route::get('/cart', 'ProductController@cart')->name('cart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 Route::post('/checkout', 'ProductController@buy')->name('buy');
 
-
 // User 
 Route::get('/user/settings/{id}', 'UserController@editProfile')->name('editprofile');
 Route::post('/user/settings/{id}', 'UserController@update')->name('editprofilepost');
+Route::post('/user/settings/password/{id}', 'UserController@updatePassword')->name('editpasswordpost');
+
 Route::get('/user/{id}', 'UserController@show')->name('profile');
 Route::get('/user', 'UserController@ownprofile')->name('ownprofile');
 Route::post('/cart/increase/{id}', 'ProductController@addToCart')->name('addToCart');
