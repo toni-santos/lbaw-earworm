@@ -575,6 +575,9 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   flex-wrap: wrap;
   background-color: var(--main-accent);
   color: var(--light-text);
+  -webkit-box-shadow: inset 0px 0px 10px -3px rgba(0,0,0,0.50);
+  -moz-box-shadow: inset 0px 0px 10px -3px rgba(0,0,0,0.50);
+  box-shadow: inset 0px 0px 10px -3px rgba(0,0,0,0.50);
 }
 
 #footer-links {
@@ -669,6 +672,5 @@ a.nav-button {
   justify-content: center;
   width: 100%;
   padding: 0px;
-  justify-items: center;
-  
+  justify-items: center; 
 }

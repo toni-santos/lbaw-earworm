@@ -31,10 +31,38 @@ main {
 }
 
 
+#collapsible {
+    display: none;
+}
+
 @media (max-width: 768px) {
+    #collapsible {
+        background-color: var(--sub-accent);
+        display: flex;
+        width: 100%;
+        align-self: center;
+        color: var(--white);
+        padding: 8px;
+        border: none;
+        transition: all 0.2s ease-in-out;
+        cursor: default;
+        align-items: center;
+        font-size: medium;
+        gap: 5px;
+      
+    }
+
     #content-wrapper {
         display: flex;
         flex-direction: column;
+    }
+
+    #filters {
+        max-height: 0;
+        padding: 0px;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+        transition: padding 0.2s ease-in-out;
     }
 }
 

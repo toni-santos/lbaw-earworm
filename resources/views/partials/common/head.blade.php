@@ -23,6 +23,7 @@
       @case('catalogue')
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
         <link href="{{ asset('css/catalogue.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/catalogue.js') }} defer></script>
         @break
 
       @case('sign')
