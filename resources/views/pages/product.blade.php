@@ -27,6 +27,9 @@
             <form id="buy-form" action="{{route('buyProduct', ['id' => $product->id])}}">
                 <button type=submit class="confirm-button">BUY</button>
             </form>
+            <p class="wishlist-container" id="favorite-container-{{$product->id}}" onclick="toggleLike(event, {{$product['id']}})">Add to Wishlist 
+                <span class="material-icons">favorite_outline</span>
+            </p>
             @else
             <button class="confirm-button" href="{{route('buyProduct', ['id' => $product->id])}}" disabled>BUY</button>
             @endif

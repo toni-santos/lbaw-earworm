@@ -16,7 +16,6 @@
             <a href="{{route('ownprofile')}}" id="profile-icon"><span class="material-icons">account_circle</span></a>
             @include('partials.nav.profile-dropdown')
             @include('partials.nav.cart-dropdown')
-            @include('partials.nav.wishlist-dropdown')
             @else
             <a href="{{route('catalogue')}}" id="catalogue-icon"><span class="material-icons">album</span></a>
             <a href="{{route('checkout')}}" id="cart-icon"><span class="material-icons">shopping_basket</span></a>

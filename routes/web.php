@@ -41,6 +41,7 @@ Route::post('/cart/increase/{id}', 'ProductController@addToCart')->name('addToCa
 Route::post('/cart/decrease/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
 Route::post('/cart/remove/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
 Route::post('/wishlist/add/{id}', 'ProductController@addToWishlist')->name('addToWishlist');
+Route::post('/wishlist/remove/{id}', 'ProductController@removeFromWishlist')->name('removeFromWishlist');
 
 // Admin
 Route::get('/admin/create', 'AdminController@showUserCreate')->name('adminCreatePage');

@@ -7,7 +7,7 @@ main {
     height: 200px;
 }
 
-.wishlist-card {
+div[class^='wishlist-card-top-'] {
     display: flex;
     flex-direction: row;
     margin-inline: 70px;

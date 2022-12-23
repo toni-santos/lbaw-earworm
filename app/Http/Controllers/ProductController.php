@@ -280,4 +280,16 @@ class ProductController extends Controller
 
         return 200;
     }
+
+    public function removeFromWishlist(int $id) {
+        
+        if (!Auth::check()) abort(403);
+        $user_id = Auth::id();
+
+        $deleted = DB::table('wishlist_product')
+                        ->where('wishlist_id', $user_id)
+                        ->where('product_id', $id)->delete();
+
+        return 200;
+    }
 }
