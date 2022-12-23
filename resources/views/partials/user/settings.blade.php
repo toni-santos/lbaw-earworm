@@ -39,6 +39,7 @@
     </section>
 
     <section id="password-section" hidden>
+        
         <div class="user-top-pass-{{$user->id}}" onclick="expandUserOptions(event, {{$user->id}})">
             <div class="expand">
                 <p> Change Password </p>
@@ -46,7 +47,7 @@
             </div>
         </div>
         <div class="user-bot-pass-{{$user->id}}" style="display:none;">
-            <form method="POST" class="form-bot" action="{{route('editpasswordpost', ['id' => $user->id])}}">
+            <form method="POST" class="form-bot" action="{{route('editpassword', ['id' => $user->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
                     <div class="input-container">
@@ -61,11 +62,18 @@
                         <input class="text-input" type="password" name="repeat-newpassword" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
                         <label class="input-label" for="repeat-new-password">Repeat New Password</label>
                     </div>
-                    
                 </section>
                 <button class="confirm-button" type="submit">Change</button>
             </form>
         </div>    
+
+        <div class="user-bot-pass-recover-{{$user->id}}" style="display:flex">
+            <form method="POST" class="form-bot" action="{{route('recoverpassword', ['id' => $user->id])}}">
+                {{ csrf_field() }}                    
+                <button class="confirm-button" type="submit">Recover Password</button>
+            </form>
+        </div>    
+
     </section>
 
     <section id="lastfm-section" hidden>
@@ -79,7 +87,7 @@
             </div>
         </div>
         <div class="user-bot-lastfm-{{$user->id}}" style="display:none;">
-            <form method="POST" class="form-bot">
+            <form method="POST" class="form-bot" action="">
                 {{ csrf_field() }}
                 <section class="inputs-box">
                     <div class="input-container">
