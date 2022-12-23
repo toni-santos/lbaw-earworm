@@ -10,6 +10,7 @@
                 @endif
                 <!-- order: price rating alpha -->
                 <select id="ord-filter" name="ord" id="ord-results">
+                    <option value="relevance">Relevance</option>
                     <option value="alpha">Alphabetical Order</option>
                     <option value="asc-price">Ascending Price</option>
                     <option value="desc-price">Descending Price</option>
@@ -20,7 +21,7 @@
                 <p class="filter-title">Genre</p>
                 <div class="scroll-filter" id="filter-genre">
                     @foreach ($genres as $genre)
-                    @if (in_array($genre->name, $active_genres))
+                    @if (in_array($genre->name, $activeGenres))
                     <label><input type="checkbox" class="checkbox" name="genre[]" value="{{$genre->name}}" checked><span class="genre-check">{{$genre->name}}</span></label>
                     @else
                     <label><input type="checkbox" class="checkbox" name="genre[]" value="{{$genre->name}}"><span class="genre-check">{{$genre->name}}</span></label>
@@ -29,23 +30,23 @@
                 </div>
                 <p class="filter-title">Year</p>
                 <div class="scroll-filter" id="filter-year">
-                    <label><input type="checkbox" class="checkbox"><span class="year-check">YEAR</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="year-check">YEAR</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="year-check">YEAR</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="year-check">YEAR</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="year-check">YEAR</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="year-check">YEAR</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="year-check">YEAR</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="year-check">YEAR</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="year-check">YEAR</span></label>
+                    @foreach ($years as $year)
+                    @if (in_array($year, $activeYears)) 
+                    <label><input type="checkbox" class="checkbox" name="year[]" value="{{$year}}" checked><span class="year-check">{{$year}}'s</span></label>
+                    @else
+                    <label><input type="checkbox" class="checkbox" name="year[]" value="{{$year}}"><span class="year-check">{{$year}}'s</span></label>
+                    @endif
+                    @endforeach
                 </div>
                 <p class="filter-title">Format</p>
                 <div class="scroll-filter" id="filter-format">
-                    <label><input type="checkbox" class="checkbox"><span class="format-check">CD</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="format-check">Vinyl</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="format-check">Cassette</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="format-check">DVD</span></label>
-                    <label><input type="checkbox" class="checkbox"><span class="format-check">Box Set</span></label>
+                    @foreach ($formats as $format)
+                    @if (in_array($format, $activeFormats))
+                    <label><input type="checkbox" class="checkbox" name="format[]" value="{{$format}}" checked><span class="format-check">{{$format}}</span></label>
+                    @else
+                    <label><input type="checkbox" class="checkbox" name="format[]" value="{{$format}}"><span class="format-check">{{$format}}</span></label>
+                    @endif
+                    @endforeach
                 </div>
                 <p class="filter-title">Price</p>
                 <div class="box-filter" id="filter-price">

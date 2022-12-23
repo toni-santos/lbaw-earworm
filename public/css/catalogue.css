@@ -15,9 +15,9 @@ main {
     padding: 25px;
     width: 100%;
     color: var(--light-text);
-    -webkit-box-shadow: -10px 0px 50px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: -10px 0px 50px 0px rgba(0,0,0,0.75);
-    box-shadow: -10px 0px 50px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -10px 0px 50px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -10px 0px 50px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -10px 0px 50px 0px rgba(0, 0, 0, 0.75);
 }
 
 #results {
@@ -29,7 +29,6 @@ main {
     justify-content: center;
     height: fit-content;
 }
-
 
 #collapsible {
     display: none;
@@ -49,7 +48,6 @@ main {
         align-items: center;
         font-size: medium;
         gap: 5px;
-      
     }
 
     #content-wrapper {
@@ -87,7 +85,7 @@ main {
     background-color: var(--sub-dark-accent);
     color: var(--light-text);
     padding: 5px;
-    font-size:medium;
+    font-size: medium;
 }
 
 .scroll-filter {
@@ -96,21 +94,43 @@ main {
     max-height: 200px;
     overflow-y: scroll;
     background:
-        /* Shadow covers */
-        linear-gradient(var(--sub-accent) 30%, rgba(255,255,255,0)),
-        linear-gradient(rgba(255,255,255,0), var(--sub-accent) 70%) 0 100%,
-        
+        /* Shadow covers */ linear-gradient(
+            var(--sub-accent) 30%,
+            rgba(255, 255, 255, 0)
+        ),
+        linear-gradient(rgba(255, 255, 255, 0), var(--sub-accent) 70%) 0 100%,
         /* Shadows */
-        radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)),
-        radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+            radial-gradient(
+                50% 0,
+                farthest-side,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0)
+            ),
+        radial-gradient(
+                50% 100%,
+                farthest-side,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0)
+            )
+            0 100%;
     background:
-        /* Shadow covers */
-        linear-gradient(var(--sub-accent) 30%, rgba(255,255,255,0)),
-        linear-gradient(rgba(255,255,255,0), var(--sub-accent) 70%) 0 100%,
-        
+        /* Shadow covers */ linear-gradient(
+            var(--sub-accent) 30%,
+            rgba(255, 255, 255, 0)
+        ),
+        linear-gradient(rgba(255, 255, 255, 0), var(--sub-accent) 70%) 0 100%,
         /* Shadows */
-        radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
-        radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+            radial-gradient(
+                farthest-side at 50% 0,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0)
+            ),
+        radial-gradient(
+                farthest-side at 50% 100%,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0)
+            )
+            0 100%;
     background-repeat: no-repeat;
     background-color: var(--sub-accent);
     background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
@@ -141,7 +161,7 @@ label[for="min-price"] {
     left: 40px;
 }
 
-label[for="max-rating"]{
+label[for="max-rating"] {
     top: 0;
     right: 35px;
 }
@@ -151,8 +171,10 @@ label[for="max-price"] {
     right: 40px;
 }
 
-#min-price, #max-price,
-#min-rating, #max-rating {
+#min-price,
+#max-price,
+#min-rating,
+#max-rating {
     width: 70px;
     border: none;
     background-color: var(--sub-dark-accent);
@@ -171,11 +193,13 @@ label[for="max-price"] {
     width: 100%;
 }
 
-.genre-check, .year-check, .format-check {
+.genre-check,
+.year-check,
+.format-check {
     font-size: medium;
 }
 
-.checkbox:checked+span {
+.checkbox:checked + span {
     background-color: var(--sub-dark-accent);
 }
 

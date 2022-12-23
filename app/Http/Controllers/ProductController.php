@@ -84,77 +84,129 @@ class ProductController extends Controller
         return view('pages.index', ['trendingProducts' => $trendingProducts, 'fyProducts' => $fyProducts, 'wishlist' => $wishlist]);
     }
 
+    public static function yearList($products) {
+        $years = [];
+        $products = $products->orderBy('year', 'asc')->get();
+        foreach ($products as $product) {
+            array_push($years, $product->year - ($product->year % 10));
+        }
+        $years = array_unique($years);
+        return $years;
+    }
+
+    public static function formatList() {
+        return ['CD', 'Vinyl', 'Cassette', 'DVD', 'Box Set'];
+    }
+
     // used to open catalogue & search catalogue 
     public static function catalogue(Request $request) {
+        $allProducts = DB::table('product')->select('*');
+
+        $genres = Genre::all();
+        $activeGenres = [];
+
+        $years = ProductController::yearList($allProducts);
+        $activeYears = [];
+
+        $formats = ProductController::formatList();
+        $activeFormats = [];
+
         $products = Product::search(request('search'));
-        $years = [];
-        $active_genres = [];
         $input = $request->all();
 
         foreach ($input as $parameter) {
             if (!isset($parameter))
                 continue;
             $key = array_search($parameter, $input);
+            $productIds = [];
             switch ($key) {
                 case "min-price":
                     $products = $products->where('price', '>=', floatval($parameter)*100);
                     break;
+
                 case "max-price":
                     $products = $products->where('price', '<=', floatval($parameter)*100);
                     break;
+
                 case "min-rating":
                     $products = $products->where('rating', '>=', floatval($parameter));
                     break;
+
                 case "max-rating":
                     $products = $products->where('rating', '<=', floatval($parameter));
                     break;
+
+                case "genre":
+                    $activeGenres = $parameter;
+                    foreach ($products->get() as $product) {
+
+                        $productGenres = $product->genres->toArray();
+                        $genreNames = [];
+                        
+                        foreach ($productGenres as $productGenre) {
+
+                            array_push($genreNames, $productGenre['name']);
+                        }
+                        
+                        if(!array_diff($activeGenres, $genreNames)) {
+                            array_push($productIds, $product['id']);
+                        }
+                    }
+                    $products = $products->whereIn('id', $productIds);
+                    break;
+
+                case "year":
+                    $activeYears = array_map('intval', $parameter);
+                    foreach ($products->get() as $product) {
+
+                        $productYear = $product->year;
+                        foreach ($activeYears as $year) {
+
+                            if (($productYear - $year >= 0) && ($productYear - $year) <= 9) {
+                                array_push($productIds, $product['id']);
+                            }
+                        }
+                    }
+                    $products = $products->whereIn('id', $productIds);
+                    break;
+
+                case "format":
+                    $activeFormats = $parameter;
+                    foreach ($products->get() as $product) {
+
+                        $productFormat = $product->format;
+                        if (in_array($productFormat, $activeFormats)) {
+                            array_push($productIds, $product['id']);
+                        }
+                    }
+                    $products = $products->whereIn('id', $productIds);
+                    break;
+
                 case "ord":
                     switch ($parameter) {
                         case "alpha":
-                            $products = $products->orderBy('name', 'asc');
+                            $products = $products->reorder('name', 'asc');
                             break;
                         case "asc-price":
-                            $products = $products->orderBy('price', 'asc');
+                            $products = $products->reorder('price', 'asc');
                             break;
                         case "desc-price":
-                            $products = $products->orderBy('price', 'desc');
+                            $products = $products->reorder('price', 'desc');
                             break;
                         case "asc-rating":
-                            $products = $products->orderBy('rating', 'asc');
+                            $products = $products->reorder('rating', 'asc');
                             break;
                         case "desc-rating":
-                            $products = $products->orderBy('rating', 'desc');
+                            $products = $products->reorder('rating', 'desc');
                             break;
                         default:
                             break;
                     }
                     break;
+
                 default:
                     break;
             }
-        }
-
-        $genres = Genre::all();
-
-        $queryGenres = request('genre');
-        $productIds = [];
-        if (isset($queryGenres)) {
-            $active_genres = $queryGenres;
-            foreach ($products->get() as $product) {
-
-                $productGenres = $product->genres->toArray();
-                $genreNames = [];
-                
-                foreach ($productGenres as $productGenre) {
-                    array_push($genreNames, $productGenre['name']);
-                }
-                
-                if(!array_diff($queryGenres, $genreNames)) {
-                    array_push($productIds, $product['id']);
-                }
-
-            }
-            $products = $products->whereIn('id', $productIds);
         }
 
         $products = $products->paginate(21)->withQueryString();
@@ -166,7 +218,17 @@ class ProductController extends Controller
 
         $wishlist = getWishlist();
 
-        return view('pages.catalogue', ['products' => $products, 'genres' => $genres, 'active_genres' => $active_genres, 'wishlist' => $wishlist]);
+        return view('pages.catalogue', 
+        [
+            'products' => $products, 
+            'genres' => $genres, 
+            'activeGenres' => $activeGenres,
+            'years' => $years,
+            'activeYears' => $activeYears,
+            'formats' => $formats,
+            'activeFormats' => $activeFormats,
+            'wishlist' => $wishlist
+        ]);
 
     }
 
