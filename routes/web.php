@@ -30,7 +30,7 @@ Route::get('/cart', 'ProductController@cart')->name('cart');
 //Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 Route::post('/checkout', 'ProductController@buy')->name('buy');
-
+Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
 
 // User 
 Route::get('/user/settings/{id}', 'UserController@editProfile')->name('editprofile');
@@ -40,6 +40,7 @@ Route::get('/user', 'UserController@ownprofile')->name('ownprofile');
 Route::post('/cart/increase/{id}', 'ProductController@addToCart')->name('addToCart');
 Route::post('/cart/decrease/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
 Route::post('/cart/remove/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
+Route::post('/wishlist/add/{id}', 'ProductController@addToWishlist')->name('addToWishlist');
 
 // Admin
 Route::get('/admin/create', 'AdminController@showUserCreate')->name('adminCreatePage');

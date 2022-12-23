@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\Listing;
 use App\Models\Product;
 use App\Models\Genre;
+use App\Models\User;
 use App\Models\Artist;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -56,11 +56,13 @@ class ProductController extends Controller
         $fyProducts = Product::inRandomOrder()->limit(10)->get();
 
         foreach ($trendingProducts as $trendingProduct) {
+            
             $trendingProduct['artist_name'] = $trendingProduct->artist->name;
             $trendingProduct['price'] = $trendingProduct->price/100;
 
         }
         foreach ($fyProducts as $fyProduct) {
+
             $fyProduct['artist_name'] = $fyProduct->artist->name;
             $fyProduct['price'] = $fyProduct->price/100;
 
@@ -126,6 +128,7 @@ class ProductController extends Controller
         if (isset($queryGenres)) {
             $active_genres = $queryGenres;
             foreach ($products->get() as $product) {
+
                 $productGenres = $product->genres->toArray();
                 $genreNames = [];
                 
@@ -136,6 +139,7 @@ class ProductController extends Controller
                 if(!array_diff($queryGenres, $genreNames)) {
                     array_push($productIds, $product['id']);
                 }
+
             }
             $products = $products->whereIn('id', $productIds);
         }
@@ -253,5 +257,28 @@ class ProductController extends Controller
 
         }
         return to_route('home');
+    }
+
+    public static function wishlist(Request $request) {
+
+        $user = User::findOrFail(Auth::id());
+        $wishlist = $user->wishlist->toArray();
+        
+
+        return view('pages.wishlist', ['wishlist' => $wishlist]);
+
+    }
+
+    public function addToWishlist(int $id) {
+        
+        if (!Auth::check()) abort(403);
+        $user_id = Auth::id();
+
+        DB::table('wishlist_product')->insert([
+            'wishlist_id' => $user_id,
+            'product_id' => $id
+        ]);
+
+        return 200;
     }
 }

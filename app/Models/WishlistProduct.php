@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderProduct extends Model
+class WishlistProduct extends Model
 {
-    protected $table = "order_product";
+    protected $table = "wishlist_product";
 
     protected $fillable = [
-        'order_id', 'product_id', 'quantity'
+        'wishlist_id', 'product_id'
     ];
 
     public $timestamps = false;
