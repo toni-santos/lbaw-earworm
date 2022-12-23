@@ -6,7 +6,9 @@
         <article class="product-specs">
             <a class="prod-format" title="Format">{{$product['format']}}</a>
             <article class="product-fav-price">
-                <span class="material-icons fav-album" onclick="toggleLike(event, {{$product['id']}})">favorite_outline</span>
+                <div id="favorite-container-{{$product['id']}}">
+                    <span class="material-icons fav-album" onclick="toggleLike(event, {{$product['id']}})">favorite_outline</span>
+                </div>
                 <a title="Price">{{$product['price']}} €</a>
             </article>
         </article>

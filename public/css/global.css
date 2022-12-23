@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
 :root {
-  --forest-green-traditional: #185229ff;
-  --british-racing-green: #123F20ff;
-  --spanish-green: #288F49ff;
-  --white: #fdfdffff;
-  --silver: #c6c5b9ff;
-  --raisin-black: #2e282aff;
-  --cedar-chest: #cd5334ff;
-  --chinese-red: #b4482dff;
-  --old-gold: #CFB53Bff;
-  --flax: #E0CF80ff;
+  --forest-green-traditional: #185229;
+  --british-racing-green: #123F20;
+  --spanish-green: #288F49;
+  --white: #fdfdff;
+  --silver: #c6c5b9;
+  --raisin-black: #2e282a;
+  --cedar-chest: #cd5334;
+  --chinese-red: #b4482d;
+  --old-gold: #CFB53B;
+  --flax: #E0CF80;
 
   --main-accent: var(--forest-green-traditional);
   --sub-accent: var(--cedar-chest);
@@ -308,6 +308,29 @@ body {
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  background:
+  /* Shadow covers */
+  linear-gradient(var(--main-accent) 30%, rgba(255,255,255,0)),
+  linear-gradient(rgba(255,255,255,0), var(--main-accent) 70%) 0 100%,
+  
+  /* Shadows */
+  radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)),
+  radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+background:
+  /* Shadow covers */
+  linear-gradient(var(--main-accent) 30%, rgba(255,255,255,0)),
+  linear-gradient(rgba(255,255,255,0), var(--main-accent) 70%) 0 100%,
+  
+  /* Shadows */
+  radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+  radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+background-repeat: no-repeat;
+background-color: var(--main-accent);
+background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+
+/* Opera doesn't support this in the shorthand */
+background-attachment: local, local, scroll, scroll;
+
 }
 
 #cart-wrapper::-webkit-scrollbar, #wishlist-wrapper::-webkit-scrollbar { 

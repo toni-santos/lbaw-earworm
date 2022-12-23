@@ -263,7 +263,6 @@ class ProductController extends Controller
 
         $user = User::findOrFail(Auth::id());
         $wishlist = $user->wishlist->toArray();
-        
 
         return view('pages.wishlist', ['wishlist' => $wishlist]);
 
