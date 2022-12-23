@@ -38,21 +38,17 @@
     flex-direction: row;
 }
 
-#genres-wrapper {
-    display: flex;
-    flex-direction: row;
-    padding-top: 12px;
-}
-
 #product-artist {
     font-size: large;
 }
 
 #genres-wrapper {
-    width: 100%;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
     gap: 10px;
+    padding-top: 12px;
 }
 
 .product-genre {
