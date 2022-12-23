@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -133,19 +135,24 @@ class UserController extends Controller
         if ($user->is_blocked) {
             abort(404);
         }
-        
         $data = $request->toArray();
+
+        if (!Hash::check($data['old-password'], $user->password)) {
+            return redirect()->back()->withErrors([
+                'approve' => 'Incorrect previous password.',
+            ]); 
+        }
 
         if ($user->is_admin) {
             $user->is_blocked = array_key_exists('block', $data);
         }
 
-        $user->password = $data['username'] ?? $user->username;
-        $user->email = $data['email'] ?? $user->email;
+        $newpass = Hash::make($data['new-password']);
+        $user->password = $newpass ?? $user->password;
 
         $user->save();
 
-        return to_route('profile', ['id' => $id]);
+        return to_route('logout');
     }
 
     /**

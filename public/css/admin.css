@@ -24,7 +24,7 @@ div[class^='user-top-'] {
     justify-content: space-between;
     margin-inline: 40px;
     padding: 40px 20px;
-    background-color: var(--input-color);
+    /* background-color: var(--input-color); */
 }
 
 .user-info {

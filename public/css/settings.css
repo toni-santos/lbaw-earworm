@@ -37,10 +37,31 @@
     transition: 0.3s ease;
 }
 
-#settings-section {
+#settings-section, #settings-section > section {
     padding-inline: 50px;
     padding-block: 10px;
-    padding-top: 0px;
+}
+
+div[class^='user-top-'] {
+    color: var(--light-text);
+    background-color: var(--main-accent);
+    font-size: 20px;
+    margin: 10px 10px 10px 10px;
+    
+}
+
+div[class^='user-top-']:hover {
+    background-color: var(--dark-accent);
+    transition: 0.3s ease;
+}
+
+div[class^='user-bot-'] {
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+#settings-section button {
+    background-color: var(--light-accent);
 }
 
 #form-aux-wrapper {
