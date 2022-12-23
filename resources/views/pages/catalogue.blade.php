@@ -20,7 +20,11 @@
                     <p class="filter-title">Genre</p>
                     <div class="scroll-filter" id="filter-genre">
                         @foreach ($genres as $genre)
+                        @if (in_array($genre->name, $active_genres))
+                        <label><input type="checkbox" class="checkbox" name="genre[]" value="{{$genre->name}}" checked><span class="genre-check">{{$genre->name}}</span></label>
+                        @else
                         <label><input type="checkbox" class="checkbox" name="genre[]" value="{{$genre->name}}"><span class="genre-check">{{$genre->name}}</span></label>
+                        @endif
                         @endforeach
                     </div>
                     <p class="filter-title">Year</p>

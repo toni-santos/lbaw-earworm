@@ -24,7 +24,9 @@
             <p id="product-price">{{$product->price}} €</p>
             @include('partials.common.stock', ['stock' => $product->stock])
             @if ($product->stock > 0)
-            <button class="confirm-button" href="{{route('buyProduct', ['id' => $product->id])}}">BUY</button>
+            <form id="buy-form" action="{{route('buyProduct', ['id' => $product->id])}}">
+                <button type=submit class="confirm-button">BUY</button>
+            </form>
             @else
             <button class="confirm-button" href="{{route('buyProduct', ['id' => $product->id])}}" disabled>BUY</button>
             @endif

@@ -66,7 +66,7 @@
 }
 
 #product-price {
-    font-size:larger;
+    font-size: larger;
 }
 
 #product-tracklist {
@@ -81,9 +81,9 @@
     width: 300px;
     height: 300px;
 
-    -webkit-box-shadow: 0px 0px 50px -25px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 50px -25px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 50px -25px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
 }
 
 /* Using only ".confirm-button" does not work in this case because of css specificity issues.
@@ -93,11 +93,11 @@ which would inherit the color from "body". Maybe we should change this.
 */
 
 a.confirm-button {
-    color: var(--light-text)
+    color: var(--light-text);
 }
 
 .flickity-button {
-    display: none;    
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -148,7 +148,7 @@ p[class$="-stock"] {
     color: var(--star);
 }
 
-.star + label:hover  {
+.star + label:hover {
     color: var(--star-inactive);
 }
 
@@ -168,12 +168,12 @@ p[class$="-stock"] {
     position: relative;
 }
 
-.textarea-container>textarea {
+.textarea-container > textarea {
     resize: none;
     width: 100%;
 }
 
-.textarea-container>label {
+.textarea-container > label {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     position: absolute;
@@ -201,7 +201,7 @@ p[class$="-stock"] {
     transition: all 0.2s ease-in-out;
 }
 
-.text-input:is(:not(:placeholder-shown), :focus)+label {
+.text-input:is(:not(:placeholder-shown), :focus) + label {
     position: absolute;
     top: -22px;
     left: 5px;
@@ -217,13 +217,17 @@ p[class$="-stock"] {
     background-color: var(--main-accent);
     color: var(--light-text);
     transition: all 0.2s ease-in-out;
-    cursor: default;  
+    cursor: default;
+}
+
+#buy-form {
+    width: 100%;
 }
 
 #review-form {
     display: flex;
     flex-direction: column;
-    width: 100%
+    width: 100%;
 }
 
 #reviews-wrapper {

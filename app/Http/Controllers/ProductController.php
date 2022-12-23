@@ -73,6 +73,7 @@ class ProductController extends Controller
     public static function catalogue(Request $request) {
         $products = Product::search(request('search'));
         $years = [];
+        $active_genres = [];
         $input = $request->all();
 
         foreach ($input as $parameter) {
@@ -123,6 +124,7 @@ class ProductController extends Controller
         $queryGenres = request('genre');
         $productIds = [];
         if (isset($queryGenres)) {
+            $active_genres = $queryGenres;
             foreach ($products->get() as $product) {
                 $productGenres = $product->genres->toArray();
                 $genreNames = [];
@@ -145,7 +147,7 @@ class ProductController extends Controller
             $product['price'] = $product->price/100;
         }
 
-        return view('pages.catalogue', ['products' => $products, 'genres' => $genres]);
+        return view('pages.catalogue', ['products' => $products, 'genres' => $genres, 'active_genres' => $active_genres]);
 
     }
 
