@@ -11,6 +11,6 @@
             <span class="" onclick="increaseAmountCheckout(event, {{$id}})">+</span>
             <p class="">{{ $details['price'] }}€</p>
         </div>
-        <p class="" onclick="removeItemCheckout(event, {{$id}})"><span class="material-symbols-outlined">delete</span></p>
+        <p class="" onclick="removeItemCheckout(event, {{$id}})"><span class="material-icons">delete</span></p>
     </div>
 </article>

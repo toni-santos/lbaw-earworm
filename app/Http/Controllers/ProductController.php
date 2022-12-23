@@ -21,9 +21,15 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product['price'] /= 100;
+        $products = Product::inRandomOrder()->limit(10)->get();
+        foreach ($products as $suggestProduct) {
+            $suggestProduct['artist_name'] = $suggestProduct->artist->name;
+            $suggestProduct['price'] = $suggestProduct->price/100;
+        }
+
         return view('pages.product', [
             'product' => $product,
-            'products' => Product::inRandomOrder()->limit(10)->get(),
+            'products' => $products,
             'genres' => $product->genres->toArray()
         ]);
 

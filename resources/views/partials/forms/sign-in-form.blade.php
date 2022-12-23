@@ -10,7 +10,7 @@
         <div class="input-container">
             <input class="text-input" id="password-input" type="password" name="pwd" placeholder=" " autocomplete="current-password" minlength="8" onkeyup="updateForm(event); updateCounter(event)" onkeydown="updateCounter(event)" onfocus="checkFilled(event)" required>
             <label class="input-label" for="pwd" onclick="setFocus(event)">Password</label>
-            <span class="material-symbols-outlined" id="password-eye" onclick="showPassword(event)">visibility</span>
+            <span class="material-icons" id="password-eye" onclick="showPassword(event)">visibility</span>
             <span id="password-cnt">0/8</span>
             <span class="required-alert">Required</span>
         </div>

@@ -5,7 +5,7 @@
         <form id="user-sb" method="GET" action="{{route('adminpage') }}">
             <input name="user" type="text" class="searchbar" placeholder="Search">
             <button type="submit" class="search-icon">
-                <span class="material-symbols-outlined">search</span>
+                <span class="material-icons">search</span>
             </button>        
         </form>
         <a href="{{route('adminCreatePage')}}" id="create-user-button">Create User</a>

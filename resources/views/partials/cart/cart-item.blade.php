@@ -11,6 +11,6 @@
         </div>
     </div>
     <div class="cart-remove">
-        <span onclick="removeItemCart(event, {{$id}})" class="material-symbols-outlined">delete</span>
+        <span onclick="removeItemCart(event, {{$id}})" class="material-icons">delete</span>
     </div>
 </div>

@@ -1,6 +1,6 @@
 @include('partials.common.head', ['page' => "catalogue"])
 <main id="content-wrapper">
-    <button id="collapsible"><span class="material-symbols-outlined">filter_alt</span>Filters</button>
+    <button id="collapsible"><span class="material-icons">filter_alt</span>Filters</button>
         <section id="filters">
             <!-- form to actually do stuff (in the future) -->
             <form id="filters-form">

@@ -8,7 +8,7 @@
         @endif
     </div>
     <div class="expand">
-        <span class="material-symbols-outlined">expand_more</span>
+        <span class="material-icons">expand_more</span>
     </div>
 </div>
 <div class="user-bot-{{$user->id}}" style="display:none;">

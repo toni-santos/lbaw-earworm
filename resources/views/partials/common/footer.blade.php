@@ -13,7 +13,7 @@
         </div>
         <p>Locations</p>
         <div id="footer-locations">
-            <span class="material-symbols-outlined">location_city</span>
+            <span class="material-icons">location_city</span>
             <div>
                 <p>The Place Where He Inserted The Blade</p>
                 <p>Black Country, New Road</p>

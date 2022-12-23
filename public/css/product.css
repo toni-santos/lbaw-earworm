@@ -1,23 +1,25 @@
 #content-wrapper {
     display: flex;
     flex-direction: column;
-    padding: 120px;
+    padding-block: 120px;
 }
 
 #product-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: min-content repeat(2, 1fr);
     grid-auto-flow: column;
+    padding-inline: 70px;
+    gap: 20px;
 }
 
 .product-description {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-.product-description > p {
+#product-name {
     text-align: start;
     width: 100%;
     font-size: xx-large;
@@ -46,19 +48,21 @@
     font-size: large;
 }
 
-#product-img-wrapper {
-    display: flex;
-    justify-content: center;
-}
-
 #genres-wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(min-content, 100px));
+    width: 100%;
+    display: flex;
+    flex-direction: row;
     gap: 10px;
 }
 
 .product-genre {
-    width: 100%;
+    color: var(--white);
+    width: fit-content;
+    padding: 8px;
+    background-color: var(--sub-accent);
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 #product-price {
@@ -76,6 +80,10 @@
 #product-img {
     width: 300px;
     height: 300px;
+
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 50px -25px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 50px -25px rgba(0,0,0,0.75);
 }
 
 /* Using only ".confirm-button" does not work in this case because of css specificity issues.
@@ -86,4 +94,143 @@ which would inherit the color from "body". Maybe we should change this.
 
 a.confirm-button {
     color: var(--light-text)
+}
+
+.flickity-button {
+    display: none;    
+}
+
+@media (max-width: 768px) {
+    .flickity-page-dots {
+        display: none;
+    }
+
+    .flickity-button {
+        display: block;
+    }
+
+    #product-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #product-img-wrapper {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+p[class$="-stock"] {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.green-stock {
+    color: var(--warning-green);
+}
+
+.yellow-stock {
+    color: var(--warning-yellow);
+}
+
+.red-stock {
+    color: var(--warning-red);
+}
+
+.input-star {
+    display: none;
+}
+
+.star + label {
+    color: var(--star);
+}
+
+.star + label:hover  {
+    color: var(--star-inactive);
+}
+
+.star:checked + label {
+    color: var(--star);
+}
+
+.star:checked + label:hover {
+    color: var(--star-inactive);
+}
+
+.star-container {
+    position: relative;
+}
+
+.textarea-container {
+    position: relative;
+}
+
+.textarea-container>textarea {
+    resize: none;
+    width: 100%;
+}
+
+.textarea-container>label {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    padding: 4px;
+    padding-inline: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+#stars-button-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.input-label {
+    font-size: large;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    transition: all 0.2s ease-in-out;
+}
+
+.text-input:is(:not(:placeholder-shown), :focus)+label {
+    position: absolute;
+    top: -22px;
+    left: 5px;
+    font-size: medium;
+}
+
+.review-button {
+    padding: 10px;
+    width: fit-content;
+    text-align: center;
+    font-size: larger;
+    border: none;
+    background-color: var(--main-accent);
+    color: var(--light-text);
+    transition: all 0.2s ease-in-out;
+    cursor: default;  
+}
+
+#review-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%
+}
+
+#reviews-wrapper {
+    padding-inline: 70px;
+}
+
+#rating {
+    display: flex;
+    align-items: center;
 }
