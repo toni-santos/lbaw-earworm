@@ -70,33 +70,75 @@ class ProductController extends Controller
     }
 
     // used to open catalogue & search catalogue 
-    public static function catalogue() {
+    public static function catalogue(Request $request) {
+        $products = Product::search(request('search'));
+        $years = [];
+        $input = $request->all();
 
-        $products = Product::search(request('search'))->paginate(21);
-
-        // rough idea for genre filter
-
-        /*
-        $real_products = [];
-        $test = ["Jazz"];
-
-        foreach($products as $product) {
-
-            $product_genres = $product->genres->toArray();
-            $genre_names = [];
-
-            foreach($product_genres as $product_genre) {
-                array_push($genre_names, $product_genre['name']);
+        foreach ($input as $parameter) {
+            if (!isset($parameter))
+                continue;
+            $key = array_search($parameter, $input);
+            switch ($key) {
+                case "min-price":
+                    $products = $products->where('price', '>=', floatval($parameter)*100);
+                    break;
+                case "max-price":
+                    $products = $products->where('price', '<=', floatval($parameter)*100);
+                    break;
+                case "min-rating":
+                    $products = $products->where('rating', '>=', floatval($parameter));
+                    break;
+                case "max-rating":
+                    $products = $products->where('rating', '<=', floatval($parameter));
+                    break;
+                case "ord":
+                    switch ($parameter) {
+                        case "alpha":
+                            $products = $products->orderBy('name', 'asc');
+                            break;
+                        case "asc-price":
+                            $products = $products->orderBy('price', 'asc');
+                            break;
+                        case "desc-price":
+                            $products = $products->orderBy('price', 'desc');
+                            break;
+                        case "asc-rating":
+                            $products = $products->orderBy('rating', 'asc');
+                            break;
+                        case "desc-rating":
+                            $products = $products->orderBy('rating', 'desc');
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
             }
-
-            if(!array_diff($test, $genre_names)) {
-                array_push($real_products, $product);
-            }
-
         }
-        */
 
         $genres = Genre::all();
+
+        $queryGenres = request('genre');
+        $productIds = [];
+        if (isset($queryGenres)) {
+            foreach ($products->get() as $product) {
+                $productGenres = $product->genres->toArray();
+                $genreNames = [];
+                
+                foreach ($productGenres as $productGenre) {
+                    array_push($genreNames, $productGenre['name']);
+                }
+                
+                if(!array_diff($queryGenres, $genreNames)) {
+                    array_push($productIds, $product['id']);
+                }
+            }
+            $products = $products->whereIn('id', $productIds);
+        }
+
+        $products = $products->paginate(21)->withQueryString();
 
         foreach ($products as $product) {
             $product['artist_name'] = $product->artist->name;
