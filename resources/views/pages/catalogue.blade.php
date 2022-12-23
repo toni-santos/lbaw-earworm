@@ -5,7 +5,6 @@
             <!-- form to actually do stuff (in the future) -->
             <form id="filters-form" method="GET" action={{ route('catalogue') }} onsubmit="return validateForm()">
                 <fieldset id="filters-wrapper">
-                    <label for="name">Min Price</label>
                     @if (!empty(request('search')))
                     <input type="hidden" name="search" value="{{request('search')}}">
                     @endif
