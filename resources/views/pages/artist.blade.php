@@ -15,13 +15,15 @@
             'carouselTitle' => 'From ' . $artist["name"],
             'carouselId' => 'carousel-artist',
             'type' => 'product',
-            'content' => $products
+            'content' => $products,
+            'wishlist' => $wishlist
         ])
     @else
         @include('partials.common.static-carousel', [
             'carouselTitle' => 'From ' . $artist["name"],
             'carouselId' => 'static-carousel-artist',
-            'content' => $products
+            'content' => $products,
+            'wishlist' => $wishlist
         ])
     @endif
 </main>

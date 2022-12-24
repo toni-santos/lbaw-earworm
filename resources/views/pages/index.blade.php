@@ -11,13 +11,15 @@
         'carouselTitle' => 'Trending Products',
         'carouselId' => 'carousel-trending',
         'type' => 'product',
-        'content' => $trendingProducts
+        'content' => $trendingProducts,
+        'wishlist' => $wishlist
     ])
     @include('partials.common.carousel', [
         'carouselTitle' => 'For You',
         'carouselId' => 'carousel-fy',
         'type' => 'product',
-        'content' => $fyProducts
+        'content' => $fyProducts,
+        'wishlist' => $wishlist
     ])
     {{-- 
     TODO: NOT AUTHENTICATED STORE PROMO

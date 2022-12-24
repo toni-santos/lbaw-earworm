@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Artist;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -37,10 +38,28 @@ class ArtistController extends Controller
             $product['artist_name'] = $product->artist->name;
             $product['price'] = $product->price/100;
         }
+        
+        $wishlist = getWishlist();
 
         return view('pages.artist', [
             'artist' => $artist,
-            'products' => $products
+            'products' => $products,
+            'wishlist' => $wishlist
         ]);
     }
+}
+
+function getWishlist() {
+    if (Auth::check()) {
+        $user = User::findOrFail(Auth::id());
+        $list = $user->wishlist->toArray();
+        $wishlist = [];
+        foreach ($list as $product) {
+            $wishlist[] = $product['id'];
+        }
+        
+        return $wishlist;
+    }
+    
+    return [];
 }

@@ -45,12 +45,14 @@ class UserController extends Controller
             }
 
         }
+        $wishlist = getWishlist();
 
         return view('pages.user', [
             'user' => $user,
             'favArtists' => $favArtists,
             'purchaseHistory' => $boughtProducts,
-            'recommendedProducts' => Product::all()->take(5)
+            'recommendedProducts' => Product::all()->take(5),
+            'wishlist' => $wishlist
         ]);
     }
 
@@ -130,4 +132,19 @@ class UserController extends Controller
     {
         //
     }
+}
+
+function getWishlist() {
+    if (Auth::check()) {
+        $user = User::findOrFail(Auth::id());
+        $list = $user->wishlist->toArray();
+        $wishlist = [];
+        foreach ($list as $product) {
+            $wishlist[] = $product['id'];
+        }
+        
+        return $wishlist;
+    }
+    
+    return [];
 }

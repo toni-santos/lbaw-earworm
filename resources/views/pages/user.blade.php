@@ -29,7 +29,7 @@
                 'carouselTitle' => 'User Favorite Artists',
                 'carouselId' => 'carousel-fav-artists',
                 'type' => 'artist',
-                'content' => $favArtists,
+                'content' => $favArtists
             ])
         </section>
         <section id="buy-history">
@@ -46,6 +46,7 @@
                 'carouselId' => 'carousel-lastfm-recs',
                 'type' => 'product',
                 'content' => $recommendedProducts,
+                'wishlist' => $wishlist
             ])
         </section>
     </div>

@@ -27,10 +27,13 @@ class ProductController extends Controller
             $suggestProduct['price'] = $suggestProduct->price/100;
         }
 
+        $wishlist = getWishlist();
+
         return view('pages.product', [
             'product' => $product,
             'products' => $products,
-            'genres' => $product->genres->toArray()
+            'genres' => $product->genres->toArray(),
+            'wishlist' => $wishlist
         ]);
 
     }
@@ -68,7 +71,9 @@ class ProductController extends Controller
 
         }
 
-        return view('pages.index', ['trendingProducts' => $trendingProducts, 'fyProducts' => $fyProducts]);
+        $wishlist = getWishlist();
+
+        return view('pages.index', ['trendingProducts' => $trendingProducts, 'fyProducts' => $fyProducts, 'wishlist' => $wishlist]);
     }
 
     // used to open catalogue & search catalogue 
@@ -151,7 +156,9 @@ class ProductController extends Controller
             $product['price'] = $product->price/100;
         }
 
-        return view('pages.catalogue', ['products' => $products, 'genres' => $genres, 'active_genres' => $active_genres]);
+        $wishlist = getWishlist();
+
+        return view('pages.catalogue', ['products' => $products, 'genres' => $genres, 'active_genres' => $active_genres, 'wishlist' => $wishlist]);
 
     }
 
@@ -292,4 +299,19 @@ class ProductController extends Controller
 
         return 200;
     }
+}
+
+function getWishlist() {
+    if (Auth::check()) {
+        $user = User::findOrFail(Auth::id());
+        $list = $user->wishlist->toArray();
+        $wishlist = [];
+        foreach ($list as $product) {
+            $wishlist[] = $product['id'];
+        }
+        
+        return $wishlist;
+    }
+    
+    return [];
 }

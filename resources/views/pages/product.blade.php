@@ -28,8 +28,12 @@
                 <button type=submit class="confirm-button">BUY</button>
             </form>
             <p class="wishlist-container" id="favorite-container-{{$product->id}}" onclick="toggleLike(event, {{$product['id']}})">Add to Wishlist 
-                <span class="material-icons">favorite_outline</span>
-            </p>
+                @if (in_array($product['id'], $wishlist))
+                <span class="material-icons fav-album">favorite</span>
+                @else
+                <span class="material-icons fav-album"">favorite_outline</span>
+                @endif
+        </p>
             @else
             <button class="confirm-button" href="{{route('buyProduct', ['id' => $product->id])}}" disabled>BUY</button>
             @endif
@@ -83,7 +87,8 @@
         'carouselTitle' => 'More like this...',
         'carouselId' => 'carousel-product',
         'type' => 'product',
-        'content' => $products
+        'content' => $products,
+        'wishlist' => $wishlist
     ])
 </main>
 @include('partials.common.foot')

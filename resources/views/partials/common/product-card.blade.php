@@ -7,7 +7,11 @@
             <a class="prod-format" title="Format">{{$product['format']}}</a>
             <article class="product-fav-price">
                 <div id="favorite-container-{{$product['id']}}">
+                    @if (in_array($product['id'], $wishlist))
+                    <span class="material-icons fav-album" onclick="toggleLike(event, {{$product['id']}})">favorite</span>
+                    @else
                     <span class="material-icons fav-album" onclick="toggleLike(event, {{$product['id']}})">favorite_outline</span>
+                    @endif
                 </div>
                 <a title="Price">{{$product['price']}} €</a>
             </article>
