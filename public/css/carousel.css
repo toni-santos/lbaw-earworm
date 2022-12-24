@@ -27,7 +27,7 @@
 
 div[id^="static-carousel-"] {
     display: flex;
-    flex-direction: row;;
+    flex-direction: row;
 }
 
 .flickity-button {
@@ -43,4 +43,8 @@ div[id^="static-carousel-"] {
         display: block;
     }
 
+    div[id^="static-carousel-"] {
+        display: flex;
+        flex-direction: column;
+    }
 }
