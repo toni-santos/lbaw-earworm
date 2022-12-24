@@ -81,13 +81,17 @@
         <script type="module" src={{ asset('js/artist.js') }} defer></script>
         @break
 
+      @case('about-us')
+        <link href="{{ asset('css/statics.css') }}" rel="stylesheet">
+        @break
+        
       @default
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
         <link href="{{ asset('css/index.css') }}" rel="stylesheet">
         <script type="text/javascript" src={{ asset('js/index.js') }} defer></script>
         
-        @endswitch
+      @endswitch
         
     <script type="text/javascript" src={{ asset('js/like.js') }} defer></script>
     <script type="text/javascript" src={{ asset('js/cart.js') }} defer></script>

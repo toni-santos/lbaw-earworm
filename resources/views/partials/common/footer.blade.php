@@ -1,6 +1,6 @@
 <div id="footer">
     <div id="footer-links">
-        <a href="">About Us</a>
+        <a href="{{route('about-us')}}">About Us</a>
         <a href="">Help</a>
         <a href="">FAQ</a>
     </div>

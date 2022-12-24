@@ -12,8 +12,9 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Home
+// Home & Statics Pages
 Route::get('/', 'ProductController@homepage')->name('home');
+Route::view('/about-us', '/pages/aboutus')->name('about-us');
 
 // Pages
 
