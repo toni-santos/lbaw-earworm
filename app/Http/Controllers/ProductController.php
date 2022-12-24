@@ -11,6 +11,7 @@ use App\Models\Genre;
 use App\Models\User;
 use App\Models\Artist;
 use App\Models\Order;
+use App\Models\Review;
 use App\Models\OrderProduct;
 
 class ProductController extends Controller
@@ -29,11 +30,18 @@ class ProductController extends Controller
 
         $wishlist = getWishlist();
 
+        $reviews = Review::all()->where('product_id', $id);
+        foreach ($reviews as $review) {
+            $review['product'] = Product::all()->find($review['product_id']);
+            $review['reviewer'] = User::all()->find($review['reviewer_id']);
+        }
+
         return view('pages.product', [
             'product' => $product,
             'products' => $products,
             'genres' => $product->genres->toArray(),
-            'wishlist' => $wishlist
+            'wishlist' => $wishlist,
+            'reviews' => $reviews
         ]);
 
     }

@@ -154,6 +154,7 @@ var BBCodeHTML = function() {
   // adds BBCodes and their HTML
   me.addBBCode('[b]{TEXT}[/b]', '<strong>{TEXT}</strong>');
   me.addBBCode('[a={TEXT}]', '<a>{TEXT}</a>');
+  me.addBBCode('[m={TEXT}]', '<a>{TEXT}</a>');
   me.addBBCode('[r={TEXT}]', '<a>{TEXT}</a>');
   me.addBBCode('[i]{TEXT}[/i]', '<em>{TEXT}</em>');
   me.addBBCode('[u]{TEXT}[/u]', '<span style="text-decoration:underline;">{TEXT}</span>');

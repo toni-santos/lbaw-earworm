@@ -739,8 +739,9 @@ a.nav-button {
 
 .review>article {
   padding-inline: 28px;
-  margin-left: 18px;
+  margin-left: 50px;
   border-left: 1px solid var(--dark-text);
+  margin-top: 5px;
   padding-top: 5px;
 }
 
@@ -761,3 +762,14 @@ a.nav-button {
   overflow-wrap: break-word;
   hyphens: manual;
 }
+
+.reviewer-pfp {
+  width: 100px;
+  height: 100px;
+}
+
+.reviewer-info {
+  font-weight: bold;
+  font-size: large;
+}
+

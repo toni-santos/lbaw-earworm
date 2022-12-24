@@ -45,6 +45,6 @@ window.addEventListener("scroll", () => {
         navbar.style.background = "var(--main-accent)";
     } else {
         navbar.style.background =
-            "linear-gradient(0deg, rgb(0,0,0,0) 0%, rgb(0,0,0,0) 50%, rgba(24, 82, 41, 0.5) 100%)";
+            "linear-gradient(0deg, rgb(0,0,0,0) 0%, rgb(0,0,0,0) 50%, rgba(28, 49, 94, 0.5) 100%)";
     }
 });

@@ -55,7 +55,6 @@ main {
 
 #review-wrapper, #buy-history-wrapper {
     padding-inline: 100px;
-    padding-block: 20px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -73,4 +72,12 @@ main {
 .buy-history-img {
     width: 100px;
     height: 100px;
+}
+
+#fav-artists-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding-inline: 70px;
+    flex-wrap: wrap;
+    justify-content: center;
 }

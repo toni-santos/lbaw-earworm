@@ -72,10 +72,9 @@
             </div>
         </form>
         <section id="reviews">
-            @include('partials.common.review', ['type' => "product"])
-            @include('partials.common.review', ['type' => "product"])
-            @include('partials.common.review', ['type' => "product"])
-            @include('partials.common.review', ['type' => "product"])
+            @foreach ($reviews as $review)
+                @include('partials.common.review', ['type' => "product", 'review' => $review])                
+            @endforeach
         </section>
     </div>
 

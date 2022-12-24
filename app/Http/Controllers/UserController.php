@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -54,12 +55,19 @@ class UserController extends Controller
 
         $wishlist = getWishlist();
 
+        $reviews = Review::all()->where('reviewer_id', $id);
+        foreach ($reviews as $review) {
+            $review['product'] = Product::all()->find($review['product_id']);
+            $review['reviewer'] = User::all()->find($review['reviewer_id']);
+        }
+
         return view('pages.user', [
             'user' => $user,
             'favArtists' => $favArtists,
             'purchaseHistory' => $boughtProducts,
             'recommendedProducts' => $recommendedProducts,
-            'wishlist' => $wishlist
+            'wishlist' => $wishlist,
+            'reviews' => $reviews
         ]);
     }
 
