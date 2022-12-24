@@ -7,17 +7,24 @@
   --white: #fdfdff;
   --silver: #c6c5b9;
   --raisin-black: #2e282a;
-  --cedar-chest: #cd5334;
+  --cedar-chest: #e9785c;
   --chinese-red: #b4482d;
+
+  --navy: #1C315E;
+  --dark-navy: #0b1222;
+  --teal: #227C70;
+  --dark-teal: #154942;
+  --sage: #88A47C;
+  --beige: #E6E2C3;
   --old-gold: #CFB53B;
   --flax: #E0CF80;
-
-  --main-accent: var(--forest-green-traditional);
-  --sub-accent: var(--cedar-chest);
-  --dark-accent: var(--british-racing-green);
-  --sub-dark-accent: var(--chinese-red);
-  --light-accent: var(--spanish-green);
-  --light-contrast: var(--silver);
+  
+  --main-accent: var(--navy);
+  --sub-accent: var(--teal);
+  --dark-accent: var(--dark-navy);
+  --sub-dark-accent: var(--dark-teal);
+  --light-accent: var(--sage);
+  --light-contrast: var(--beige);
   
   --background-light: var(--white);
   --background-dark: var(--raisin-black);

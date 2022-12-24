@@ -11,7 +11,7 @@
     </section>
     
     <section id="team-wrapper">
-        <span> <h2> Our Team </h2> <span>
+        <span> <h2> ---- Our Team ----  </h2> <span>
         <div id="team-wrapper-row">
             <div class="team-wrapper-col">
                 <div class="team-card">

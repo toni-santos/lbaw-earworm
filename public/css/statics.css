@@ -24,11 +24,11 @@
 }
 
 #team-wrapper {
-    color: var(--light-text);
+    color: var(--dark-text);
     margin: 0 8px;
     padding: 16px;
     text-align: center;
-    background-color: var(--main-accent);
+    background-color: var(--light-contrast);
 }
 
 .team-wrapper-col {
@@ -39,8 +39,8 @@
 }
 
 .team-card {
-    color: black;
-    background-color: var(--light-text);
+    color: var(--dark-text);
+    background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;
     padding: 20px
