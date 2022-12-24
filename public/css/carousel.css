@@ -12,7 +12,7 @@
 }
 
 [id^="carousel-"] {
-    width: 60%;
+    width: 52%;
 }
 
 #carousel-promos {
@@ -23,4 +23,24 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+div[id^="static-carousel-"] {
+    display: flex;
+    flex-direction: row;;
+}
+
+.flickity-button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .flickity-page-dots {
+        display: none;
+    }
+
+    .flickity-button {
+        display: block;
+    }
+
 }

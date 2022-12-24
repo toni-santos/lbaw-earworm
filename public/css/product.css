@@ -92,19 +92,7 @@ a.confirm-button {
     color: var(--light-text);
 }
 
-.flickity-button {
-    display: none;
-}
-
 @media (max-width: 768px) {
-    .flickity-page-dots {
-        display: none;
-    }
-
-    .flickity-button {
-        display: block;
-    }
-
     #product-grid {
         display: flex;
         flex-direction: column;

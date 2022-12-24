@@ -43,7 +43,7 @@
     flex-direction: row;
 }
 
-.prod-name, .artist-name {
+.prod-name, .prod-artist-name {
     text-align: center;
     width: 200px;
     font-size: large;

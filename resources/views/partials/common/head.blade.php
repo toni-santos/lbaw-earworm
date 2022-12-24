@@ -73,6 +73,14 @@
         <link href="{{ asset('css/wishlist.css') }}" rel="stylesheet">
         @break
 
+      @case('artist')
+        <link href="{{ asset('css/artist.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
+        <script type="module" src={{ asset('js/BBCode_to_HTML.js') }} defer></script>
+        <script type="module" src={{ asset('js/artist.js') }} defer></script>
+        @break
+
       @default
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">

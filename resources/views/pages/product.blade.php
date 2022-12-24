@@ -7,7 +7,7 @@
         <div class="product-description">
             <div>
                 <p id="product-name">{{$product->name}}</p>
-                <p id="product-artist">{{$product->artist->name}}</p>
+                <a href="/artist/{{$product['artist_id']}}" id="product-artist">{{$product->artist->name}}</p>
                 @if ($product->rating)
                     <p id="rating">{{$product->rating}}/5<span class="material-icons" style="color:var(--star);">star</span></p>                    
                 @else

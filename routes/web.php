@@ -22,6 +22,9 @@ Route::get('/product/{id}', 'ProductController@show')->name('product');
 Route::get('/products', 'ProductController@catalogue')->name('catalogue');
 Route::get('/product/buy/{id}', 'ProductController@buyProduct')->name('buyProduct');
 
+// Artists
+Route::get('/artist/{id}', 'ArtistController@show')->name('artist');
+
 //test func
 Route::get('/cart', 'ProductController@cart')->name('cart');
 

@@ -1,0 +1,40 @@
+#artist-banner {
+    width: 100vw;
+    height: 300px;
+    position: relative;
+}
+
+#artist-pfp {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+}
+
+#artist-top {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 20px;
+    position: absolute;
+    bottom: 0px;
+    left: 70px;
+}
+
+#artist-name {
+    font-size: x-large;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+#artist-description {
+    font-size: large;
+    padding-inline: 70px;
+    white-space: pre-wrap;
+}
+
+#artist-description a {
+    color: var(--main-accent);
+}

@@ -74,20 +74,8 @@ main {
     z-index: -3;
 }
 
-.flickity-button {
-    display: none;    
-}
-
 @media (max-width: 768px) {
     #wide-top {
         background-color: var(--main-accent);
-    }
-
-    .flickity-page-dots {
-        display: none;
-    }
-
-    .flickity-button {
-        display: block;
     }
 }
