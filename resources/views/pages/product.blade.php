@@ -7,7 +7,7 @@
         <div class="product-description">
             <div>
                 <p id="product-name">{{$product->name}}</p>
-                <a href="/artist/{{$product['artist_id']}}" id="product-artist">{{$product->artist->name}}</p>
+                <a href="/artist/{{$product['artist_id']}}" id="product-artist">{{$product->artist->name}}</a>
                 @if ($product->rating)
                     <p id="rating">{{$product->rating}}/5<span class="material-icons" style="color:var(--star);">star</span></p>                    
                 @else
@@ -27,13 +27,12 @@
             <form id="buy-form" action="{{route('buyProduct', ['id' => $product->id])}}">
                 <button type=submit class="confirm-button">BUY</button>
             </form>
-            <p class="wishlist-container" id="favorite-container-{{$product->id}}" onclick="toggleLike(event, {{$product['id']}})">Add to Wishlist 
                 @if (in_array($product['id'], $wishlist))
-                <span class="material-icons fav-album">favorite</span>
+                    <p class="wishlist-container" id="favorite-container-{{$product->id}}" onclick="toggleLike(event, {{$product['id']}})">Wishlisted<span class="material-icons fav-album">favorite</span>
                 @else
-                <span class="material-icons fav-album"">favorite_outline</span>
+                    <p class="wishlist-container" id="favorite-container-{{$product->id}}" onclick="toggleLike(event, {{$product['id']}})">Add to Wishlist<span class="material-icons fav-album">favorite_outline</span>
                 @endif
-        </p>
+                    </p>
             @else
             <button class="confirm-button" href="{{route('buyProduct', ['id' => $product->id])}}" disabled>BUY</button>
             @endif
