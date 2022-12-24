@@ -39,6 +39,9 @@ Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
 // User 
 Route::get('/user/settings/{id}', 'UserController@editProfile')->name('editprofile');
 Route::post('/user/settings/{id}', 'UserController@update')->name('editprofilepost');
+Route::post('/user/settings/change-password/{id}', 'UserController@updatePassword')->name('editpassword');
+Route::get('/user/settings/recover-password/{id}', 'UserController@recoverPassword')->name('recoverpassword');
+
 Route::get('/user/{id}', 'UserController@show')->name('profile');
 Route::get('/user', 'UserController@ownprofile')->name('ownprofile');
 Route::post('/cart/increase/{id}', 'ProductController@addToCart')->name('addToCart');

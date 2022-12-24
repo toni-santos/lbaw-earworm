@@ -59,6 +59,7 @@
         <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
         <script type="text/javascript" src={{ asset('js/forms.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/admin.js') }} defer></script>
+        <script type="text/javascript" src={{ asset('js/usersettings.js') }} defer></script>
 
         @break
 

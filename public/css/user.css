@@ -49,6 +49,10 @@ main {
     grid-column-start: 2;
 }
 
+#content-select > div a {
+    color: var(--light-text);
+}
+
 #content-wrapper {
     padding-top: 80px;
 }

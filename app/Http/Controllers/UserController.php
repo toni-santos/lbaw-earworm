@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -97,6 +99,13 @@ class UserController extends Controller
 
     public function editProfile(int $id) {
         $user = User::findOrFail($id);
+        $email = $user['email'];
+        $em   = explode("@",$email);
+        $name = implode('@', array_slice($em, 0, count($em)-1));
+        $len  = floor(strlen($name)/2);
+        $concealedEmail = substr($name,0, $len) . str_repeat('*', $len) . "@" . end($em); 
+
+        $user['email'] = $concealedEmail;
         if (!(Auth::user()->is_admin || Auth::id() == $id)) abort(403);
         return view('pages.settings', ['user' => $user]);
     }
@@ -127,6 +136,32 @@ class UserController extends Controller
         $user->save();
 
         return to_route('profile', ['id' => $id]);
+    }
+
+    public function updatePassword(Request $request, int $id)
+    {
+        $user = User::findOrFail($id);
+        if ($user->is_blocked) {
+            abort(404);
+        }
+        $data = $request->toArray();
+
+        if (!Hash::check($data['old-password'], $user->password)) {
+            return redirect()->back()->withErrors([
+                'approve' => 'Incorrect previous password.',
+            ]); 
+        }
+
+        if ($user->is_admin) {
+            $user->is_blocked = array_key_exists('block', $data);
+        }
+
+        $newpass = Hash::make($data['new-password']);
+        $user->password = $newpass ?? $user->password;
+
+        $user->save();
+
+        return to_route('logout');
     }
 
     /**
