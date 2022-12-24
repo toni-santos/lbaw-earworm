@@ -27,15 +27,16 @@
             <form id="buy-form" action="{{route('buyProduct', ['id' => $product->id])}}">
                 <button type=submit class="confirm-button">BUY</button>
             </form>
-                @if (in_array($product['id'], $wishlist))
-                    <p class="wishlist-container" id="favorite-container-{{$product->id}}" onclick="toggleLike(event, {{$product['id']}})">Wishlisted<span class="material-icons fav-album">favorite</span>
-                @else
-                    <p class="wishlist-container" id="favorite-container-{{$product->id}}" onclick="toggleLike(event, {{$product['id']}})">Add to Wishlist<span class="material-icons fav-album">favorite_outline</span>
-                @endif
-                    </p>
             @else
             <button class="confirm-button" href="{{route('buyProduct', ['id' => $product->id])}}" disabled>BUY</button>
             @endif
+            @if (in_array($product['id'], $wishlist))
+                <p class="wishlist-container" id="favorite-container-{{$product->id}}" onclick="toggleLike(event, {{$product['id']}})">Wishlisted<span class="material-icons fav-album">favorite</span>
+            @else
+                <p class="wishlist-container" id="favorite-container-{{$product->id}}" onclick="toggleLike(event, {{$product['id']}})">Add to Wishlist<span class="material-icons fav-album">favorite_outline</span>
+            @endif
+                </p>
+
         </div>
     </div>
     <div id="product-tracklist-wrapper">
