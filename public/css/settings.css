@@ -44,15 +44,17 @@
 
 div[class^='user-top-'] {
     color: var(--light-text);
-    background-color: var(--main-accent);
+    background-color: var(--sub-accent);
     font-size: 20px;
     margin: 10px 10px 10px 10px;
-    
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 3px 10px 0 rgba(0, 0, 0, 0.10);
+
 }
 
 div[class^='user-top-']:hover {
-    background-color: var(--dark-accent);
+    background-color: var(--sub-dark-accent);
     transition: 0.3s ease;
+    
 }
 
 div[class^='user-bot-'] {

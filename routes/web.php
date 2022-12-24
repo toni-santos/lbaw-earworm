@@ -63,3 +63,8 @@ Route::post('login', 'Auth\LoginController@authenticate')->name('authenticate');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@show')->name('register');
 Route::post('register', 'Auth\RegisterController@register')->name('registrate');
+
+// Static
+Route::get('about-us', function () {
+    return view('pages.aboutus');
+})->name('about-us');

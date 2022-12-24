@@ -13,6 +13,23 @@
     height: 200px;
 }
 
+.artist-card-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+}
+
+.artist-desc {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: medium;
+    text-align: center;
+}
+
 .product-desc {
     width: 100%;
     display: flex;

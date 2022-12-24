@@ -17,7 +17,7 @@
             </div>
             <div class="expand">
                 <p> Change Account Details </p>
-                <span class="material-symbols-outlined">expand_more</span>
+                <span class="material-icons">expand_more</span>
             </div>
         </div>
         <div class="user-bot-info-{{$user->id}}" style="display:none;">
@@ -43,7 +43,7 @@
         <div class="user-top-pass-{{$user->id}}" onclick="expandUserOptions(event, {{$user->id}})">
             <div class="expand">
                 <p> Change Password </p>
-                <span class="material-symbols-outlined">expand_more</span>
+                <span class="material-icons">expand_more</span>
             </div>
         </div>
         <div class="user-bot-pass-{{$user->id}}" style="display:none;">
@@ -83,7 +83,7 @@
             </div>
             <div class="expand">
                 <p> Link Last.FM Account </p>
-                <span class="material-symbols-outlined">expand_more</span>
+                <span class="material-icons">expand_more</span>
             </div>
         </div>
         <div class="user-bot-lastfm-{{$user->id}}" style="display:none;">

@@ -10,28 +10,18 @@
         <section id="reviews">
             @include('partials.common.subtitle', ['title' => "Reviews"])
             <div id="review-wrapper">
-                @include('partials.common.review', ['type' => 'profile'])
+                @foreach ($reviews as $review)
+                    @include('partials.common.review', ['type' => 'profile', 'review' => $review])
+                @endforeach
             </div>
         </section>
         <section id="fav-artists">
-            @if ($favArtists >= 6)
-            @include('partials.common.carousel', [
-                'carouselTitle' => 'User Favorite Artists',
-                'carouselId' => 'carousel-fav-artists',
-                'type' => 'artist',
-                'content' => $favArtists
-            ])
-            @elseif ($favArtists > 0)
-            @include('partials.common.static-carousel', [
-                'carouselTitle' => $user['username'] . ' Favorite Artists',
-                'carouselId' => 'static-carousel-fav-artists',
-                'type' => 'artist',
-                'content' => $favArtists
-            ])
-            @else
             @include('partials.common.subtitle', ['title' => $user['username'] . ' Favorite Artists'])
-            <p>No favorite artists yet...</p>
-            @endif
+            <div id="fav-artists-wrapper">
+                @foreach ($favArtists as $artist)
+                    @include('partials.common.artist-card', ['artist' => $artist])
+                @endforeach
+            </div>
         </section>
         <section id="buy-history">
             @include('partials.common.subtitle', ['title' => "Purchase History"])
