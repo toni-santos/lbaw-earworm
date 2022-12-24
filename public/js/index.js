@@ -40,7 +40,7 @@ const scrollCap = window.screen.height / 2;
 
 window.addEventListener("scroll", () => {
     let scrollPercentage = window.scrollY / scrollCap;
-    navbarInside.style.background = "rgba(24, 82, 41," + scrollPercentage + ")";
+    navbarInside.style.background = "rgba(28, 49, 94," + scrollPercentage + ")";
     if (window.scrollY >= scrollCap) {
         navbar.style.background = "var(--main-accent)";
     } else {
