@@ -35,7 +35,7 @@
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
         <link href="{{ asset('css/user.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/review.css') }}" rel="stylesheet">
+        <script type="module" src={{ asset('js/user.js') }} defer></script>
         @break
 
       @case('checkout')

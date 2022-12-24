@@ -726,7 +726,8 @@ a.nav-button {
   flex-direction: row;
   align-items: center;
   justify-items: center;
-  justify-content: space-between;
+  justify-content: start;
+
 }
 
 .review>article {

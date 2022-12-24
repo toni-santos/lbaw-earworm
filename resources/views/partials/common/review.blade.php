@@ -5,11 +5,12 @@
                 <div class="reviewer-info">
                     <img alt="Product picture" src="" class="reviewer-pfp">
                     <p class="reviewer-name">PRODUCT NAME</p>
-                    <p class="reviewer-score subtitle1">RATING<span class="material-icons"  style="color:var(--);">star</span></p>
+                    -
+                    <p class="reviewer-score subtitle1">RATING<span class="material-icons"  style="color:var(--star);">star</span></p>
                 </div>
             </div>
             <article class="review-message">
-                MESSAGE
+                REVIEW
             </article>
         </section>
         @break

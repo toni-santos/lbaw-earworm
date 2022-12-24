@@ -1,36 +1,37 @@
 @include('partials.common.head', ['page' => "user"])
 <main>
-    <div id="profile-header">
-        <img id="profile-pic" src="https://picsum.photos/250/400?random=1">
-        <p id="profile-name">{{ $user['username'] }}</p>
-    </div>
-    <section id="content-select">
-        <div>
-            <a href="#reviews">Reviews</a>
-            <a href="#fav-artists">Favorite Artists</a>
-            <a href="#buy-history">Purchase History</a>
-            <a href="#lastfm-recs">Last.fm Recommendations</a>
+    <div id="user-banner">
+        <div id="user-top">
+            <img src={{ url('/images/artists/' . $user['id'] . '.jpg') }} alt="User Profile Picture" id="user-pfp">
+            <p id="user-name">{{$user['username']}}</p>
         </div>
-    </section>
+    </div>
     <div id="content-wrapper">
         <section id="reviews">
             @include('partials.common.subtitle', ['title' => "Reviews"])
             <div id="review-wrapper">
-                @include('partials.user.review')
-                @include('partials.user.review')
-                @include('partials.user.review')
-                @include('partials.user.review')
-                @include('partials.user.review')
-                @include('partials.user.review')
+                @include('partials.common.review', ['type' => 'profile'])
             </div>
         </section>
         <section id="fav-artists">
+            @if ($favArtists >= 6)
             @include('partials.common.carousel', [
                 'carouselTitle' => 'User Favorite Artists',
                 'carouselId' => 'carousel-fav-artists',
                 'type' => 'artist',
                 'content' => $favArtists
             ])
+            @elseif ($favArtists > 0)
+            @include('partials.common.static-carousel', [
+                'carouselTitle' => $user['username'] . ' Favorite Artists',
+                'carouselId' => 'static-carousel-fav-artists',
+                'type' => 'artist',
+                'content' => $favArtists
+            ])
+            @else
+            @include('partials.common.subtitle', ['title' => $user['username'] . ' Favorite Artists'])
+            <p>No favorite artists yet...</p>
+            @endif
         </section>
         <section id="buy-history">
             @include('partials.common.subtitle', ['title' => "Purchase History"])

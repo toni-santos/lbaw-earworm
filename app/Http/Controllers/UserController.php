@@ -45,13 +45,20 @@ class UserController extends Controller
             }
 
         }
+
+        $recommendedProducts = Product::inRandomOrder()->limit(10)->get();
+        foreach ($recommendedProducts as $suggestProduct) {
+            $suggestProduct['artist_name'] = $suggestProduct->artist->name;
+            $suggestProduct['price'] = $suggestProduct->price/100;
+        }
+
         $wishlist = getWishlist();
 
         return view('pages.user', [
             'user' => $user,
             'favArtists' => $favArtists,
             'purchaseHistory' => $boughtProducts,
-            'recommendedProducts' => Product::all()->take(5),
+            'recommendedProducts' => $recommendedProducts,
             'wishlist' => $wishlist
         ]);
     }
