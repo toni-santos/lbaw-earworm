@@ -215,11 +215,7 @@ p[class$="-stock"] {
     width: 100%;
 }
 
-#reviews-wrapper {
-    padding-inline: 70px;
-}
-
-#review-box-wrapper {
+#reviews-wrapper, #review-box-wrapper {
     padding-inline: 70px;
 }
 
