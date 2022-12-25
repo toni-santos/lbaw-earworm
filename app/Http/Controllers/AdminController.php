@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,12 +18,28 @@ class AdminController extends Controller
      */
     public function show(Request $request)
     {
+        return view('pages.admin.index');
+    }
+
+
+    public function showUser(Request $request)
+    {
         if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
         $search = !empty($request->toArray()) ? $request->toArray()['user'] : '';
         
         $users = User::search($search)->where('is_admin', 0)->where('is_deleted', 0)->get();//->paginate(20);
-        return view('pages.admin', ['users' => $users]);
+        return view('pages.admin.user', ['users' => $users]);
+    }
+
+
+    public function showProduct(Request $request) {
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
+        
+        $search = !empty($request->toArray()) ? $request->toArray()['user'] : '';
+
+        $products = Product::search($search)->get();//->paginate(20);
+        return view('pages.admin.product', ['products' => $products]);
     }
 
     public function showUserCreate() 
@@ -38,8 +55,7 @@ class AdminController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    public function create(Request $request) {
-
+    public function createUser(Request $request) {
         $data = $request->toArray();
 
         $user = User::where('email', $data['email'])->first();
@@ -54,7 +70,7 @@ class AdminController extends Controller
             'is_admin' => array_key_exists('admin', $data)
         ]);
 
-        return to_route('adminpage');
+        return to_route('adminUser');
     }
 
     /**
@@ -63,7 +79,7 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function editUser(User $user)
     {
         return view('pages.settings', ['id' => $user->id]);
     }
@@ -75,7 +91,7 @@ class AdminController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function updateUser(Request $request, int $id)
     {
         $user = User::findOrFail($id);
         $data = $request->toArray();
@@ -86,7 +102,7 @@ class AdminController extends Controller
 
         $user->save();
 
-        return to_route('adminpage');
+        return to_route('adminUser');
     }
 
     public function deleteUser(Request $request) {
@@ -102,8 +118,18 @@ class AdminController extends Controller
 
         $user->save();
         
-        return to_route('adminpage');
+        return to_route('adminUser');
 
+    }
+
+    public function updateProduct(Request $request) {
+        return;
+    }
+    public function createProduct(Request $request) {
+        return;
+    }
+    public function deleteProduct(Request $request) {
+        return;
     }
 
     public function findUser() {

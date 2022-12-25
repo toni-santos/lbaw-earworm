@@ -51,11 +51,18 @@ Route::post('/wishlist/add/{id}', 'ProductController@addToWishlist')->name('addT
 Route::post('/wishlist/remove/{id}', 'ProductController@removeFromWishlist')->name('removeFromWishlist');
 
 // Admin
-Route::get('/admin/create', 'AdminController@showUserCreate')->name('adminCreatePage');
-Route::post('/admin/create', 'AdminController@create')->name('adminCreateAction');
-Route::post('/admin/delete', 'AdminController@deleteUser')->name('deleteUser');
-Route::post('/admin/{id}', 'AdminController@update')->name('adminedit');
-Route::get('/admin', 'AdminController@show')->name('adminpage');
+Route::get('/admin', 'AdminController@show')->name('adminIndex');
+Route::get('/admin/signup', 'AdminController@showUserCreate')->name('adminCreatePage');
+Route::get('/admin/user', 'AdminController@showUser')->name('adminUser');
+Route::get('/admin/product', 'AdminController@showProduct')->name('adminProduct');
+Route::get('/admin/artist', 'AdminController@showUser')->name('adminArtist');
+Route::get('/admin/order', 'AdminController@showUser')->name('adminOrder');
+Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
+Route::post('/admin/user/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
+Route::post('/admin/user/edit/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
+Route::post('/admin/product/create', 'AdminController@createProduct')->name('adminCreateProduct');
+Route::post('/admin/product/delete', 'AdminController@deleteProduct')->name('adminDeleteProduct');
+Route::post('/admin/product/edit/{id}', 'AdminController@updateProduct')->name('adminUpdateProduct');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

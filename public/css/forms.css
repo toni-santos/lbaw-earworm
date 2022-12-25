@@ -22,10 +22,10 @@
     align-items: center;
 }
 
-#inputs-box {
+.inputs-box {
     display: flex;
     flex-direction: column;
-    gap: 17px;
+    gap: 20px;
 }
 
 .input-container {
@@ -41,7 +41,7 @@
     border: 1px solid var(--border-color);
     font-size: large;
     padding: 10px;
-    background-color: var(--input-color);
+    background-color: var(--main-accent);
     vertical-align: middle;
     color: var(--text-soft-color);
 }
@@ -52,6 +52,7 @@
     top: 15px;
     left: 15px;
     transition: all 0.2s ease-in-out;
+    color: var(--white);
 }
 
 .static-label {

@@ -1,5 +1,5 @@
 function expandOptions(event, id) {
-    const bottom = document.querySelector('.user-bot-' + id);
+    const bottom = document.querySelector('.result-bot-' + id);
     if (bottom.style.display == 'none') {
         bottom.style.display = 'flex';
     } else {

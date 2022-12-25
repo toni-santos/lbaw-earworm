@@ -1,33 +1,35 @@
-#user-admin-top {
+#admin-form-wrapper {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    padding-inline: 40px;
+    padding-inline: 70px;
     align-items: center;
     justify-content: center;
 }
 
-#user-sb {
+#sb {
+    position: relative;
     width: 100%;
 }
 
-#create-user-button {
+#create-button {
     flex-grow: 1;
     text-align: center;
     padding: 5px;
-    background-color: var(--subtle-color);
+    background-color: var(--main-accent);
+    color: var(--white);
 }
 
-div[class^='user-top-'] {
+div[class^='result-top-'] {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-inline: 40px;
     padding: 40px 20px;
-    /* background-color: var(--input-color); */
+    background-color: var(--main-accent);
+    color: var(--white);
 }
 
-.user-info {
+.result-info {
     display: flex;
     flex-direction: column;
 }
@@ -40,15 +42,16 @@ div[class^='user-top-'] {
     padding-right: 20px;
 }
 
-div[class^='user-bot-'] {
+div[class^='result-bot-'] {
     display: none;
     flex-direction: column;
     align-items: center;
     width: 100%;
     padding-inline: 40px;
-    padding-block: 20px;
+    padding-block: 30px;
     justify-content: center;
-    background-color: var(--subtle-color);
+    background-color: var(--sub-accent);
+    color: white;
 }
 
 .confirm-button {
@@ -59,9 +62,77 @@ div[class^='user-bot-'] {
     width: fit-content;
 }
 
-#user-list {
+#result-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding-inline: 70px;
 }
 
+#admin-board-wrapper {
+    padding-block: 100px;
+
+}
+
+#admin-board {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    align-self: center;
+}
+
+.admin-topic {
+    width: 300px;
+    height: 250px;
+    background-color: var(--main-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    background-size: cover;
+    position: relative;
+    z-index: 0;
+    transition: all 0.2s ease-in-out;
+}
+
+#users-topic, #products-topic, #artists-topic, #orders-topic {
+    color: var(--white);
+}
+
+.admin-topic-darken {
+    position: absolute;
+    opacity: 0.5;
+    background-color: var(--black);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: all 0.2s ease-in-out;
+}
+
+.admin-topic:hover {
+    scale: 1.1;
+}
+
+.admin-topic:hover > .admin-topic-darken {
+    opacity: 0.3;
+}
+
+#welcome-dashboard {
+    padding-inline: 70px;
+}
+
+.result-top-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.result-img {
+    width: 150px;
+    height: 150px;
+}

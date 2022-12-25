@@ -475,6 +475,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   float: right;
   top: 4px;
   right: 10px;
+  color: var(--white);
 }
 
 .search-icon:focus {
