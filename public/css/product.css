@@ -215,13 +215,14 @@ p[class$="-stock"] {
     width: 100%;
 }
 
+#reviews-wrapper, #review-box-wrapper, .subtitle-container:not(){
+    padding-inline: 70px;
+}
+
 #review-form {
     display: flex;
     flex-direction: column;
     width: 100%;
-}
-
-#reviews-wrapper {
     padding-inline: 70px;
 }
 

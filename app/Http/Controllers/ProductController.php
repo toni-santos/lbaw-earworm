@@ -30,10 +30,26 @@ class ProductController extends Controller
 
         $wishlist = getWishlist();
 
+        $logged = false;
+        if (Auth::check()) {
+            $user_id = Auth::id();
+            $logged = true;
+        }
+        
         $reviews = Review::all()->where('product_id', $id);
+        $reviewsTrimmed = array();
         foreach ($reviews as $review) {
             $review['product'] = Product::all()->find($review['product_id']);
             $review['reviewer'] = User::all()->find($review['reviewer_id']);
+            if ($logged) {
+                if ($user_id == $review['reviewer_id']) 
+                    $product['previous_review'] = $review;
+                else 
+                    array_push($reviewsTrimmed, $review);
+            }
+            else {
+                array_push($reviewsTrimmed, $review);
+            }
         }
 
         return view('pages.product', [
@@ -41,7 +57,7 @@ class ProductController extends Controller
             'products' => $products,
             'genres' => $product->genres->toArray(),
             'wishlist' => $wishlist,
-            'reviews' => $reviews
+            'reviews' => $reviewsTrimmed
         ]);
 
     }
@@ -307,6 +323,58 @@ class ProductController extends Controller
 
         return 200;
     }
+
+    public function addReview(Request $request, int $id) {
+        if (!Auth::check()) abort(403);
+        $user_id = Auth::id();
+        $data = $request->toArray();
+
+        DB::table('review')->insert([
+            'reviewer_id' => $user_id,
+            'product_id' => $id,
+            'score' => $data['rating-star'],
+            'message' => $data['message']
+        ]);
+        
+        return to_route('product', ['id' => $id]);
+    }
+
+    public function editReview(Request $request, int $user_id, int $product_id) {
+        if (!Auth::check()) abort(403);
+        if ((Auth::id() != $user_id) && !Auth::user()->is_admin) abort(401);
+
+        $data = $request->toArray();
+
+        $review = Review::all()->where('reviewer_id', '=', $user_id)
+                               ->where('product_id', '=', $product_id)->first();
+        if (!$review) abort(404);
+
+        $review->message = $data['message'] ?? $review->message;
+        $review->score = $data['rating-star'] ?? $review->score;
+        $date = date("Y-m-d");
+        $review->date = $date ?? $review->date;
+
+        DB::table('review')->where('reviewer_id', '=', $user_id)
+        ->where('product_id', '=', $product_id)
+        ->update(['message' => $review->message, 'score' => $review->score, 'date' => $review->date]);
+        
+        return to_route('product', ['id' => $product_id]);
+    }
+
+    public function deleteReview(Request $request, int $user_id, int $product_id) {
+        if (!Auth::check()) abort(403);
+        if ((Auth::id() != $user_id) && !Auth::user()->is_admin) abort(401);
+
+        $data = $request->toArray();
+
+        Review::where([
+            'reviewer_id' => $user_id,
+            'product_id' => $product_id,
+        ])->delete();
+        
+        return to_route('product', ['id' => $product_id]);
+    }
+    
 }
 
 function getWishlist() {
@@ -322,4 +390,5 @@ function getWishlist() {
     }
     
     return [];
+
 }

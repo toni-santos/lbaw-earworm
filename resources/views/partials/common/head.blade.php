@@ -16,6 +16,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
     <link href="{{ asset('css/global.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     
@@ -50,6 +51,7 @@
         <link href="{{ asset('css/product.css') }}" rel="stylesheet">
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/review.css') }}" rel="stylesheet">
         <script type="text/javascript" src={{ asset('js/product.js') }} defer></script>
         @break
 

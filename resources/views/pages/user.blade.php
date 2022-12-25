@@ -16,7 +16,7 @@
             </div>
         </section>
         <section id="fav-artists">
-            @include('partials.common.subtitle', ['title' => $user['username'] . ' Favorite Artists'])
+            @include('partials.common.subtitle', ['title' => $user['username'] . "'s Favorite Artists"])
             <div id="fav-artists-wrapper">
                 @foreach ($favArtists as $artist)
                     @include('partials.common.artist-card', ['artist' => $artist])

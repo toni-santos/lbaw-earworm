@@ -49,29 +49,16 @@
             <?php } ?>
         </div>
     </div>
+    <div id="review-box-wrapper">
+        @if (Auth::check() && isset($product->previous_review)) 
+            @include('partials.common.subtitle', ['title' => "Your Previous Review"])
+            @include('partials.forms.edit-review-form', ['review' => $product->previous_review])
+        @else
+            @include('partials.forms.review-form')
+        @endif
+    </div>
     @include('partials.common.subtitle', ['title' => "Reviews"])
-    {{-- @if (Auth::check()) --}}
     <div id="reviews-wrapper">
-        <form method="POST" action="../actions/add_review_action.php" id="review-form">
-            {{-- TODO: USER IMAGE HERE --}}
-            <div class="textarea-container">
-                <textarea placeholder=" " id="message" class="text-input" name="message" rows="3" cols="100"></textarea>
-                <label class="input-label" for="message">Review</label>
-            </div>
-            <div id="stars-button-container">
-                <div class="star-container">
-                    <?php for ($i = 0; $i < 5; $i++) { ?>
-                        <input class="star input-star" type="radio" name="rating-star" id="star-<?= $i ?>" value="<?= $i+1 ?>" required>
-                            <label id="star-label-<?= $i ?>" onclick="selectStar(event)">
-                                <span class="material-icons">
-                                    star_outline
-                                </span>
-                            </label>
-                    <?php } ?>
-                </div>
-                <button class="review-button" type="submit" value="Submit">Review</button>
-            </div>
-        </form>
         <section id="reviews">
             @foreach ($reviews as $review)
                 @include('partials.common.review', ['type' => "product", 'review' => $review])                
@@ -79,9 +66,6 @@
         </section>
     </div>
 
-    {{-- @endif --}}
-    <section id="reviews">
-    </section>
     @include('partials.common.carousel', [
         'carouselTitle' => 'More like this...',
         'carouselId' => 'carousel-product',

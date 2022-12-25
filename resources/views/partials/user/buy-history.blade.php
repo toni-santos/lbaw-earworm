@@ -1,4 +1,4 @@
-<section class="buy-history-item">
-    <img class="buy-history-img" src={{ url('/images/products/'.$product['id'].'.jpg') }}>
-    <p class="buy-history-name">{{ $product['name'] }}</p>
+<section class="buy-history-item"> 
+    <a href="{{ route('product', ['id' => $product['id']]) }}" > <img class="buy-history-img" src={{ url('/images/products/'.$product['id'].'.jpg') }}> </a>
+    <a class="buy-history-name" href="{{ route('product', ['id' => $product['id']]) }}"> {{ $product['name'] }}" </a>
 </section>

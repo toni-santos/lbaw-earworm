@@ -13,7 +13,6 @@
 .review-head {
     display: flex;
     flex-direction: column;
-
 }
 
 .review-name {
@@ -26,4 +25,24 @@
     flex-direction: row;
     align-items: center;
     font-size: large;
+}
+
+#review-edit-top {
+    display: flex;
+    flex-direction: column;
+}
+
+#review-edit-bot {
+    padding-inline: 70px;
+}
+
+#review-edit-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+#edit-option, #delete-option {
+    width: 49.5%;
 }

@@ -60,3 +60,15 @@ function selectStar(event) {
             
     }
 }
+
+// edit review dropdown
+
+function toggleEditReview(event) {
+    review_bot = document.getElementById("review-edit-bot");
+    if (review_bot.style.display == 'none') {
+        review_bot.style.display = 'flex';
+    }
+    else {
+        review_bot.style.display = 'none';
+    }
+}
