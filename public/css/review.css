@@ -27,13 +27,20 @@
     font-size: large;
 }
 
+#review-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-inline: 70px;
+}
+
 #review-edit-top {
     display: flex;
     flex-direction: column;
 }
 
-#review-edit-bot {
-    padding-inline: 70px;
+#delete-form-container {
+    width:100%;
 }
 
 #review-edit-options {
@@ -44,5 +51,5 @@
 }
 
 #edit-option, #delete-option {
-    width: 49.5%;
+    width: 100%;;
 }

@@ -2,7 +2,7 @@
     @include('partials.common.review', ['type' => "product", 'review' => $review]) 
     <div id="review-edit-options">
         <button class="confirm-button" id="edit-option" onclick="toggleEditReview(event)"> <span class="material-symbols-outlined">edit</span> </button>
-        <form method="POST" action="{{route('deleteReview', ['user_id' => $review['reviewer_id'], 'product_id' => $review['product_id']])}}"> 
+        <form method="POST" id="delete-form-container" action="{{route('deleteReview', ['user_id' => $review['reviewer_id'], 'product_id' => $review['product_id']])}}"> 
             {{ csrf_field() }}
             <button class="confirm-button" id="delete-option"> <span class="material-symbols-outlined">delete</span> </button>
         </form>

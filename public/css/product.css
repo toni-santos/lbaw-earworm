@@ -215,15 +215,16 @@ p[class$="-stock"] {
     width: 100%;
 }
 
-#reviews-wrapper, #review-box-wrapper, .subtitle-container:not(){
+#reviews-wrapper {
     padding-inline: 70px;
 }
 
-#review-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+#review-box-wrapper {
     padding-inline: 70px;
+}
+
+#review-box-wrapper .subtitle-container {
+    padding-inline: 0px;
 }
 
 #rating {
