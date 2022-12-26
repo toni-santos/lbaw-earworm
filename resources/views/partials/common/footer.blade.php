@@ -1,8 +1,8 @@
 <div id="footer">
     <div id="footer-links">
         <a href="{{route('about-us')}}">About Us</a>
-        <a href="">Help</a>
-        <a href="">FAQ</a>
+        <a href="{{route('help')}}">Help</a>
+        <a href="{{route('help')}}">FAQ</a>
     </div>
     <div id="footer-finds">
         <p>Contacts</p>
