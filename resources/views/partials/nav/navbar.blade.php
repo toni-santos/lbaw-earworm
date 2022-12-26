@@ -46,8 +46,8 @@
             <a href="{{route('checkout')}}"><span class="material-icons">shopping_basket</span>Cart</a>
             <div id="mobile-nav-profile">
                 <div id="mobile-nav-profile-icon">
-                    <span class="material-icons">account_circle</span>
-                    <a>User</a>
+                    <a href="{{route('ownprofile')}}" id="profile-icon"> <span class="material-icons">account_circle</span> </a>
+                    <a href="{{route('ownprofile')}}">User</a>
                 </div>
                 <a><span class="material-icons">logout</span></a>
             </div>
