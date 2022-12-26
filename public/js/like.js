@@ -2,8 +2,6 @@
 
 async function toggleLike(event, id) {
 
-    const input = event.composedPath();
-    
     var like_container = document.getElementById('favorite-container-' + id);
     let like = document.querySelector('#favorite-container-' + id + ' > span');
     if (like.textContent == "favorite_outline") {
