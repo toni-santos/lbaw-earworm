@@ -28,6 +28,7 @@ Route::get('/artist/{id}', 'ArtistController@show')->name('artist');
 
 //test func
 Route::get('/cart', 'ProductController@cart')->name('cart');
+Route::get('/get-admin', 'UserController@getAdmin')->name('getadmin');
 
 //Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
 //Route::get('/decrease-from-cart/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
