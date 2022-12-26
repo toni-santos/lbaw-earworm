@@ -19,7 +19,7 @@ class Product extends Model
   ];
 
   public function scopeSearch($query, $search) {
-    dd($search);
+    // dd($search);
     $sqlSearch = str_replace(' ', '%', $search);
     if($search ?? false) {
       return $query->whereRaw('tsvectors @@ to_tsquery(\'english\', ?)', $sqlSearch)

@@ -86,10 +86,15 @@
       @case('about-us')
         <link href="{{ asset('css/statics.css') }}" rel="stylesheet">
         @break
-        
+
+      @case('orders')
+        <link href="{{ asset('css/orders.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/orders.js') }} defer></script>
+        @break
+      
       @case('help')
         <link href="{{ asset('css/statics.css') }}" rel="stylesheet">
-        <script type="module" src={{ asset('js/statics.js') }} defer></script>
+        <script type="text/javascript" src={{ asset('js/statics.js') }} defer></script>
         @break
         
       @default

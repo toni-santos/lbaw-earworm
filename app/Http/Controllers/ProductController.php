@@ -437,5 +437,21 @@ class ProductController extends Controller
         
         return to_route('product', ['id' => $product_id]);
     }
+
+    public function showOrder() {
+        if (!Auth::check()) abort(403);
+
+        $user = User::findOrFail(Auth::id());
+        $orders = $user->orders; 
+
+        foreach ($orders as $order) {
+            $order['products'] = $order->products;
+            foreach($order['products'] as $product) {
+                $product['artist_name'] = $product->artist->name;
+            }
+        }
+
+        return view('pages.order', ['orders' => $orders]);
+    }
     
 }
