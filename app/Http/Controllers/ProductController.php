@@ -332,13 +332,19 @@ class ProductController extends Controller
     public function buy() {
 
         $cart = session()->get('cart');
-
+        
         $order = Order::create([
             'user_id' => Auth::id(),
             'state' => 'Delivered'
         ]);
-
+        
         foreach ($cart as $id => $product) {
+
+            $stock = Product::select('stock')->where('id', $id)->get()->toArray()[0]['stock'];
+
+            if ($product['quantity'] > $stock) {
+                return back(301, ["error" => "Not enough stock for order on ". $product['name']]);
+            }
 
             DB::table('order_product')->insert([
                 'order_id' => $order->id,
