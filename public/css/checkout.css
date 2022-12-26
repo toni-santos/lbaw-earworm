@@ -8,7 +8,7 @@
 }
 
 #items-wrapper {
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 20px;
     padding-right: 20px;
@@ -24,10 +24,12 @@
     justify-content: space-between;
 }
 
-#payment-method, #checkout-total,
-#billing-info, #payment-description {
+#payment-method,
+#checkout-total,
+#billing-info,
+#payment-description {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 }
 
 #payment-description {
@@ -50,7 +52,6 @@
 }
 
 #confirm-checkout {
-    margin-inline: 10px;
     margin-top: 20px;
 }
 
@@ -97,15 +98,13 @@
     align-items: center;
 }
 
-
 .radio {
     margin: 0.5rem;
     position: absolute;
     left: -9999px;
 }
 
-.radio-label
-{
+.radio-label {
     position: relative;
     padding-left: 30px;
     padding-top: 10px;
@@ -113,17 +112,17 @@
     display: inline-block;
 }
 .radio-label::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     width: 18px;
     height: 18px;
     border: 1px solid;
     border-radius: 100%;
-    background: #FFFFFF;
+    background: #ffffff;
 }
 .radio-label::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 14px;
     left: 4px;
