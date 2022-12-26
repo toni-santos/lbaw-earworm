@@ -88,6 +88,7 @@
     top: -20px;
     left: 5px;
     font-size: medium;
+    color: var(--black);
 }
 
 .confirm-button:disabled {

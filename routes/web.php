@@ -57,6 +57,7 @@ Route::get('/admin/user', 'AdminController@showUser')->name('adminUser');
 Route::get('/admin/product', 'AdminController@showProduct')->name('adminProduct');
 Route::get('/admin/artist', 'AdminController@showUser')->name('adminArtist');
 Route::get('/admin/order', 'AdminController@showUser')->name('adminOrder');
+Route::get('/admin/review', 'AdminController@showUser')->name('adminReview');
 Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
 Route::post('/admin/user/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
 Route::post('/admin/user/edit/{id}', 'AdminController@updateUser')->name('adminUpdateUser');

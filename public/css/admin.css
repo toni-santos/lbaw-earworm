@@ -1,3 +1,11 @@
+main{
+    padding-top: 100px;
+}
+
+#index-main {
+    padding-bottom: 0px;
+}
+
 #admin-form-wrapper {
     display: flex;
     flex-direction: row;
@@ -5,6 +13,12 @@
     padding-inline: 70px;
     align-items: center;
     justify-content: center;
+}
+
+.result-wrapper {
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);  
 }
 
 #sb {
@@ -24,9 +38,10 @@ div[class^='result-top-'] {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 40px 20px;
+    padding: 20px 20px;
     background-color: var(--main-accent);
     color: var(--white);
+    z-index: 1;
 }
 
 .result-info {
@@ -43,15 +58,23 @@ div[class^='result-top-'] {
 }
 
 div[class^='result-bot-'] {
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding-inline: 40px;
-    padding-block: 30px;
+    max-height: 0px;
+    overflow: hidden;
     justify-content: center;
     background-color: var(--sub-accent);
     color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+div[class^='result-bot-'] >div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .confirm-button {
@@ -60,6 +83,18 @@ div[class^='result-bot-'] {
 
 .form-bot {
     width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputs-box {
+    display: flex;
+    align-items: center;
+}
+
+.text-input:is(:not(:placeholder-shown), :focus)+label {
+    color: var(--white);
 }
 
 #result-list {
@@ -85,8 +120,8 @@ div[class^='result-bot-'] {
 }
 
 .admin-topic {
-    width: 300px;
-    height: 250px;
+    width: 200px;
+    height: 150px;
     background-color: var(--main-accent);
     display: flex;
     align-items: center;
@@ -98,7 +133,7 @@ div[class^='result-bot-'] {
     transition: all 0.2s ease-in-out;
 }
 
-#users-topic, #products-topic, #artists-topic, #orders-topic {
+#users-topic, #products-topic, #artists-topic, #orders-topic, #reviews-topic {
     color: var(--white);
 }
 
@@ -135,4 +170,99 @@ div[class^='result-bot-'] {
 .result-img {
     width: 150px;
     height: 150px;
+}
+
+#admin-nav {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    align-self: center;
+    gap: 20px;
+}
+
+#flash-topics {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-inline: 70px;
+    padding-block: 40px;
+    justify-content: center;
+    justify-items: center;
+    height: 100%;
+    gap: 20px;
+}
+
+.invis-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;;
+    width: 100%;
+    padding: 0;
+    padding: 10px;
+    font-size: medium;
+	outline: inherit;
+    word-wrap: break-word;
+    color: inherit;
+    background-color: var(--sub-accent);
+}
+
+.flash-item {
+    display: flex;
+    width: 100%;
+}
+
+.flash-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--main-accent);
+    padding: 20px;
+    color: var(--white);
+    width: 500px;
+    min-width: 250px;
+}
+
+.flash-card > p {
+    font-size: large;
+}
+
+.invis-button > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+}
+
+#sales-form-group {
+    border: none;
+    background-color: var(--main-accent);
+    font-size: large;
+}
+
+
+@media (max-width: 768px) {
+ 
+    div[class^='result-top-'] {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px 20px;
+        background-color: var(--main-accent);
+        color: var(--white);
+        z-index: 1;
+    }
+
+    #sales-form-group {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

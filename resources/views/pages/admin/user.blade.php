@@ -1,5 +1,6 @@
 @include('partials.common.head', ['page' => "admin"])
 <main>
+    @include('partials.backoffice.admin-nav')
     @include('partials.common.subtitle', ['title' => "User Administration"])
     <div id="admin-form-wrapper">
         <form id="sb" method="GET" action="{{ route('adminUser') }}">

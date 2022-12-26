@@ -61,8 +61,7 @@ main {
         max-height: 0;
         padding: 0px;
         overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
-        transition: padding 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
     }
 }
 
@@ -172,7 +171,7 @@ label[for="max-price"] {
     width: 100%;
 }
 
-.genre-check, .year-check, .artist-check {
+.genre-check, .year-check, .format-check {
     font-size: medium;
 }
 

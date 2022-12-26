@@ -18,7 +18,11 @@ class AdminController extends Controller
      */
     public function show(Request $request)
     {
-        return view('pages.admin.index');
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
+
+        $products = Product::all()->sortBy('stock', false)->take(5);
+        // $orders = Order::all()->orderBy('', 'asc')->limit(5);
+        return view('pages.admin.index', ['products' => $products]);
     }
 
 
@@ -36,7 +40,7 @@ class AdminController extends Controller
     public function showProduct(Request $request) {
         if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
         
-        $search = !empty($request->toArray()) ? $request->toArray()['user'] : '';
+        $search = !empty($request->toArray()) ? $request->toArray()['product'] : '';
 
         $products = Product::search($search)->get();//->paginate(20);
         return view('pages.admin.product', ['products' => $products]);

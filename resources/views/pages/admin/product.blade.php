@@ -1,9 +1,10 @@
 @include('partials.common.head', ['page' => "admin"])
 <main>
+    @include('partials.backoffice.admin-nav')
     @include('partials.common.subtitle', ['title' => "Product Administration"])
     <div id="admin-form-wrapper">
         <form id="sb" method="GET" action="{{ route('adminProduct') }}">
-            <input name="user" type="text" class="searchbar" placeholder="Search">
+            <input name="product" type="text" class="searchbar" placeholder="Search">
             <button type="submit" class="search-icon">
                 <span class="material-icons">search</span>
             </button>        

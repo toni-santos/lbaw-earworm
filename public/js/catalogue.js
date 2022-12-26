@@ -3,7 +3,6 @@ const filters = document.getElementById("filters");
 const results = document.getElementsByClassName("results-wrapper")[0];
 
 collapsible.addEventListener("click", () => {
-    console.log("hi");
     if (filters.style.maxHeight) {
         filters.dataset.show = "false";
         filters.style.maxHeight = null;
