@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Order;
 use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,11 +47,10 @@ class AdminController extends Controller
         if ($search) {
             $products = Product::adminSearch($search);
             $products = $products->paginate(20)->withQueryString();
-            return view('pages.admin.product', ['products' => $products]);
         } else {
             $products = Product::paginate(20)->withQueryString();
-            return view('pages.admin.product', ['products' => $products]);
         }
+        return view('pages.admin.product', ['products' => $products]);
     }
 
     public function showArtist(Request $request) {
@@ -61,6 +61,29 @@ class AdminController extends Controller
         $artists = Artist::search($search);
         $artists = $artists->paginate(20)->withQueryString();
         return view('pages.admin.artist', ['artists' => $artists]);
+    }
+
+    public function showOrder(Request $request) {
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
+        
+        $search = (array_key_exists('order', $request->toArray())) ? $request->toArray()['order'] : '';
+        if ($search) {
+            $orders = Order::where('id', 'LIKE', $search)
+                            ->orWhere('user_id', 'LIKE', $search);
+            $orders = $orders->paginate(20)->withQueryString();
+        } else {
+            $orders = Order::paginate(20)->withQueryString();
+        }
+        
+        foreach ($orders as $order) {
+            $order['products'] = $order->products;
+            foreach($order['products'] as $product) {
+                $product['artist_name'] = $product->artist->name;
+            }
+        }
+
+
+        return view('pages.admin.orders', ['orders' => $orders]);
     }
 
     public function showUserCreate() 

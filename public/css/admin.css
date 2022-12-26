@@ -267,3 +267,13 @@ div[class^='result-bot-'] >div {
         justify-content: center;
     }
 }
+
+.select-filter {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: var(--sub-dark-accent);
+    color: var(--light-text);
+    padding: 5px;
+    font-size: medium;
+}
