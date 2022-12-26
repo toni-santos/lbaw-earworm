@@ -45,7 +45,6 @@ main {
     font-size: x-large;
     font-weight: bold;
     color: white;
-
 }
 
 .promo-desc-subtext {
@@ -55,7 +54,12 @@ main {
 }
 
 #navbar-wide {
-    background: linear-gradient(0deg, rgb(0,0,0,0) 0%, rgb(0,0,0,0) 50%, rgba(28, 49, 94, 0.5) 100%);
+    background: linear-gradient(
+        0deg,
+        rgb(0, 0, 0, 0) 0%,
+        rgb(0, 0, 0, 0) 50%,
+        rgba(28, 49, 94, 0.5) 100%
+    );
     transition: background 0.5s ease-in-out;
     transition: opacity 0.5s ease-in-out;
 }
@@ -84,8 +88,48 @@ main {
     z-index: -3;
 }
 
+.index-promo {
+    margin: 70px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 40px;
+}
+
+.promo-section {
+    text-align: center;
+    text-justify: inter-word;
+}
+
+.section-heading {
+    font-size: xx-large;
+    border-color: var(--main-accent);
+}
+
+.section-heading + p {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: larger;
+    max-width: 500px;
+}
+
+.section-image {
+    width: 200px;
+    height: 200px;
+}
+
 @media (max-width: 768px) {
     #wide-top {
         background-color: var(--main-accent);
+    }
+    .index-promo {
+        display: flex;
+        flex-direction: column;
+        word-wrap: break-word;
+    }
+    .section-image {
+        width: min(60%, 300px);
+        height: auto;
     }
 }

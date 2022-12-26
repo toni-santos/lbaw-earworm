@@ -14,19 +14,16 @@
         'content' => $trendingProducts,
         'wishlist' => $wishlist
     ])
-    @include('partials.common.carousel', [
-        'carouselTitle' => 'For You',
-        'carouselId' => 'carousel-fy',
-        'type' => 'product',
-        'content' => $fyProducts,
-        'wishlist' => $wishlist
-    ])
-    {{-- 
-    TODO: NOT AUTHENTICATED STORE PROMO
-
     @if (Auth::check())
+        @include('partials.common.carousel', [
+            'carouselTitle' => 'For You',
+            'carouselId' => 'carousel-fy',
+            'type' => 'product',
+            'content' => $fyProducts,
+            'wishlist' => $wishlist
+        ])
     @else
-    @include('partials.common.index-promos')'
-    @endif --}}
+        @include('partials.common.index-promos')'
+    @endif
 </main>
 @include('partials.common.foot')
