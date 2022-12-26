@@ -11,52 +11,36 @@
     </section>
     
     <section id="team-wrapper">
-        <span> <h2> ---- Our Team ----  </h2> <span>
-        <div id="team-wrapper-row">
-            <div class="team-wrapper-col">
-                <div class="team-card">
-                    <div class="team-img">
-                        <img src="https://picsum.photos/200/300" width="100%">
-                        <div class="team-info">
-                            <h2> António Santos </h2>
-                            <p> description </p>
-                        </div>
-                    </div>
+        <h2>Our Team</h2>
+        <div id="team-members">
+            <a class="team-card">
+                <img class="member-img" src="https://avatars.githubusercontent.com/u/72560332?v=4">
+                <div class="team-info">
+                    <h2> António Santos </h2>
+                    <p> CEO </p>
                 </div>
-            </div>
-            <div class="team-wrapper-col">
-                <div class="team-card">
-                    <div class="team-img">
-                        <img src="https://picsum.photos/200/300" width="100%">
-                        <div class="team-info">
-                            <h2> José Osório </h2>
-                            <p> description </p>
-                        </div>
-                    </div>
+            </a>
+            <a class="team-card">
+                <img class="member-img" src="https://avatars.githubusercontent.com/u/80978330?v=4">
+                <div class="team-info">
+                    <h2>José Osório</h2>
+                    <p> CEO </p>
                 </div>
-            </div>
-            <div class="team-wrapper-col">
-                <div class="team-card">
-                    <div class="team-img" id=>
-                        <img src="https://picsum.photos/200/300" width="100%">
-                        <div class="team-info">
-                            <h2> José Castro </h2>
-                            <p> description </p>
-                        </div>
-                    </div>
+            </a>
+            <a class="team-card">
+                <img class="member-img" src="https://avatars.githubusercontent.com/u/79976078?v=4">
+                <div class="team-info">
+                    <h2> José Castro </h2>
+                    <p> CEO </p>
                 </div>
-            </div>
-            <div class="team-wrapper-col">
-                <div class="team-card">
-                    <div class="team-img">
-                        <img src="https://picsum.photos/200/300" width="100%">
-                        <div class="team-info">
-                            <h2> Pedro Silva </h2>
-                            <p> description </p>
-                        </div>
-                    </div>
+            </a>
+            <a class="team-card">
+                <img class="member-img" src="https://avatars.githubusercontent.com/u/75742355?v=4">
+                <div class="team-info">
+                    <h2> Pedro Silva </h2>
+                    <p> CEO </p>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 </main>

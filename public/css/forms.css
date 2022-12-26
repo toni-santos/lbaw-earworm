@@ -74,6 +74,7 @@
     position: absolute;
     top: 15px;
     right: 10px;
+    color: var(--white);
 }
 
 .required-alert {

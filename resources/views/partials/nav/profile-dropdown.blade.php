@@ -6,8 +6,8 @@
         <a href="{{route('profile', ['id' => Auth::id()])}}">{{Auth::user()->username}}</a>
     </div>
     <div>
-        <a href=""><span class="material-icons">package</span></a>            
-        <a href="">Orders</a>
+        <a href="{{route('order')}}"><span class="material-icons">package</span></a>            
+        <a href="{{route('order')}}">Orders</a>
     </div>
     <div>
         <a href="{{route('editprofile', ['id' => Auth::id()])}}"><span class="material-icons">settings</span></a>            

@@ -43,10 +43,14 @@ class AdminController extends Controller
         if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
         
         $search = (array_key_exists('product', $request->toArray())) ? $request->toArray()['product'] : '';
-
-        $products = Product::search($search);
-        $products = $products->paginate(20)->withQueryString();
-        return view('pages.admin.product', ['products' => $products]);
+        if ($search) {
+            $products = Product::adminSearch($search);
+            $products = $products->paginate(20)->withQueryString();
+            return view('pages.admin.product', ['products' => $products]);
+        } else {
+            $products = Product::paginate(20)->withQueryString();
+            return view('pages.admin.product', ['products' => $products]);
+        }
     }
 
     public function showArtist(Request $request) {

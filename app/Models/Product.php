@@ -19,7 +19,7 @@ class Product extends Model
   ];
 
   public function scopeSearch($query, $search) {
-    //dd($search);
+    dd($search);
     $sqlSearch = str_replace(' ', '%', $search);
     if($search ?? false) {
       return $query->whereRaw('tsvectors @@ to_tsquery(\'english\', ?)', $sqlSearch)
@@ -27,6 +27,13 @@ class Product extends Model
     }
   }
 
+  public static function adminSearch($search) {
+    //dd($search);
+    if($search ?? false) {
+      return Product::where('id', 'LIKE', "%{$search}%")
+                  ->orWhere('name', 'ILIKE', "%{$search}%");
+    }
+}
 
   /**
    * The artist that authored this product.

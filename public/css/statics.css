@@ -1,10 +1,8 @@
 #about-us-main {
-    box-sizing: border-box;
-    padding-top: 60px;
-}
-
-#about-us-main, #about-us-main:before, #about-us-main:after {
-    box-sizing: inherit;
+    padding-block: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #about-us-introduction {
@@ -17,6 +15,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;
     padding: 16px;
+    margin-inline: 70px;
 }
 
 #about-us-introduction h1 {
@@ -25,10 +24,23 @@
 
 #team-wrapper {
     color: var(--dark-text);
-    margin: 0 8px;
-    padding: 16px;
+    padding: 20px;
     text-align: center;
     background-color: var(--light-contrast);
+    margin-inline: 70px;}
+
+.member-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+#team-members {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .team-wrapper-col {

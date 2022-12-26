@@ -133,7 +133,7 @@ div[class^='result-bot-'] >div {
     transition: all 0.2s ease-in-out;
 }
 
-#users-topic, #products-topic, #artists-topic, #orders-topic, #reviews-topic {
+#users-topic, #products-topic, #artists-topic, #orders-topic, #mod-topic {
     color: var(--white);
 }
 

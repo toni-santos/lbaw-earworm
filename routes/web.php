@@ -26,6 +26,9 @@ Route::get('/product/buy/{id}', 'ProductController@buyProduct')->name('buyProduc
 // Artists
 Route::get('/artist/{id}', 'ArtistController@show')->name('artist');
 
+// Orders
+Route::get('/order', 'ProductController@showOrder')->name('order');
+
 //test func
 Route::get('/cart', 'ProductController@cart')->name('cart');
 Route::get('/get-admin', 'UserController@getAdmin')->name('getadmin');
@@ -62,7 +65,7 @@ Route::get('/admin/user', 'AdminController@showUser')->name('adminUser');
 Route::get('/admin/product', 'AdminController@showProduct')->name('adminProduct');
 Route::get('/admin/artist', 'AdminController@showArtist')->name('adminArtist');
 Route::get('/admin/order', 'AdminController@showUser')->name('adminOrder');
-Route::get('/admin/review', 'AdminController@showUser')->name('adminReview');
+Route::get('/admin/review', 'AdminController@showUser')->name('adminMod');
 Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
 Route::post('/admin/user/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
 Route::post('/admin/user/edit/{id}', 'AdminController@updateUser')->name('adminUpdateUser');

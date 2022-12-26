@@ -37,7 +37,7 @@ class User extends Authenticatable
                       ->orWhere('id', 'LIKE', "%{$search}%")
                       ->orWhere('email', 'LIKE', "%{$search}%");
         }
-      }
+    }
 
 
     /**
