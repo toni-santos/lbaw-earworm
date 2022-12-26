@@ -3,6 +3,7 @@
     padding-inline: 70px;
     padding-block: 10px;
     padding-top: 0px;
+    width: 100%;
 }
 
 #user-nav-wide {
@@ -43,6 +44,7 @@
 }
 
 div[class^='user-top-'] {
+    padding: 16px;
     color: var(--light-text);
     background-color: var(--sub-accent);
     font-size: 20px;
