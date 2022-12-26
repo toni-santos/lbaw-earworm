@@ -43,7 +43,7 @@
     padding: 10px;
     background-color: var(--main-accent);
     vertical-align: middle;
-    color: var(--text-soft-color);
+    color: var(--white);
 }
 
 .input-label {

@@ -15,6 +15,7 @@
         @foreach ($products as $product)
             @include('partials.backoffice.product-card', ['product' => $product])
         @endforeach
+        {{ $products->links('vendor.pagination.default') }}
     </div>
 </main>
 @include('partials.common.foot')

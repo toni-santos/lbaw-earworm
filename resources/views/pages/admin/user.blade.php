@@ -15,6 +15,7 @@
         @foreach ($users as $user)
             @include('partials.backoffice.user-card', ['user' => $user])
         @endforeach
+        {{ $users->links('vendor.pagination.default') }}
     </div>
 </main>
 @include('partials.common.foot')

@@ -170,6 +170,7 @@ div[class^='result-bot-'] >div {
 .result-img {
     width: 150px;
     height: 150px;
+    object-fit: cover;
 }
 
 #admin-nav {

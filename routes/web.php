@@ -55,7 +55,7 @@ Route::get('/admin', 'AdminController@show')->name('adminIndex');
 Route::get('/admin/signup', 'AdminController@showUserCreate')->name('adminCreatePage');
 Route::get('/admin/user', 'AdminController@showUser')->name('adminUser');
 Route::get('/admin/product', 'AdminController@showProduct')->name('adminProduct');
-Route::get('/admin/artist', 'AdminController@showUser')->name('adminArtist');
+Route::get('/admin/artist', 'AdminController@showArtist')->name('adminArtist');
 Route::get('/admin/order', 'AdminController@showUser')->name('adminOrder');
 Route::get('/admin/review', 'AdminController@showUser')->name('adminReview');
 Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
@@ -64,6 +64,9 @@ Route::post('/admin/user/edit/{id}', 'AdminController@updateUser')->name('adminU
 Route::post('/admin/product/create', 'AdminController@createProduct')->name('adminCreateProduct');
 Route::post('/admin/product/delete', 'AdminController@deleteProduct')->name('adminDeleteProduct');
 Route::post('/admin/product/edit/{id}', 'AdminController@updateProduct')->name('adminUpdateProduct');
+Route::post('/admin/artist/create', 'AdminController@createArtist')->name('adminCreateArtist');
+Route::post('/admin/artist/delete', 'AdminController@deleteArtist')->name('adminDeleteArtist');
+Route::post('/admin/artist/edit/{id}', 'AdminController@updateArtist')->name('adminUpdateArtist');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

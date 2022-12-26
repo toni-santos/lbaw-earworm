@@ -18,6 +18,14 @@ class Artist extends Model
     'name'
   ];
 
+  public function scopeSearch($query, $search) {
+    // dd($search);
+    if($search ?? false) {
+      return $query->where('name', 'ILIKE', "%{$search}%")
+                  ->orWhere('id', 'LIKE', "%{$search}%");
+    }
+  }
+
   /**
    * The products that belong to this artist.
    */

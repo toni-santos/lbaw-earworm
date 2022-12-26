@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,9 +31,10 @@ class AdminController extends Controller
     {
         if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
-        $search = !empty($request->toArray()) ? $request->toArray()['user'] : '';
+        $search = (array_key_exists('user', $request->toArray())) ? $request->toArray()['user'] : '';
         
-        $users = User::search($search)->where('is_admin', 0)->where('is_deleted', 0)->get();//->paginate(20);
+        $users = User::search($search)->where('is_admin', 0)->where('is_deleted', 0);
+        $users = $users->paginate(20)->withQueryString();
         return view('pages.admin.user', ['users' => $users]);
     }
 
@@ -40,10 +42,21 @@ class AdminController extends Controller
     public function showProduct(Request $request) {
         if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
         
-        $search = !empty($request->toArray()) ? $request->toArray()['product'] : '';
+        $search = (array_key_exists('product', $request->toArray())) ? $request->toArray()['product'] : '';
 
-        $products = Product::search($search)->get();//->paginate(20);
+        $products = Product::search($search);
+        $products = $products->paginate(20)->withQueryString();
         return view('pages.admin.product', ['products' => $products]);
+    }
+
+    public function showArtist(Request $request) {
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
+        
+        $search = (array_key_exists('artist', $request->toArray())) ? $request->toArray()['artist'] : '';
+
+        $artists = Artist::search($search);
+        $artists = $artists->paginate(20)->withQueryString();
+        return view('pages.admin.artist', ['artists' => $artists]);
     }
 
     public function showUserCreate() 
