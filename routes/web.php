@@ -79,3 +79,7 @@ Route::post('register', 'Auth\RegisterController@register')->name('registrate');
 Route::get('about-us', function () {
     return view('pages.aboutus');
 })->name('about-us');
+
+Route::get('help', function () {
+    return view('pages.help');
+})->name('help');

@@ -86,6 +86,11 @@
         <link href="{{ asset('css/statics.css') }}" rel="stylesheet">
         @break
         
+      @case('help')
+        <link href="{{ asset('css/statics.css') }}" rel="stylesheet">
+        <script type="module" src={{ asset('js/statics.js') }} defer></script>
+        @break
+        
       @default
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
