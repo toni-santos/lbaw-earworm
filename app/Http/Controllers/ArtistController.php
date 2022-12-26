@@ -6,6 +6,7 @@ use App\Models\Artist;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +40,7 @@ class ArtistController extends Controller
             $product['price'] = $product->price/100;
         }
         
-        $wishlist = getWishlist();
+        $wishlist = UserController::getWishlist();
 
         return view('pages.artist', [
             'artist' => $artist,
@@ -47,19 +48,4 @@ class ArtistController extends Controller
             'wishlist' => $wishlist
         ]);
     }
-}
-
-function getWishlist() {
-    if (Auth::check()) {
-        $user = User::findOrFail(Auth::id());
-        $list = $user->wishlist->toArray();
-        $wishlist = [];
-        foreach ($list as $product) {
-            $wishlist[] = $product['id'];
-        }
-        
-        return $wishlist;
-    }
-    
-    return [];
 }

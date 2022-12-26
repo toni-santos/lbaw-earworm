@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserController;
 use App\Models\Product;
 use App\Models\Genre;
 use App\Models\User;
@@ -28,7 +29,7 @@ class ProductController extends Controller
             $suggestProduct['price'] = $suggestProduct->price/100;
         }
 
-        $wishlist = getWishlist();
+        $wishlist = UserController::getWishlist();
 
         $logged = false;
         if (Auth::check()) {
@@ -95,7 +96,7 @@ class ProductController extends Controller
 
         }
 
-        $wishlist = getWishlist();
+        $wishlist = UserController::getWishlist();
 
         return view('pages.index', ['trendingProducts' => $trendingProducts, 'fyProducts' => $fyProducts, 'wishlist' => $wishlist]);
     }
@@ -232,7 +233,7 @@ class ProductController extends Controller
             $product['price'] = $product->price/100;
         }
 
-        $wishlist = getWishlist();
+        $wishlist = UserController::getWishlist();
 
         return view('pages.catalogue', 
         [
@@ -437,20 +438,4 @@ class ProductController extends Controller
         return to_route('product', ['id' => $product_id]);
     }
     
-}
-
-function getWishlist() {
-    if (Auth::check()) {
-        $user = User::findOrFail(Auth::id());
-        $list = $user->wishlist->toArray();
-        $wishlist = [];
-        foreach ($list as $product) {
-            $wishlist[] = $product['id'];
-        }
-        
-        return $wishlist;
-    }
-    
-    return [];
-
 }

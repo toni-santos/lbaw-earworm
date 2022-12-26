@@ -54,7 +54,7 @@ class UserController extends Controller
             $suggestProduct['price'] = $suggestProduct->price/100;
         }
 
-        $wishlist = getWishlist();
+        $wishlist = $this->getWishlist();
 
         $reviews = Review::all()->where('reviewer_id', $id);
         foreach ($reviews as $review) {
@@ -80,6 +80,26 @@ class UserController extends Controller
         else {
             return to_route('login');
         }
+    }
+
+    public static function getWishlist() {
+
+        if (Auth::check()) {
+    
+            $user = User::findOrFail(Auth::id());
+            $list = $user->wishlist->toArray();
+            $wishlist = [];
+    
+            foreach ($list as $product) {
+                $wishlist[] = $product['id'];
+            }
+            
+            return $wishlist;
+    
+        }
+
+        return [];
+
     }
 
 
@@ -189,19 +209,3 @@ class UserController extends Controller
         //
     }
 }
-
-function getWishlist() {
-    if (Auth::check()) {
-        $user = User::findOrFail(Auth::id());
-        $list = $user->wishlist->toArray();
-        $wishlist = [];
-        foreach ($list as $product) {
-            $wishlist[] = $product['id'];
-        }
-        
-        return $wishlist;
-    }
-    
-    return [];
-}
-
