@@ -49,6 +49,10 @@ Route::post('/cart/decrease/{id}', 'ProductController@decreaseFromCart')->name('
 Route::post('/cart/remove/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
 Route::post('/wishlist/add/{id}', 'ProductController@addToWishlist')->name('addToWishlist');
 Route::post('/wishlist/remove/{id}', 'ProductController@removeFromWishlist')->name('removeFromWishlist');
+Route::post('/product/review/{id}', 'ProductController@addReview')->name('addReview');
+Route::post('/product/edit-review/{user_id}-{product_id}', 'ProductController@editReview')->name('editReview');
+Route::post('/product/delete-review/{user_id}-{product_id}', 'ProductController@deleteReview')->name('deleteReview');
+
 
 // Admin
 Route::get('/admin', 'AdminController@show')->name('adminIndex');

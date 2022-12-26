@@ -9,6 +9,7 @@
   --raisin-black: #2e282a;
   --cedar-chest: #e9785c;
   --chinese-red: #b4482d;
+  --vivid-red: #dd2727;
 
   --navy: rgb(28, 49, 94);
   --dark-navy: #0b1222;
@@ -25,6 +26,7 @@
   --sub-dark-accent: var(--dark-teal);
   --light-accent: var(--sage);
   --light-contrast: var(--beige);
+  --warning-accent: var(--vivid-red);
   
   --background-light: var(--white);
   --background-dark: var(--raisin-black);

@@ -245,7 +245,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER review_product
-    AFTER INSERT OR UPDATE ON review
+    AFTER INSERT OR UPDATE OR DELETE ON review
     FOR EACH ROW
     EXECUTE PROCEDURE review_product();
 
