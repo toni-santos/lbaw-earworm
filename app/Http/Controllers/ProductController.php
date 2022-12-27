@@ -332,12 +332,8 @@ class ProductController extends Controller
     public function buy() {
 
         $cart = session()->get('cart');
-        
-        $order = Order::create([
-            'user_id' => Auth::id(),
-            'state' => 'Delivered'
-        ]);
-        
+
+        $next_possible_order_products = [];
         foreach ($cart as $id => $product) {
 
             $stock = Product::select('stock')->where('id', $id)->get()->toArray()[0]['stock'];
@@ -345,16 +341,27 @@ class ProductController extends Controller
             if ($product['quantity'] > $stock) {
                 return back(301, ["error" => "Not enough stock for order on ". $product['name']]);
             }
+            
+            $next_possible_order_products[$id] = $product;
+            $this->removeFromCart($id);
+            
+        }
 
+        $order = Order::create([
+            'user_id' => Auth::id(),
+            'state' => 'Processing'
+        ]);
+
+        foreach ($next_possible_order_products as $id => $product) {
+            
             DB::table('order_product')->insert([
                 'order_id' => $order->id,
                 'product_id' => $id,
                 'quantity' => $product['quantity']
             ]);
-
-            $this->removeFromCart($id);
-
+            
         }
+        
         return to_route('home');
     }
 
