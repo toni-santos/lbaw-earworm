@@ -35,11 +35,16 @@
                 </section>
                 <button class="confirm-button" type="submit">Change</button>
             </form>
-        </div>    
+        </div>
+        <div class="user-bot-info-delete-{{$user->id}}" style="display:flex">
+            <form method="POST" class="form-bot" action="">
+                {{ csrf_field() }}                    
+                <button class="confirm-button" type="submit">Delete Account</button>
+            </form>
+        </div>   
     </section>
 
     <section id="password-section" hidden>
-        
         <div class="user-top-pass-{{$user->id}}" onclick="expandUserOptions(event, {{$user->id}})">
             <div class="expand">
                 <p> Change Password </p>

@@ -160,9 +160,10 @@ class AdminController extends Controller
 
     public function deleteUser(Request $request) {
 
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
+        $data = $request->toArray();
+        if (!Auth::user()->is_admin) abort(401);
 
-        $user = User::findOrFail(intval($request->toArray()['user']));
+        $user = User::findOrFail(intval($data['id']));
 
         $user->email = sha1(rand());
         $user->username = sha1(rand());
@@ -172,7 +173,6 @@ class AdminController extends Controller
         $user->save();
         
         return to_route('adminUser');
-
     }
 
     public function createProduct(Request $request) {
