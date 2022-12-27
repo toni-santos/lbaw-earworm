@@ -10,7 +10,7 @@
     <div id="artist-description">
         {{$artist['description']}}
     </div>
-    @if (count($products) >= 6)
+    @if (count($products) >= 5)
         @include('partials.common.carousel', [
             'carouselTitle' => 'From ' . $artist["name"],
             'carouselId' => 'carousel-artist',

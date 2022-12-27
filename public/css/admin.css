@@ -270,3 +270,73 @@ div[class^='result-bot-'] >div {
     padding: 5px;
     font-size: medium;
 }
+
+#forms-create-content {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 1;
+}
+
+#content-wrapper {
+    padding-top: 60px;
+}
+
+#form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#form-wrapper > .subtitle-container {
+    width: 100%;
+}
+
+#forms-create {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    flex-direction: row;
+    padding-top: 20px;
+}
+
+#inputs-box-left {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+#inputs-box-right {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+#inputs-box-bottom {
+    grid-area: 2 / 1 / 3 / 3;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#inputs-box-bottom > * {
+    width: 100%;
+}
+
+section[id^='inputs-box-'] {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+section[id^='inputs-box-'] .text-input:is(:not(:placeholder-shown), :focus)+label {
+    color: var(--black);
+}
+
+@media (max-width: 1300px) {
+    #forms-create {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+}

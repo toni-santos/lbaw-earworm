@@ -1,6 +1,6 @@
 @extends('layouts.sign')
 @section('content')
-<form id="form-signup" method="POST" action={{ route('adminCreateAction') }}>
+<form id="form-signup" method="POST" action={{ route('adminCreatePage') }}>
     {{ csrf_field() }}
     
     @include('partials.common.subtitle', ['title' => "User Creation (Admin)"])

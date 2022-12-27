@@ -15,13 +15,22 @@
         'wishlist' => $wishlist
     ])
     @if (Auth::check())
-        @include('partials.common.carousel', [
-            'carouselTitle' => 'For You',
-            'carouselId' => 'carousel-fy',
-            'type' => 'product',
-            'content' => $fyProducts,
-            'wishlist' => $wishlist
-        ])
+        @if (count($fyProducts) >= 5)
+            @include('partials.common.carousel', [
+                'carouselTitle' => 'For You',
+                'carouselId' => 'carousel-fy',
+                'type' => 'product',
+                'content' => $fyProducts,
+                'wishlist' => $wishlist
+            ])
+        @else
+            @include('partials.common.static-carousel', [
+                'carouselTitle' => 'For You',
+                'carouselId' => 'static-carousel-fy',
+                'content' => $fyProducts,
+                'wishlist' => $wishlist
+            ])
+        @endif
     @else
         @include('partials.common.index-promos')'
     @endif

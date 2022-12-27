@@ -32,6 +32,7 @@
             </div>
         </section>
         <section id="lastfm-recs">
+            @if (count($recommendedProducts) >= 5)
             @include('partials.common.carousel', [
                 'carouselTitle' => 'Last.fm Recommendations',
                 'carouselId' => 'carousel-lastfm-recs',
@@ -39,6 +40,14 @@
                 'content' => $recommendedProducts,
                 'wishlist' => $wishlist
             ])
+            @else
+                @include('partials.common.static-carousel', [
+                    'carouselTitle' => 'Last.fm Recommendations',
+                    'carouselId' => 'static-carousel-lastfm-recs',
+                    'content' => $recommendedProducts,
+                    'wishlist' => $wishlist
+                ])
+            @endif
         </section>
     </div>
 </main>
