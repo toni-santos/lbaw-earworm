@@ -15,7 +15,7 @@ class Product extends Model
    * @var array
    */
   protected $fillable = [
-    'name', 'genre', 'price', 'stock', 'format', 'year', 'description'
+    'artist_id', 'name', 'genre', 'price', 'stock', 'format', 'year', 'description'
   ];
 
   public function scopeSearch($query, $search) {

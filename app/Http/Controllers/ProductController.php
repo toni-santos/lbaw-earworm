@@ -23,6 +23,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product['price'] /= 100;
+        if ($product['discount'] != 0) $product['price'] = ($product['discount']/100) * $product['price'];
         $products = Product::inRandomOrder()->limit(10)->get();
         foreach ($products as $suggestProduct) {
             $suggestProduct['artist_name'] = $suggestProduct->artist->name;

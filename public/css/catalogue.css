@@ -40,7 +40,7 @@ main {
         display: flex;
         width: 100%;
         align-self: center;
-        color: var(--white);
+        color: var(--light-text);
         padding: 8px;
         border: none;
         transition: all 0.2s ease-in-out;

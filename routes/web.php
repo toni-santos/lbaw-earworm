@@ -58,7 +58,6 @@ Route::post('/product/review/{id}', 'ProductController@addReview')->name('addRev
 Route::post('/product/edit-review/{user_id}-{product_id}', 'ProductController@editReview')->name('editReview');
 Route::post('/product/delete-review/{user_id}-{product_id}', 'ProductController@deleteReview')->name('deleteReview');
 
-
 // Admin
 Route::get('/admin', 'AdminController@show')->name('adminIndex');
 Route::get('/admin/signup', 'AdminController@showUserCreate')->name('adminCreatePage');
@@ -70,7 +69,8 @@ Route::get('/admin/review', 'AdminController@showUser')->name('adminMod');
 Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
 Route::post('/admin/user/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
 Route::post('/admin/user/edit/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
-Route::post('/admin/product/create', 'AdminController@createProduct')->name('adminCreateProduct');
+Route::get('/admin/product/create', 'AdminController@showProductCreate')->name('adminCreateProduct');
+Route::post('/admin/product/create', 'AdminController@createProduct')->name('adminCreateProductPost');
 Route::post('/admin/product/delete', 'AdminController@deleteProduct')->name('adminDeleteProduct');
 Route::post('/admin/product/edit/{id}', 'AdminController@updateProduct')->name('adminUpdateProduct');
 Route::post('/admin/artist/create', 'AdminController@createArtist')->name('adminCreateArtist');
