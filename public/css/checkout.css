@@ -1,77 +1,36 @@
-#payment-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 40%;
-    margin-inline: 40px;
+#checkout-wrapper {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
     padding: 20px;
-    height: 750px;
+    word-wrap: break-word;
 }
 
-#items-wrapper {
+#checkout-form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+#billing-information {
+    margin-top: 20px;
+}
+
+.input-container {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    width: 100%;
+    padding: 6px;
+    position: relative;
+}
+
+.multiple-input-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
     gap: 20px;
-    padding-right: 20px;
-    overflow-y: scroll;
-}
-
-#payment-info {
-    border-left: 1px solid white;
-    margin-left: 10px;
-    padding-left: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#payment-method,
-#checkout-total,
-#billing-info,
-#payment-description {
-    display: flex;
-    flex-direction: column;
-}
-
-#payment-description {
-    padding: 10px;
-    gap: 10px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    height: 400px;
-}
-
-.pay-desc-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-#payment-method {
-    justify-content: flex-end;
-    margin-bottom: 10px;
-}
-
-#confirm-checkout {
-    margin-top: 20px;
-}
-
-.register-button {
-    padding: 10px;
-    width: 100%;
-    font-size: larger;
-    margin-top: 20px;
-    border: none;
-    background-color: var(--border-color);
-    color: var(--text-soft-color);
-    transition: all 0.2s ease-in-out;
-    cursor: default;
-}
-
-.checkout-item {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
 }
 
 .subtitle-container {
@@ -84,18 +43,15 @@
     border-bottom: none;
 }
 
-.left-item {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-}
-
-.right-item {
+#payment-method,
+#billing-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+}
+
+#payment-method {
+    justify-content: flex-end;
+    row-gap: 10px;
 }
 
 .radio {
@@ -119,7 +75,7 @@
     height: 18px;
     border: 1px solid;
     border-radius: 100%;
-    background: #ffffff;
+    background: var(--light-text);
 }
 .radio-label::after {
     content: "";
@@ -129,7 +85,7 @@
     width: 12px;
     height: 12px;
     border-radius: 100%;
-    background: #116e04;
+    background: var(--main-accent);
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }

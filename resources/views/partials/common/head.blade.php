@@ -39,12 +39,17 @@
         <script type="module" src={{ asset('js/user.js') }} defer></script>
         @break
 
-      @case('checkout')
-        <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+      @case('cart')
+        <link href="{{ asset('css/cart.css') }}" rel="stylesheet">
         <script type="text/javascript" src={{ asset('js/checkout.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/cart.js') }} defer></script>
         @break
+
+      @case('checkout')
+        <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/checkout.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/checkout.js') }} defer></script>
+        <script type="text/javascript" src={{ asset('js/forms.js') }} defer></script>
       
       @case('product')
         <link href="{{ asset('css/product.css') }}" rel="stylesheet">
@@ -61,7 +66,6 @@
         <script type="text/javascript" src={{ asset('js/forms.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/admin.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/usersettings.js') }} defer></script>
-
         @break
 
       @case('admin')

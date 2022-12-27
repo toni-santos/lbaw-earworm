@@ -30,12 +30,12 @@ Route::get('/artist/{id}', 'ArtistController@show')->name('artist');
 Route::get('/order', 'ProductController@showOrder')->name('order');
 
 //test func
-Route::get('/cart', 'ProductController@cart')->name('cart');
 Route::get('/get-admin', 'UserController@getAdmin')->name('getadmin');
 
 //Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
 //Route::get('/decrease-from-cart/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
 //Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
+Route::get('/cart', 'ProductController@cart')->name('cart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 Route::post('/checkout', 'ProductController@buy')->name('buy');
 Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');

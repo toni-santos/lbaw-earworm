@@ -9,5 +9,5 @@
             <p class="dropdown-warning">Nothing in cart.</p>
         @endif
     </div>
-    <a href="{{ route('checkout')}}" class="nav-button"> Purchase </a>
+    <a href="{{ route('cart')}}" class="nav-button"> Purchase </a>
 </div>

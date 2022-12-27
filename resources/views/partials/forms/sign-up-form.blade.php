@@ -1,7 +1,7 @@
 <form id="form-signup" method="POST" action={{ route('registrate') }}>
     {{ csrf_field() }}
 
-    <section id="inputs-box">
+    <section class="inputs-box">
         <div class="input-container">
             <input class="text-input" type="text" name="username" autocomplete="off" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" required>
             <label class="input-label" for="username" onclick="setFocus(event)">Username</label>

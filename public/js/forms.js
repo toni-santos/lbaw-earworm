@@ -1,4 +1,4 @@
-const pwd = document.getElementById('password-input');
+const pwd = document.getElementById("password-input");
 
 function updateForm(event) {
     checkFilled(event);
@@ -9,12 +9,14 @@ function checkDone(event) {
     // activate button
     let activate = true;
     const form = event.composedPath()[3];
-    const button = document.getElementById('confirm-button')
-    Object.values(form.children[0].getElementsByTagName("input")).forEach(element => {
-        if (element.value.length == 0) {
-            activate = false;
+    const button = document.getElementById("confirm-button");
+    Object.values(form.children[0].getElementsByTagName("input")).forEach(
+        (element) => {
+            if (element.value.length == 0) {
+                activate = false;
+            }
         }
-    });
+    );
 
     if (activate) {
         button.disabled = false;
@@ -26,7 +28,6 @@ function checkDone(event) {
 function checkFilled(event) {
     // show warning
     const warning = event.composedPath()[1].lastElementChild;
-
     if (event.target.value.length == 0) {
         warning.style.opacity = "100%";
     } else {
@@ -34,8 +35,17 @@ function checkFilled(event) {
     }
 }
 
-function showPassword(event) {
+function checkSelectFilled(event) {
+    const dropdown = document.getElementById("select-dropdown");
+    const dropdownWarning = dropdown.nextElementSibling.nextElementSibling;
+    if (dropdown.value.length == 0) {
+        dropdownWarning.style.opacity = "100%";
+    } else {
+        dropdownWarning.style.opacity = "0%";
+    }
+}
 
+function showPassword(event) {
     if (pwd.type === "password") {
         pwd.type = "text";
         event.target.textContent = "visibility_off";
@@ -48,11 +58,11 @@ function showPassword(event) {
 function updateCounter(event) {
     const cnt = event.composedPath()[1].children[3];
 
-    cnt.textContent = event.target.value.length + "/8" ;
+    cnt.textContent = event.target.value.length + "/8";
 }
 
 function setFocus(event) {
     const el = event.composedPath()[1].children[0];
-    
+
     el.focus();
 }

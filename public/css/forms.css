@@ -33,6 +33,9 @@
 .inputs-box {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     gap: 20px;
 }
 
@@ -44,7 +47,8 @@
     position: relative;
 }
 
-.text-input {
+.text-input,
+.select-input {
     border: none;
     border: 1px solid var(--border-color);
     font-size: large;
@@ -102,7 +106,8 @@
     padding-top: 3px;
 }
 
-.text-input:is(:not(:placeholder-shown), :focus)+label {
+.text-input:is(:not(:placeholder-shown), :focus) + label,
+.select-input:valid + label {
     position: absolute;
     top: -20px;
     left: 5px;

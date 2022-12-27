@@ -6,11 +6,12 @@
     </div>
     <div class="right-item">
         <div class="right-item-top">
-            <span class="" onclick="decreaseAmountCheckout(event, {{$id}})">-</span>
             <a class="item-amnt">{{ $details['quantity'] }}</a>
-            <span class="" onclick="increaseAmountCheckout(event, {{$id}})">+</span>
-            <p class="">{{ $details['price'] }}€</p>
+            <div class="increase-decrease-icons">
+                <span class="material-icons" id="minus-icon" onclick="decreaseAmountCheckout(event, {{$id}})">remove</span>
+                <span class="material-icons" id="plus-icon" onclick="increaseAmountCheckout(event, {{$id}})">add</span>
+            </div>
         </div>
-        <p class="" onclick="removeItemCheckout(event, {{$id}})"><span class="material-icons">delete</span></p>
+        <p class="" onclick="removeItemCheckout(event, {{$id}})"><span class="material-icons" id="delete-icon">delete</span></p>
     </div>
 </article>

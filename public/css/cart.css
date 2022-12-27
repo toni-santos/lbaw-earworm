@@ -1,0 +1,158 @@
+#payment-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 40%;
+    margin-inline: 40px;
+    margin-top: 20px;
+    padding: 20px;
+    column-gap: 40px;
+    align-items: flex-start;
+}
+
+#items-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+    overflow-y: scroll;
+}
+
+#empty-cart-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+#empty-cart-wrapper > a {
+    display: inline-block;
+    width: 400px;
+}
+
+#empty-cart-text {
+    text-align: center;
+}
+
+#empty-cart-text a {
+    color: var(--sub-accent);
+}
+
+#empty-cart-catalogue-icon {
+    animation: rotate 2s linear infinite;
+}
+
+#payment-info {
+    background-color: var(--light-contrast);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#checkout-total,
+#payment-description {
+    display: flex;
+    flex-direction: column;
+}
+
+#payment-description {
+    top: 0%;
+    padding: 10px;
+    gap: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.pay-desc-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#confirm-checkout {
+    margin-top: 20px;
+    color: var(--light-text);
+}
+
+.register-button {
+    padding: 10px;
+    width: 100%;
+    font-size: larger;
+    margin-top: 20px;
+    border: none;
+    background-color: var(--border-color);
+    color: var(--text-soft-color);
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+}
+
+#checkout-total {
+    margin-top: 20px;
+}
+
+.checkout-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.checkout-subtitle {
+    display: flex;
+    flex-direction: row;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#checkout-value {
+    margin-left: auto;
+}
+
+.subtitle-container {
+    padding: 0;
+    font-size: medium;
+    padding-bottom: 5px;
+}
+
+.subtitle-container > p {
+    border-bottom: none;
+}
+
+.left-item {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.right-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#plus-icon,
+#minus-icon {
+    color: var(--main-accent);
+}
+
+#delete-icon {
+    color: var(--sub-accent);
+}
+
+.item-amnt {
+    text-align: center;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    #empty-cart-wrapper > a {
+        max-width: 70%;
+    }
+}

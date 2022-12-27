@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -251,11 +252,6 @@ class ProductController extends Controller
 
     }
 
-    //test function
-    public static function cart() {
-        ProductController::addToCart(8);
-    }
-
     public static function addToCart(int $id) {
         $product = Product::find($id);
         if (!$product) {
@@ -328,8 +324,19 @@ class ProductController extends Controller
         }
     }
 
+    public static function cart() {
+        return view('pages.cart');
+    }
+
     public static function checkout() {
-        return view('pages.checkout');
+
+        $countries = Cache::remember('countries', 600, function () {
+            $countries = json_decode(file_get_contents("https://restcountries.com/v3.1/all"), true);
+            usort($countries, fn($a, $b) => $a['name']['common'] <=> $b['name']['common']);
+            return $countries;
+        });
+
+        return view('pages.checkout', ['countries' => $countries]);
     }
 
     public function buy() {

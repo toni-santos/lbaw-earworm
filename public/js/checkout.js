@@ -1,8 +1,7 @@
 "use strict"
 
 async function decreaseAmountCheckout(event, id) {
-    const input = event.composedPath()[1].children[1];
-    const removable = event.composedPath()[3];
+    const input = event.composedPath()[2].children[0];
     const sideValue = document.querySelector(`#item-desc-${id} > a:last-child > span`);
     
     if (parseInt(input.textContent) == 1) {
@@ -26,27 +25,24 @@ async function decreaseAmountCheckout(event, id) {
 }
 
 async function increaseAmountCheckout(event, id) {
-    const input = event.composedPath()[1].children[1];
-
-    if (parseInt(input.textContent) < 98) {
+    const input = event.composedPath()[2].children[0];
         
-        const response = await fetch(`/cart/increase/${id}`, {
-            method: "POST",
-            credentials: 'include',
-            headers: {
-                "X-CSRF-Token": document.querySelectorAll(`meta`)[3].content
-            }
-        });
+    const response = await fetch(`/cart/increase/${id}`, {
+        method: "POST",
+        credentials: 'include',
+        headers: {
+            "X-CSRF-Token": document.querySelectorAll(`meta`)[3].content
+        }
+    });
 
-        const success = await response.json();
-        console.log(success);
+    const success = await response.json();
+    console.log(success);
 
-        input.textContent = parseInt(input.textContent) + 1;
-        document.querySelector(`#checkout-item-${id} > .right-item > .right-item-top > a`).textContent = input.textContent;
-        document.querySelector(`article#item-desc-${id} span:last-child`).textContent = input.textContent;
-        
-        updateTotal();
-    }
+    input.textContent = parseInt(input.textContent) + 1;
+    document.querySelector(`#checkout-item-${id} > .right-item > .right-item-top > a`).textContent = input.textContent;
+    document.querySelector(`article#item-desc-${id} span:last-child`).textContent = input.textContent;
+    
+    updateTotal();
 }
 
 async function removeItemCheckout(event, id) {
