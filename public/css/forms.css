@@ -46,6 +46,16 @@
     color: var(--white);
 }
 
+.select-input {
+    padding: 10px;
+    border: none;
+    -webkit-appearance: none;
+    color: var(--light-text);
+    background-color: var(--main-accent);
+    font-size: large;
+    width: 100%;
+}
+
 .input-label {
     font-size: large;
     position: absolute;

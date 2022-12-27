@@ -11,7 +11,8 @@
                         {{$genre['name']}},
                     @endforeach
                 </p>
-                <p>Price: {{$product->price / 100}}€</p>
+                <p>Stock Price (in €): {{$product->price / 100}}€</p>
+                <p>Discount on Store: {{$product->discount}}
                 <p>Stock: {{$product->stock}}</p>
             </div>
         </div>
@@ -29,26 +30,20 @@
                         <label class="input-label" for="stock">Stock</label>
                     </div>
                     <div class="input-container">
-                        <input class="text-input" type="number" name="price" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
-                        <label class="input-label" for="price">Price</label>
+                        <input class="text-input" type="price" name="price" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
+                        <label class="input-label" for="price">Price (in €) </label>
                     </div>
-                    <fieldset id="sales-form-group">
-                        <label class="static-label" for="10per">
-                            <input type="radio" id="10per" name="sales-form-group">
-                            10%</label>
-                        <label class="static-label" for="20per">
-                            <input type="radio" id="20per" name="sales-form-group">
-                            20%</label>
-                        <label class="static-label" for="30per">
-                            <input type="radio" id="30per" name="sales-form-group">
-                            30%</label>
-                        <label class="static-label" name="50per" for="50per">
-                            <input type="radio" id="50per" name="sales-form-group">
-                            50%</label>
-                        <label class="static-label" for="70per">
-                            <input type="radio" id="70per" name="sales-form-group">
-                            70%</label>
-                    </fieldset>
+                    <div class="input-container">
+                        <select class="select-input" name="discount" id="sales-form-group">
+                            <option value="0" selected hidden> Discount % </option>
+                            <option value="0"> Discount: 0% </option> 
+                            <option value="10"> Discount: 10% </option> 
+                            <option value="20"> Discount: 20% </option> 
+                            <option value="30"> Discount: 30% </option> 
+                            <option value="50"> Discount: 50% </option> 
+                            <option value="70"> Discount: 70% </option> 
+                        </select>
+                    </div>
                     <button class="confirm-button" type="submit">Change</button> 
                 </section>
             </form>

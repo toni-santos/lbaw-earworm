@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -64,6 +64,15 @@ class AdminController extends Controller
         if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
         return view('auth.admin-create');
+    }
+
+    public function showProductCreate() 
+    {
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
+
+        $artists = Artist::all();
+
+        return view('auth.admin-product-create', ['artists' => $artists]);
     }
 
    /**
@@ -139,14 +148,62 @@ class AdminController extends Controller
 
     }
 
-    public function updateProduct(Request $request) {
-        return;
-    }
     public function createProduct(Request $request) {
-        return;
+        if (!Auth::user()->is_admin) abort(401);
+
+        $data = $request->toArray();
+
+        $artist_name = trim($data['artist']);
+        $artist = DB::table('artist')->where('name', 'ILIKE', '%' . $artist_name . '%')->first();
+
+        if ($artist) 
+            $artist_id = $artist->id;
+        else {
+            $new_artist = Artist::create(['name' => $artist_name]);
+            $artist_id = $new_artist->id;
+        }
+
+        $price = $data['price']*100;
+        Product::create([
+            'artist_id' => $artist_id,
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'stock' => $data['stock'],
+            'price' => $price,
+            'format' => $data['format'],
+            'year' => $data['year'],
+            'description' => $data['description']
+        ]);
+
+        return to_route('adminProduct');
+        
     }
+
+    public function updateProduct(Request $request, $id) {
+        if (!Auth::user()->is_admin) abort(401);
+
+        $product = Product::findOrFail($id);
+        if (!$product) {
+            abort(404);
+        }
+
+        $data = $request->toArray();
+
+        $product->stock = $data['stock'] ?? $product->stock;
+        if ($data['price']) $product->price = $data['price']*100;
+        $product->discount = $data['discount'] ?? $product->discount;
+
+        $product->save();
+
+        return to_route('adminProduct');
+    } 
+
     public function deleteProduct(Request $request) {
-        return;
+
+        $data = $request->toArray();
+        Product::findOrFail($data['product'])->delete();
+
+        return to_route('adminProduct');
     }
 
     public function findUser() {

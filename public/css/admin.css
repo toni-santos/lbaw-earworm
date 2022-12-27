@@ -241,13 +241,6 @@ div[class^='result-bot-'] >div {
     align-items: flex-start;
 }
 
-#sales-form-group {
-    border: none;
-    background-color: var(--main-accent);
-    font-size: large;
-}
-
-
 @media (max-width: 768px) {
  
     div[class^='result-top-'] {
@@ -260,10 +253,4 @@ div[class^='result-bot-'] >div {
         z-index: 1;
     }
 
-    #sales-form-group {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 }

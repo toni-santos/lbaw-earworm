@@ -66,6 +66,7 @@ CREATE TABLE product(
     format      PRODUCT_FORMAT NOT NULL,
     year        INTEGER,
     rating      FLOAT DEFAULT NULL,
+    discount    INTEGER NOT NULL DEFAULT 0,
     CHECK (stock >= 0)
 );
 
