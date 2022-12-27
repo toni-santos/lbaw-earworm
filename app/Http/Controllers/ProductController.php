@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use ArrayObject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
@@ -83,7 +84,12 @@ class ProductController extends Controller
     public static function homepage()
     {
         $trendingProducts = Product::inRandomOrder()->limit(10)->get();
-        $fyProducts = session('for_you') ?? [];
+        $recommendedProducts = session('for_you') ?? [];
+        
+        $recommendation_info = array();
+        foreach ($recommendedProducts as $id => $recommendation) {
+            $recommendation_info[$id] = clone $recommendation;
+        }
 
         foreach ($trendingProducts as $trendingProduct) {
             
@@ -92,7 +98,7 @@ class ProductController extends Controller
 
         }
 
-        foreach ($fyProducts as $fyProduct) {
+        foreach ($recommendation_info as $fyProduct) {
 
             $fyProduct['artist_name'] = $fyProduct->artist->name;
             $fyProduct['price'] = $fyProduct->price/100;
@@ -100,8 +106,8 @@ class ProductController extends Controller
         }
 
         $wishlist = UserController::getWishlist();
-
-        return view('pages.index', ['trendingProducts' => $trendingProducts, 'fyProducts' => $fyProducts, 'wishlist' => $wishlist]);
+        return view('pages.index', ['trendingProducts' => $trendingProducts, 'fyProducts' => $recommendation_info, 'wishlist' => $wishlist]);
+        
     }
 
     public static function yearList($products) {

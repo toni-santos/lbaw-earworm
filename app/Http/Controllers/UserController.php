@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use ArrayObject;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Review;
@@ -50,12 +51,16 @@ class UserController extends Controller
         }
 
         $recommendedProducts = session('for_you') ?? [];
+        
+        $recommendation_info = array();
+        foreach ($recommendedProducts as $id => $recommendation) {
+            $recommendation_info[$id] = clone $recommendation;
+        }
 
-        foreach ($recommendedProducts as $suggestProduct) {
+        foreach ($recommendation_info as $suggestProduct) {
             $suggestProduct['artist_name'] = $suggestProduct->artist->name;
             $suggestProduct['price'] = $suggestProduct->price/100;
         }
-
 
         $wishlist = $this->getWishlist();
 
@@ -69,7 +74,7 @@ class UserController extends Controller
             'user' => $user,
             'favArtists' => $favArtists,
             'purchaseHistory' => $boughtProducts,
-            'recommendedProducts' => $recommendedProducts,
+            'recommendedProducts' => $recommendation_info,
             'wishlist' => $wishlist,
             'reviews' => $reviews
         ]);
@@ -204,7 +209,7 @@ class UserController extends Controller
         $response = Http::get($api_root, [
             'method' => 'user.getTopAlbums',
             'period' => 'overall',
-            'limit' => 20,
+            'limit' => 50,
             'user' => $username,
             'api_key' => $key,
             'format' => 'json'
@@ -258,7 +263,7 @@ class UserController extends Controller
         $response = Http::get($api_root, [
             'method' => 'user.getTopAlbums',
             'period' => 'overall',
-            'limit' => 20,
+            'limit' => 50,
             'user' => $username,
             'api_key' => $key,
             'format' => 'json'
@@ -270,8 +275,7 @@ class UserController extends Controller
         foreach($topAlbums as $album) {
             
             $product = Product::where('name', 'ILIKE', "%{$album['name']}")->get(); 
-            dd(gettype($product));
-            if (!empty($product->toArray())) array_push($recommendations, $product);
+            if (!empty($product->toArray())) array_push($recommendations, $product[0]);
 
         }
 
