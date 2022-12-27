@@ -27,6 +27,10 @@ main {
     left: 70px;
 }
 
+#user-settings-icon {
+    padding-bottom: 27px;
+}
+
 #user-name {
     font-size: x-large;
     font-weight: bold;

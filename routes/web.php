@@ -45,6 +45,7 @@ Route::get('/user/settings/{id}', 'UserController@editProfile')->name('editprofi
 Route::post('/user/settings/{id}', 'UserController@update')->name('editprofilepost');
 Route::post('/user/settings/change-password/{id}', 'UserController@updatePassword')->name('editpassword');
 Route::get('/user/settings/recover-password/{id}', 'UserController@recoverPassword')->name('recoverpassword');
+Route::get('/user/settings/delete/{id}', 'UserController@deleteAccount')->name('deleteAccount');
 Route::post('/user/settings/last_fm/login', 'UserController@loginLastFm')->name('loginLastFm');
 Route::post('/user/settings/last_fm/logout', 'UserController@logoutLastFm')->name('logoutLastFm');
 Route::get('/user/{id}', 'UserController@show')->name('profile');

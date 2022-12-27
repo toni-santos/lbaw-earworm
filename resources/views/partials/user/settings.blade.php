@@ -37,7 +37,7 @@
             </form>
         </div>
         <div class="user-bot-info-delete-{{$user->id}}" style="display:flex">
-            <form method="POST" class="form-bot" action="">
+            <form method="GET" class="form-bot" action="{{route('deleteAccount', ['id' => $user->id])}}">
                 {{ csrf_field() }}                    
                 <button class="confirm-button" type="submit">Delete Account</button>
             </form>

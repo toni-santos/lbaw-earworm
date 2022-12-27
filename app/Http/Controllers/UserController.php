@@ -291,6 +291,23 @@ class UserController extends Controller
             $user->save();
         }
     }
+
+    public function deleteAccount(int $id)
+    {
+        if (Auth::id() != $id) abort(401);
+
+        $user = User::findOrFail($id);
+
+        $user->email = sha1(rand());
+        $user->username = sha1(rand());
+        $user->password = sha1(rand());;
+        $user->is_deleted = true;
+
+        $user->save();
+        
+        return to_route('login');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
