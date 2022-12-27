@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Review;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -48,11 +49,13 @@ class UserController extends Controller
 
         }
 
-        $recommendedProducts = Product::inRandomOrder()->limit(10)->get();
+        $recommendedProducts = session('for_you') ?? [];
+
         foreach ($recommendedProducts as $suggestProduct) {
             $suggestProduct['artist_name'] = $suggestProduct->artist->name;
             $suggestProduct['price'] = $suggestProduct->price/100;
         }
+
 
         $wishlist = $this->getWishlist();
 
@@ -189,6 +192,92 @@ class UserController extends Controller
         $user->save();
 
         return to_route('logout');
+    }
+
+    public function loginLastFm(Request $request) {
+
+        $username = $request->toArray()['username'];
+        $key = config('services.last_fm.key');
+        $api_root = config('services.last_fm.root');
+        $user = Auth::user();
+
+        $response = Http::get($api_root, [
+            'method' => 'user.getTopAlbums',
+            'period' => 'overall',
+            'limit' => 20,
+            'user' => $username,
+            'api_key' => $key,
+            'format' => 'json'
+        ])->json();
+
+        if (array_key_exists('error', $response)) {
+            return redirect()->back(302, ['message' => $response['message']]);
+        }
+
+        $topAlbums = $response['topalbums']['album'];
+        $recommendations = [];
+
+        foreach($topAlbums as $album) {
+            
+            $product = Product::where('name', 'ILIKE', "%{$album['name']}")->get(); 
+            if (!empty($product->toArray())) array_push($recommendations, $product[0]);
+
+        }
+
+        session(['for_you' => $recommendations]);
+        $user->last_fm = $username;
+
+        $user->save();
+
+        return redirect()->back(302, ['message' => "Linked to last.fm successfully!"]);
+
+    }
+
+    public function logoutLastFm() {
+
+        $user = Auth::user();
+        
+        if ($user->last_fm == NULL) abort(403);
+        $user->last_fm = NULL;
+
+        $user->save();
+
+        return redirect()->back(302, ['message' => 'Logged out of last.fm account.']);
+
+    }
+
+    public static function getLastFmRecommendations() {
+
+        if (!Auth::user()->last_fm) abort(403);
+
+        $user = Auth::user();
+        $username = $user->last_fm;
+        $key = config('services.last_fm.key');
+        $api_root = config('services.last_fm.root');
+
+        $response = Http::get($api_root, [
+            'method' => 'user.getTopAlbums',
+            'period' => 'overall',
+            'limit' => 20,
+            'user' => $username,
+            'api_key' => $key,
+            'format' => 'json'
+        ])->json();
+
+        $topAlbums = $response['topalbums']['album'];
+        $recommendations = [];
+
+        foreach($topAlbums as $album) {
+            
+            $product = Product::where('name', 'ILIKE', "%{$album['name']}")->get(); 
+            dd(gettype($product));
+            if (!empty($product->toArray())) array_push($recommendations, $product);
+
+        }
+
+        session(['for_you' => $recommendations]);
+        return redirect()->back();
+
     }
 
     public function getAdmin() {

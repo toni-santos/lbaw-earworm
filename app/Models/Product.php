@@ -19,16 +19,14 @@ class Product extends Model
   ];
 
   public function scopeSearch($query, $search) {
-    // dd($search);
     $sqlSearch = str_replace(' ', '%', $search);
     if($search ?? false) {
-      return $query->whereRaw('tsvectors @@ to_tsquery(\'english\', ?)', $sqlSearch)
-                  ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', $sqlSearch);
+      return $query->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', $sqlSearch)
+                  ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', $sqlSearch);
     }
   }
 
   public static function adminSearch($search) {
-    //dd($search);
     if($search ?? false) {
       return Product::where('id', 'LIKE', "%{$search}%")
                   ->orWhere('name', 'ILIKE', "%{$search}%");

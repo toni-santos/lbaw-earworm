@@ -33,6 +33,7 @@ CREATE TABLE users(
     id          SERIAL PRIMARY KEY,
     email       VARCHAR(255) UNIQUE NOT NULL,
     username    VARCHAR(60) NOT NULL,
+    last_fm     VARCHAR(60) DEFAULT NULL,
     password    VARCHAR(255) NOT NULL,
     is_blocked  BOOLEAN NOT NULL DEFAULT FALSE,
     is_admin    BOOLEAN NOT NULL DEFAULT FALSE,

@@ -78,16 +78,22 @@
 
     <section id="lastfm-section" hidden>
         <div class="user-top-lastfm-{{$user->id}}" onclick="expandUserOptions(event, {{$user->id}})">
+            @if ($user->last_fm == NULL)
             <div class="user-info">
                 <p> Last.FM Account: *not linked* </p>
             </div>
+            @else
+                <div class="user-info">
+                    <p> Last.FM Account: {{$user->last_fm}} </p>
+                </div>
+            @endif
             <div class="expand">
                 <p> Link Last.FM Account </p>
                 <span class="material-icons">expand_more</span>
             </div>
         </div>
         <div class="user-bot-lastfm-{{$user->id}}" style="display:none;">
-            <form method="POST" class="form-bot" action="">
+            <form method="POST" class="form-bot" action="{{route('loginLastFm')}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
                     <div class="input-container">

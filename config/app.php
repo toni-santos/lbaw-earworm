@@ -230,4 +230,10 @@ return [
 
     ],
 
+    'debug_blacklist' => [
+        '_ENV' => [
+            'LAST_FM_KEY'
+        ]
+    ]
+
 ];

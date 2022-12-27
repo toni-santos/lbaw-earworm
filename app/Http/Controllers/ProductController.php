@@ -81,7 +81,7 @@ class ProductController extends Controller
     public static function homepage()
     {
         $trendingProducts = Product::inRandomOrder()->limit(10)->get();
-        $fyProducts = Product::inRandomOrder()->limit(10)->get();
+        $fyProducts = session('for_you') ?? [];
 
         foreach ($trendingProducts as $trendingProduct) {
             
@@ -89,6 +89,7 @@ class ProductController extends Controller
             $trendingProduct['price'] = $trendingProduct->price/100;
 
         }
+
         foreach ($fyProducts as $fyProduct) {
 
             $fyProduct['artist_name'] = $fyProduct->artist->name;
