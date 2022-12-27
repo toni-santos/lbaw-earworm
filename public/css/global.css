@@ -486,10 +486,17 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 
 #navbar-mobile {
   display: none;
+  flex-direction: column;
+  padding-inline: 20px;
+  justify-content: start;
+  height: auto;
+}
+
+#navbar-mobile > :first-child {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-inline: 20px;
-  height: 50px;
+  padding-block: 5px;
 }
 
 .confirm-button {
@@ -523,7 +530,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 
 @media (max-width: 768px) {
   main {
-    padding-block: 50px;
+    padding-block: 95px;
   }
 
 
@@ -533,6 +540,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 
   #navbar-mobile {
     display: flex;
+    box-shadow: 0px -5px 50px 0px rgba(0,0,0,0.75);
   }
 
   .search-container {
@@ -576,7 +584,9 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding-block: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  gap:20px;
 }
 
 #mobile-icons a {

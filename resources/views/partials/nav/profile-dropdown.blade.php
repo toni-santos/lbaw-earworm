@@ -6,7 +6,7 @@
         <a href="{{route('profile', ['id' => Auth::id()])}}">{{Auth::user()->username}}</a>
     </div>
     <div>
-        <a href="{{route('order')}}"><span class="material-icons">package</span></a>            
+        <a href="{{route('order')}}"><span class="material-icons">inventory_2</span></a>            
         <a href="{{route('order')}}">Orders</a>
     </div>
     <div>
@@ -16,10 +16,10 @@
     @endif
     <div>
         @if (Auth::check())
-        <a href=""><span class="material-icons">logout</span></a>
+        <a href="{{route ('logout')}}"><span class="material-icons">logout</span></a>
         <a href="{{route ('logout')}}">Logout</a>
         @else
-        <a href=""><span class="material-icons">login</span></a>
+        <a href="{{route ('login')}}"><span class="material-icons">login</span></a>
         <a href="{{route ('login')}}">Login</a>
         @endif
     </div>

@@ -43,8 +43,10 @@ window.addEventListener("scroll", () => {
     navbarInside.style.background = "rgba(28, 49, 94," + scrollPercentage + ")";
     if (window.scrollY >= scrollCap) {
         navbar.style.background = "var(--main-accent)";
+        navbar.style.boxShadow = "0px -5px 50px 0px rgba(0,0,0,0.75)";
     } else {
         navbar.style.background =
             "linear-gradient(0deg, rgb(0,0,0,0) 0%, rgb(0,0,0,0) 50%, rgba(28, 49, 94, 0.5) 100%)";
+            navbar.style.boxShadow = "none";
     }
 });

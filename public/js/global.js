@@ -1,5 +1,6 @@
 let hamburger = document.getElementById("hamburger");
 let hamburgerIcon = document.getElementById("hamburger-icon");
+let bar = document.getElementById("navbar-mobile");
 let content = document.getElementById("mobile-content");
 let obscure = document.getElementById("obscure-bg");
 let body = document.getElementsByTagName("body")[0];
@@ -34,6 +35,7 @@ hamburger.addEventListener("click", () => {
         body.style.overflow = "hidden";
         body.style.height = "100%";
         html.style.overflow = "hidden";
+        bar.style.boxShadow = "none";
         updateObscurePosition(window.scrollY);
         content.animate(hamburgerAnimate, timingsAnimateForward);
         obscure.animate(obscureAnimate, timingsAnimateForward);
@@ -44,6 +46,7 @@ hamburger.addEventListener("click", () => {
         body.style.height = "auto";
         html.style.overflow = "scroll";
         obscure.style.top = "-200%";
+        bar.style.boxShadow = "0px -5px 50px 0px rgba(0,0,0,0.75)";
         content.animate(hamburgerAnimate, timingsAnimateBackward).reverse();
         obscure.animate(obscureAnimate, timingsAnimateBackward).reverse();
     }
