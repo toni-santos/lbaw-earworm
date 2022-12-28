@@ -308,6 +308,21 @@ class UserController extends Controller
         return to_route('login');
     }
 
+    public function submitReport(Request $request, int $reported_id) {
+        $user = User::findOrFail(Auth::id());
+        $reported_user = User::findOrFail($reported_id);
+        if (!$user || !$reported_user) abort(401);
+        $data = $request->toArray();
+
+        DB::table('report')->insert([
+            'reporter_id' => $user->id,
+            'reported_id' => $reported_user->id,
+            'message' => $data['message']
+        ]);
+
+        return redirect()->back();
+    }
+
     public function submitTicket(Request $request) {
         $user = User::findOrFail(Auth::id());
         if (!$user) abort(401);

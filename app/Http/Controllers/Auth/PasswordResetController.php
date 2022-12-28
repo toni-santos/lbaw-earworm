@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class PasswordReset extends Controller
+class PasswordResetController extends Controller
 {
     use SendsPasswordResetEmails;
 
@@ -25,7 +25,7 @@ class PasswordReset extends Controller
 
     public function sendResetLinkEmail(Request $request) {
 
-        $request->validate(['email' => 'required|email']);
+        $request->validate(['email' => 'required|email|exists:users,email']);
 
         $status = Password::sendResetLink(
             $request->only('email')
@@ -44,7 +44,7 @@ class PasswordReset extends Controller
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8|confirmed',
+            'password' => 'required|min:8|max:255|confirmed',
         ]);
     
         $status = Password::reset(
@@ -52,11 +52,11 @@ class PasswordReset extends Controller
             function ($user, $password) {
                 $user->forceFill([
                     'password' => Hash::make($password)
-                ])->setRememberToken(Str::random(60));
+                ]);
     
                 $user->save();
     
-                event(new PasswordReset($user));
+                //event(new PasswordReset($user));
             }
         );
     

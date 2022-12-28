@@ -41,12 +41,12 @@ Route::post('/checkout', 'OrderController@buy')->name('buy');
 Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
 
 // User 
+Route::post('/user/settings/recover-password', 'Auth\PasswordResetController@sendResetLinkEmail')->name('recoverPassword');
 Route::get('/user/settings/{id}', 'UserController@editProfile')->name('editprofile');
 Route::post('/user/settings/{id}', 'UserController@update')->name('editprofilepost');
 Route::post('/user/settings/change-password/{id}', 'UserController@updatePassword')->name('editpassword');
-Route::post('/user/settings/recover-password', 'Auth\PasswordResetController@sendResetLinkEmail')->name('recoverPassword');
-Route::get('/reset-password/{token}', 'Auth\PasswordResetController@showResetPasswordForm')->name('resetPassword');
-Route::post('/reset-password', 'Auth\PasswordResetController@resetPassword')->name('resetPasswordPost');
+Route::get('/reset-password/{token}', 'Auth\PasswordResetController@showResetPasswordForm')->name('password.reset');
+Route::post('/reset-password', 'Auth\PasswordResetController@resetPassword')->name('resetPassword');
 Route::post('/user/settings/delete/{id}', 'UserController@deleteAccount')->name('deleteAccount');
 Route::post('/user/settings/last_fm/login', 'UserController@loginLastFm')->name('loginLastFm');
 Route::post('/user/settings/last_fm/logout', 'UserController@logoutLastFm')->name('logoutLastFm');

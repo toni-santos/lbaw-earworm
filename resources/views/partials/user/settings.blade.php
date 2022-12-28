@@ -91,7 +91,6 @@
                 <button class="confirm-button" id="recover-password" type="submit">Send Recovery Email</button>
             </form>
         </div>    
-
     </section>
 
     <section id="lastfm-section" hidden>

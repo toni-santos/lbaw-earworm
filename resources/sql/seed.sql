@@ -13,6 +13,7 @@ CREATE TYPE NOTIF_TYPE AS ENUM('Order', 'Wishlist', 'Misc');
 
 -- Drop existent tables
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS password_resets;
 DROP TABLE IF EXISTS artist;
 DROP TABLE IF EXISTS fav_artist;
 DROP TABLE IF EXISTS product;
@@ -38,6 +39,12 @@ CREATE TABLE users(
     is_blocked  BOOLEAN NOT NULL DEFAULT FALSE,
     is_admin    BOOLEAN NOT NULL DEFAULT FALSE,
     is_deleted  BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE password_resets (
+    email       VARCHAR(255) PRIMARY KEY,
+    token       VARCHAR(64) NOT NULL,
+    created_at  timestamp NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE artist(
