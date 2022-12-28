@@ -73,8 +73,9 @@ async function removeItemDecreasingCheckout(removable, sideValueRemovable) {
 function updateTotal() {
     const items = document.querySelectorAll('.pay-desc-item');
     let total = 0;
-
+    
     for (const item of items) {
+        console.log(item.children[1].textContent)
         total += item.children[1].querySelector('span').textContent * item.children[1].textContent.split(' ')[1].slice(0, -1);
     }
 

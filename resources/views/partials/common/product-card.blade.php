@@ -1,4 +1,7 @@
 <article class="product-card">
+    @if ($product->discount > 0)
+    <span class="discount-label">-{{$product->discount}}%</span>
+    @endif
     <a href="/product/{{$product['id']}}"><img class="product-card-img" src={{ url('/images/products/'.$product['id'].'.jpg') }}></a>
     <article class="product-desc">
         <a href="/product/{{$product['id']}}" class="prod-name" title="{{$product['name']}}">{{$product['name']}}</a>
@@ -13,7 +16,11 @@
                     <span class="material-icons fav-album" onclick="toggleLike(event, {{$product['id']}})">favorite_outline</span>
                     @endif
                 </div>
-                <a title="Price">{{$product['price']}} €</a>
+                @if ($product->discount == 0)
+                    <a title="Price">{{$product['price']}} €</a>
+                @else
+                    <a title="Price"><span class="cut-price">{{$product['price']}}</span> {{$product['discounted_price']}}€</a>
+                @endif
             </article>
         </article>
     </article>

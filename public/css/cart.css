@@ -135,10 +135,12 @@
 #plus-icon,
 #minus-icon {
     color: var(--main-accent);
+    cursor: pointer;
 }
 
 #delete-icon {
     color: var(--sub-accent);
+    cursor: pointer;
 }
 
 .item-amnt {

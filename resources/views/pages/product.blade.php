@@ -21,7 +21,9 @@
             </div>
         </div>
         <div id="product-purchase">
-            <p id="product-price">{{$product->price}} €</p>
+            <p id="product-price"><span class="cut-price">{{$product['price']}}</span> {{$product['discounted_price']}}€</p>
+
+            {{-- <p id="product-price">{{$product->price}} €</p> --}}
             @include('partials.common.stock', ['stock' => $product->stock])
             {{-- @if (!Auth::user()->is_admin) --}}
             @if ($product->stock > 0)
@@ -50,6 +52,7 @@
             <?php } ?>
         </div>
     </div>
+    @include('partials.common.subtitle', ['title' => "Reviews"])
     <div id="review-box-wrapper">
         @if (Auth::check() && isset($product->previous_review)) 
             @include('partials.common.subtitle', ['title' => "Your Previous Review"])
@@ -58,7 +61,6 @@
             @include('partials.forms.review-form')
         @endif
     </div>
-    @include('partials.common.subtitle', ['title' => "Reviews"])
     <div id="reviews-wrapper">
         <section id="reviews">
             @foreach ($reviews as $review)

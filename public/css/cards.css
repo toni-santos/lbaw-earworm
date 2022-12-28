@@ -6,11 +6,13 @@
     width: fit-content;
     padding: 10px;
     max-width: 220px;
+    position: relative;
 }
 
 .product-card-img {
     width: 200px;
     height: 200px;
+    object-fit: cover;
 }
 
 .artist-card-img {
@@ -77,4 +79,18 @@
 .fav-album:hover {
     scale: 1.2;
     color: var(--sub-dark-accent);
+}
+
+.discount-label {
+    position: absolute;
+    top: 0px;
+    padding: 5px;
+    color: var(--white);
+    background-color: var(--main-accent);
+    right: 0px;
+}
+
+.cut-price {
+    font-size: small;
+    text-decoration: line-through;
 }

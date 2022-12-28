@@ -28,7 +28,7 @@
                             <p>Total:</p>
                             <a class="subtitle1" id="checkout-value">0€</a>
                         </div>
-                        <a class="confirm-button" href="{{route('checkout')}}" id="confirm-checkout">Register to Buy</a>
+                        <a class="confirm-button" href="{{route('register')}}" id="confirm-checkout">Register to Buy</a>
                     </div>
                 @endif
             </aside>

@@ -21,11 +21,17 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product['price'] /= 100;
-        if ($product['discount'] != 0) $product['price'] = ($product['discount']/100) * $product['price'];
+        $new_price = round($product->price * (100 - $product->discount/100)/100) / 2;
+        $product['discounted_price'] = number_format((float)$new_price, 2, '.', '');
+
+        // if ($product['discount'] != 0) $product['price'] = ($product['discount']/100) * $product['price'];
         $products = Product::inRandomOrder()->limit(10)->get();
         foreach ($products as $suggestProduct) {
             $suggestProduct['artist_name'] = $suggestProduct->artist->name;
-            $suggestProduct['price'] = $suggestProduct->price/100;
+            $suggestProduct['price'] = number_format((float)$suggestProduct->price/100, 2, '.', '');
+            $new_price = round($suggestProduct->price * (100 - $suggestProduct->discount/100)/100) / 2;
+            $suggestProduct['discounted_price'] = number_format((float)$new_price, 2, '.', '');
+   
         }
 
         $wishlist = UserController::getWishlist();
@@ -90,14 +96,18 @@ class ProductController extends Controller
         foreach ($trendingProducts as $trendingProduct) {
             
             $trendingProduct['artist_name'] = $trendingProduct->artist->name;
-            $trendingProduct['price'] = $trendingProduct->price/100;
+            $trendingProduct['price'] = number_format((float)$trendingProduct->price/100, 2, '.', '');
+            $new_price = round($trendingProduct->price * (100 - $trendingProduct->discount/100)/100) / 2;
+            $trendingProduct['discounted_price'] = number_format((float)$new_price, 2, '.', '');
 
         }
 
         foreach ($recommendation_info as $fyProduct) {
 
             $fyProduct['artist_name'] = $fyProduct->artist->name;
-            $fyProduct['price'] = $fyProduct->price/100;
+            $fyProduct['price'] = number_format((float)$fyProduct->price/100, 2, '.', '');
+            $new_price = round($fyProduct->price * (100 - $fyProduct->discount/100)/100) / 2;
+            $fyProduct['discounted_price'] = number_format((float)$new_price, 2, '.', '');
 
         }
 
@@ -235,7 +245,9 @@ class ProductController extends Controller
 
         foreach ($products as $product) {
             $product['artist_name'] = $product->artist->name;
-            $product['price'] = $product->price/100;
+            $product['price'] = number_format((float)$product->price/100, 2, '.', '');
+            $new_price = round($product->price * (100 - $product->discount/100)/100) / 2;
+            $product['discounted_price'] = number_format((float)$new_price, 2, '.', '');
         }
 
         $wishlist = UserController::getWishlist();
@@ -261,13 +273,15 @@ class ProductController extends Controller
         }
 
         $cart = session('cart');
+        $new_price = round($product->price/100 * (100 - $product->discount/100)/100) / 2;
         // if cart is empty then this the first product
         if (!$cart) {
             $cart = [
                 $id => [
-                    "name" => $product->name,
-                    "quantity" => 1,
-                    "price" => $product->price / 100,
+                        "name" => $product->name,
+                        "quantity" => 1,
+                        "price" => number_format((float)$product->price/100, 2, '.', ''),
+                        'discounted_price' => number_format((float)$new_price, 2, '.', '')
                     ]
                 ];
             session(['cart' => $cart]);
@@ -281,7 +295,8 @@ class ProductController extends Controller
                 "name" => $product->name,
                 "quantity" => 1,
                 "price" => $product->price / 100,
-                "photo" => $product->photo
+                "photo" => $product->photo,
+                'discounted_price' => number_format((float)$new_price, 2, '.', '')
             ];
             session(['cart' => $cart]);
         }
