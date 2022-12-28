@@ -191,6 +191,7 @@ class UserController extends Controller
 }
 
 function getWishlist() {
+    
     if (Auth::check()) {
         $user = User::findOrFail(Auth::id());
         $list = $user->wishlist->toArray();

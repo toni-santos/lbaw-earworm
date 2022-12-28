@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Genre;
 use App\Models\User;
-use App\Models\Artist;
-use App\Models\Order;
 use App\Models\Review;
-use App\Models\OrderProduct;
 
 class ProductController extends Controller
 {
@@ -311,7 +307,7 @@ class ProductController extends Controller
         }
     }
 
-    public function removeFromCart(int $id) {
+    public static function removeFromCart(int $id) {
         if ($id) {
             $cart = session()->get('cart');
             if(isset($cart[$id])) {
@@ -327,42 +323,6 @@ class ProductController extends Controller
 
     public static function checkout() {
         return view('pages.checkout');
-    }
-
-    public function buy() {
-
-        $cart = session()->get('cart');
-
-        $next_possible_order_products = [];
-        foreach ($cart as $id => $product) {
-
-            $stock = Product::select('stock')->where('id', $id)->get()->toArray()[0]['stock'];
-
-            if ($product['quantity'] > $stock) {
-                return back(301, ["error" => "Not enough stock for order on ". $product['name']]);
-            }
-            
-            $next_possible_order_products[$id] = $product;
-            $this->removeFromCart($id);
-            
-        }
-
-        $order = Order::create([
-            'user_id' => Auth::id(),
-            'state' => 'Processing'
-        ]);
-
-        foreach ($next_possible_order_products as $id => $product) {
-            
-            DB::table('order_product')->insert([
-                'order_id' => $order->id,
-                'product_id' => $id,
-                'quantity' => $product['quantity']
-            ]);
-            
-        }
-        
-        return to_route('home');
     }
 
     public static function wishlist(Request $request) {

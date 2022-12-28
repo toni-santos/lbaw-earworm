@@ -54,6 +54,7 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
+        
         if (!$this->validator($request->all()))
             return back()->withErrors([
                 'message' => 'Invalid credentials'

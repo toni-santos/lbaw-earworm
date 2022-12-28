@@ -34,7 +34,7 @@ Route::get('/get-admin', 'UserController@getAdmin')->name('getadmin');
 //Route::get('/decrease-from-cart/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
 //Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
-Route::post('/checkout', 'ProductController@buy')->name('buy');
+Route::post('/checkout', 'OrderController@buy')->name('buy');
 Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
 
 // User 
@@ -53,7 +53,6 @@ Route::post('/wishlist/remove/{id}', 'ProductController@removeFromWishlist')->na
 Route::post('/product/review/{id}', 'ProductController@addReview')->name('addReview');
 Route::post('/product/edit-review/{user_id}-{product_id}', 'ProductController@editReview')->name('editReview');
 Route::post('/product/delete-review/{user_id}-{product_id}', 'ProductController@deleteReview')->name('deleteReview');
-
 
 // Admin
 Route::get('/admin', 'AdminController@show')->name('adminIndex');
