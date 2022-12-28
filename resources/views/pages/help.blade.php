@@ -16,8 +16,8 @@
                     Changing your username is possible from your profile settings. You are free to 
                     change your username as many times as you like.
                     <br>
-                    Make sure you are logged in to your account. In the profile navbar dropdown on the top-right,
-                    click on <a href={{route('editprofile', ['id' => Auth::id()])}}> settings. </a>
+                    Make sure you are logged in to your <a href={{route('ownprofile')}}> account </a>. In the profile navbar dropdown on the top-right,
+                    click on settings. 
                     <ol> 
                         <li> In the navbar in top-centre of the page, click on "Account Information". </li>
                         <li> Input your new account username or email. </li>
@@ -35,8 +35,8 @@
                     Changing your password is possible from your profile settings. You are free to 
                     change your password as many times as you like.
                     <br>
-                    Make sure you are logged in to your account. In the profile navbar dropdown on the top-right,
-                    click on <a href={{route('editprofile', ['id' => Auth::id()])}}> settings </a>.
+                    Make sure you are logged in to your <a href={{route('ownprofile')}}> account </a>. In the profile navbar dropdown on the top-right,
+                    click on settings.
                     <ol> 
                         <li> In the navbar in top-centre of the page, click on "Change Password". </li>
                         <li> Input your old password in the first text-box and your new password in the next two. </li>
@@ -95,6 +95,23 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    @include('partials.common.subtitle', ['title' => "Submit a Ticket "])
+    <div id="tickets-wrapper">
+        <div id="tickets-form-wrapper">
+        @if (!Auth::check())
+            <a id="login-redirect" href="{{route('login')}}"> <h3> Login to submit a ticket! </h3> </a>
+        @else
+            <form id="form-ticket" method="POST" action={{ route('submitTicket', ['id' => Auth::id()])}}>
+                {{ csrf_field() }}
+                <div class="input-container">
+                    <textarea class="text-input" name="message" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" rows="8" required></textarea>
+                    <label class="input-label" for="message">Ticket</label>
+                </div>
+                <button class="confirm-button" id="confirm-button" type="submit" name="submit" value="Submit">Submit Ticket</button>
+            </form>
+        @endif
     </div>
 </main>
 @include('partials.common.foot')

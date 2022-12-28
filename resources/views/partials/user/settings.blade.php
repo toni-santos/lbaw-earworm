@@ -88,7 +88,7 @@
                         <span class="required-alert">Required</span>
                     </div>
                 </section>
-                <button class="confirm-button" id="recover-password" type="submit">Send Recover Email</button>
+                <button class="confirm-button" id="recover-password" type="submit">Send Recovery Email</button>
             </form>
         </div>    
 

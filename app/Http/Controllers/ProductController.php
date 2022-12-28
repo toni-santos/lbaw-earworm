@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use ArrayObject;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
 use App\Models\Genre;
 use App\Models\User;
 use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {

@@ -148,3 +148,23 @@ div[id^="faq-drop-bot"] a {
     width: auto;
     color: var(--sub-accent);
 }
+
+#tickets-form-wrapper {
+    padding-inline: 70px;
+}
+
+#tickets-form-wrapper #login-redirect {
+    color: var(--sub-accent);
+}
+
+#form-ticket {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+textarea {
+
+    resize: none;
+    width: 100%;
+}

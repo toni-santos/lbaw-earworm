@@ -59,6 +59,8 @@ Route::post('/wishlist/remove/{id}', 'ProductController@removeFromWishlist')->na
 Route::post('/product/review/{id}', 'ProductController@addReview')->name('addReview');
 Route::post('/product/edit-review/{user_id}-{product_id}', 'ProductController@editReview')->name('editReview');
 Route::post('/product/delete-review/{user_id}-{product_id}', 'ProductController@deleteReview')->name('deleteReview');
+Route::post('/tickets/submit', 'UserController@submitTicket')->name('submitTicket');
+
 
 // Admin
 Route::get('/admin', 'AdminController@show')->name('adminIndex');

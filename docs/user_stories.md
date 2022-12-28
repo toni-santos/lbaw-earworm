@@ -23,7 +23,6 @@
 |US019|Receive Error Messages|Medium| As a User, I want to receive clear error messages as I browse the website, so that I am always aware of any problem I've encountered|
 |US020|Receive Contextual Help|Medium|As a User, I want to receive clear and understandable queues, so that I can easily navigate and use the site at any given moment|
 |US021|See FAQ|Low|As a User, I want to access a Frequently Asked Questions page, so that I can check answers for commonly made questions|
-|US022|Send Tickets|Low| As a User, I want to be able to send tickets to the administration of the site, so that I can communicate efficiently (even if anonymously) any problem, error, bug or any general information I wish to share with the admins|
 
 
 ### Visitor
@@ -66,6 +65,7 @@
 |US225|Manage Account Credit Information|Low|As a Client, I want to be able to manage my account's credit information, so that I can change it if I need to in order to make my paying experience easier|
 |US226|Manage Multiple Payment Methods|Low|As a Client, I want to be able to manage multiple payment methods, so that I am able to easily pay in whichever way I feel more comfortable with|
 |US227|Report Review|Low|As a Client, I want to be able to report any review I see, so that I can make sure it is brought up to the site's administration as a possible breach of conduct|
+|US228|Send Tickets|Low| As a Client, I want to be able to send tickets to the administration of the site, so that I can communicate efficiently any problem, error, bug or any general information I wish to share with the admins|
 
 ### Administrator
 

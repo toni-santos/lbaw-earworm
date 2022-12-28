@@ -6,13 +6,12 @@ use ArrayObject;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Review;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -323,6 +322,19 @@ class UserController extends Controller
         $user->save();
         
         return to_route('login');
+    }
+
+    public function submitTicket(Request $request) {
+        $user = User::findOrFail(Auth::id());
+        if (!$user) abort(401);
+        $data = $request->toArray();
+
+        DB::table('ticket')->insert([
+            'ticketer_id' => $user->id,
+            'message' => $data['message']
+        ]);
+
+        return to_route('help');
     }
 
     /**
