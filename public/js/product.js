@@ -63,12 +63,17 @@ function selectStar(event) {
 
 // edit review dropdown
 
-function toggleEditReview(event) {
-    review_bot = document.getElementById("review-edit-bot");
-    if (review_bot.style.display == 'none') {
-        review_bot.style.display = 'flex';
+function toggleEditReview(event, id) {
+    const review_bot = document.getElementById("review-edit-bot");
+    const prev_review = document.getElementById(`review-message-${id}`);
+    if (review_bot.style.maxHeight) {
+        review_bot.style.maxHeight = null;
+        prev_review.style.maxHeight = prev_review.scrollHeight + 5 + "px";
+        prev_review.style.paddingTop = "5px";
     }
     else {
-        review_bot.style.display = 'none';
+        review_bot.style.maxHeight = review_bot.scrollHeight + "px";;
+        prev_review.style.maxHeight = '0px';
+        prev_review.style.paddingTop = "0px";
     }
 }

@@ -55,7 +55,7 @@
     @include('partials.common.subtitle', ['title' => "Reviews"])
     <div id="review-box-wrapper">
         @if (Auth::check() && isset($product->previous_review)) 
-            @include('partials.common.subtitle', ['title' => "Your Previous Review"])
+            {{-- @include('partials.common.subtitle', ['title' => "Your Previous Review"]) --}}
             @include('partials.forms.edit-review-form', ['review' => $product->previous_review])
         @else
             @include('partials.forms.review-form')
@@ -64,7 +64,7 @@
     <div id="reviews-wrapper">
         <section id="reviews">
             @foreach ($reviews as $review)
-                @include('partials.common.review', ['type' => "product", 'review' => $review])                
+                @include('partials.common.review', ['type' => "product", 'review' => $review, 'edit' => false])                
             @endforeach
         </section>
     </div>

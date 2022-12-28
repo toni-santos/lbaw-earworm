@@ -12,7 +12,11 @@
             @include('partials.common.subtitle', ['title' => "Reviews"])
             <div id="review-wrapper">
                 @foreach ($reviews as $review)
-                    @include('partials.common.review', ['type' => 'profile', 'review' => $review])
+                    @if (Auth::id() == $review['reviewer_id'])
+                    @include('partials.common.review', ['type' => 'profile', 'review' => $review, 'edit' => true])
+                    @else
+                    @include('partials.common.review', ['type' => 'profile', 'review' => $review, 'edit' => false])
+                    @endif
                 @endforeach
             </div>
         </section>

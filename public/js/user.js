@@ -35,3 +35,18 @@ window.onload = function() {
     background.style.backgroundImage = `linear-gradient(to bottom, rgb(${color[0]},${color[1]},${color[2]}), var(--white))`;
 
 }
+
+function toggleEditReview(event, id) {
+    const review_bot = document.getElementById("review-edit-bot");
+    const prev_review = document.getElementById(`review-message-${id}`);
+    if (review_bot.style.maxHeight) {
+        review_bot.style.maxHeight = null;
+        prev_review.style.maxHeight = prev_review.scrollHeight + 5 + "px";
+        prev_review.style.paddingTop = "5px";
+    }
+    else {
+        review_bot.style.maxHeight = review_bot.scrollHeight + "px";;
+        prev_review.style.maxHeight = '0px';
+        prev_review.style.paddingTop = "0px";
+    }
+}

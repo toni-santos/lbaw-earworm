@@ -12,12 +12,13 @@
 
 .review-head {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .review-name {
     font-size: larger;
-    font-weight: bold;
 }
 
 .review-score {
@@ -44,11 +45,16 @@
 
 #review-edit-options {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+    flex-direction: row;
     text-align: center;
+    gap: 10px;
 }
 
 #edit-option, #delete-option {
-    width: 100%;;
+    margin-top: 0px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: var(--white);
 }
+
