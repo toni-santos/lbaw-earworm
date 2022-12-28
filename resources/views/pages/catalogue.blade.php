@@ -3,11 +3,9 @@
     <button id="collapsible"><span class="material-icons">filter_alt</span>Filters</button>
     <section id="filters">
         <!-- form to actually do stuff (in the future) -->
-        <form id="filters-form" method="GET" action={{ route('catalogue') }} onsubmit="return validateForm()">
+        <form id="filters-form" method="GET" action="{{ route('catalogue') }}">
             <fieldset id="filters-wrapper">
-                @if (!empty(request('search')))
-                <input type="hidden" name="search" value="{{request('search')}}">
-                @endif
+                <input type="hidden" name="search" id="hidden-search" value="{{request('search')}}">
                 <!-- order: price rating alpha -->
                 <select id="ord-filter" name="ord" id="ord-results">
                     <option value="relevance">Relevance</option>

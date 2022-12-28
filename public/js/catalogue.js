@@ -31,3 +31,26 @@ window.addEventListener("resize", () => {
         filters.style.padding = "0px";
     }
 });
+
+window.addEventListener("load", () => {
+    const filterForm = document.getElementById("filters-form");
+    const searchForm = document.getElementById("search-form");
+    const visibleSearch = searchForm.querySelector("#visible-search");
+    const hiddenSearch = filterForm.querySelector("#hidden-search");
+
+    function searchQuery() {
+        hiddenSearch.value = visibleSearch.value;
+        validateForm(filterForm);
+        filterForm.submit();
+    }
+
+    filterForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        searchQuery();
+    });
+
+    searchForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        searchQuery();
+    });
+});

@@ -79,22 +79,10 @@ function updateNavContentPosition(pos) {
     ];
 }
 
-function validateForm() {
-    const searchForm = document
-        .getElementById("search-form")
-        .getElementsByTagName("input");
-    const filterForm = document
-        .getElementById("filters-form")
-        .getElementsByTagName("input");
+function validateForm(form) {
+    const formInputs = form.getElementsByTagName("input");
 
-    for (const input of searchForm) {
-        console.log(input);
-        if (input.value == "") {
-            input.name = "";
-        }
-    }
-    for (const input of filterForm) {
-        console.log(input);
+    for (const input of formInputs) {
         if (input.value == "" || (input.type == "checkbox" && !input.checked)) {
             input.name = "";
         }
@@ -102,21 +90,17 @@ function validateForm() {
     return true;
 }
 
-// faq 
+// faq
 
 async function toggleFAQSection(event, section) {
     section_bot = document.getElementById(`faq-section-bot-${section}`);
-    if (section_bot.style.display == 'none') 
-        section_bot.style.display = 'flex';
-    else 
-        section_bot.style.display = 'none';
+    if (section_bot.style.display == "none") section_bot.style.display = "flex";
+    else section_bot.style.display = "none";
 }
 
 async function toggleFAQ(event, section, id) {
     faq_bot = document.getElementById(`faq-drop-bot-${section}-${id}`);
-    if (faq_bot.style.display == 'none') {
-        faq_bot.style.display = 'flex';
-    }
-    else 
-        faq_bot.style.display = 'none';
+    if (faq_bot.style.display == "none") {
+        faq_bot.style.display = "flex";
+    } else faq_bot.style.display = "none";
 }
