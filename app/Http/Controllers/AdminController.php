@@ -257,12 +257,33 @@ class AdminController extends Controller
         // return view('pages.admin', ['users' => $users]);
     }
 
-    public function showMod() {
-
-        $tickets = Ticket::all();
-        $reports = Report::all();
+    public function showReports(Request $request) {
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
         
-        return view('pages.admin.moderation', ['tickets' => $tickets, 'reports' => $reports]);
+        $search = (array_key_exists('report', $request->toArray())) ? $request->toArray()['report'] : '';
+        if ($search) {
+            $reports = Report::where('id', 'LIKE', '%' . $search . '%');
+            $reports = $reports->paginate(20)->withQueryString();
+        } else {
+            $reports = Report::paginate(20)->withQueryString();
+        }
+        
+        return view('pages.admin.report', ['reports' => $reports]);
+    }
+
+    public function showTickets(Request $request) {
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
+        
+        $search = (array_key_exists('ticket', $request->toArray())) ? $request->toArray()['ticket'] : '';
+        if ($search) {
+            $tickets = Ticket::where('id', 'LIKE', '%' . $search . '%');
+            $tickets = $tickets->paginate(20)->withQueryString();
+        } else {
+            $tickets = Ticket::paginate(20)->withQueryString();
+        }
+
+        
+        return view('pages.admin.ticket', ['tickets' => $tickets]);
     }
 
 }
