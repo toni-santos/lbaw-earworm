@@ -6,7 +6,7 @@
                 <p>Status: {{$order->state}}</p>
                 <p>Products:<br></p>
                 @foreach ($order['products'] as $product)
-                <p>&emsp;{{$product['name']}} ({{$product['id']}}) - X</p>
+                <p>&emsp;{{$product['name']}} ({{$product['id']}}) - {{$product['quantity']}}</p>
                 @endforeach
                 </p>
             </div>
@@ -17,22 +17,25 @@
     </div>
     <div class="result-bot-{{$order->id}}">
         <div>
-            <form method="POST" class="form-bot" action="{{route('adminUpdateArtist', ['id' => $order->id])}}">
-                {{ csrf_field() }}
-                <select name="state" id="state" class="select-filter">
-                    <option value="processing">Processing</option>
-                    <option value="shipped">Shipped</option>
-                    <option value="delivered">Delivered</option>
-                </select>
-                <section class="inputs-box">
-                    <button class="confirm-button" type="submit">Change</button>
-                </section>
-            </form>
-            <form method="POST" class="form-bot" action="{{route('adminDeleteArtist', ['artist' => $order])}}">
-                {{ csrf_field() }}
-                <button class="confirm-button" type="submit">Delete</button>
-            </form>
+            @if ($order->state != "Canceled")
+                <form method="POST" class="form-bot" action="{{route('adminUpdateOrder', ['id' => $order->id])}}">
+                    {{ csrf_field() }}
+                    <select name="state" id="state" class="select-filter">
+                        <option value="Processing">Processing</option>
+                        <option value="Shipped">Shipped</option>
+                        <option value="Delivered">Delivered</option>
+                    </select>
+                    <section class="inputs-box">
+                        <button class="confirm-button" type="submit">Change</button>
+                    </section>
+                </form>
+                <form method="POST" class="form-bot" action="{{route('adminCancelOrder', ['id' => $order->id])}}">
+                    {{ csrf_field() }}
+                    <button class="confirm-button" type="submit">Cancel</button>
+                </form>
+            @else
+                <p>This order was canceled!</p>
+            @endif
         </div>
-    </div>
-    
+    </div>    
 </div>

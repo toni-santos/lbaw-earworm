@@ -8,7 +8,7 @@ SET search_path TO lbaw22123;
 
 -- Enumerations
 CREATE TYPE PRODUCT_FORMAT AS ENUM('Vinyl', 'CD', 'Cassette', 'DVD', 'Box Set');
-CREATE TYPE ORDER_STATE AS ENUM('Processing', 'Shipped', 'Delivered');
+CREATE TYPE ORDER_STATE AS ENUM('Processing', 'Shipped', 'Delivered', 'Canceled');
 CREATE TYPE NOTIF_TYPE AS ENUM('Order', 'Wishlist', 'Misc');
 
 -- Drop existent tables

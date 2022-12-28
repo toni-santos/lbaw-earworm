@@ -13,7 +13,7 @@
             <div>
                 <p>Name: {{$product['name']}}</p>
                 <p>Artist: {{$product['artist_name']}}</p>
-                <p>Quantity: X</p>
+                <p>Quantity: {{$product['quantity']}}</p>
             </div>
         </div>
         @endforeach

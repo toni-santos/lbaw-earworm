@@ -48,18 +48,28 @@ class OrderController extends Controller
         return to_route('home');
     }
 
-    public function update(Request $request) {
+    public function update(Request $request, int $id) {
 
         $data = $request->all();
-        dd($data);
 
-        $order = Order::where('id', intval($data['id']));
         $new_state = $data['state'];
+        $order = Order::where('id', $id)->update(['state' => $new_state]);
 
-        $order->state = $new_state;
-
-        $order->save();
         return to_route('adminOrder');
+
+    }
+
+    public function adminCancel(int $id) {
+
+        $order = Order::where('id', $id)->update(['state' => 'Canceled']);
+        return to_route('adminOrder');
+
+    }
+
+    public function userCancel(int $id) {
+
+        $order = Order::where('id', $id)->update(['state' => 'Canceled']);
+        return to_route('profile');
 
     }
 
@@ -91,16 +101,39 @@ class OrderController extends Controller
 
     }
 
-    public function getAllOrderProducts() {
+    public function getAdminOrderProducts(Request $request) {
 
-        $orders = Order::all();
-        $orders_products = array();
+        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
+        $search = (array_key_exists('order', $request->toArray())) ? $request->toArray()['order'] : '';
 
-        foreach ($orders as $order) {
-            $orders_products[$order->id] = $this->getOrderProducts($order);
+        if ($search) {
+            $orders = Order::where('id', 'LIKE', $search)
+                            ->orWhere('user_id', 'LIKE', $search);
+            $orders = $orders->paginate(20)->withQueryString();
+        } else {
+            $orders = Order::paginate(20)->withQueryString();
+        }
+        
+        foreach($orders as $order) {
+            $order = $this->getOrderProducts($order);
         }
 
-        return $orders_products;
-        
+        return view('pages.admin.orders', ['orders' => $orders]);
+
     }
+
+    public function getUserOrderProducts() {
+
+        if (!Auth::check()) abort(403);
+
+        $orders = Auth::user()->orders;
+
+        foreach($orders as $order) {
+            $order = $this->getOrderProducts($order);
+        }
+
+        return view('pages.order', ['orders' => $orders]);
+
+    }
+
 }

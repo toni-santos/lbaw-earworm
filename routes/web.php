@@ -27,7 +27,7 @@ Route::get('/product/buy/{id}', 'ProductController@buyProduct')->name('buyProduc
 Route::get('/artist/{id}', 'ArtistController@show')->name('artist');
 
 // Orders
-Route::get('/order', 'ProductController@showOrder')->name('order');
+Route::get('/order', 'OrderController@getUserOrderProducts')->name('order');
 
 //test func
 Route::get('/get-admin', 'UserController@getAdmin')->name('getadmin');
@@ -66,7 +66,7 @@ Route::get('/admin/signup', 'AdminController@showUserCreate')->name('adminCreate
 Route::get('/admin/user', 'AdminController@showUser')->name('adminUser');
 Route::get('/admin/product', 'AdminController@showProduct')->name('adminProduct');
 Route::get('/admin/artist', 'AdminController@showArtist')->name('adminArtist');
-Route::get('/admin/order', 'AdminController@showOrder')->name('adminOrder');
+Route::get('/admin/order', 'OrderController@getAdminOrderProducts')->name('adminOrder');
 Route::get('/admin/review', 'AdminController@showUser')->name('adminMod');
 Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
 Route::post('/admin/user/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
@@ -78,8 +78,8 @@ Route::post('/admin/product/edit/{id}', 'AdminController@updateProduct')->name('
 Route::post('/admin/artist/create', 'AdminController@createArtist')->name('adminCreateArtist');
 Route::post('/admin/artist/edit/{id}', 'AdminController@updateArtist')->name('adminUpdateArtist');
 Route::post('/admin/order/create', 'AdminController@createArtist')->name('adminCreateOrder');
-Route::post('/admin/order/delete', 'AdminController@deleteArtist')->name('adminDeleteOrder');
-Route::post('/admin/order/edit/{id}', 'AdminController@updateArtist')->name('adminUpdateOrder');
+Route::post('/admin/order/cancel/{id}', 'OrderController@adminCancel')->name('adminCancelOrder');
+Route::post('/admin/order/edit/{id}', 'OrderController@update')->name('adminUpdateOrder');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

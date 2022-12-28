@@ -7,7 +7,7 @@
             <fieldset id="filters-wrapper">
                 <input type="hidden" name="search" id="hidden-search" value="{{request('search')}}">
                 <!-- order: price rating alpha -->
-                <select id="ord-filter" name="ord" id="ord-results">
+                <select id="ord-filter" name="ord">
                     <option value="relevance">Relevance</option>
                     <option value="alpha">Alphabetical Order</option>
                     <option value="asc-price">Ascending Price</option>
