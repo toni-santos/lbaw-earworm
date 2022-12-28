@@ -51,9 +51,14 @@
                 </div>
             </section>
             <section id="inputs-box-bottom">
+                <div class="scroll-filter" id="filter-genre">
+                    @foreach ($genres as $genre)
+                    <label><input type="checkbox" class="checkbox" name="genre[]" value="{{$genre->name}}"><span class="genre-check">{{$genre->name}}</span></label>
+                    @endforeach
+                </div>
                 <div class="input-container">
-                    <textarea class="text-input" name="description" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" required></textarea>
-                    <label class="input-label" for="description">Tracklist</label>
+                    <textarea class="text-input tracklist-input" name="description" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" required></textarea>
+                    <label class="input-label tracklist" for="description">Tracklist</label>
                     <span class="required-alert">Required</span>
                 </div>
                 <button class="confirm-button" id="confirm-button" type="submit" name="submit" value="Create" disabled>Create</button>

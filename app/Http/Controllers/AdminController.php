@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Models\Artist;
 use App\Models\Ticket;
+use App\Models\Genre;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -99,8 +100,9 @@ class AdminController extends Controller
         if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
         $artists = Artist::all();
+        $genres = Genre::all();
 
-        return view('auth.admin-product-create', ['artists' => $artists]);
+        return view('auth.admin-product-create', ['artists' => $artists, 'genres' => $genres]);
     }
 
    /**

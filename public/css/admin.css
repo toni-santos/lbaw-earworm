@@ -298,7 +298,7 @@ textarea {
     align-content: center;
     justify-content: center;
     align-items: center;
-    padding-top: 20px;
+    padding-block: 40px;
 }
 
 #form-wrapper > .subtitle-container {
@@ -308,17 +308,20 @@ textarea {
 #forms-create {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    /* grid-template-rows: repeat(2, 1fr); */
     flex-direction: row;
     padding-top: 20px;
 }
 
 #inputs-box-left {
     grid-area: 1 / 1 / 2 / 2;
+    height: fit-content;
 }
 
 #inputs-box-right {
     grid-area: 1 / 2 / 2 / 3;
+    height: fit-content;
+
 }
 
 #inputs-box-bottom {
@@ -328,6 +331,7 @@ textarea {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
 
 #inputs-box-bottom > * {
@@ -350,4 +354,78 @@ section[id^='inputs-box-'] .text-input:is(:not(:placeholder-shown), :focus)+labe
         flex-direction: column;
         gap: 12px;
     }
+}
+
+.scroll-filter {
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    overflow-y: scroll;
+    background:
+        /* Shadow covers */ linear-gradient(
+            var(--main-accent) 30%,
+            rgba(255, 255, 255, 0)
+        ),
+        linear-gradient(rgba(255, 255, 255, 0), var(--main-accent) 70%) 0 100%,
+        /* Shadows */
+            radial-gradient(
+                50% 0,
+                farthest-side,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0)
+            ),
+        radial-gradient(
+                50% 100%,
+                farthest-side,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0)
+            )
+            0 100%;
+    background:
+        /* Shadow covers */ linear-gradient(
+            var(--main-accent) 30%,
+            rgba(255, 255, 255, 0)
+        ),
+        linear-gradient(rgba(255, 255, 255, 0), var(--main-accent) 70%) 0 100%,
+        /* Shadows */
+            radial-gradient(
+                farthest-side at 50% 0,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0)
+            ),
+        radial-gradient(
+                farthest-side at 50% 100%,
+                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0)
+            )
+            0 100%;
+    background-repeat: no-repeat;
+    background-color: var(--main-accent);
+    background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+
+    /* Opera doesn't support this in the shorthand */
+    background-attachment: local, local, scroll, scroll;
+}
+
+.scroll-filter input {
+    display: none;
+    position: relative;
+}
+
+.scroll-filter span {
+    padding: 6px;
+    display: block;
+    width: 100%;
+}
+
+.checkbox:checked + span {
+    background-color: var(--sub-dark-accent);
+}
+
+.tracklist {
+}
+
+.tracklist-input {
+    margin-top: 0px;
 }
