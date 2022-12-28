@@ -6,7 +6,6 @@
                     <a href="{{ route('product', ['id' => $review['product_id']]) }}"> <img alt="Product picture" src={{ url('/images/products/' . $review['product_id'] . '.jpg') }} class="reviewer-pfp"> </a>
                     <div>
                         <a href="{{ route('product', ['id' => $review['product_id']]) }}"> <p class="reviewer-name">{{$review['product']['name']}}</p> </a>
-                        -
                         <p class="reviewer-score subtitle1">{{$review['score']}}<span class="material-icons"  style="color:var(--star);">star</span></p>
                         <p class="reviewer-date"> {{$review['date']}} </p>
                     </div>
@@ -18,7 +17,14 @@
                         {{ csrf_field() }}
                         <button class="confirm-button" id="delete-option"> <span class="material-icons">delete</span> </button>
                     </form>
-                </div>            
+                </div>      
+                @else   
+                <div id="review-edit-options">
+                    <form method="POST" id="delete-form-container" action=""> 
+                        {{ csrf_field() }}
+                        <button class="confirm-button" id="delete-option"> <span class="material-icons">flag</span> </button>
+                    </form>
+                </div>   
                 @endif
             </div>
             @if ($edit)
@@ -63,7 +69,6 @@
                     <img alt="User profile picture" src={{ url('/images/users/' . $review['reviewer_id'] . '.jpg') }} class="reviewer-pfp">
                     <div>
                         <p class="reviewer-name">{{$review['reviewer']['username']}}</p>
-                        -
                         <p class="reviewer-score subtitle1">{{$review['score']}}<span class="material-icons"  style="color:var(--star);">star</span></p>
                         <p class="reviewer-date"> {{$review['date']}} </p>
                     </div>
@@ -75,7 +80,14 @@
                         {{ csrf_field() }}
                         <button class="confirm-button" id="delete-option"> <span class="material-icons">delete</span> </button>
                     </form>
-                </div>            
+                </div>     
+                @else
+                <div id="review-edit-options">
+                    <form method="POST" id="delete-form-container" action=""> 
+                        {{ csrf_field() }}
+                        <button class="confirm-button" id="delete-option"> <span class="material-icons">flag</span> </button>
+                    </form>
+                </div>          
                 @endif
             </div>
             @if ($edit)

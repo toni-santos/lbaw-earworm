@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\Artist;
+use App\Models\Ticket;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -254,4 +256,13 @@ class AdminController extends Controller
 
         // return view('pages.admin', ['users' => $users]);
     }
+
+    public function showMod() {
+
+        $tickets = Ticket::all();
+        $reports = Report::all();
+        
+        return view('pages.admin.moderation', ['tickets' => $tickets, 'reports' => $reports]);
+    }
+
 }
