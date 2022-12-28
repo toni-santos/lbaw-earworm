@@ -79,13 +79,15 @@ class OrderController extends Controller
 
             $products_info[$id] = [
                 'id' => $product->id,
+                'artist_name' => $product->artist->name,
                 'name' => $product->name,
                 'quantity' => $product_quantity
             ];
 
         }
 
-        return $products_info;
+        $order['products'] = $products_info;
+        return $order;
 
     }
 
