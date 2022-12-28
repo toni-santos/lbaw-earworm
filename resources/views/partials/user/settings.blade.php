@@ -79,7 +79,7 @@
             </div>
         </div>
         <div class="user-bot-pass-recover-{{$user->id}}" style="display:none">
-            <form method="POST" class="form-bot" action="{{route('recoverPasswordPost', ['id' => $user->id])}}">
+            <form method="POST" class="form-bot" action="{{route('recoverPassword')}}">
                 {{ csrf_field() }}           
                 <section class="inputs-box">
                     <div class="input-container">

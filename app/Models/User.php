@@ -62,6 +62,15 @@ class User extends Authenticatable
         return $this->hasMany(Order::class, 'user_id');
     }
 
+
+    /**
+     * The notifications associated with this user
+     */
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'user_id', 'id');
+    }
+
     /**
    * The table associated with the model.
    *

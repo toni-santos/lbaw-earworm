@@ -37,7 +37,7 @@ class UserController extends Controller
         if ($user->is_blocked) {
             abort(404);
         }
-        
+
         $favArtists = $user->favouriteArtists->toArray();
         $orders = $user->orders;
 
@@ -51,10 +51,10 @@ class UserController extends Controller
         }
 
         $recommendedProducts = session('for_you') ?? [];
-        
         $recommendation_info = array();
-        foreach ($recommendedProducts as $id => $recommendation) {
-            $recommendation_info[$id] = clone $recommendation;
+
+        foreach ($recommendedProducts as $rec_id => $recommendation) {
+            $recommendation_info[$rec_id] = clone $recommendation;
         }
 
         foreach ($recommendation_info as $suggestProduct) {
@@ -198,22 +198,6 @@ class UserController extends Controller
 
         return to_route('logout');
     }
-
-    public function showRecoverPassword(int $id) {
-        return view('pages.recover-password', ['user_id' => $id]);
-    }
-
-    public function recoverPassword(Request $request) {
-        $request->validate(['email' => 'required|email']);
-
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
-    
-        return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
-    }    
 
     public function loginLastFm(Request $request) {
 

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
   // Don't add create and update timestamps in database.
-  public $timestamps  = false;
+  public $timestamps = false;
 
   protected $fillable = [
       'user_id', 'state'
@@ -17,7 +17,7 @@ class Order extends Model
      * The user this order belongs to.
      */
   public function user() {
-    return $this->hasOne(User::class, 'users', 'order_id', 'user_id');
+    return $this->belongsTo(User::class, 'user_id', 'id');
   }
 
   /**
