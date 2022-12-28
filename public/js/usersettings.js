@@ -38,24 +38,24 @@ function switchSection(newVisible, newSelected) {
 
 // forms js
 
-function expandUserOptions(event, id) {
+function expandUserOptions(event, section, id) {
     switch (visible) {
         case infoSection:
-            const info = document.querySelector('.user-bot-info-' + id);
+            const info = document.querySelector('.user-bot-info-' + section + '-' + id);
             if (info.style.display == 'none') {
                 info.style.display = 'flex';
             } else {
                 info.style.display = 'none';
             }
         case passwordSection:
-            const pass = document.querySelector('.user-bot-pass-' + id);
+            const pass = document.querySelector('.user-bot-pass-' + section + '-' + id);
             if (pass.style.display == 'none') {
                 pass.style.display = 'flex';
             } else {
                 pass.style.display = 'none';
             }
         case lastfmSection:
-            const lastfm = document.querySelector('.user-bot-lastfm-' + id);
+            const lastfm = document.querySelector('.user-bot-lastfm-' + section + '-' + id);
             if (lastfm.style.display == 'none') {
                 lastfm.style.display = 'flex';
             } else {

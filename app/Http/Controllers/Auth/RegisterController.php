@@ -56,7 +56,7 @@ class RegisterController extends Controller
     {
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
-            dd($validator->messages(), $request->all());
+            //dd($validator->messages(), $request->all());
             return back()->withErrors([
                 'message' => 'Invalid credentials'
             ]);

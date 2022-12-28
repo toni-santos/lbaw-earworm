@@ -10,7 +10,7 @@
 
 <section id="settings-section"> 
     <section id="info-section" hidden>
-        <div class="user-top-info{{$user->id}}" onclick="expandUserOptions(event, {{$user->id}})">
+        <div class="user-top-info-edit-{{$user->id}}" onclick="expandUserOptions(event, 'edit', {{$user->id}})">
             <div class="user-info">
                 <p id="user-email">Email: {{$user->email}}</p>
                 <p>Username: {{$user->username}}</p>
@@ -20,7 +20,7 @@
                 <span class="material-icons">expand_more</span>
             </div>
         </div>
-        <div class="user-bot-info-{{$user->id}}" style="display:none;">
+        <div class="user-bot-info-edit-{{$user->id}}" style="display:none;">
             <form method="POST" class="form-bot" action="{{route('editprofilepost', ['id' => $user->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
@@ -37,21 +37,21 @@
             </form>
         </div>
         <div class="user-bot-info-delete-{{$user->id}}" style="display:flex">
-            <form method="GET" class="form-bot" action="{{route('deleteAccount', ['id' => $user->id])}}">
+            <form method="POST" class="form-bot" action="{{route('deleteAccount', ['id' => $user->id])}}">
                 {{ csrf_field() }}                    
-                <button class="confirm-button" type="submit">Delete Account</button>
+                <button class="confirm-button" id="delete-account" type="submit">Delete Account</button>
             </form>
         </div>   
     </section>
 
     <section id="password-section" hidden>
-        <div class="user-top-pass-{{$user->id}}" onclick="expandUserOptions(event, {{$user->id}})">
+        <div class="user-top-pass-change-{{$user->id}}" onclick="expandUserOptions(event, 'change', {{$user->id}})">
             <div class="expand">
                 <p> Change Password </p>
                 <span class="material-icons">expand_more</span>
             </div>
         </div>
-        <div class="user-bot-pass-{{$user->id}}" style="display:none;">
+        <div class="user-bot-pass-change-{{$user->id}}" style="display:none;">
             <form method="POST" class="form-bot" action="{{route('editpassword', ['id' => $user->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
@@ -72,17 +72,30 @@
             </form>
         </div>    
 
-        <div class="user-bot-pass-recover-{{$user->id}}" style="display:flex">
-            <form method="GET" class="form-bot" action="{{route('recoverpassword', ['id' => $user->id])}}">
-                {{ csrf_field() }}                    
-                <button class="confirm-button" type="submit">Recover Password</button>
+        <div class="user-top-pass-recover-{{$user->id}}" onclick="expandUserOptions(event, 'recover', {{$user->id}})">
+            <div class="expand">
+                <p> Recover Password </p>
+                <span class="material-icons">expand_more</span>
+            </div>
+        </div>
+        <div class="user-bot-pass-recover-{{$user->id}}" style="display:none">
+            <form method="POST" class="form-bot" action="{{route('recoverPasswordPost', ['id' => $user->id])}}">
+                {{ csrf_field() }}           
+                <section class="inputs-box">
+                    <div class="input-container">
+                        <input class="text-input" type="email" name="email" autocomplete="email" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" required>
+                        <label class="input-label" for="email" onclick="setFocus(event)">Email</label>
+                        <span class="required-alert">Required</span>
+                    </div>
+                </section>
+                <button class="confirm-button" id="recover-password" type="submit">Send Recover Email</button>
             </form>
         </div>    
 
     </section>
 
     <section id="lastfm-section" hidden>
-        <div class="user-top-lastfm-{{$user->id}}" onclick="expandUserOptions(event, {{$user->id}})">
+        <div class="user-top-lastfm-link-{{$user->id}}" onclick="expandUserOptions(event, 'link', {{$user->id}})">
             @if ($user->last_fm == NULL)
             <div class="user-info">
                 <p> Last.FM Account: *not linked* </p>
@@ -97,7 +110,7 @@
                 <span class="material-icons">expand_more</span>
             </div>
         </div>
-        <div class="user-bot-lastfm-{{$user->id}}" style="display:none;">
+        <div class="user-bot-lastfm-link-{{$user->id}}" style="display:none;">
             <form method="POST" class="form-bot" action="{{route('loginLastFm')}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">

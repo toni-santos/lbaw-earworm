@@ -60,12 +60,18 @@ div[class^='user-top-']:hover {
 }
 
 div[class^='user-bot-'] {
+    justify-content: center;
     padding-top: 10px;
     font-size: 14px;
 }
 
 #settings-section button {
     background-color: var(--light-accent);
+}
+
+#delete-account, #recover-password {
+    padding: 8px;
+    font-size: 20px;
 }
 
 #form-aux-wrapper {

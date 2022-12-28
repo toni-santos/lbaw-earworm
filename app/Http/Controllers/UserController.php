@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -198,6 +199,22 @@ class UserController extends Controller
 
         return to_route('logout');
     }
+
+    public function showRecoverPassword(int $id) {
+        return view('pages.recover-password', ['user_id' => $id]);
+    }
+
+    public function recoverPassword(Request $request) {
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+    
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with(['status' => __($status)])
+                    : back()->withErrors(['email' => __($status)]);
+    }    
 
     public function loginLastFm(Request $request) {
 
