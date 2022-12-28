@@ -300,7 +300,7 @@ class UserController extends Controller
 
         $user->email = sha1(rand());
         $user->username = sha1(rand());
-        $user->password = sha1(rand());;
+        $user->password = sha1(rand());
         $user->is_deleted = true;
 
         $user->save();

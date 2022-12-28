@@ -13,20 +13,16 @@
     </div>
     <div class="result-bot-{{$artist->id}}">
         <div>
+            <div id="artist-card-desc">
+                <p> Description: <br> {{$artist->description}} </p>
+            </div>
             <form method="POST" class="form-bot" action="{{route('adminUpdateArtist', ['id' => $artist->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
-                    <textarea placeholder=" " id="message" class="text-input" name="message" rows="6" cols="100">
-                        {{$artist->description}}
-                    </textarea>
-                    <button class="confirm-button" type="submit">Change</button>
+                    <textarea placeholder="New description..." id="message" class="text-input" name="message" rows="6" cols="100"> New description... </textarea>
+                    <button class="confirm-button" type="submit">Update</button>
                 </section>
-            </form>
-            <form method="POST" class="form-bot" action="{{route('adminDeleteArtist', ['artist' => $artist])}}">
-                {{ csrf_field() }}
-                <button class="confirm-button" type="submit">Delete</button>
             </form>
         </div>
     </div>
-    
 </div>

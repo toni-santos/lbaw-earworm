@@ -75,7 +75,6 @@ Route::post('/admin/product/create', 'AdminController@createProduct')->name('adm
 Route::post('/admin/product/delete', 'AdminController@deleteProduct')->name('adminDeleteProduct');
 Route::post('/admin/product/edit/{id}', 'AdminController@updateProduct')->name('adminUpdateProduct');
 Route::post('/admin/artist/create', 'AdminController@createArtist')->name('adminCreateArtist');
-Route::post('/admin/artist/delete', 'AdminController@deleteArtist')->name('adminDeleteArtist');
 Route::post('/admin/artist/edit/{id}', 'AdminController@updateArtist')->name('adminUpdateArtist');
 Route::post('/admin/order/create', 'AdminController@createArtist')->name('adminCreateOrder');
 Route::post('/admin/order/delete', 'AdminController@deleteArtist')->name('adminDeleteOrder');

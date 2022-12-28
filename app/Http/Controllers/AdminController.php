@@ -233,6 +233,23 @@ class AdminController extends Controller
         return to_route('adminProduct');
     }
 
+    public function updateArtist(Request $request, int $id) {
+        if (!Auth::user()->is_admin) abort(401);
+
+        $artist = Artist::findOrFail($id);
+        if (!$artist) {
+            abort(404);
+        }
+
+        $data = $request->toArray();
+
+        $artist->description = $data['message'] ?? $artist->description;
+
+        $artist->save();
+
+        return to_route('adminArtist');
+    } 
+
     public function findUser() {
         // $users = User::search(request('search'))->paginate(20);
 

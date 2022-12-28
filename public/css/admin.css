@@ -71,6 +71,7 @@ div[class^='result-bot-'] {
 }
 
 div[class^='result-bot-'] >div {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -232,6 +233,16 @@ div[class^='result-bot-'] >div {
 
 .flash-card > p {
     font-size: large;
+}
+
+#artist-card-desc {
+    font-size: large;
+}
+
+textarea {
+    resize: none;
+    margin-top: 16px;
+    width: 100%;
 }
 
 .invis-button > div {
