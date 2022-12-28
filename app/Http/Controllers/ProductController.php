@@ -5,17 +5,13 @@ namespace App\Http\Controllers;
 use ArrayObject;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
 use App\Models\Genre;
 use App\Models\User;
-use App\Models\Artist;
-use App\Models\Order;
 use App\Models\Review;
-use App\Models\OrderProduct;
 
 class ProductController extends Controller
 {
@@ -316,7 +312,7 @@ class ProductController extends Controller
         }
     }
 
-    public function removeFromCart(int $id) {
+    public static function removeFromCart(int $id) {
         if ($id) {
             $cart = session()->get('cart');
             if(isset($cart[$id])) {
@@ -343,29 +339,6 @@ class ProductController extends Controller
         });
 
         return view('pages.checkout', ['countries' => $countries]);
-    }
-
-    public function buy() {
-
-        $cart = session()->get('cart');
-
-        $order = Order::create([
-            'user_id' => Auth::id(),
-            'state' => 'Delivered'
-        ]);
-
-        foreach ($cart as $id => $product) {
-
-            DB::table('order_product')->insert([
-                'order_id' => $order->id,
-                'product_id' => $id,
-                'quantity' => $product['quantity']
-            ]);
-
-            $this->removeFromCart($id);
-
-        }
-        return to_route('home');
     }
 
     public static function wishlist(Request $request) {

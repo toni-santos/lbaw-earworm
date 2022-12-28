@@ -37,7 +37,7 @@ Route::get('/get-admin', 'UserController@getAdmin')->name('getadmin');
 //Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
 Route::get('/cart', 'ProductController@cart')->name('cart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
-Route::post('/checkout', 'ProductController@buy')->name('buy');
+Route::post('/checkout', 'OrderController@buy')->name('buy');
 Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
 
 // User 
