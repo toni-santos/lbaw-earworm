@@ -102,6 +102,7 @@
         @break
       
       @case('help')
+        <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
         <link href="{{ asset('css/statics.css') }}" rel="stylesheet">
         <script type="text/javascript" src={{ asset('js/statics.js') }} defer></script>
         @break

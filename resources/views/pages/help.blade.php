@@ -105,7 +105,7 @@
         @else
             <form id="form-ticket" method="POST" action={{ route('submitTicket', ['id' => Auth::id()])}}>
                 {{ csrf_field() }}
-                <div class="input-container">
+                <div class="input-container textarea-container">
                     <textarea class="text-input" name="message" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" rows="8" required></textarea>
                     <label class="input-label" for="message">Ticket</label>
                 </div>
