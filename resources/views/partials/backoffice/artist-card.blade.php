@@ -21,11 +21,17 @@
                 {{ csrf_field() }}
                 <section class="inputs-box">
                     <textarea placeholder="New description..." id="message" class="text-input" name="message" rows="6" cols="100"> {{$artist->description}} </textarea>
-                    <label for="artist-pfp">New Artist Image: </label>
-                    <input class="confirm-button" type="file" id="artist-pfp" name="artist-pfp">
-                    <button class="confirm-button" type="submit">Update</button>
+                    <button class="confirm-button" type="submit">Update description</button>
                 </section>
             </form>
+            <form method="POST" enctype="multipart/form-data" class="form-bot" action="{{route('adminUpdateArtistProfilePic', ['id' => $artist->id])}}">
+                {{ csrf_field() }}
+                <section class="inputs-box">
+                    <input class="confirm-button" type="file" id="artist-pfp" name="artist-pfp">
+                    <button class="confirm-button" type="submit">Change photo</button>
+                </section>
+            </form>
+
         </div>
     </div>
 </div>

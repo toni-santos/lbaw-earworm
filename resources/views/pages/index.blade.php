@@ -27,6 +27,7 @@
             @include('partials.common.static-carousel', [
                 'carouselTitle' => 'For You',
                 'carouselId' => 'static-carousel-fy',
+                'type' => 'product',
                 'content' => $fyProducts,
                 'wishlist' => $wishlist
             ])

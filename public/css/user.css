@@ -89,3 +89,21 @@ main {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+#user-top > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (max-width: 768px) {
+    #user-top {
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    #user-top > div {
+        width: 100%;
+    }
+}

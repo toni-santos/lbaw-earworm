@@ -626,6 +626,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding-inline: 10px;
   padding-top: 10px;
 }
@@ -637,6 +638,7 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 #mobile-nav-profile-icon {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 10px;
 }
 
@@ -821,4 +823,22 @@ article[id^="review-message-"] {
   width: 48px;
   height: 48px;
   object-fit: cover;
+}
+
+.invis-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+  padding: 10px;
+  font-size: medium;
+  outline: inherit;
+  word-wrap: break-word;
+  color: inherit;
+  background-color: var(--sub-accent);
 }

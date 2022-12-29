@@ -4,8 +4,10 @@
         <div id="user-banner">
             <div id="user-top">
                 <img src={{ $pfp }} alt="User Profile Picture" id="user-pfp">
-                <p id="user-name">{{$user['username']}}</p>
-                <a id="user-settings-icon" href="{{route('editprofile', ['id' => Auth::id()])}}"><span class="material-icons">settings</span></a>            
+                <div>
+                    <p id="user-name">{{$user['username']}}</p>
+                    <a id="user-settings-icon" href="{{route('editprofile', ['id' => Auth::id()])}}"><span class="material-icons">settings</span></a>            
+                </div>
             </div>
         </div>
     </div>
@@ -24,11 +26,23 @@
         </section>
         <section id="fav-artists">
             @include('partials.common.subtitle', ['title' => $user['username'] . "'s Favorite Artists"])
-            <div id="fav-artists-wrapper">
-                @foreach ($favArtists as $artist)
-                    @include('partials.common.artist-card', ['artist' => $artist])
-                @endforeach
-            </div>
+            @if (count($favArtists) >= 5)
+                @include('partials.common.carousel', [
+                    'carouselTitle' => '',
+                    'carouselId' => 'carousel-fav-artists',
+                    'type' => 'artist',
+                    'content' => $favArtists,
+                    'wishlist' => ''
+                ])
+            @else
+                @include('partials.common.static-carousel', [
+                    'carouselTitle' => '',
+                    'carouselId' => 'static-carousel-fav-artists',
+                    'type' => 'artist',
+                    'content' => $favArtists,
+                    'wishlist' => ''
+                ])
+            @endif
         </section>
         <section id="buy-history">
             @include('partials.common.subtitle', ['title' => "Purchase History"])
@@ -51,6 +65,7 @@
                 @include('partials.common.static-carousel', [
                     'carouselTitle' => 'Last.fm Recommendations',
                     'carouselId' => 'static-carousel-lastfm-recs',
+                    'type' => 'product',
                     'content' => $recommendedProducts,
                     'wishlist' => $wishlist
                 ])

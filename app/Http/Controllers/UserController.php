@@ -70,6 +70,8 @@ class UserController extends Controller
 
         $pfp = UploadController::getUserProfilePic($id);
 
+        $favArtists = $user->favouriteArtists;
+
         return view('pages.user', [
             'user' => $user,
             'pfp' => $pfp,
@@ -77,7 +79,8 @@ class UserController extends Controller
             'purchaseHistory' => $boughtProducts,
             'recommendedProducts' => $recommendation_info,
             'wishlist' => $wishlist,
-            'reviews' => $reviews
+            'reviews' => $reviews,
+            'fav_artists' => $favArtists
         ]);
     }
 
@@ -109,28 +112,6 @@ class UserController extends Controller
 
         return [];
 
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     public function editProfile(int $id) {
@@ -310,8 +291,9 @@ class UserController extends Controller
     }
 
     public function submitReport(Request $request) {
+
         $data = $request->toArray();
-        
+                
         $user = User::findOrFail(Auth::id());
         $reported_user = User::findOrFail($data['user_id']);
         if (!$user || !$reported_user) abort(401);
@@ -323,6 +305,7 @@ class UserController extends Controller
         ]);
 
         return redirect()->back();
+
     }
 
     public function submitTicket(Request $request) {
@@ -336,6 +319,33 @@ class UserController extends Controller
         ]);
 
         return to_route('help');
+    }
+
+    public function addFavArtist(int $id) {
+        
+        if (!Auth::check()) abort(403);
+        $user_id = Auth::id();
+
+        DB::table('fav_artist')->insert([
+            'user_id' => $user_id,
+            'artist_id' => $id
+        ]);
+
+        return 200;
+
+    }
+
+    public function removeFavArtist(int $id) {
+
+        if (!Auth::check()) abort(403);
+        $user_id = Auth::id();
+
+        DB::table('fav_artist')
+                        ->where('user_id', $user_id)
+                        ->where('artist_id', $id)->delete();
+
+        return 200;
+
     }
 
 }

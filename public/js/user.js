@@ -17,7 +17,7 @@ new Flickity("#carousel-fav-artists", {
     dragThreshold: 10,
     prevNextButtons: true,
     resize: true,
-    cellSelector: ".product-card",
+    cellSelector: ".artist-card",
 });
 
 window.onload = function() {

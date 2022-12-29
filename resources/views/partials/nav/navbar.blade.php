@@ -1,3 +1,4 @@
+<?php use App\Http\Controllers\UploadController; ?>
 <nav id="navbar-wide" class="navbar">
     <div id="wide-top" class="sub-bar">
         <div id="logo-div">
@@ -8,7 +9,6 @@
             @include('partials.nav.search-bar')
         </div>
         <div id="icons">
-            <!-- account_circle is a placeholder for the users pfp -->
             @if (Auth::check())
             <a href="{{route('catalogue')}}" id="catalogue-icon"><span class="material-icons">album</span></a>
             <a href="{{route('wishlist')}}" id="wishlist-icon"><span class="material-icons">favorite</span></a>
@@ -52,8 +52,8 @@
             <a href="{{route('catalogue')}}"><span class="material-icons">album</span>Catalog</a>
             <div id="mobile-nav-profile">
                 <div id="mobile-nav-profile-icon">
-                    <a href="{{route('ownprofile')}}" id="profile-icon"> <span class="material-icons">account_circle</span> </a>
-                    <a href="{{route('ownprofile')}}">{{Auth::user()->username}}</a>
+                    <a href="{{route('profile', ['id' => Auth::id()])}}"><img id="dropdown-pfp" src={{UploadController::getUserProfilePic(Auth::id())}}></a>
+                    <a href="{{route('profile', ['id' => Auth::id()])}}">{{Auth::user()->username}}</a>
                 </div>
                 <a href="{{route ('logout')}}"><span class="material-icons">logout</span></a>
             </div>

@@ -8,35 +8,30 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class UploadController extends Controller
-{
-
-    public function showUploadUserProfilePic() {
-        return view();
-    }
-    
-    public function showUploadArtistProfilePic() {
-        return view();
-    }
-
-    public function showUploadProductProfilePic() {
-        return view();
-    }
-
-    
+{   
     public function uploadUserProfilePic(Request $request) {
         
         $validator = Validator::make($request->all(), [
-            'image' => 'required|mimes:jpeg,jpg,png,svg'
+            'user-pfp' => 'required|mimes:jpeg,jpg,png,svg'
         ]);
         
         if ($validator->fails()) return back()->withErrors(['error' => 'Invalid or no picture uploaded']);
         
-        $image = $request->file('image');
+        $image = $request->file('user-pfp');
         $id = Auth::id();
         $filename = strval($id) . '.' . $image->getClientOriginalExtension();
+
+        $pfp_filepath = glob(storage_path('app/public/images/users/' . $id . '.*'));
+        if (!empty($pfp_filepath)) {
+
+            $pfp_filepath = explode('/', $pfp_filepath[0]);
+            $pfp_filename = end($pfp_filepath);
+            dd($pfp_filename);
+            Storage::delete('public/images/users/' . $pfp_filename);
+
+        }
         
         Storage::putFileAs('public/images/users', $image, $filename);
-        
         return to_route('profile', ['id' => $id]);
         
     }
@@ -59,17 +54,25 @@ class UploadController extends Controller
 
         $data = $request->all();
         $validator = Validator::make($request->all(), [
-            'image' => 'required|mimes:jpeg,jpg,png,svg'
+            'artist-pfp' => 'required|mimes:jpeg,jpg,png,svg'
         ]);
 
         if ($validator->fails()) return back()->withErrors(['error' => 'Invalid or no picture uploaded']);
 
-        $image = $request->file('image');
+        $image = $request->file('artist-pfp');
         $id = $data['id'];
         $filename = strval($id) . '.' . $image->getClientOriginalExtension();
 
-        Storage::putFileAs('public/images/artists', $image, $filename);
+        $pfp_filepath = glob(storage_path('app/public/images/artists/' . $id . '.*'));
+        if (!empty($pfp_filepath)) {
 
+            $pfp_filepath = explode('/', $pfp_filepath[0]);
+            $pfp_filename = end($pfp_filepath);
+            Storage::delete('public/images/artists/' . $pfp_filename);
+
+        }
+
+        Storage::putFileAs('public/images/artists', $image, $filename);
         return to_route('adminArtist');
 
     }
@@ -93,17 +96,26 @@ class UploadController extends Controller
 
         $data = $request->all();
         $validator = Validator::make($request->all(), [
-            'image' => 'required|mimes:jpeg,jpg,png,svg'
+            'product-pfp' => 'required|mimes:jpeg,jpg,png,svg'
         ]);
 
         if ($validator->fails()) return back()->withErrors(['error' => 'Invalid or no picture uploaded']);
 
-        $image = $request->file('image');
+        $image = $request->file('product-pfp');
         $id = $data['id'];
         $filename = strval($id) . '.' . $image->getClientOriginalExtension();
 
-        Storage::putFileAs('public/images/products', $image, $filename);
+        $pfp_filepath = glob(storage_path('app/public/images/products/' . $id . '.*'));
+        if (!empty($pfp_filepath)) {
 
+            $pfp_filepath = explode('/', $pfp_filepath[0]);
+            $pfp_filename = end($pfp_filepath);
+            dd($pfp_filename);
+            Storage::delete('public/images/products/' . $pfp_filename);
+
+        }
+
+        Storage::putFileAs('public/images/products', $image, $filename);
         return to_route('adminProduct');
 
     }

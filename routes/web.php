@@ -65,6 +65,9 @@ Route::post('/product/edit-review/{user_id}-{product_id}', 'ProductController@ed
 Route::post('/product/delete-review/{user_id}-{product_id}', 'ProductController@deleteReview')->name('deleteReview');
 Route::post('/ticket/submit', 'UserController@submitTicket')->name('submitTicket');
 Route::post('/report/submit', 'UserController@submitReport')->name('submitReport');
+Route::post('/fav-artist/add/{id}', 'UserController@addFavArtist')->name('addFavArtist');
+Route::post('/fav-artist/remove/{id}', 'UserController@removeFavArtist')->name('removeFavArtist');
+
 
 
 // Admin
@@ -80,12 +83,15 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
     Route::post('/admin/user/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
     Route::post('/admin/user/edit/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
+    Route::post('/admin/user/update-profile-pic', 'UploadController@uploadUserProfilePic')->name('adminUpdateUserProfilePic');
     Route::get('/admin/product/create', 'AdminController@showProductCreate')->name('adminCreateProduct');
     Route::post('/admin/product/create', 'AdminController@createProduct')->name('adminCreateProductPost');
     Route::post('/admin/product/delete', 'AdminController@deleteProduct')->name('adminDeleteProduct');
     Route::post('/admin/product/edit/{id}', 'AdminController@updateProduct')->name('adminUpdateProduct');
+    Route::post('/admin/product/update-profile-pic', 'UploadController@uploadProductProfilePic')->name('adminUpdateProductProfilePic');
     Route::post('/admin/artist/create', 'AdminController@createArtist')->name('adminCreateArtist');
     Route::post('/admin/artist/edit/{id}', 'AdminController@updateArtist')->name('adminUpdateArtist');
+    Route::post('/admin/artist/update-profile-pic', 'UploadController@uploadArtistProfilePic')->name('adminUpdateArtistProfilePic');
     Route::post('/admin/order/create', 'AdminController@createArtist')->name('adminCreateOrder');
     Route::post('/admin/order/cancel/{id}', 'OrderController@adminCancel')->name('adminCancelOrder');
     Route::post('/admin/order/edit/{id}', 'OrderController@update')->name('adminUpdateOrder');

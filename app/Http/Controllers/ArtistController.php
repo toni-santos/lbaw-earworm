@@ -31,6 +31,7 @@ class ArtistController extends Controller
      */
     public function show(int $id)
     {
+        $user = Auth::user();
 
         $artist = Artist::find($id);
         $products = Product::all()->where('artist_id', $id);
@@ -43,11 +44,14 @@ class ArtistController extends Controller
         $wishlist = UserController::getWishlist();
         $pfp = UploadController::getArtistProfilePic($id);
 
+        $favArtist = $user->favouriteArtists->contains('id', $id);
+
         return view('pages.artist', [
             'artist' => $artist,
             'pfp' => $pfp,
             'products' => $products,
-            'wishlist' => $wishlist
+            'wishlist' => $wishlist,
+            'favArtist' => $favArtist
         ]);
     }
 }

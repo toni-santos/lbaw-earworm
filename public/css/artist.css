@@ -24,17 +24,34 @@
 }
 
 #artist-name {
+    width: 180px;
     font-size: x-large;
     font-weight: bold;
-    padding-bottom: 30px;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
 }
 
 #artist-description {
     font-size: large;
-    padding-inline: 70px;
+    padding-inline: 40px;
     white-space: pre-wrap;
 }
 
 #artist-description a {
     color: var(--main-accent);
+}
+
+@media (max-width: 768px) {
+    #artist-top {
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    #artist-name {
+        padding-bottom: 5px;
+    }
+
 }

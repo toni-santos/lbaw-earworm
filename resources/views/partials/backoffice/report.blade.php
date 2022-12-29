@@ -5,7 +5,6 @@
                 <p>Report ID: {{$report->id}}</p>
                 <a href="{{route('profile', ['id' => $report->reporter_id])}}">Reporter ID: {{$report->reporter_id}}</a>
                 <a href="{{route('profile', ['id' => $report->reported_id])}}">Reported ID: {{$report->reported_id}}</a>
-                <p>Message: {{$report->message}}</p>
             </div>
         </div>
         <div class="expand">
