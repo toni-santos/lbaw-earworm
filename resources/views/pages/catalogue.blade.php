@@ -9,11 +9,11 @@
                 <!-- order: price rating alpha -->
                 <select id="ord-filter" name="ord">
                     <option value="relevance">Relevance</option>
-                    <option value="alpha">Alphabetical Order</option>
-                    <option value="asc-price">Ascending Price</option>
-                    <option value="desc-price">Descending Price</option>
-                    <option value="asc-rating">Ascending Rating</option>
-                    <option value="desc-rating">Descending Rating</option>
+                    <option value="name-asc">Alphabetical Order</option>
+                    <option value="price-asc">Ascending Price</option>
+                    <option value="price-desc">Descending Price</option>
+                    <option value="rating-asc">Ascending Rating</option>
+                    <option value="rating-desc">Descending Rating</option>
                 </select>
                 <!-- filters: genre artist year price rating -->
                 <p class="filter-title">Genre</p>
