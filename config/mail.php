@@ -84,7 +84,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'adm@earworm.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'earworm.musicshop@outlook.com'),
         'name' => env('MAIL_FROM_NAME', 'EarWorm Administration'),
     ],
 

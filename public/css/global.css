@@ -11,10 +11,10 @@
   --chinese-red: #b4482d;
   --vivid-red: #dd2727;
 
-  --deep-purple: #361a57;
-  --dark-purple: #230f3b;
-  --navy: #1c315e;
-  --dark-navy: #0b1222;
+  --deep-purple: rgb(42, 26, 87);
+  --dark-purple: #1e123d;
+  --navy: hsl(256, 54%, 22%);
+  --dark-navy: #1e123d;
   --teal: #227C70;
   --dark-teal: #154942;
   --sage: #88A47C;
