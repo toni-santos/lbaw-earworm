@@ -56,8 +56,11 @@ class ProductController extends Controller
             }
         }
 
+        $pfp = UploadController::getProductProfilePic($id);
+
         return view('pages.product', [
             'product' => $product,
+            'pfp' => $pfp,
             'products' => $products,
             'genres' => $product->genres->toArray(),
             'wishlist' => $wishlist,
@@ -401,6 +404,7 @@ class ProductController extends Controller
     }
 
     public function editReview(Request $request, int $user_id, int $product_id) {
+
         if (!Auth::check()) abort(403);
         if ((Auth::id() != $user_id) && !Auth::user()->is_admin) abort(401);
 
@@ -413,11 +417,11 @@ class ProductController extends Controller
         $review->message = $data['message'] ?? $review->message;
         $review->score = $data['rating-star'] ?? $review->score;
         $date = date("Y-m-d");
-        $review->date = $date ?? $review->date;
+        $review->created_at = $date ?? $review->created_at;
 
         DB::table('review')->where('reviewer_id', '=', $user_id)
         ->where('product_id', '=', $product_id)
-        ->update(['message' => $review->message, 'score' => $review->score, 'date' => $review->date]);
+        ->update(['message' => $review->message, 'score' => $review->score, 'date' => $review->created_at]);
         
         return to_route('product', ['id' => $product_id]);
     }

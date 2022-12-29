@@ -9,7 +9,7 @@
     <div class="order-bot-{{$order->id}}">
         @foreach ($products as $product)
         <div class="order-product">
-            <img class="order-img" src={{ url('/images/products/' . $product['id'] . '.jpg') }}>
+            <img class="order-img" src={{ url('/storage/images/products/' . $product['id'] . '.jpg') }}>
             <div>
                 <p>Name: {{$product['name']}}</p>
                 <p>Artist: {{$product['artist_name']}}</p>

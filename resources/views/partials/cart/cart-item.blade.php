@@ -1,6 +1,6 @@
 
 <div class="cart-item-{{$id}}">
-    <a href="{{ route('product', ['id' => $id]) }}"><img width="60px" height="60px" src={{ url('/images/products/'. $id .'.jpg') }} class="cart-img"></a>
+    <a href="{{ route('product', ['id' => $id]) }}"><img width="60px" height="60px" src={{ url('/storage/images/products/'. $id .'.jpg') }} class="cart-img"></a>
     <div class="cart-desc-{{$id}}">
         <a href="/product/{{$id}}">{{$details['name']}}</a>
         <p>{{$details['discounted_price']}}€</p>

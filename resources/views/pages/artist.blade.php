@@ -2,7 +2,7 @@
 <main>
     <div id="artist-banner">
         <div id="artist-top">
-            <img src={{ url('/images/artists/' . $artist['id'] . '.jpg') }} alt="Artist Profile Picture" id="artist-pfp">
+            <img src={{ $pfp }} alt="Artist Profile Picture" id="artist-pfp">
             <p id="artist-name">{{$artist['name']}}</p>
         </div>
     </div>

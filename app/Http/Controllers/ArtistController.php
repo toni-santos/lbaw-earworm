@@ -41,9 +41,11 @@ class ArtistController extends Controller
         }
         
         $wishlist = UserController::getWishlist();
+        $pfp = UploadController::getArtistProfilePic($id);
 
         return view('pages.artist', [
             'artist' => $artist,
+            'pfp' => $pfp,
             'products' => $products,
             'wishlist' => $wishlist
         ]);

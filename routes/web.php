@@ -42,6 +42,8 @@ Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
 Route::get('/notification', 'ProductController@notification')->name('notification');
 
 // User 
+Route::get('/user/settings/picture', 'UserController@showUploadProfilePic')->name('showUploadProfilePic');
+Route::post('/user/settings/upload-profile-picture', 'UserController@uploadProfilePic')->name('uploadProfilePic');
 Route::post('/user/settings/recover-password', 'Auth\PasswordResetController@sendResetLinkEmail')->name('recoverPassword');
 Route::get('/user/settings/{id}', 'UserController@editProfile')->name('editprofile');
 Route::post('/user/settings/{id}', 'UserController@update')->name('editprofilepost');

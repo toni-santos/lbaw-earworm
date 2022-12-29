@@ -3,7 +3,7 @@
         <section class="review">
             <div class="review-head">
                 <div class="reviewer-info">
-                    <a href="{{ route('product', ['id' => $review['product_id']]) }}"> <img alt="Product picture" src={{ url('/images/products/' . $review['product_id'] . '.jpg') }} class="reviewer-pfp"> </a>
+                    <a href="{{ route('product', ['id' => $review['product_id']]) }}"> <img alt="Product picture" src={{ url('/storage/images/products/' . $review['product_id'] . '.jpg') }} class="reviewer-pfp"> </a>
                     <div>
                         <a href="{{ route('product', ['id' => $review['product_id']]) }}"> <p class="reviewer-name">{{$review['product']['name']}}</p> </a>
                         <p class="reviewer-score subtitle1">{{$review['score']}}<span class="material-icons"  style="color:var(--star);">star</span></p>

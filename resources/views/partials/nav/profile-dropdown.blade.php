@@ -1,8 +1,9 @@
+<?php use App\Http\Controllers\UploadController; ?>
 <div class="nav-dropdowns" id="profile-dropdown">
     <!-- TODO format this to blade and make it prettier !-->
     @if (Auth::check())
     <div>
-        <a href="{{route('profile', ['id' => Auth::id()])}}"><img src="https://picsum.photos/48/48?random=1"></a>
+        <a href="{{route('profile', ['id' => Auth::id()])}}"><img id="dropdown-pfp" src={{UploadController::getUserProfilePic(Auth::id())}}></a>
         <a href="{{route('profile', ['id' => Auth::id()])}}">{{Auth::user()->username}}</a>
     </div>
     <div>

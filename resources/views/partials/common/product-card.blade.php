@@ -1,8 +1,9 @@
+<?php use App\Http\Controllers\UploadController; ?>
 <article class="product-card">
     @if ($product->discount > 0)
     <span class="discount-label">-{{$product->discount}}%</span>
     @endif
-    <a href="/product/{{$product['id']}}"><img class="product-card-img" src={{ url('/images/products/'.$product['id'].'.jpg') }}></a>
+    <a href="/product/{{$product['id']}}"><img class="product-card-img" src={{ UploadController::getProductProfilePic($product['id']) }}></a>
     <article class="product-desc">
         <a href="/product/{{$product['id']}}" class="prod-name" title="{{$product['name']}}">{{$product['name']}}</a>
         <a href="/artist/{{$product['artist_id']}}" class="prod-artist-name" title="Artist Name">{{$product['artist_name']}}</a>

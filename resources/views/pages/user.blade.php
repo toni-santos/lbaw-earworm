@@ -1,10 +1,12 @@
 @include('partials.common.head', ['page' => "user"])
 <main>
     <div id="user-banner">
-        <div id="user-top">
-            <img src={{ url('/images/artists/' . $user['id'] . '.jpg') }} alt="User Profile Picture" id="user-pfp">
-            <p id="user-name">{{$user['username']}}</p>
-            <a id="user-settings-icon" href="{{route('editprofile', ['id' => Auth::id()])}}"><span class="material-icons">settings</span></a>            
+        <div id="user-banner">
+            <div id="user-top">
+                <img src={{ $pfp }} alt="User Profile Picture" id="user-pfp">
+                <p id="user-name">{{$user['username']}}</p>
+                <a id="user-settings-icon" href="{{route('editprofile', ['id' => Auth::id()])}}"><span class="material-icons">settings</span></a>            
+            </div>
         </div>
     </div>
     <div id="content-wrapper">

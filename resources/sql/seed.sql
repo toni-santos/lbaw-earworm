@@ -88,7 +88,7 @@ CREATE TABLE review(
     reviewer_id INTEGER REFERENCES users(id) ON UPDATE CASCADE,
     product_id  INTEGER REFERENCES product(id) ON UPDATE CASCADE,
     score       INTEGER NOT NULL,
-    date        DATE NOT NULL DEFAULT CURRENT_DATE,
+    created_at  DATE NOT NULL DEFAULT CURRENT_DATE,
     message     TEXT DEFAULT NULL,
     CHECK (score BETWEEN 0 AND 5),
     CONSTRAINT reviewPK PRIMARY KEY (reviewer_id, product_id)
@@ -116,7 +116,7 @@ CREATE TABLE wishlist_product(
 CREATE TABLE notif(
     id          SERIAL PRIMARY KEY,
 	user_id		INTEGER REFERENCES users(id),
-    date        DATE NOT NULL DEFAULT CURRENT_DATE,
+    sent_at     TIMESTAMP NOT NULL DEFAULT NOW(),
     description TEXT DEFAULT NULL,
     type        NOTIF_TYPE NOT NULL
 );
@@ -4999,13 +4999,13 @@ INSERT INTO fav_artist (user_id, artist_id) VALUES (7,3);
 INSERT INTO fav_artist (user_id, artist_id) VALUES (10,11);
 INSERT INTO fav_artist (user_id, artist_id) VALUES (12,2);
 
-INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (15, 5, 2, '2022-08-21', 'Terrible');
-INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (11, 11, 3, '2022-06-24', 'It''s okay ig');
-INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (7, 12, 5, '2022-07-12', 'AOTY');
-INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (8, 10, 2, '2022-08-01', 'Atrocious');
-INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (5, 6, 3, '2022-09-20', 'Decent tbh');
-INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (20, 15, 4, '2022-10-20', 'Pretty good');
-INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (10, 12, 1, '2022-11-02', 'I''d rather die than listen to this again');
+INSERT INTO review (reviewer_id, product_id, score, created_at, message) VALUES (15, 5, 2, '2022-08-21', 'Terrible');
+INSERT INTO review (reviewer_id, product_id, score, created_at, message) VALUES (11, 11, 3, '2022-06-24', 'It''s okay ig');
+INSERT INTO review (reviewer_id, product_id, score, created_at, message) VALUES (7, 12, 5, '2022-07-12', 'AOTY');
+INSERT INTO review (reviewer_id, product_id, score, created_at, message) VALUES (8, 10, 2, '2022-08-01', 'Atrocious');
+INSERT INTO review (reviewer_id, product_id, score, created_at, message) VALUES (5, 6, 3, '2022-09-20', 'Decent tbh');
+INSERT INTO review (reviewer_id, product_id, score, created_at, message) VALUES (20, 15, 4, '2022-10-20', 'Pretty good');
+INSERT INTO review (reviewer_id, product_id, score, created_at, message) VALUES (10, 12, 1, '2022-11-02', 'I''d rather die than listen to this again');
 
 INSERT INTO report (reporter_id, reported_id) VALUES (18, 13);
 INSERT INTO report (reporter_id, reported_id) VALUES (3, 11);
@@ -5033,13 +5033,13 @@ INSERT INTO orders (user_id, state) VALUES (4, 'Processing');
 INSERT INTO orders (user_id, state) VALUES (8, 'Shipped');
 INSERT INTO orders (user_id, state) VALUES (20, 'Delivered');
 
-INSERT INTO notif (date, description, type) VALUES ('2022-08-21', 'Order has been sent', 'Order');
-INSERT INTO notif (date, description, type) VALUES ('2022-06-24', 'Order has been sent', 'Order');
-INSERT INTO notif (date, description, type) VALUES ('2022-07-12', 'Order has been sent', 'Order');
-INSERT INTO notif (date, description, type) VALUES ('2022-08-01', 'Order has been sent', 'Order');
-INSERT INTO notif (date, description, type) VALUES ('2022-09-20', 'Item on sale', 'Wishlist');
-INSERT INTO notif (date, description, type) VALUES ('2022-10-20', 'WOW new sale', 'Wishlist');
-INSERT INTO notif (date, description, type) VALUES ('2022-11-02', 'Test message', 'Misc');
+INSERT INTO notif (sent_at, description, type) VALUES ('2022-08-21', 'Order has been sent', 'Order');
+INSERT INTO notif (sent_at, description, type) VALUES ('2022-06-24', 'Order has been sent', 'Order');
+INSERT INTO notif (sent_at, description, type) VALUES ('2022-07-12', 'Order has been sent', 'Order');
+INSERT INTO notif (sent_at, description, type) VALUES ('2022-08-01', 'Order has been sent', 'Order');
+INSERT INTO notif (sent_at, description, type) VALUES ('2022-09-20', 'Item on sale', 'Wishlist');
+INSERT INTO notif (sent_at, description, type) VALUES ('2022-10-20', 'WOW new sale', 'Wishlist');
+INSERT INTO notif (sent_at, description, type) VALUES ('2022-11-02', 'Test message', 'Misc');
 
 INSERT INTO wishlist_product (wishlist_id, product_id) VALUES (8, 13);
 INSERT INTO wishlist_product (wishlist_id, product_id) VALUES (20, 14);

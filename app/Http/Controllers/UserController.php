@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use ArrayObject;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -70,8 +68,11 @@ class UserController extends Controller
             $review['reviewer'] = User::all()->find($review['reviewer_id']);
         }
 
+        $pfp = UploadController::getUserProfilePic($id);
+
         return view('pages.user', [
             'user' => $user,
+            'pfp' => $pfp,
             'favArtists' => $favArtists,
             'purchaseHistory' => $boughtProducts,
             'recommendedProducts' => $recommendation_info,
@@ -337,14 +338,4 @@ class UserController extends Controller
         return to_route('help');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
 }
