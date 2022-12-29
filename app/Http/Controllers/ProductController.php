@@ -215,25 +215,10 @@ class ProductController extends Controller
                     break;
 
                 case "ord":
-                    switch ($parameter) {
-                        case "alpha":
-                            $products = $products->reorder('name', 'asc');
-                            break;
-                        case "asc-price":
-                            $products = $products->reorder('price', 'asc');
-                            break;
-                        case "desc-price":
-                            $products = $products->reorder('price', 'desc');
-                            break;
-                        case "asc-rating":
-                            $products = $products->reorder('rating', 'asc');
-                            break;
-                        case "desc-rating":
-                            $products = $products->reorder('rating', 'desc');
-                            break;
-                        default:
-                            break;
-                    }
+                    if ($parameter == 'relevance')
+                        break;
+                    list($attribute, $order) = explode('-', $parameter);
+                    $products = $products->reorder($attribute, $order);
                     break;
 
                 default:
