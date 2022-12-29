@@ -12,6 +12,7 @@ const sections = Array(infoSection, passwordSection, lastfmSection)
 
 let visible = infoSection;
 let selected = infoTag;
+let height = 0;
 switchSection(infoSection, infoTag);
 
 infoTag.addEventListener('click', () => {
@@ -42,25 +43,43 @@ function expandUserOptions(event, section, id) {
     switch (visible) {
         case infoSection:
             const info = document.querySelector('.user-bot-info-' + section + '-' + id);
-            if (info.style.display == 'none') {
-                info.style.display = 'flex';
-            } else {
-                info.style.display = 'none';
+            height = 0;
+            for (let child of info.children) {
+                height += child.offsetHeight;
             }
+            if (info.style.maxHeight) {
+                info.style.maxHeight = null;
+                info.style.paddingTop = '0px';
+            } else {
+                info.style.maxHeight = height + 10 + 'px';
+                info.style.paddingTop = '10px';
+            }
+            break;
         case passwordSection:
             const pass = document.querySelector('.user-bot-pass-' + section + '-' + id);
-            if (pass.style.display == 'none') {
-                pass.style.display = 'flex';
-            } else {
-                pass.style.display = 'none';
+            height = 0;
+            for (let child of pass.children) {
+                height += child.offsetHeight;
             }
+            if (pass.style.maxHeight) {
+                pass.style.maxHeight = null;
+            } else {
+                pass.style.maxHeight = height + 10 + 'px';
+            }
+            break;
         case lastfmSection:
             const lastfm = document.querySelector('.user-bot-lastfm-' + section + '-' + id);
-            if (lastfm.style.display == 'none') {
-                lastfm.style.display = 'flex';
-            } else {
-                lastfm.style.display = 'none';
+            height = 0;
+            for (let child of lastfm.children) {
+                height += child.offsetHeight;
             }
+            if (lastfm.style.maxHeight) {
+                lastfm.style.maxHeight = null;
+            } else {
+                lastfm.style.maxHeight = height + 10 + 'px';
+            }
+            break;
+
     }
 }
 

@@ -1,46 +1,45 @@
-/* user nav bar */ 
-#nav-wrapper {
-    padding-inline: 70px;
-    padding-block: 10px;
-    padding-top: 0px;
-    width: 100%;
-}
-
-#user-nav-wide {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#user-nav-wide > * {    
-    background-color: var(--main-accent);
-    color:var(--light-text);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 3px 10px 0 rgba(0, 0, 0, 0.10);
-}
-
-.nav-tags {
+#nav-tags {
     display: flex;
     flex-direction: row;
+    align-content: center;
     justify-content: center;
-    text-align: center;
-    gap: 1em;
-    font-size: 18px;
+    flex-wrap: wrap;
+    align-items: center;
+    align-self: center;
+    gap: 20px;
 }
 
-.nav-tags section {
-    padding-left: 1em;
-    padding-right: 1em;
+#nav-tags > div {
+    width: 200px;
+    height: 120px;
+    background-color: var(--main-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    background-size: cover;
+    position: relative;
+    z-index: 0;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
 }
 
-.nav-tags section:hover {
-    background-color: var(--dark-accent);
-    transition: 0.3s ease;
+.darken-tag {
+    position: absolute;
+    opacity: 0.5;
+    background-color: var(--black);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: all 0.2s ease-in-out;
 }
 
-#settings-section, #settings-section > section {
-    padding-inline: 50px;
-    padding-block: 10px;
+div[id$="-tag"]:hover {
+    scale: 1.1;
+}
+
+.darken-tag:hover {
+    opacity: 0.3;
 }
 
 div[class^='user-top-'] {
@@ -48,9 +47,8 @@ div[class^='user-top-'] {
     color: var(--light-text);
     background-color: var(--sub-accent);
     font-size: 20px;
-    margin: 10px 10px 10px 10px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 3px 10px 0 rgba(0, 0, 0, 0.10);
-
+    margin-inline: 40px;
 }
 
 div[class^='user-top-']:hover {
@@ -60,9 +58,15 @@ div[class^='user-top-']:hover {
 }
 
 div[class^='user-bot-'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     font-size: 14px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
 }
 
 #settings-section button {
@@ -98,4 +102,14 @@ div[class^='user-bot-'] {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+#recover-button {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    div[class^='user-top-'] {
+        font-size:medium;
+    }
 }

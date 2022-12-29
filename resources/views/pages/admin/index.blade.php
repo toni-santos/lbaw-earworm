@@ -3,7 +3,9 @@
     @include('partials.backoffice.admin-nav')
     <section id="flash-topics">
         @include('partials.backoffice.flash-card', ['items' => $products, 'title' => 'Products'])
-        {{-- @include('partials.backoffice.flash-card', $orders) --}}
+        @include('partials.backoffice.flash-card', ['items' => $orders, 'title' => 'Orders'])
+        @include('partials.backoffice.flash-card', ['items' => $tickets, 'title' => 'Tickets'])
+        @include('partials.backoffice.flash-card', ['items' => $reports, 'title' => 'Reports'])
     </section>
 </main>
 @include('partials.common.foot')

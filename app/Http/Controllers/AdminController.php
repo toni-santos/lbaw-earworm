@@ -28,8 +28,10 @@ class AdminController extends Controller
         if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
         $products = Product::all()->sortBy('stock', false)->take(5);
-        // $orders = Order::all()->orderBy('', 'asc')->limit(5);
-        return view('pages.admin.index', ['products' => $products]);
+        $orders = Order::all()->sortBy('id', true)->take(5);
+        $reports = Report::all()->sortBy('id', true)->take(5);
+        $tickets = Ticket::all()->sortBy('id', true)->take(5);
+        return view('pages.admin.index', ['products' => $products, 'orders' => $orders, 'reports' => $reports, 'tickets' => $tickets]);
     }
 
 

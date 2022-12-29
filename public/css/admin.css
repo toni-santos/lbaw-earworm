@@ -136,6 +136,10 @@ div[class^='result-bot-'] >div {
 
 #users-topic, #products-topic, #artists-topic, #orders-topic, #mod-topic {
     color: var(--white);
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+  
 }
 
 .admin-topic-darken {
@@ -195,6 +199,7 @@ div[class^='result-bot-'] >div {
     justify-items: center;
     height: 100%;
     gap: 20px;
+    align-items: center;
 }
 
 .invis-button {
@@ -229,10 +234,23 @@ div[class^='result-bot-'] >div {
     color: var(--white);
     width: 500px;
     min-width: 250px;
+    height: 100%;
+    /* flex-basis: calc(50% - 40px); */
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
 }
 
 .flash-card > p {
     font-size: large;
+}
+
+.flash-message {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 230px;
+    text-align: start;
 }
 
 #artist-card-desc {
@@ -269,6 +287,10 @@ textarea {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    #flash-topics {
+        padding-inline: 20px;
     }
 }
 

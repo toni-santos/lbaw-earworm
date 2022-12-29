@@ -1,12 +1,8 @@
-<div id="nav-wrapper">
-    <nav id="user-nav-wide">
-        <div class="nav-tags">
-            <section id="info-tag"> <h1> Account Information </h1> </section>
-            <section id="password-tag"> <h1> Change Password </h1> </section>
-            <section id="lastfm-tag"> <h1> Last.FM Connection </h1> </section>
-        </div>
-    </nav>
-</div>
+<section id="nav-tags">
+    <div style="background-image:url(https://images.unsplash.com/photo-1504711331083-9c895941bf81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aW5mb3JtYXRpb258ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);" id="info-tag"><div class="darken-tag"></div>Account Information</div>
+    <div style="background-image:url(https://images.unsplash.com/photo-1633265486064-086b219458ec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGFzc3dvcmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);" id="password-tag"><div class="darken-tag"></div>Change Password</div>
+    <div style="background-image:url(https://images.unsplash.com/photo-1458560871784-56d23406c091?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8bXVzaWN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);" id="lastfm-tag"><div class="darken-tag"></div>Last.FM Connection</div>
+</section>
 
 <section id="settings-section"> 
     <section id="info-section" hidden>
@@ -20,7 +16,7 @@
                 <span class="material-icons">expand_more</span>
             </div>
         </div>
-        <div class="user-bot-info-edit-{{$user->id}}" style="display:none;">
+        <div class="user-bot-info-edit-{{$user->id}}">
             <form method="POST" class="form-bot" action="{{route('editprofilepost', ['id' => $user->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
@@ -35,13 +31,11 @@
                 </section>
                 <button class="confirm-button" type="submit">Change</button>
             </form>
-        </div>
-        <div class="user-bot-info-delete-{{$user->id}}" style="display:flex">
             <form method="POST" class="form-bot" action="{{route('deleteAccount', ['id' => $user->id])}}">
                 {{ csrf_field() }}                    
                 <button class="confirm-button" id="delete-account" type="submit">Delete Account</button>
             </form>
-        </div>   
+        </div>
     </section>
 
     <section id="password-section" hidden>
@@ -51,7 +45,7 @@
                 <span class="material-icons">expand_more</span>
             </div>
         </div>
-        <div class="user-bot-pass-change-{{$user->id}}" style="display:none;">
+        <div class="user-bot-pass-change-{{$user->id}}">
             <form method="POST" class="form-bot" action="{{route('editpassword', ['id' => $user->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
@@ -72,13 +66,13 @@
             </form>
         </div>    
 
-        <div class="user-top-pass-recover-{{$user->id}}" onclick="expandUserOptions(event, 'recover', {{$user->id}})">
+        <div class="user-top-pass-recover-{{$user->id}}" onclick="expandUserOptions(event, 'recover', {{$user->id}})"  id="recover-button">
             <div class="expand">
                 <p> Recover Password </p>
                 <span class="material-icons">expand_more</span>
             </div>
         </div>
-        <div class="user-bot-pass-recover-{{$user->id}}" style="display:none">
+        <div class="user-bot-pass-recover-{{$user->id}}">
             <form method="POST" class="form-bot" action="{{route('recoverPassword')}}">
                 {{ csrf_field() }}           
                 <section class="inputs-box">
@@ -109,7 +103,7 @@
                 <span class="material-icons">expand_more</span>
             </div>
         </div>
-        <div class="user-bot-lastfm-link-{{$user->id}}" style="display:none;">
+        <div class="user-bot-lastfm-link-{{$user->id}}">
             <form method="POST" class="form-bot" action="{{route('loginLastFm')}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
