@@ -20,11 +20,17 @@
                 </div>      
                 @else   
                 <div id="review-edit-options">
-                    <form method="POST" id="delete-form-container" action="{{route('submitReport')}}"> 
+                    <form method="POST" id="report-form-container" action="{{route('submitReport')}}"> 
                         {{ csrf_field() }}
                         <input name="user_id" value="{{$review['reviewer_id']}}" hidden>
-                        <button class="confirm-button" id="delete-option"> <span class="material-icons">flag</span> </button>
+                        <button class="confirm-button" id="report-option"> <span class="material-icons">flag</span> </button>
                     </form>
+                    @if (Auth::user()->is_admin)
+                        <form method="POST" id="delete-form-container" action="{{route('deleteReview', ['user_id' => $review['reviewer_id'], 'product_id' => $review['product_id']])}}"> 
+                            {{ csrf_field() }}
+                            <button class="confirm-button" id="delete-option"> <span class="material-icons">delete</span> </button>
+                        </form>
+                    @endif
                 </div>   
                 @endif
             </div>
@@ -89,6 +95,12 @@
                         <input name="user_id" value="{{$review['reviewer_id']}}" hidden>
                         <button class="confirm-button" id="delete-option"> <span class="material-icons">flag</span> </button>
                     </form>
+                    @if (Auth::user()->is_admin)
+                        <form method="POST" id="delete-form-container" action="{{route('deleteReview', ['user_id' => $review['reviewer_id'], 'product_id' => $review['product_id']])}}"> 
+                            {{ csrf_field() }}
+                            <button class="confirm-button" id="delete-option"> <span class="material-icons">delete</span> </button>
+                        </form>
+                    @endif
                 </div>          
                 @endif
             </div>

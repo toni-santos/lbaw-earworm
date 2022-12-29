@@ -39,7 +39,8 @@
     flex-direction: column;
 }
 
-#delete-form-container {
+#delete-form-container,
+#report-form-container {
     width: 100%;
 }
 
@@ -51,7 +52,8 @@
 }
 
 #edit-option,
-#delete-option {
+#delete-option,
+#report-option {
     margin-top: 0px;
     padding: 5px;
     display: flex;
