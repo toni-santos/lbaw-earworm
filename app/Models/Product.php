@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -20,9 +21,15 @@ class Product extends Model
 
   public function scopeSearch($query, $search) {
     $sqlSearch = str_replace(' ', '%', $search);
+   /*  $artistProductsSearch = Product::join('artist', 'artist.id', '=', 'product.artist_id')
+                                    ->where('artist.name', 'ILIKE', "%{$sqlSearch}%")
+                                    ->select(['product.id', 'artist.id as artist_id', 'product.name', 'product.description', 'stock', 'price', 'format', 'year', 'rating', 'discount']); */
+
     if($search ?? false) {
-      return $query->whereRaw('tsvectors @@ plainto_tsquery(\'english\', ?)', $sqlSearch)
-                  ->orderByRaw('ts_rank(tsvectors, plainto_tsquery(\'english\', ?)) DESC', $sqlSearch);
+      return $query->whereRaw('tsvectors @@ to_tsquery(\'english\', ?)', $sqlSearch)
+                  /*->union($artistProductsSearch)*/
+                  ->orWhere('name', 'ILIKE', "%{$search}%")
+                  ->orderByRaw('ts_rank(tsvectors, to_tsquery(\'english\', ?)) DESC', $sqlSearch);
     }
   }
 
