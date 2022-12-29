@@ -57,6 +57,7 @@
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
         <link href="{{ asset('css/review.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/tilt.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/product.js') }} defer></script>
         @break
 
@@ -94,6 +95,7 @@
 
       @case('about-us')
         <link href="{{ asset('css/statics.css') }}" rel="stylesheet">
+        <script type="text/javascript" src={{ asset('js/tilt.js') }} defer></script>
         @break
 
       @case('orders')
