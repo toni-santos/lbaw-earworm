@@ -805,18 +805,6 @@ a.nav-button {
   height: 100px;
 }
 
-@media (max-width: 768px) {
-  .reviewer-info {
-    flex-direction: column;
-    align-items: start;
-  }
-
-  .reviewer-info > div {
-    display: flex;
-    flex-direction: row;
-  }
-}
-
 #review-edit-bot {
   max-height: 0px;
   overflow: hidden;
