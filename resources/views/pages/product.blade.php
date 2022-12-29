@@ -21,9 +21,11 @@
             </div>
         </div>
         <div id="product-purchase">
-            <p id="product-price"><span class="cut-price">{{$product['price']}}</span> {{$product['discounted_price']}}€</p>
-
-            {{-- <p id="product-price">{{$product->price}} €</p> --}}
+            @if ($product['discount'] != 0)
+                <p id="product-price"><span class="cut-price">{{$product['price']}}</span> {{$product['discounted_price']}}€</p>
+            @else
+                <p id="product-price">{{$product->price}}€</p>
+            @endif
             @include('partials.common.stock', ['stock' => $product->stock])
             {{-- @if (!Auth::user()->is_admin) --}}
             @if ($product->stock > 0)

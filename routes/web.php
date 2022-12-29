@@ -66,32 +66,33 @@ Route::post('/report/submit', 'UserController@submitReport')->name('submitReport
 
 
 // Admin
-Route::get('/admin', 'AdminController@show')->name('adminIndex');
-Route::get('/admin/signup', 'AdminController@showUserCreate')->name('adminCreatePage');
-Route::get('/admin/user', 'AdminController@showUser')->name('adminUser');
-Route::get('/admin/product', 'AdminController@showProduct')->name('adminProduct');
-Route::get('/admin/artist', 'AdminController@showArtist')->name('adminArtist');
-Route::get('/admin/order', 'OrderController@getAdminOrderProducts')->name('adminOrder');
-Route::get('/admin/report', 'AdminController@showReports')->name('adminReport');
-Route::get('/admin/ticket', 'AdminController@showTickets')->name('adminTicket');
-Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
-Route::post('/admin/user/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
-Route::post('/admin/user/edit/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
-Route::get('/admin/product/create', 'AdminController@showProductCreate')->name('adminCreateProduct');
-Route::post('/admin/product/create', 'AdminController@createProduct')->name('adminCreateProductPost');
-Route::post('/admin/product/delete', 'AdminController@deleteProduct')->name('adminDeleteProduct');
-Route::post('/admin/product/edit/{id}', 'AdminController@updateProduct')->name('adminUpdateProduct');
-Route::post('/admin/artist/create', 'AdminController@createArtist')->name('adminCreateArtist');
-Route::post('/admin/artist/edit/{id}', 'AdminController@updateArtist')->name('adminUpdateArtist');
-Route::post('/admin/order/create', 'AdminController@createArtist')->name('adminCreateOrder');
-Route::post('/admin/order/cancel/{id}', 'OrderController@adminCancel')->name('adminCancelOrder');
-Route::post('/admin/order/edit/{id}', 'OrderController@update')->name('adminUpdateOrder');
-Route::post('/admin/ticket/answer/{id}', 'AdminController@answerTicket')->name('adminAnswerTicket');
-Route::post('/admin/ticket/delete/{id}', 'AdminController@deleteTicket')->name('adminDeleteTicket');
-Route::post('/admin/report/block', 'AdminController@blockReported')->name('adminBlockReported');
-Route::post('/admin/report/delete/{id}', 'AdminController@deleteReport')->name('adminDeleteReport');
-
-
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/admin', 'AdminController@show')->name('adminIndex');
+    Route::get('/admin/signup', 'AdminController@showUserCreate')->name('adminCreatePage');
+    Route::get('/admin/user', 'AdminController@showUser')->name('adminUser');
+    Route::get('/admin/product', 'AdminController@showProduct')->name('adminProduct');
+    Route::get('/admin/artist', 'AdminController@showArtist')->name('adminArtist');
+    Route::get('/admin/order', 'OrderController@getAdminOrderProducts')->name('adminOrder');
+    Route::get('/admin/report', 'AdminController@showReports')->name('adminReport');
+    Route::get('/admin/ticket', 'AdminController@showTickets')->name('adminTicket');
+    Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
+    Route::post('/admin/user/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
+    Route::post('/admin/user/edit/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
+    Route::get('/admin/product/create', 'AdminController@showProductCreate')->name('adminCreateProduct');
+    Route::post('/admin/product/create', 'AdminController@createProduct')->name('adminCreateProductPost');
+    Route::post('/admin/product/delete', 'AdminController@deleteProduct')->name('adminDeleteProduct');
+    Route::post('/admin/product/edit/{id}', 'AdminController@updateProduct')->name('adminUpdateProduct');
+    Route::post('/admin/artist/create', 'AdminController@createArtist')->name('adminCreateArtist');
+    Route::post('/admin/artist/edit/{id}', 'AdminController@updateArtist')->name('adminUpdateArtist');
+    Route::post('/admin/order/create', 'AdminController@createArtist')->name('adminCreateOrder');
+    Route::post('/admin/order/cancel/{id}', 'OrderController@adminCancel')->name('adminCancelOrder');
+    Route::post('/admin/order/edit/{id}', 'OrderController@update')->name('adminUpdateOrder');
+    Route::post('/admin/ticket/answer/{id}', 'AdminController@answerTicket')->name('adminAnswerTicket');
+    Route::post('/admin/ticket/delete/{id}', 'AdminController@deleteTicket')->name('adminDeleteTicket');
+    Route::post('/admin/report/block', 'AdminController@blockReported')->name('adminBlockReported');
+    Route::post('/admin/report/delete/{id}', 'AdminController@deleteReport')->name('adminDeleteReport');
+});
+    
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@authenticate')->name('authenticate');

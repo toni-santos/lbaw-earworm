@@ -25,8 +25,6 @@ class AdminController extends Controller
      */
     public function show(Request $request)
     {
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
-
         $products = Product::all()->sortBy('stock', false)->take(5);
         $orders = Order::all()->sortBy('id', true)->take(5);
         $reports = Report::all()->sortBy('id', true)->take(5);
@@ -37,7 +35,6 @@ class AdminController extends Controller
 
     public function showUser(Request $request)
     {
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
         $search = (array_key_exists('user', $request->toArray())) ? $request->toArray()['user'] : '';
         
@@ -48,7 +45,6 @@ class AdminController extends Controller
 
 
     public function showProduct(Request $request) {
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
         
         $search = (array_key_exists('product', $request->toArray())) ? $request->toArray()['product'] : '';
         if ($search) {
@@ -61,7 +57,6 @@ class AdminController extends Controller
     }
 
     public function showArtist(Request $request) {
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
         
         $search = (array_key_exists('artist', $request->toArray())) ? $request->toArray()['artist'] : '';
 
@@ -71,7 +66,6 @@ class AdminController extends Controller
     }
 
     public function showOrder(Request $request) {
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
         
         $search = (array_key_exists('order', $request->toArray())) ? $request->toArray()['order'] : '';
         if ($search) {
@@ -93,7 +87,6 @@ class AdminController extends Controller
     }
 
     public function showReports(Request $request) {
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
         
         $search = (array_key_exists('report', $request->toArray())) ? $request->toArray()['report'] : '';
         if ($search) {
@@ -107,7 +100,6 @@ class AdminController extends Controller
     }
 
     public function showTickets(Request $request) {
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
         
         $search = (array_key_exists('ticket', $request->toArray())) ? $request->toArray()['ticket'] : '';
         if ($search) {
@@ -123,14 +115,12 @@ class AdminController extends Controller
 
     public function showUserCreate() 
     {
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
         return view('auth.admin-create');
     }
 
     public function showProductCreate() 
     {
-        if (!(Auth::user() && Auth::user()->is_admin)) abort(403);
 
         $artists = Artist::all();
         $genres = Genre::all();
@@ -197,7 +187,6 @@ class AdminController extends Controller
     public function deleteUser(Request $request) {
 
         $data = $request->toArray();
-        if (!Auth::user()->is_admin) abort(401);
 
         $user = User::findOrFail(intval($data['id']));
 
@@ -212,7 +201,6 @@ class AdminController extends Controller
     }
 
     public function createProduct(Request $request) {
-        if (!Auth::user()->is_admin) abort(401);
 
         $data = $request->toArray();
 
@@ -243,7 +231,6 @@ class AdminController extends Controller
     }
 
     public function updateProduct(Request $request, $id) {
-        if (!Auth::user()->is_admin) abort(401);
 
         $product = Product::findOrFail($id);
         if (!$product) {
@@ -270,7 +257,6 @@ class AdminController extends Controller
     }
 
     public function updateArtist(Request $request, int $id) {
-        if (!Auth::user()->is_admin) abort(401);
 
         $artist = Artist::findOrFail($id);
         if (!$artist) {
