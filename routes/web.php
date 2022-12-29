@@ -60,7 +60,8 @@ Route::post('/wishlist/remove/{id}', 'ProductController@removeFromWishlist')->na
 Route::post('/product/review/{id}', 'ProductController@addReview')->name('addReview');
 Route::post('/product/edit-review/{user_id}-{product_id}', 'ProductController@editReview')->name('editReview');
 Route::post('/product/delete-review/{user_id}-{product_id}', 'ProductController@deleteReview')->name('deleteReview');
-Route::post('/tickets/submit', 'UserController@submitTicket')->name('submitTicket');
+Route::post('/ticket/submit', 'UserController@submitTicket')->name('submitTicket');
+Route::post('/report/submit', 'UserController@submitReport')->name('submitReport');
 
 
 // Admin
@@ -84,6 +85,11 @@ Route::post('/admin/artist/edit/{id}', 'AdminController@updateArtist')->name('ad
 Route::post('/admin/order/create', 'AdminController@createArtist')->name('adminCreateOrder');
 Route::post('/admin/order/cancel/{id}', 'OrderController@adminCancel')->name('adminCancelOrder');
 Route::post('/admin/order/edit/{id}', 'OrderController@update')->name('adminUpdateOrder');
+Route::post('/admin/ticket/answer/{id}', 'AdminController@answerTicket')->name('adminAnswerTicket');
+Route::post('/admin/ticket/delete/{id}', 'AdminController@deleteTicket')->name('adminDeleteTicket');
+Route::post('/admin/report/block', 'AdminController@blockReported')->name('adminBlockReported');
+Route::post('/admin/report/delete/{id}', 'AdminController@deleteReport')->name('adminDeleteReport');
+
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

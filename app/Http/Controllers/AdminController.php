@@ -9,7 +9,9 @@ use App\Models\Artist;
 use App\Models\Ticket;
 use App\Models\Genre;
 use App\Models\Report;
+use App\Mail\TicketResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -281,6 +283,50 @@ class AdminController extends Controller
 
         return to_route('adminArtist');
     } 
+
+    public function answerTicket(Request $request, int $id) {
+        if (!Auth::user()->is_admin) abort(401);
+        $data = $request->toArray();
+
+        $user = User::findOrFail($id);
+        if (!$user) abort(404);
+
+        Mail::to($user->email)->send(new TicketResponse($user->username,
+                                                    $data['ticket'],
+                                                    $data['title'],
+                                                    $data['message']));
+
+        return to_route('adminTicket');
+    }
+
+    public function deleteTicket(int $id) {
+        if (!Auth::user()->is_admin) abort(401);
+
+        DB::table('ticket')->where('id', $id)->delete();
+
+        return to_route('adminTicket');
+    }
+
+    public function blockReported(Request $request) {
+        $data = $request->toArray();
+
+        $user = User::findOrFail($data['reported_id']);
+        if (!$user) abort(404);
+
+        $user->is_blocked = true;
+
+        $user->save();
+
+        return to_route('adminReport');
+    }
+
+    public function deleteReport(int $id) {
+        if (!Auth::user()->is_admin) abort(401);
+
+        DB::table('report')->where('id', $id)->delete();
+
+        return to_route('adminReport');
+    }
 
     public function findUser() {
         // $users = User::search(request('search'))->paginate(20);

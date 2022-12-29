@@ -83,8 +83,9 @@
                 </div>     
                 @else
                 <div id="review-edit-options">
-                    <form method="POST" id="delete-form-container" action=""> 
+                    <form method="POST" id="delete-form-container" action="{{route('submitReport')}}"> 
                         {{ csrf_field() }}
+                        <input name="user_id" value="{{$review['reviewer_id']}}" hidden>
                         <button class="confirm-button" id="delete-option"> <span class="material-icons">flag</span> </button>
                     </form>
                 </div>          

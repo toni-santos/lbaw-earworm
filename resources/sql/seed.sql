@@ -130,8 +130,7 @@ CREATE TABLE ticket(
 CREATE TABLE report(
     id          SERIAL PRIMARY KEY,
     reporter_id INTEGER REFERENCES users(id) ON UPDATE CASCADE,
-    reported_id INTEGER REFERENCES users(id) ON UPDATE CASCADE,
-    message     VARCHAR(255) NOT NULL
+    reported_id INTEGER REFERENCES users(id) ON UPDATE CASCADE
 );
 
 -- Performance Indexes
@@ -5008,14 +5007,14 @@ INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (5, 6,
 INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (20, 15, 4, '2022-10-20', 'Pretty good');
 INSERT INTO review (reviewer_id, product_id, score, date, message) VALUES (10, 12, 1, '2022-11-02', 'I''d rather die than listen to this again');
 
-INSERT INTO report (reporter_id, reported_id, message) VALUES (18, 13, 'Bad review');
-INSERT INTO report (reporter_id, reported_id, message) VALUES (3, 11, 'Worst taste');
-INSERT INTO report (reporter_id, reported_id, message) VALUES (4, 15, 'Advertising');
-INSERT INTO report (reporter_id, reported_id, message) VALUES (5, 10, 'I just don''t like them');
-INSERT INTO report (reporter_id, reported_id, message) VALUES (11, 20, 'I don''t care what they think');
-INSERT INTO report (reporter_id, reported_id, message) VALUES (6, 7, 'Advertising');
-INSERT INTO report (reporter_id, reported_id, message) VALUES (20, 12, 'Terrible human');
-INSERT INTO report (reporter_id, reported_id, message) VALUES (17, 12, 'Terrible human');
+INSERT INTO report (reporter_id, reported_id) VALUES (18, 13);
+INSERT INTO report (reporter_id, reported_id) VALUES (3, 11);
+INSERT INTO report (reporter_id, reported_id) VALUES (4, 15);
+INSERT INTO report (reporter_id, reported_id) VALUES (5, 10);
+INSERT INTO report (reporter_id, reported_id) VALUES (11, 20);
+INSERT INTO report (reporter_id, reported_id) VALUES (6, 7);
+INSERT INTO report (reporter_id, reported_id) VALUES (20, 12);
+INSERT INTO report (reporter_id, reported_id) VALUES (17, 12);
 
 INSERT INTO ticket (ticketer_id, message) VALUES (20, 'Missing package');
 INSERT INTO ticket (ticketer_id, message) VALUES (1, 'I''m testing too');

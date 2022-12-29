@@ -13,16 +13,21 @@
     </div>
     <div class="result-bot-{{$ticket->id}}">
         <div>
-            <form method="POST" class="form-bot" action="">
+            <form method="POST" class="form-bot" action="{{route('adminAnswerTicket', ['id' => $ticket->ticketer_id])}}">
                 {{ csrf_field() }}
                 <div class="input-container">
-                    <input class="text-input" type="text" name="stock" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
-                    <label class="input-label" for="stock">Title</label>
+                    <input class="text-input" type="text" name="title" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
+                    <label class="input-label" for="title">Title</label>
                 </div>
                 <textarea placeholder="Answer" id="message" class="text-input" name="message" rows="6" cols="100"></textarea>
+                <input name="ticket" value="{{$ticket->message}}" hidden>
                 <section class="inputs-box">
                     <button class="confirm-button" type="submit">Answer</button>
                 </section>
+            </form>
+            <form method="POST" class="form-bot" action="{{route('adminDeleteTicket', ['id' => $ticket->id])}}">
+                {{ csrf_field() }}
+                <button class="confirm-button" type="submit">Delete</button>
             </form>
         </div>
     </div>
