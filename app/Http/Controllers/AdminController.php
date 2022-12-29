@@ -245,6 +245,9 @@ class AdminController extends Controller
 
         $product->save();
 
+        if ($data['discount'] != 0) 
+            NotificationController::notifySale($product->id, $data['discount']);
+
         return to_route('adminProduct');
     } 
 

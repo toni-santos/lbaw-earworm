@@ -27,7 +27,6 @@ DROP TABLE IF EXISTS notif;
 DROP TABLE IF EXISTS ticket;
 DROP TABLE IF EXISTS report;
 
-
 -- Table creation
 
 CREATE TABLE users(
@@ -116,6 +115,7 @@ CREATE TABLE wishlist_product(
 CREATE TABLE notif(
     id          SERIAL PRIMARY KEY,
 	user_id		INTEGER REFERENCES users(id),
+    content_id  INTEGER DEFAULT NULL,
     sent_at     TIMESTAMP NOT NULL DEFAULT NOW(),
     description TEXT DEFAULT NULL,
     type        NOTIF_TYPE NOT NULL

@@ -39,7 +39,7 @@ Route::get('/cart', 'ProductController@cart')->name('cart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 Route::post('/checkout', 'OrderController@buy')->name('buy');
 Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
-Route::get('/notification', 'ProductController@notification')->name('notification');
+Route::get('/notification', 'NotificationController@showNotifications')->name('notification');
 
 // User 
 Route::get('/user/settings/picture', 'UserController@showUploadProfilePic')->name('showUploadProfilePic');

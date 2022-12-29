@@ -40,13 +40,13 @@ const scrollCap = window.screen.height / 2;
 
 window.addEventListener("scroll", () => {
     let scrollPercentage = window.scrollY / scrollCap;
-    navbarInside.style.background = "rgba(28, 49, 94," + scrollPercentage + ")";
+    navbarInside.style.background = "rgba(42, 26, 87," + scrollPercentage + ")";
     if (window.scrollY >= scrollCap) {
         navbar.style.background = "var(--main-accent)";
         navbar.style.boxShadow = "0px -5px 50px 0px rgba(0,0,0,0.75)";
     } else {
         navbar.style.background =
-            "linear-gradient(0deg, rgb(0,0,0,0) 0%, rgb(0,0,0,0) 50%, rgba(28, 49, 94, 0.5) 100%)";
+            "linear-gradient(0deg, rgb(0,0,0,0) 0%, rgb(0,0,0,0) 50%, rgba(42, 26, 87, 0.5) 100%)";
             navbar.style.boxShadow = "none";
     }
 });

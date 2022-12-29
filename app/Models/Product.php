@@ -65,7 +65,7 @@ class Product extends Model
    * The products (and their quantities) that are in a client's wishlist.
    */
   public function inWishlist() {
-    return $this->belongsToMany(User::class, 'wishlist', 'product_id', 'user_id');
+    return $this->belongsToMany(User::class, 'wishlist_product', 'product_id', 'wishlist_id');
   }
 
   /**

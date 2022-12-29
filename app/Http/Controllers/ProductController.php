@@ -421,7 +421,7 @@ class ProductController extends Controller
 
         DB::table('review')->where('reviewer_id', '=', $user_id)
         ->where('product_id', '=', $product_id)
-        ->update(['message' => $review->message, 'score' => $review->score, 'date' => $review->created_at]);
+        ->update(['message' => $review->message, 'score' => $review->score, 'created_at' => $review->created_at]);
         
         return to_route('product', ['id' => $product_id]);
     }
