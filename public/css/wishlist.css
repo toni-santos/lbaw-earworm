@@ -10,11 +10,10 @@ main {
 div[class^='wishlist-card-top-'] {
     display: flex;
     flex-direction: row;
-    margin-inline: 70px;
     font-size: large;
     padding: 10px;
     justify-content: space-between;
-    background-color: var(--main-accent);
+    background-color: var(--light-accent);
     color: var(--white);
     -webkit-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
     -moz-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
@@ -29,6 +28,11 @@ div[class^='wishlist-card-top-'] {
 
 .wishlist-card-desc a {
     font-weight: bolder;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
 }
 
 .wishlist-card-specs {
@@ -51,6 +55,17 @@ div[class^='wishlist-card-top-'] {
     color: var(--sub-dark-accent);
 }
 
+#wl-wrapper {
+    padding-inline: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    gap: 20px;
+}
+
 @media (max-width: 768px) {
     .wishlist-card {
         font-size: medium;
@@ -61,5 +76,18 @@ div[class^='wishlist-card-top-'] {
     .favorite-container {
         justify-content: center;
 
+    }
+    
+    #wishlist-wrapper {
+        flex-direction: column;
+    }
+    
+    div[class^='wishlist-card-top-'] {
+        flex-basis: 1;
+        flex-direction: column;
+    }
+
+    .wishlist-card-desc {
+        flex-direction: column;
     }
 }

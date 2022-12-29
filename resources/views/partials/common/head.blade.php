@@ -80,6 +80,10 @@
         <link href="{{ asset('css/wishlist.css') }}" rel="stylesheet">
         @break
 
+      @case('notification')
+        <link href="{{ asset('css/notification.css') }}" rel="stylesheet">
+        @break
+
       @case('artist')
         <link href="{{ asset('css/artist.css') }}" rel="stylesheet">
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">

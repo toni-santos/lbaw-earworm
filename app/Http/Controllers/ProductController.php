@@ -425,4 +425,8 @@ class ProductController extends Controller
         
         return to_route('product', ['id' => $product_id]);
     }
+
+    public function notification() {
+        return view('pages.notification');
+    }
  }

@@ -297,21 +297,17 @@ body {
 
 #profile-dropdown {
   gap: 0px;
-  top: 25px;
-  right: -80px;
 }
 
-#cart-dropdown {
+#profile-dropdown, 
+#cart-dropdown, 
+#wishlist-dropdown, 
+#notification-dropdown {
   top: 25px;
-  right: -80px;
+  right: -55px;
 }
 
-#wishlist-dropdown {
-  top: 25px;
-  right: -80px;
-}
-
-#cart-wrapper, #wishlist-wrapper {
+#cart-wrapper, #wishlist-wrapper, #notification-wrapper {
   height: 260px;
   width: auto;
   display: flex;
@@ -344,6 +340,21 @@ background-attachment: local, local, scroll, scroll;
 
 }
 
+#notification-wrapper {
+  gap: 5px
+}
+
+.notification-replacement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  text-align: center;
+  height: 60px;
+  width: 60px;
+  flex-shrink: 0;
+}
+
 #cart-wrapper::-webkit-scrollbar, #wishlist-wrapper::-webkit-scrollbar { 
   display: none;
 }
@@ -364,6 +375,15 @@ background-attachment: local, local, scroll, scroll;
 div[class^='cart-item-'] {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
+}
+
+a[class^='notification-item-'] {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: medium;
+  align-items: center;
+  gap: 10px;
 }
 
 .cart-remove {
@@ -427,13 +447,15 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 
 #profile-icon:hover ~ #profile-dropdown,
 #wishlist-icon:hover ~ #wishlist-dropdown,
-#cart-icon:hover ~ #cart-dropdown{
+#cart-icon:hover ~ #cart-dropdown,
+#notification-icon:hover ~ #notification-dropdown{
   display: flex;
 }
 
 #profile-dropdown:hover,
 #cart-dropdown:hover,
-#wishlist-dropdown:hover {
+#wishlist-dropdown:hover,
+#notification-dropdown:hover {
   display: flex;  
 }
 

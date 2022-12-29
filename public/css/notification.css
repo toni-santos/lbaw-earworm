@@ -1,0 +1,47 @@
+main {
+    padding-top: 90px;
+}
+
+.notification-img, .notification-replacement {
+    width: 100px;
+    height: 100px;
+}
+
+a[class^='notification-card-'] {
+    display: flex;
+    flex-direction: row;
+    font-size: medium;
+    padding: 10px;
+    justify-content: start;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    background-color: var(--light-accent);
+    color: var(--white);
+    flex-basis: calc(50% - 20px);
+    -webkit-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
+    -moz-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
+    box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
+    max-width: 300px;
+}
+
+#notif-wrapper {
+    padding-inline: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    #notif-wrapper {
+        flex-direction: column;
+    }
+
+    a[class^='notification-card-'] {
+        flex-basis: 1;
+    }
+}

@@ -13,9 +13,11 @@
             <a href="{{route('catalogue')}}" id="catalogue-icon"><span class="material-icons">album</span></a>
             <a href="{{route('wishlist')}}" id="wishlist-icon"><span class="material-icons">favorite</span></a>
             <a href="{{route('cart')}}" id="cart-icon"><span class="material-icons">shopping_basket</span></a>
+            <a href="{{route('notification')}}" id="notification-icon"><span class="material-icons">notifications</span></a>
             <a href="{{route('ownprofile')}}" id="profile-icon"><span class="material-icons">account_circle</span></a>
             @include('partials.nav.profile-dropdown')
             @include('partials.nav.cart-dropdown')
+            @include('partials.nav.notification-dropdown')
             @else
             <a href="{{route('catalogue')}}" id="catalogue-icon"><span class="material-icons">album</span></a>
             <a href="{{route('cart')}}" id="cart-icon"><span class="material-icons">shopping_basket</span></a>

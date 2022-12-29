@@ -39,6 +39,7 @@ Route::get('/cart', 'ProductController@cart')->name('cart');
 Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 Route::post('/checkout', 'OrderController@buy')->name('buy');
 Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
+Route::get('/notification', 'ProductController@notification')->name('notification');
 
 // User 
 Route::post('/user/settings/recover-password', 'Auth\PasswordResetController@sendResetLinkEmail')->name('recoverPassword');
