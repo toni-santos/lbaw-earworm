@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -9,16 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class UploadController extends Controller
 {   
-    public function uploadUserProfilePic(Request $request) {
-        
+    public function uploadUserProfilePic(Request $request, int $id) {
+
+        if ($id != Auth::id() && !Auth::user()->is_admin) abort(403);        
+        $is_admin = $id != Auth::id() && Auth::user()->is_admin;
+
         $validator = Validator::make($request->all(), [
             'user-pfp' => 'required|mimes:jpeg,jpg,png,svg'
         ]);
         
-        if ($validator->fails()) return back()->withErrors(['error' => 'Invalid or no picture uploaded']);
+        if ($validator->fails()) dd($request->all());
+        //return back()->withErrors(['error' => 'Invalid or no picture uploaded']);
         
         $image = $request->file('user-pfp');
-        $id = Auth::id();
         $filename = strval($id) . '.' . $image->getClientOriginalExtension();
 
         $pfp_filepath = glob(storage_path('app/public/images/users/' . $id . '.*'));
@@ -26,12 +30,13 @@ class UploadController extends Controller
 
             $pfp_filepath = explode('/', $pfp_filepath[0]);
             $pfp_filename = end($pfp_filepath);
-            dd($pfp_filename);
             Storage::delete('public/images/users/' . $pfp_filename);
 
         }
         
         Storage::putFileAs('public/images/users', $image, $filename);
+
+        if ($is_admin) return to_route('adminUser');
         return to_route('profile', ['id' => $id]);
         
     }
@@ -110,7 +115,6 @@ class UploadController extends Controller
 
             $pfp_filepath = explode('/', $pfp_filepath[0]);
             $pfp_filename = end($pfp_filepath);
-            dd($pfp_filename);
             Storage::delete('public/images/products/' . $pfp_filename);
 
         }

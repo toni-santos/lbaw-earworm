@@ -45,13 +45,14 @@ function expandUserOptions(event, section, id) {
             const info = document.querySelector('.user-bot-info-' + section + '-' + id);
             height = 0;
             for (let child of info.children) {
+                console.log(child.offsetHeight + 'px');
                 height += child.offsetHeight;
             }
             if (info.style.maxHeight) {
                 info.style.maxHeight = null;
                 info.style.paddingTop = '0px';
             } else {
-                info.style.maxHeight = height + 10 + 'px';
+                info.style.maxHeight = height + 50 + 'px';
                 info.style.paddingTop = '10px';
             }
             break;

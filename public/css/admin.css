@@ -1,5 +1,11 @@
 main{
     padding-top: 100px;
+    background-color: var(--black);
+}
+
+.subtitle-container > p {
+    color: var(--white);
+    border-color: var(--white);
 }
 
 #index-main {
@@ -18,7 +24,7 @@ main{
 .result-wrapper {
     -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);  
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
 }
 
 #sb {
@@ -68,6 +74,9 @@ div[class^='result-bot-'] {
     background-color: var(--sub-accent);
     color: white;
     transition: all 0.2s ease-in-out;
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
 }
 
 div[class^='result-bot-'] >div {
@@ -460,4 +469,16 @@ section[id^='inputs-box-'] .text-input:is(:not(:placeholder-shown), :focus)+labe
 
 .tracklist-input {
     margin-top: 0px;
+}
+
+.middle-form {
+    border-block: 1px solid var(--white);
+    padding-block: 10px;
+    margin-block: 10px;
+}
+
+.bottom-form {
+    border-top: 1px solid var(--white);
+    padding-block: 10px;
+    margin-block: 10px;
 }

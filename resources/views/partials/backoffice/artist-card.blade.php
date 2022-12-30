@@ -24,12 +24,15 @@
                     <button class="confirm-button" type="submit">Update description</button>
                 </section>
             </form>
-            <form method="POST" enctype="multipart/form-data" class="form-bot" action="{{route('adminUpdateArtistProfilePic', ['id' => $artist->id])}}">
+            <form method="POST" enctype="multipart/form-data" class="bottom-form form-bot" action="{{route('adminUpdateArtistProfilePic', ['id' => $artist->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
-                    <input class="confirm-button" type="file" id="artist-pfp" name="artist-pfp">
-                    <button class="confirm-button" type="submit">Change photo</button>
+                    <label for="artist-pfp-{{$artist->id}}" class="upload-button">
+                        <span class="material-icons">file_upload</span>File Upload
+                    </label>
+                    <input type="file" id="artist-pfp-{{$artist->id}}" name="artist-pfp">
                 </section>
+                <button class="confirm-button" type="submit">Change photo</button>
             </form>
 
         </div>

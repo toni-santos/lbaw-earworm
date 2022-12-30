@@ -45,9 +45,20 @@
                             <option value="70"> Discount: 70% </option> 
                         </select>
                     </div>
-                    <button class="confirm-button" type="submit">Change</button> 
                 </section>
+                <button class="confirm-button" type="submit">Change</button> 
             </form>
+            <form method="POST" enctype="multipart/form-data" class="middle-form form-bot" action="{{route('adminUpdateProductProfilePic', ['id' => $product->id])}}">
+                {{ csrf_field() }}
+                <section class="inputs-box">
+                    <label for="product-pfp-{{$product->id}}" class="upload-button">
+                        <span class="material-icons">file_upload</span>File Upload
+                    </label>
+                    <input type="file" id="product-pfp-{{$product->id}}" name="product-pfp">
+                </section>
+                <button class="confirm-button" type="submit">Change photo</button>
+            </form>
+
             <form method="POST" class="form-bot" action="{{route('adminDeleteProduct', ['product' => $product])}}">
                 {{ csrf_field() }}
                 <button class="confirm-button" type="submit">Delete</button>

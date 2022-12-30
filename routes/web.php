@@ -43,9 +43,8 @@ Route::get('/notification', 'NotificationController@showNotifications')->name('n
 
 // User 
 Route::post('/notification/clear/{id}', 'UserController@clearNotif')->name('clearNotif');
-Route::get('/user/settings/picture', 'UserController@showUploadProfilePic')->name('showUploadProfilePic');
-Route::post('/user/settings/upload-profile-picture', 'UserController@uploadProfilePic')->name('uploadProfilePic');
 Route::post('/user/settings/recover-password', 'Auth\PasswordResetController@sendResetLinkEmail')->name('recoverPassword');
+Route::post('/user/settings/upload-profile-pic/{id}', 'UploadController@uploadUserProfilePic')->name('userProfilePic');
 Route::get('/user/settings/{id}', 'UserController@editProfile')->name('editprofile');
 Route::post('/user/settings/{id}', 'UserController@update')->name('editprofilepost');
 Route::post('/user/settings/change-password/{id}', 'UserController@updatePassword')->name('editpassword');
@@ -84,7 +83,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/user/create', 'AdminController@createUser')->name('adminCreateUser');
     Route::post('/admin/user/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
     Route::post('/admin/user/edit/{id}', 'AdminController@updateUser')->name('adminUpdateUser');
-    Route::post('/admin/user/update-profile-pic', 'UploadController@uploadUserProfilePic')->name('adminUpdateUserProfilePic');
+    Route::post('/admin/user/update-profile-pic/{id}', 'UploadController@uploadUserProfilePic')->name('adminUpdateUserProfilePic');
     Route::get('/admin/product/create', 'AdminController@showProductCreate')->name('adminCreateProduct');
     Route::post('/admin/product/create', 'AdminController@createProduct')->name('adminCreateProductPost');
     Route::post('/admin/product/delete', 'AdminController@deleteProduct')->name('adminDeleteProduct');
