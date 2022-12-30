@@ -160,6 +160,16 @@ div[class^='result-bot-'] >div {
     opacity: 0.3;
 }
 
+#misc-notif-form-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 16px;
+    padding-inline: 70px;
+    align-items: center;
+    justify-content: center;
+} 
+
 #welcome-dashboard {
     padding-inline: 70px;
 }

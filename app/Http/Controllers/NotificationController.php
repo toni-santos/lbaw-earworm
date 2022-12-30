@@ -81,13 +81,16 @@ class NotificationController extends Controller
     static public function notifyMisc(string $message) {
         if (!Auth::user()->is_admin) abort(403);
         
-        Notification::insert([
-            'user_id' => $user->id,
-            'description' => $message,
-            'type' => "Misc"
-        ]);
+        //$users = User::where('is_admin', 'false');
+        $users = User::all();
+            foreach($users as $user) {
+                Notification::insert([
+                    'user_id' => $user->id,
+                    'description' => $message,
+                    'type' => "Misc"
+                ]);
+            }
 
         return 200;
     }
-
 }

@@ -1,6 +1,4 @@
-@php
-    $notifications = Auth::user()->notifications;
-@endphp
+<?php $notifications = Auth::user()->notifications; ?>
 <div class="nav-dropdowns" id="notification-dropdown">
     <p>Notifications</p>
     <div id="notification-wrapper">

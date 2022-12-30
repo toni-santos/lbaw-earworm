@@ -7,7 +7,7 @@ main {
     height: 100px;
 }
 
-a[class^='notification-card-'] {
+a[class^='notification-card-'], div[class^='notification-card-'] {
     display: flex;
     flex-direction: row;
     font-size: medium;
@@ -26,7 +26,6 @@ a[class^='notification-card-'] {
     position: relative;
 }
 
-
 .notification-details {
     display: flex;
     flex-direction: column;
@@ -44,6 +43,7 @@ a[class^='notification-card-'] {
 
 .notif-clear {
     z-index: 1;
+    cursor: pointer;
     position: absolute;
     top: 10px;
     right: 10px;

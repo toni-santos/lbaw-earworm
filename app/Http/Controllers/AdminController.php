@@ -323,6 +323,17 @@ class AdminController extends Controller
         return to_route('adminReport');
     }
 
+    public function notifyUsers(Request $request) {
+        if (!Auth::user()->is_admin) abort (401);
+
+        $data = $request->toArray();
+
+        NotificationController::notifyMisc($data['message']);
+
+        return to_route('adminIndex');
+    }
+
+
     public function findUser() {
         // $users = User::search(request('search'))->paginate(20);
 

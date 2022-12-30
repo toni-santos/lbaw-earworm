@@ -100,6 +100,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/ticket/delete/{id}', 'AdminController@deleteTicket')->name('adminDeleteTicket');
     Route::post('/admin/report/block', 'AdminController@blockReported')->name('adminBlockReported');
     Route::post('/admin/report/delete/{id}', 'AdminController@deleteReport')->name('adminDeleteReport');
+    Route::post('/admin/notification/alert', 'AdminController@notifyUsers')->name('adminNotify');
+
 });
     
 // Authentication

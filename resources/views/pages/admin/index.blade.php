@@ -7,5 +7,6 @@
         @include('partials.backoffice.flash-card', ['items' => $tickets, 'title' => 'Tickets'])
         @include('partials.backoffice.flash-card', ['items' => $reports, 'title' => 'Reports'])
     </section>
+    @include('partials.backoffice.misc-notification')
 </main>
 @include('partials.common.foot')

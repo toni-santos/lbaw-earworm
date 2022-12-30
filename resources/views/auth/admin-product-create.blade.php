@@ -32,12 +32,12 @@
             <section id="inputs-box-right">
                 <div class="input-container">
                     <input class="text-input" type="number" name="stock" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" required>
-                    <label class="input-label" for="stock">Price</label>
+                    <label class="input-label" for="stock">Stock</label>
                     <span class="required-alert">Required</span>
                 </div>
                 <div class="input-container">
                     <input class="text-input" type="price" name="price" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" required>
-                    <label class="input-label" for="price">Stock</label>
+                    <label class="input-label" for="price">Price</label>
                     <span class="required-alert">Required</span>
                 </div>
                 <div class="input-container">

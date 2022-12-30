@@ -17,7 +17,7 @@
         </a>
         @break
     @default
-        <a href={{route('notifications')}} class="notification-item-{{$notif['id']}}">
+        <a href={{route('notification')}} class="notification-item-{{$notif['id']}}">
             <span class="material-icons notification-replacement">notifications</span>
             <div class="notification-description">
                 <p>{{$notif['description']}}</p>

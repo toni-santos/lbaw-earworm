@@ -13,7 +13,7 @@
                     @endforeach
                 </p>
                 <p>Stock: {{$product->stock}}</p>
-                <p>Stock Price (in €): {{$product->price / 100}}€</p>
+                <p>Stock Price: {{$product->price / 100}}€</p>
                 <p>Discount on Store: {{$product->discount}}
             </div>
         </div>

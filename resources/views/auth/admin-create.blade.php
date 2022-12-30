@@ -1,3 +1,4 @@
+
 @extends('layouts.sign')
 @section('content')
 <form id="form-signup" method="POST" action={{ route('adminCreatePage') }}>
