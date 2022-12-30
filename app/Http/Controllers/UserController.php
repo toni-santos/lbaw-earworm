@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\Notification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
@@ -45,7 +46,6 @@ class UserController extends Controller
             foreach ($order->products as $product) {
                 array_push($boughtProducts, $product);
             }
-
         }
 
         $recommendedProducts = session('for_you') ?? [];
@@ -288,6 +288,14 @@ class UserController extends Controller
         $user->save();
         
         return to_route('login');
+    }
+
+    public function clearNotif(int $id) {
+        if (!Auth::check()) to_route('login');
+
+        Notification::where('id', '=', $id)->delete();
+        
+        return 200;
     }
 
     public function submitReport(Request $request) {

@@ -5048,14 +5048,3 @@ INSERT INTO wishlist_product (wishlist_id, product_id) VALUES (18, 3);
 INSERT INTO wishlist_product (wishlist_id, product_id) VALUES (7, 5);
 INSERT INTO wishlist_product (wishlist_id, product_id) VALUES (5, 12);
 INSERT INTO wishlist_product (wishlist_id, product_id) VALUES (6, 1);
-
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (1, 2, 1);
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (2, 12, 2);
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (3, 13, 1);
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (3, 11, 1);
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (3, 19, 3);
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (4, 2, 2);
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (5, 10, 1);
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (6, 7, 2);
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (6, 8, 1);
--- INSERT INTO order_product (order_id, product_id, quantity) VALUES (7, 1, 1);

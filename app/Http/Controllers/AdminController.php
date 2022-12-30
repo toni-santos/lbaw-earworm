@@ -238,6 +238,7 @@ class AdminController extends Controller
         }
 
         $data = $request->toArray();
+        $prevStock = $product->stock;
 
         $product->stock = $data['stock'] ?? $product->stock;
         if ($data['price']) $product->price = $data['price']*100;
@@ -245,8 +246,11 @@ class AdminController extends Controller
 
         $product->save();
 
-        if ($data['discount'] != 0) 
-            NotificationController::notifySale($product->id, $data['discount']);
+        if ($prevStock == 0)
+            NotificationController::notifyWishlist($product->id, 'stock');
+
+        if ($data['discount'] != "0") 
+            NotificationController::notifyWishlist($product->id, 'sale');
 
         return to_route('adminProduct');
     } 

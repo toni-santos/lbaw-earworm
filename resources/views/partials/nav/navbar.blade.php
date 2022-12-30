@@ -47,6 +47,7 @@
         <div id="mobile-icons">
             @if (Auth::check())
             <a href="{{route('order')}}"><span class="material-icons">inventory_2</span>Orders</a>
+            <a href="{{route('notification')}}" id="notification-icon"><span class="material-icons">notifications</span>Notifications</a>
             <a href="{{route('wishlist')}}"><span class="material-icons">favorite</span>Wishlist</a>
             <a href="{{route('cart')}}"><span class="material-icons">shopping_basket</span>Cart</a>
             <a href="{{route('catalogue')}}"><span class="material-icons">album</span>Catalog</a>

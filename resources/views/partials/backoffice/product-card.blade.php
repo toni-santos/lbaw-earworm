@@ -12,9 +12,9 @@
                         {{$genre['name']}},
                     @endforeach
                 </p>
+                <p>Stock: {{$product->stock}}</p>
                 <p>Stock Price (in €): {{$product->price / 100}}€</p>
                 <p>Discount on Store: {{$product->discount}}
-                <p>Stock: {{$product->stock}}</p>
             </div>
         </div>
         <div class="expand">
@@ -27,7 +27,7 @@
                 {{ csrf_field() }}
                 <section class="inputs-box">
                     <div class="input-container">
-                        <input class="text-input" type="number" name="stock" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
+                        <input class="text-input" type="number" name="stock" min="0" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
                         <label class="input-label" for="stock">Stock</label>
                     </div>
                     <div class="input-container">

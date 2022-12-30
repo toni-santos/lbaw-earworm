@@ -82,6 +82,7 @@
         @break
 
       @case('notification')
+        <script type="text/javascript" src={{ asset('js/user.js') }} defer></script>
         <link href="{{ asset('css/notification.css') }}" rel="stylesheet">
         @break
 

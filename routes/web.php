@@ -42,6 +42,7 @@ Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
 Route::get('/notification', 'NotificationController@showNotifications')->name('notification');
 
 // User 
+Route::post('/notification/clear/{id}', 'UserController@clearNotif')->name('clearNotif');
 Route::get('/user/settings/picture', 'UserController@showUploadProfilePic')->name('showUploadProfilePic');
 Route::post('/user/settings/upload-profile-picture', 'UserController@uploadProfilePic')->name('uploadProfilePic');
 Route::post('/user/settings/recover-password', 'Auth\PasswordResetController@sendResetLinkEmail')->name('recoverPassword');

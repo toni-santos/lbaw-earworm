@@ -55,6 +55,8 @@ class OrderController extends Controller
         $new_state = $data['state'];
         $order = Order::where('id', $id)->update(['state' => $new_state]);
 
+        NotificationController::notifyOrder($id, $new_state);
+
         return to_route('adminOrder');
 
     }
