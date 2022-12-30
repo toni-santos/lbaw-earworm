@@ -110,6 +110,10 @@
         <link href="{{ asset('css/statics.css') }}" rel="stylesheet">
         <script type="text/javascript" src={{ asset('js/statics.js') }} defer></script>
         @break
+
+      @case('error')
+        <link href="{{ asset('css/error.css') }}" rel="stylesheet">
+        @break
         
       @default
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">

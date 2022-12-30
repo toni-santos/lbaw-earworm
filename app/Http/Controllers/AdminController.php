@@ -204,6 +204,10 @@ class AdminController extends Controller
 
         $data = $request->toArray();
 
+        $product_genres = DB::table('genre')->whereIn('name', $data['genre'])->get();
+
+        $product_genre_array = [];
+
         $artist_name = trim($data['artist']);
         $artist = DB::table('artist')->where('name', 'ILIKE', '%' . $artist_name . '%')->first();
 
@@ -215,16 +219,24 @@ class AdminController extends Controller
         }
 
         $price = $data['price']*100;
-        Product::create([
+        $product = Product::create([
             'artist_id' => $artist_id,
             'name' => $data['name'],
             'description' => $data['description'],
             'stock' => $data['stock'],
             'price' => $price,
             'format' => $data['format'],
-            'year' => $data['year'],
-            'description' => $data['description']
+            'year' => $data['year']
         ]);
+
+        foreach ($product_genres as $genre) {
+            $genre->id = json_decode(json_encode($genre->id), true);
+            array_push($product_genre_array, ['product_id' => $product->id, 'genre_id' => $genre->id]);
+        }
+
+        DB::table('product_genre')->insert(
+            $product_genre_array
+        );
 
         return to_route('adminProduct');
         

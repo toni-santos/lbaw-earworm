@@ -7,6 +7,14 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    protected function renderHttpException(Throwable $e)
+    {
+        if (!view()->exists("errors.{$e->getStatusCode()}")) {
+            return response()->view('errors.default', ['exception' => $e], 500, $e->getHeaders());
+        }
+
+        return parent::renderHttpException($e);
+    }
     /**
      * A list of the exception types that are not reported.
      *
@@ -38,4 +46,11 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    /**
+     * Render the given HttpException.
+     *
+     * @param  \Symfony\Component\HttpKernel\Exception\HttpException  $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
 }

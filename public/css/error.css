@@ -1,0 +1,37 @@
+main {
+    background-color: var(--light-contrast);
+}
+
+.error-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.error-image-container,
+a.confirm-button {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    color: var(--light-text);
+}
+
+.error-image {
+    width: 100%;
+}
+
+.error-header {
+    text-align: center;
+    color: var(--warning-red);
+    font-size: xx-large;
+}
+
+.error-subheader {
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    padding: 10px;
+}
