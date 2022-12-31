@@ -37,16 +37,7 @@ class UserController extends Controller
             abort(404);
         }
 
-        $favArtists = $user->favouriteArtists->toArray();
-        $orders = $user->orders;
-
         $boughtProducts = [];
-
-        foreach ($orders as $order) {
-            foreach ($order->products as $product) {
-                array_push($boughtProducts, $product);
-            }
-        }
 
         $recommendedProducts = session('for_you') ?? [];
         $recommendation_info = array();
@@ -58,9 +49,14 @@ class UserController extends Controller
         foreach ($recommendation_info as $suggestProduct) {
             $suggestProduct['artist_name'] = $suggestProduct->artist->name;
             $suggestProduct['price'] = $suggestProduct->price/100;
+            $suggestProduct['discounted_price'] = ProductController::getDiscountedPrice($suggestProduct->price, $suggestProduct->discount);
         }
 
         $wishlist = $this->getWishlist();
+        $wishlistProducts = array();
+        foreach ($wishlist as $id) {
+            $wishlistProducts[] = Product::findOrFail($id);
+        }  
 
         $reviews = Review::all()->where('reviewer_id', $id);
         foreach ($reviews as $review) {
@@ -76,7 +72,7 @@ class UserController extends Controller
             'user' => $user,
             'pfp' => $pfp,
             'favArtists' => $favArtists,
-            'purchaseHistory' => $boughtProducts,
+            'wishlistProducts' => $wishlistProducts,
             'recommendedProducts' => $recommendation_info,
             'wishlist' => $wishlist,
             'reviews' => $reviews,
@@ -111,7 +107,6 @@ class UserController extends Controller
         }
 
         return [];
-
     }
 
     public function editProfile(int $id) {
@@ -178,7 +173,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return to_route('logout');
+        return redirect()->back()->with(['message' => "Password updated!"]);
     }
 
     public function loginLastFm(Request $request) {
@@ -198,7 +193,7 @@ class UserController extends Controller
         ])->json();
 
         if (array_key_exists('error', $response)) {
-            return redirect()->back(302, ['message' => $response['message']]);
+            return redirect()->back()->withErrors(['message' => $response['message'] . '.']);
         }
 
         $topAlbums = $response['topalbums']['album'];
@@ -216,7 +211,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->back(302, ['message' => "Linked to last.fm successfully!"]);
+        return redirect()->back()->with(['message' => "Linked to last.fm successfully!"]);
 
     }
 
@@ -229,7 +224,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->back(302, ['message' => 'Logged out of last.fm account.']);
+        return redirect()->back()->with(['message' => 'Logged out of last.fm account.']);
 
     }
 
@@ -262,7 +257,6 @@ class UserController extends Controller
         }
 
         session(['for_you' => $recommendations]);
-        return redirect()->back();
 
     }
 
@@ -312,7 +306,7 @@ class UserController extends Controller
             'reported_id' => $data['user_id']
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(['message' => "Report submitted!"]);
 
     }
 
@@ -326,7 +320,7 @@ class UserController extends Controller
             'message' => $data['message']
         ]);
 
-        return to_route('help');
+        return redirect()->back()->with(['message' => "Ticket submitted!"]);
     }
 
     public function addFavArtist(int $id) {

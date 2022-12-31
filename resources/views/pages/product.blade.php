@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => "product"])
+
 <main id="content-wrapper">
     <div id="product-grid">
         <div id="product-img-wrapper">

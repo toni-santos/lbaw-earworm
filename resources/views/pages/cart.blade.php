@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => "cart"])
+
 <main>
     @if (session('cart'))
         <div id="payment-wrapper">

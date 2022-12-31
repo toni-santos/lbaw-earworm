@@ -104,3 +104,9 @@ async function toggleFAQ(event, section, id) {
         faq_bot.style.display = "flex";
     } else faq_bot.style.display = "none";
 }
+
+
+async function clearMessage(event, id) {
+    event.preventDefault();
+    document.querySelector(`.message-box-wrapper-${id}`).remove();
+}

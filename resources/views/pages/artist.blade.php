@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => 'artist'])
+
 <main>
     <div id="artist-banner">
         <div id="artist-top">

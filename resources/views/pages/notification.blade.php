@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => "notification"])
+
 <main>
     @include('partials.common.subtitle', ['title' => 'Notifications'])
     <div id="notif-wrapper">

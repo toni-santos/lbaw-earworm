@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => "help"])
+
 <main>
     @include('partials.common.subtitle', ['title' => "FAQ"])
     <div id="faq-wrapper">

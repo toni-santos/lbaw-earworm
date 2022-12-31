@@ -16,8 +16,8 @@
 }
 
 .artist-card-img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);

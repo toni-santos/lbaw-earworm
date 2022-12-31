@@ -134,4 +134,5 @@
 
   </head>
   @include('partials.nav.navbar')
+  @include('partials.common.alerts-section')
   <body>

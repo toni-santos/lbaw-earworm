@@ -44,11 +44,11 @@
                 ])
             @endif
         </section>
-        <section id="buy-history">
-            @include('partials.common.subtitle', ['title' => "Purchase History"])
-            <div id="buy-history-wrapper">
-                @foreach ($purchaseHistory as $product)
-                    @include('partials.user.buy-history', ['product' => $product])
+        <section id="wishlist-display">
+            @include('partials.common.subtitle', ['title' => "Wishlist"])
+            <div id="wishlist-display-wrapper">
+                @foreach ($wishlistProducts as $product)
+                    @include('partials.user.wishlist-display', ['product' => $product])
                 @endforeach
             </div>
         </section>

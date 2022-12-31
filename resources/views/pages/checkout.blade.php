@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => "checkout"])
+
 <main>
     <div id="checkout-wrapper">
         <form id="checkout-form" method="POST" action="{{route('buy')}}">

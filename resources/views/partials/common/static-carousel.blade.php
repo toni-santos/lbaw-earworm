@@ -13,7 +13,7 @@
                     
                     @break
                 @case('artist')
-                    @foreach ($content as $product)
+                    @foreach ($content as $artist)
                         @include('partials.common.artist-card', ['artist' => $artist])
                     @endforeach
 

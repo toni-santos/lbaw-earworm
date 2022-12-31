@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => "catalogue"])
+
 <main id="content-wrapper">
     <button id="collapsible"><span class="material-icons">filter_alt</span>Filters</button>
     <section id="filters">

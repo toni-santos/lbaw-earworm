@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => "index"])
+
 <main>
     @include('partials.common.promocard')
     {{-- @include('partials.common.carousel', [
@@ -24,13 +25,15 @@
                 'wishlist' => $wishlist
             ])
         @else
-            @include('partials.common.static-carousel', [
-                'carouselTitle' => 'For You',
-                'carouselId' => 'static-carousel-fy',
-                'type' => 'product',
-                'content' => $fyProducts,
-                'wishlist' => $wishlist
-            ])
+            @if (Auth::user()->lastfm)
+                @include('partials.common.static-carousel', [
+                    'carouselTitle' => 'For You',
+                    'carouselId' => 'static-carousel-fy',
+                    'type' => 'product',
+                    'content' => $fyProducts,
+                    'wishlist' => $wishlist
+                ])
+            @endif
         @endif
     @else
         @include('partials.common.index-promos')'

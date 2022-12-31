@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => "admin"])
+
 <main>
     @include('partials.backoffice.admin-nav')
     @include('partials.common.subtitle', ['title' => "Ticket Administration"])

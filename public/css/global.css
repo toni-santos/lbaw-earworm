@@ -842,3 +842,36 @@ article[id^="review-message-"] {
   color: inherit;
   background-color: var(--sub-accent);
 }
+
+/* alert message */
+
+div[class^="message-box-wrapper"] {
+    display: flex;
+    flex-direction: row;
+    font-size: medium;
+    padding: 10px;
+    justify-content: start;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    background-color: var(--light-accent);
+    color: var(--white);
+    flex-basis: calc(50% - 20px);
+    -webkit-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
+    -moz-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
+    box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
+    max-width: 300px;
+
+    position: absolute;
+    margin: 10px;
+    bottom: 0;
+    right: 0;
+}
+
+.message-clear {
+  z-index: 1;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}

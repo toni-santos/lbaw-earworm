@@ -423,7 +423,7 @@ class ProductController extends Controller
         ->where('product_id', '=', $product_id)
         ->update(['message' => $review->message, 'score' => $review->score, 'created_at' => $review->created_at]);
         
-        return to_route('product', ['id' => $product_id]);
+        return redirect()->back()->with(['message' => 'Review edited!']);
     }
 
     public function deleteReview(Request $request, int $user_id, int $product_id) {
@@ -437,7 +437,7 @@ class ProductController extends Controller
             'product_id' => $product_id,
         ])->delete();
         
-        return to_route('product', ['id' => $product_id]);
+        return redirect()->back()->with(['message' => 'Review deleted.']);
     }
 
     public function notification() {

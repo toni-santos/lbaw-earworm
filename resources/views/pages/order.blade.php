@@ -1,4 +1,5 @@
 @include('partials.common.head', ['page' => "orders"])
+
 <main>
     @include('partials.common.subtitle', ['title' => "Orders"])
     @if (!empty($orders))
