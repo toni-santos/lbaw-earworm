@@ -1,7 +1,7 @@
 <div class="message-box-wrapper-{{$id}}"> 
         <div class="message-details">
             @if ($type == 'error')
-                <span class="material-icons notification-replacement" onclick="clearMessage(event, {{$id}})"> error </span>
+                <span class="material-icons notification-replacement" onclick="clearMessage(event, {{$id}})"> warning </span>
             @else
                 <span class="material-icons notification-replacement" onclick="clearMessage(event, {{$id}})"> info </span>
             @endif

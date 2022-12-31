@@ -16,5 +16,6 @@
         </div>
     </section>
     <button class="confirm-button" id="confirm-button" type="submit" name="submit" value="Signup" disabled>Sign In</button>
+    <a href="{{route('recoverPasswordForm')}}" id="register-text">Can't remember your password? Reset your password here!</a>
     <a href="{{route('register')}}" id="register-text">Not part of the clew yet? Register here!</a>
 </form>

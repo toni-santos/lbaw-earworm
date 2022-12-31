@@ -22,7 +22,7 @@ class OrderController extends Controller
             $stock = Product::select('stock')->where('id', $id)->get()->toArray()[0]['stock'];
 
             if ($product['quantity'] > $stock) {
-                return back(301, ["error" => "Not enough stock for order on ". $product['name']]);
+                return redirect()->route('cart')->withErrors(["stock" => "Not enough stock for order on ". $product['name'] . '.']);
             }
             
             $next_possible_order_products[$id] = $product;
@@ -45,7 +45,7 @@ class OrderController extends Controller
             
         }
         
-        return to_route('home');
+        return to_route('order')->with(['message' => 'Checkout complete. Your order was created!']);
     }
 
     public function update(Request $request, int $id) {
@@ -57,21 +57,21 @@ class OrderController extends Controller
 
         NotificationController::notifyOrder($id, $new_state);
 
-        return to_route('adminOrder');
+        return to_route('adminOrder')->with(['message' => 'Order updated!']);
 
     }
 
     public function adminCancel(int $id) {
 
         $order = Order::where('id', $id)->update(['state' => 'Canceled']);
-        return to_route('adminOrder');
+        return to_route('adminOrder')->with(['message' => 'Order cancelled successfully!']);
 
     }
 
     public function userCancel(int $id) {
 
         $order = Order::where('id', $id)->update(['state' => 'Canceled']);
-        return to_route('profile');
+        return to_route('profile')>with(['message' => 'Order cancelled.']);
 
     }
 

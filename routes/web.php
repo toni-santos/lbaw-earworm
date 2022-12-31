@@ -40,6 +40,7 @@ Route::get('/checkout', 'ProductController@checkout')->name('checkout');
 Route::post('/checkout', 'OrderController@buy')->name('buy');
 Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
 Route::get('/notification', 'NotificationController@showNotifications')->name('notification');
+Route::get('/recover-password', "UserController@showRecoverPassword")->name('recoverPasswordForm');
 
 // User 
 Route::post('/notification/clear/{id}', 'UserController@clearNotif')->name('clearNotif');
@@ -92,7 +93,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::post('/admin/artist/create', 'AdminController@createArtist')->name('adminCreateArtist');
     Route::post('/admin/artist/edit/{id}', 'AdminController@updateArtist')->name('adminUpdateArtist');
     Route::post('/admin/artist/update-profile-pic', 'UploadController@uploadArtistProfilePic')->name('adminUpdateArtistProfilePic');
-    Route::post('/admin/order/create', 'AdminController@createArtist')->name('adminCreateOrder');
     Route::post('/admin/order/cancel/{id}', 'OrderController@adminCancel')->name('adminCancelOrder');
     Route::post('/admin/order/edit/{id}', 'OrderController@update')->name('adminUpdateOrder');
     Route::post('/admin/ticket/answer/{id}', 'AdminController@answerTicket')->name('adminAnswerTicket');

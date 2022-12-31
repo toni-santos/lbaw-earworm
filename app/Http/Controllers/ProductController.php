@@ -76,7 +76,7 @@ class ProductController extends Controller
     public function buyProduct(int $id) {
 
         $this->addToCart($id);
-        return to_route('product', ['id' => $id]);
+        return back()->with(['message' => 'Product was added to your cart!']);
 
     }
 

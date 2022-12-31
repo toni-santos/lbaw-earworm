@@ -22,7 +22,7 @@ class TicketResponse extends Mailable
     {
         $this->username = $username;
         $this->ticket = $ticket;
-        $this->title = $title;
+        $this->title = $title ?? "Your Ticket Answer";
         $this->response = $response;
     }
 

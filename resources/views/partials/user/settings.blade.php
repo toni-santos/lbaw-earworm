@@ -9,8 +9,8 @@
     <section id="info-section" hidden>
         <div class="user-top-info-edit-{{$user->id}}" onclick="expandUserOptions(event, 'edit', {{$user->id}})">
             <div class="user-info">
-                <p id="user-email">Email: {{$user->email}}</p>
                 <p>Username: {{$user->username}}</p>
+                <p id="user-email">Email: {{$user->email}}</p>
             </div>
             <div class="expand">
                 <p> Change Account Details </p>
@@ -128,6 +128,21 @@
                 <button class="confirm-button" type="submit">Link</button>
             </form>
         </div>    
+
+        @if ($user->last_fm != NULL)
+            <div class="user-top-lastfm-unlink-{{$user->id}}" onclick="expandUserOptions(event, 'unlink', {{$user->id}})" id="unlink-button">
+                <div class="expand">
+                    <p> Unlink Last.FM Account </p>
+                    <span class="material-icons">expand_more</span>
+                </div>
+            </div>
+            <div class="user-bot-lastfm-unlink-{{$user->id}}">
+                <form method="POST" class="form-bot" action="{{route('logoutLastFm')}}">
+                    {{ csrf_field() }}
+                    <button class="confirm-button" type="submit">Unlink</button>
+                </form>
+            </div>        
+        @endif
     </section>
 
 </section>

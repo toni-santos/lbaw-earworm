@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
@@ -58,7 +59,7 @@ class RegisterController extends Controller
         if ($validator->fails()) {
             //dd($validator->messages(), $request->all());
             return back()->withErrors([
-                'message' => 'Invalid credentials'
+                'error' => 'Invalid credentials.'
             ]);
         } 
         

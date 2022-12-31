@@ -105,7 +105,7 @@ div[class^='user-bot-'] {
     justify-content: center;
 }
 
-#recover-button {
+#recover-button, #unlink-button {
     margin-top: 20px;
 }
 

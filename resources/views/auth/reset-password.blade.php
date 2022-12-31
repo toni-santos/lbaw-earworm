@@ -19,7 +19,6 @@
             <div class="input-container">
                 <input class="text-input" id="confirm-password-input" type="password" name="password_confirmation" placeholder=" " autocomplete="current-password" minlength="8" onkeyup="updateForm(event); updateCounter(event)" onkeydown="updateCounter(event)" onfocus="checkFilled(event)" required>
                 <label class="input-label" for="password_confirmation" onclick="setFocus(event)">Confirm Password</label>
-                <span class="material-icons" id="password-eye" onclick="showPassword(event)">visibility</span>
                 <span id="password-cnt">0/8</span>
                 <span class="required-alert">Required</span>
             </div>

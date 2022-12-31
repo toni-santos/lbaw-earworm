@@ -93,7 +93,7 @@ CREATE TABLE review(
     CONSTRAINT reviewPK PRIMARY KEY (reviewer_id, product_id)
 );
 
-CREATE TABLE orders(
+CREATE TABLE ~s(
     id          SERIAL PRIMARY KEY,
     user_id     INTEGER REFERENCES users(id) ON UPDATE CASCADE,
     state       ORDER_STATE NOT NULL

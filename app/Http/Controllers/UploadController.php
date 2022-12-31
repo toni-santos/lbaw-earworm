@@ -19,8 +19,8 @@ class UploadController extends Controller
             'user-pfp' => 'required|mimes:jpeg,jpg,png,svg'
         ]);
         
-        if ($validator->fails()) dd($request->all());
-        //return back()->withErrors(['error' => 'Invalid or no picture uploaded']);
+        if ($validator->fails()) 
+            return back()->withErrors(['error' => 'Invalid or no picture uploaded.']);
         
         $image = $request->file('user-pfp');
         $filename = strval($id) . '.' . $image->getClientOriginalExtension();
@@ -37,7 +37,7 @@ class UploadController extends Controller
         Storage::putFileAs('public/images/users', $image, $filename);
 
         if ($is_admin) return to_route('adminUser');
-        return to_route('profile', ['id' => $id]);
+        return redirect()->route('profile', ['id' => $id])->with(['message' => 'Profile picture updated!']);
         
     }
     
@@ -62,7 +62,8 @@ class UploadController extends Controller
             'artist-pfp' => 'required|mimes:jpeg,jpg,png,svg'
         ]);
 
-        if ($validator->fails()) return back()->withErrors(['error' => 'Invalid or no picture uploaded']);
+        if ($validator->fails()) 
+            return back()->withErrors(['error' => 'Invalid or no picture uploaded.']);
 
         $image = $request->file('artist-pfp');
         $id = $data['id'];
@@ -78,7 +79,7 @@ class UploadController extends Controller
         }
 
         Storage::putFileAs('public/images/artists', $image, $filename);
-        return to_route('adminArtist');
+        return to_route('adminArtist')->with(['message' => 'Artist profile picture updated!']);;
 
     }
 
@@ -104,7 +105,8 @@ class UploadController extends Controller
             'product-pfp' => 'required|mimes:jpeg,jpg,png,svg'
         ]);
 
-        if ($validator->fails()) return back()->withErrors(['error' => 'Invalid or no picture uploaded']);
+        if ($validator->fails()) 
+            return back()->withErrors(['error' => 'Invalid or no picture uploaded.']);
 
         $image = $request->file('product-pfp');
         $id = $data['id'];
@@ -120,7 +122,7 @@ class UploadController extends Controller
         }
 
         Storage::putFileAs('public/images/products', $image, $filename);
-        return to_route('adminProduct');
+        return to_route('adminProduct')->with(['message' => 'Product image updated!']);;
 
     }
 

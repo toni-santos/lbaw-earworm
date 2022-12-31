@@ -1,7 +1,7 @@
-
+<?php use App\Http\Controllers\UploadController; ?>
 <article class="checkout-item" id="checkout-item-{{$id}}">
     <div class="left-item">
-        <img width="100px" height="100px" alt="Item picture" class="item-img" src={{ url('/storage/images/products/'. $id .'.jpg') }}>
+        <img width="100px" height="100px" alt="Item picture" class="item-img" src={{ UploadController::getProductProfilePic($id) }}>
         <p class="item-name">{{ $details['name'] }} </p>
     </div>
     <div class="right-item">

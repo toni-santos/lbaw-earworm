@@ -12,6 +12,7 @@ use App\Models\Report;
 use App\Mail\TicketResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -140,16 +141,16 @@ class AdminController extends Controller
         $user = User::where('email', $data['email'])->first();
         
         if (!is_null($user))
-            return back()->withErrors('User already exists.');
+            return redirect()->back()->withErrors(["user" => 'User already exists']);
 
-        User::create([
+        $new_user = User::create([
             'email' => $data['email'],
             'username' => $data['username'],
             'password' => bcrypt($data['pwd']),
             'is_admin' => array_key_exists('admin', $data)
         ]);
 
-        return to_route('adminUser');
+        return redirect()->route('adminUser')->with(['message' => 'User successfully created!']);
     }
 
     /**
@@ -181,14 +182,14 @@ class AdminController extends Controller
 
         $user->save();
 
-        return to_route('adminUser');
+        return redirect()->route('adminUser')->with(['message' => 'User successfully updated!']);
     }
 
     public function deleteUser(Request $request) {
 
         $data = $request->toArray();
 
-        $user = User::findOrFail(intval($data['id']));
+        $user = User::findOrFail(intval($data['user']));
 
         $user->email = sha1(rand());
         $user->username = sha1(rand());
@@ -197,7 +198,7 @@ class AdminController extends Controller
 
         $user->save();
         
-        return to_route('adminUser');
+        return redirect()->route('adminUser')->with(['message' => 'User successfully deleted!']);
     }
 
     public function createProduct(Request $request) {
@@ -238,7 +239,7 @@ class AdminController extends Controller
             $product_genre_array
         );
 
-        return to_route('adminProduct');
+        return to_route('adminProduct')->with(['message' => 'Product successfuly created!']);
         
     }
 
@@ -246,7 +247,7 @@ class AdminController extends Controller
 
         $product = Product::findOrFail($id);
         if (!$product) {
-            abort(404);
+            return back()->withErrors(['error' => "Product not found!"]);
         }
 
         $data = $request->toArray();
@@ -264,7 +265,7 @@ class AdminController extends Controller
         if ($data['discount'] != "0") 
             NotificationController::notifyWishlist($product->id, 'sale');
 
-        return to_route('adminProduct');
+        return to_route('adminProduct')->with(['message' => 'Product successfuly updated!']);;
     } 
 
     public function deleteProduct(Request $request) {
@@ -272,7 +273,7 @@ class AdminController extends Controller
         $data = $request->toArray();
         Product::findOrFail($data['product'])->delete();
 
-        return to_route('adminProduct');
+        return to_route('adminProduct')->with(['message' => 'Product sucessfuly deleted!']);
     }
 
     public function updateArtist(Request $request, int $id) {
@@ -288,22 +289,26 @@ class AdminController extends Controller
 
         $artist->save();
 
-        return to_route('adminArtist');
+        return to_route('adminArtist')->with(['message' => 'Artist successfuly updated!']);
     } 
 
     public function answerTicket(Request $request, int $id) {
         if (!Auth::user()->is_admin) abort(401);
         $data = $request->toArray();
 
+        if (!$data['message']) return back()->withErrors(['error' => 'Ticket response cannot be empty.']);
+
         $user = User::findOrFail($id);
-        if (!$user) abort(404);
+        if (!$user) return back()->withErrors(['user' => "User doesn't exist."]);
+
+        NotificationController::notifyMisc("Your ticket has been answered. Check it out in your email!");
 
         Mail::to($user->email)->send(new TicketResponse($user->username,
                                                     $data['ticket'],
                                                     $data['title'],
                                                     $data['message']));
 
-        return to_route('adminTicket');
+        return to_route('adminTicket')->with(['message' => 'Ticket answered!']);
     }
 
     public function deleteTicket(int $id) {
@@ -311,7 +316,7 @@ class AdminController extends Controller
 
         DB::table('ticket')->where('id', $id)->delete();
 
-        return to_route('adminTicket');
+        return to_route('adminTicket')->with(['message' => 'Ticket deleted.']);
     }
 
     public function blockReported(Request $request) {
@@ -324,7 +329,7 @@ class AdminController extends Controller
 
         $user->save();
 
-        return to_route('adminReport');
+        return to_route('adminReport')->with(['message' => 'Reported user has been blocked.']);
     }
 
     public function deleteReport(int $id) {
@@ -332,17 +337,19 @@ class AdminController extends Controller
 
         DB::table('report')->where('id', $id)->delete();
 
-        return to_route('adminReport');
+        return to_route('adminReport')->with(['message' => 'Report successfuly deleted.']);
     }
 
     public function notifyUsers(Request $request) {
         if (!Auth::user()->is_admin) abort (401);
 
         $data = $request->toArray();
+        if (!$data['message']) return back()->withErrors(['message' => 'Alert text cannot be empty.']);
+
 
         NotificationController::notifyMisc($data['message']);
 
-        return to_route('adminIndex');
+        return to_route('adminIndex')->with(['message' => 'Alert broadcasted.']);
     }
 
 

@@ -109,6 +109,10 @@ class UserController extends Controller
         return [];
     }
 
+    public function showRecoverPassword() {
+        return view('auth.recover-password');
+    }
+
     public function editProfile(int $id) {
         $user = User::findOrFail($id);
         $email = $user['email'];
@@ -281,7 +285,7 @@ class UserController extends Controller
 
         $user->save();
         
-        return to_route('login');
+        return redirect()->route('login')->with(['message' => 'Account successfuly deleted.']);
     }
 
     public function clearNotif(int $id) {

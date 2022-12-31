@@ -10,7 +10,6 @@
                 <span class="material-icons">search</span>
             </button>        
         </form>
-        <a href="{{route('adminCreatePage')}}" id="create-button">Create Artist</a>
     </div>
     <div id="result-list">
         @foreach ($artists as $artist)

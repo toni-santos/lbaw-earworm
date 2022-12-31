@@ -27,13 +27,21 @@ class PasswordResetController extends Controller
 
         $request->validate(['email' => 'required|email|exists:users,email']);
 
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
-    
-        return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+        try {
+            $status = Password::sendResetLink(
+                $request->only('email')
+            );
+        } catch (\Exception $e) {
+            redirect()->back()->withErrors(['email' => 'Invalid email.']);
+        }
+        
+        if (isset($status)) {
+            return $status === Password::RESET_LINK_SENT
+                        ? back()->with(['message' => __($status)])
+                        : back()->withErrors(['email' => __($status)]);
+        }
+        else 
+            redirect()->back()->withErrors(['email' => 'Invalid email.']);
     }
 
     public function showResetPasswordForm(string $token) {
@@ -61,7 +69,7 @@ class PasswordResetController extends Controller
         );
     
         return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
+                    ? redirect()->route('login')->with('message', __($status))
                     : back()->withErrors(['email' => [__($status)]]);
     }
 }
