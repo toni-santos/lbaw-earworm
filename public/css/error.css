@@ -1,5 +1,5 @@
 main {
-    background-color: var(--light-contrast);
+    background-color: var(--background-dark);
 }
 
 .error-page-wrapper {
@@ -25,8 +25,8 @@ a.confirm-button {
 
 .error-header {
     text-align: center;
-    color: var(--warning-red);
-    font-size: xx-large;
+    color: var(--sub-accent);
+    font-size: 500%;
 }
 
 .error-subheader {
@@ -34,4 +34,5 @@ a.confirm-button {
     font-size: larger;
     font-weight: bold;
     padding: 10px;
+    color: var(--light-text);
 }

@@ -20,6 +20,7 @@
                 @include('partials.nav.cart-dropdown')
                 @include('partials.nav.notification-dropdown')
                 @else
+                <a href="{{route('adminIndex')}}" id="dashboard-icon"><span class="material-icons">dashboard</span></a>
                 <a href="{{route('catalogue')}}" id="catalogue-icon"><span class="material-icons">album</span></a>
                 <a href="{{route('notification')}}" id="notification-icon"><span class="material-icons">notifications</span></a>
                 <a href="{{route('ownprofile')}}" id="profile-icon"><span class="material-icons">account_circle</span></a>
@@ -63,6 +64,7 @@
                 @else
                 <a href="{{route('notification')}}" id="notification-icon"><span class="material-icons">notifications</span>Notifications</a>
                 <a href="{{route('catalogue')}}"><span class="material-icons">album</span>Catalogue</a>
+                <a href="{{route('adminIndex')}}"><span class="material-icons">dashboard</span>Dashboard</a>
                 @endif
                 <div id="mobile-nav-profile">
                     <div id="mobile-nav-profile-icon">
