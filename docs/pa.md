@@ -69,7 +69,9 @@ Throughout a user's interaction with the website, there are many times where the
 
 In the frontend, we use forms that are responsive to user input and that, using HTML's native tools, guide users to the desired behavior and outcome.
 
-**IMAGEM DO FORM DE LOGIN COM O BOTAO DISABLED E DPS ENABLED**
+![Sign In Page without any inputs](sign_form.png)
+
+![Sign In Page with inputs](sign_on.png)
 
 However, it is not enough that the user's input is secure at a surface level, we must ensure that when it interacts with our system, its state is not altered unexpectedly. With this goal in mind, we made sure that through the use of middlewares and other validation methods, our inputs were sanitized before and while interacting with the rest of our application.
 
@@ -94,8 +96,6 @@ class UserMiddleware
 }
 ```
 
-**CODE SNIPPET DE UM MIDDLEWARE E DE MAIS ALGUMA CENA IDK**
-
 ### 5. Check Accessibility and Usability
 
 > Provide the results of accessibility and usability tests using the following checklists. Include the results as PDF files in the group's repository. Add individual links to those files here.
@@ -104,7 +104,9 @@ class UserMiddleware
 > Usability: https://ux.sapo.pt/checklists/usabilidade/  
 
 Accessibility: **_16/18_** 
+
 <br>
+
 Usability: **_24/28_**
 
 ### 6. HTML & CSS Validation
@@ -118,6 +120,13 @@ Usability: **_24/28_**
 
 During this final phase of the project, many things add to be changed in order to achieve the goals that were set out and implement all of the features we set out to. Following is a list of these changes that were made.
 
+- Added the ```password_resets``` table to store password reset tokens
+- Added the ```last_fm``` field to the ```users``` table to store information regarding a user's lastfm profile
+- Added the ```is_deleted``` field to the ```users``` table to signal a deleted user profile
+- Products can now be discounted, meaning an adequate attribute had to be added to their database table
+- We are saving more information regarding the orders as well as the price at which a product was bought
+- Reports no longer require a message
+- The Last.fm implementation did not require any OAuth authentication, as such that actor is no longer contemplated in our design 
 
 ### 8. Web Resources Specification
 OpenAPI specification can be found [here](https://git.fe.up.pt/lbaw/lbaw2223/lbaw22123/-/blob/main/docs/a9_openapi.yaml)
@@ -219,7 +228,7 @@ Whilst not a library, we felt that is important to mention that the code that ma
 
 ### 1. Product presentation
 
-Earworm is a modern and user friendly online store with a vast catalogue of items and genres to choose from, featuring old and new artists alongside their most sought after records. Such a big collection would not go without a sofisticated approach to searching and filtering resutls.
+Earworm is a modern and user friendly online store with a vast catalogue of items and genres to choose from, featuring old and new artists alongside their most sought after records. Such a big collection would not go without a sofisticated approach to searching and filtering results.
 
 Earworm prides itself on knowing their customers and offering personalized listings of their catalogue to each individual user of the platform. More over the website is was designed with keeping key information accessible to the user and as such, users will be glad to know all of their information is safe with us.
 
@@ -227,9 +236,7 @@ Earworm prides itself on knowing their customers and offering personalized listi
 
 > Screenshot of the video plus the link to the lbawYYgg.mp4 file.
 
-> - Upload the lbawYYgg.mp4 file to Moodle.
-> - The video must not exceed 2 minutes.
-
+![Making of the Video](video.png)
 
 ---
 
@@ -237,7 +244,7 @@ Earworm prides itself on knowing their customers and offering personalized listi
 ## Revision history
 
 Changes made to the first submission:
-1. Item 1
+1. First submission
 1. ..
 
 ***
