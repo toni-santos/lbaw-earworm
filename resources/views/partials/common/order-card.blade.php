@@ -5,6 +5,8 @@
         <div>
             <p>Order no.: {{$order->id}}</p>
             <p>Status: {{$order->state}}</p>
+            <p>Address: {{$order->address}}</p>
+            <p>Payment Method: {{$order->payment_method}}</p>
         </div>
         <span id="order-expand-{{$order->id}}" class="material-icons">expand_more</span>
     </div>
@@ -16,6 +18,7 @@
                 <p>Name: {{$product['name']}}</p>
                 <p>Artist: {{$product['artist_name']}}</p>
                 <p>Quantity: {{$product['quantity']}}</p>
+                <p>Price: {{$product['price']}}</p>
             </div>
         </div>
         @endforeach

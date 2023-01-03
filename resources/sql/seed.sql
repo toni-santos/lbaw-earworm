@@ -93,9 +93,11 @@ CREATE TABLE review(
     CONSTRAINT reviewPK PRIMARY KEY (reviewer_id, product_id)
 );
 
-CREATE TABLE ~s(
+CREATE TABLE orders(
     id          SERIAL PRIMARY KEY,
     user_id     INTEGER REFERENCES users(id) ON UPDATE CASCADE,
+    address     TEXT NOT NULL,
+    payment_method TEXT NOT NULL,
     state       ORDER_STATE NOT NULL
 );
 
@@ -103,6 +105,7 @@ CREATE TABLE order_product(
     order_id    INTEGER REFERENCES orders(id) ON UPDATE CASCADE,
     product_id  INTEGER REFERENCES product(id) ON UPDATE CASCADE,
     quantity    INTEGER NOT NULL,
+    price       INTEGER NOT NULL,
     CONSTRAINT orderProductPK PRIMARY KEY (order_id, product_id)
 );
 
@@ -5025,13 +5028,13 @@ INSERT INTO ticket (ticketer_id, message) VALUES (5, 'I''m also testing');
 INSERT INTO ticket (ticketer_id, message) VALUES (7, 'I''m testing to see what happens');
 INSERT INTO ticket (ticketer_id, message) VALUES (18, 'Wrong order');
 
-INSERT INTO orders (user_id, state) VALUES (3, 'Processing');
-INSERT INTO orders (user_id, state) VALUES (11, 'Processing');
-INSERT INTO orders (user_id, state) VALUES (12, 'Shipped');
-INSERT INTO orders (user_id, state) VALUES (10, 'Delivered');
-INSERT INTO orders (user_id, state) VALUES (4, 'Processing');
-INSERT INTO orders (user_id, state) VALUES (8, 'Shipped');
-INSERT INTO orders (user_id, state) VALUES (20, 'Delivered');
+INSERT INTO orders (user_id, address, payment_method, state) VALUES (3, 'Address 1', 'MBWay', 'Processing');
+INSERT INTO orders (user_id, address, payment_method, state) VALUES (11, 'Address 2', 'MBWay', 'Processing');
+INSERT INTO orders (user_id, address, payment_method, state) VALUES (12, 'Address 3', 'MBWay', 'Shipped');
+INSERT INTO orders (user_id, address, payment_method, state) VALUES (10, 'Address 4', 'MBWay', 'Delivered');
+INSERT INTO orders (user_id, address, payment_method, state) VALUES (4, 'Address 5', 'Billing', 'Processing');
+INSERT INTO orders (user_id, address, payment_method, state) VALUES (8, 'Address 6', 'Billing', 'Shipped');
+INSERT INTO orders (user_id, address, payment_method, state) VALUES (20, 'Address 7', 'Billing', 'Delivered');
 
 INSERT INTO notif (sent_at, description, type) VALUES ('2022-08-21', 'Order has been sent', 'Order');
 INSERT INTO notif (sent_at, description, type) VALUES ('2022-06-24', 'Order has been sent', 'Order');

@@ -54,3 +54,12 @@ div[class^="order-bot"] {
     padding: 10px;
     background-color: var(--light-accent);
 }
+
+@media (max-width: 768px) {
+    .order {
+        padding-inline: 5px;
+    }
+    .order-product {
+        flex-direction: column;
+    }
+}

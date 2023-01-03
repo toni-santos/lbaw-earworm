@@ -10,7 +10,7 @@ class Order extends Model
   public $timestamps = false;
 
   protected $fillable = [
-      'user_id', 'state'
+      'user_id', 'address', 'payment_method', 'state'
   ];
 
   /**

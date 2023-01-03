@@ -12,13 +12,13 @@ use App\Http\Controllers\ProductController;
 
 class OrderController extends Controller
 {
-    public function buy() {
+    public function buy(Request $request) {
 
         $cart = session()->get('cart');
+        $data = $request->toArray();
 
         $next_possible_order_products = [];
         foreach ($cart as $id => $product) {
-
             $stock = Product::select('stock')->where('id', $id)->get()->toArray()[0]['stock'];
 
             if ($product['quantity'] > $stock) {
@@ -32,15 +32,17 @@ class OrderController extends Controller
 
         $order = Order::create([
             'user_id' => Auth::id(),
+            'address' => $data['address'],
+            'payment_method' => $data['payment-method'],
             'state' => 'Processing'
         ]);
 
         foreach ($next_possible_order_products as $id => $product) {
-            
             DB::table('order_product')->insert([
                 'order_id' => $order->id,
                 'product_id' => $id,
-                'quantity' => $product['quantity']
+                'quantity' => $product['quantity'],
+                'price' => $product['discounted_price']*100
             ]);
             
         }
@@ -89,11 +91,19 @@ class OrderController extends Controller
                 'product_id' => $product->id
             ])->get()->toArray()[0]['quantity'];
 
+            $product_price = OrderProduct::select('price')->where([
+                'order_id' => $order->id,
+                'product_id' => $product->id
+            ])->get()->toArray()[0]['price'];
+
+            $product_price_float = ProductController::formatPrice($product_price / 100);
+
             $products_info[$id] = [
                 'id' => $product->id,
                 'artist_name' => $product->artist->name,
                 'name' => $product->name,
-                'quantity' => $product_quantity
+                'quantity' => $product_quantity,
+                'price' => $product_price_float
             ];
 
         }

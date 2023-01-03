@@ -57,9 +57,9 @@
             @include('partials.common.subtitle', ['title' => "Payment Method"])
             <section class="inputs-box">
                 <div class="input-container">
-                    <input type="radio" class="radio" name="payment-method" id="mbway" value="mbway" checked required>
+                    <input type="radio" class="radio" name="payment-method" id="mbway" value="MBWay" checked required>
                     <label for="mbway" class="radio-label">MBWay</label>
-                    <input type="radio" class="radio" name="payment-method" id="billing" value="billing" required>
+                    <input type="radio" class="radio" name="payment-method" id="billing" value="Billing" required>
                     <label for="billing" class="radio-label">Billing</label>
                 </div>
             </section>
