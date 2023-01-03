@@ -47,6 +47,6 @@ window.addEventListener("scroll", () => {
     } else {
         navbar.style.background =
             "linear-gradient(0deg, rgb(0,0,0,0) 0%, rgb(0,0,0,0) 50%, rgba(42, 26, 87, 0.5) 100%)";
-            navbar.style.boxShadow = "none";
+        navbar.style.boxShadow = "none";
     }
 });

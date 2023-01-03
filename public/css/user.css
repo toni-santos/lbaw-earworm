@@ -61,7 +61,8 @@ main {
     padding-top: 20px;
 }
 
-#review-wrapper, #wishlist-display-wrapper {
+#review-wrapper,
+#wishlist-display-wrapper {
     padding-inline: 100px;
     display: flex;
     flex-direction: column;

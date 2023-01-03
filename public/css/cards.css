@@ -1,5 +1,6 @@
-.product-card, .artist-card {
-    display:flex;
+.product-card,
+.artist-card {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -62,7 +63,8 @@
     flex-direction: row;
 }
 
-.prod-name, .prod-artist-name {
+.prod-name,
+.prod-artist-name {
     text-align: center;
     width: 200px;
     font-size: large;

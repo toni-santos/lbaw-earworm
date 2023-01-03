@@ -7,7 +7,7 @@ main {
     height: 200px;
 }
 
-div[class^='wishlist-card-top-'] {
+div[class^="wishlist-card-top-"] {
     display: flex;
     flex-direction: row;
     font-size: large;
@@ -15,9 +15,9 @@ div[class^='wishlist-card-top-'] {
     justify-content: space-between;
     background-color: var(--light-accent);
     color: var(--white);
-    -webkit-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
-    -moz-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
-    box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
+    -webkit-box-shadow: 0px 0px 40px -10px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 0px 0px 40px -10px rgba(0, 0, 0, 0.33);
+    box-shadow: 0px 0px 40px -10px rgba(0, 0, 0, 0.33);
 }
 
 .wishlist-card-desc {
@@ -117,7 +117,7 @@ div[class^='wishlist-card-top-'] {
 
 @keyframes beat {
     0% {
-        transform: scale(1.0);
+        transform: scale(1);
     }
 
     50% {
@@ -125,21 +125,29 @@ div[class^='wishlist-card-top-'] {
     }
 
     100% {
-        transform: scale(1.0);
+        transform: scale(1);
     }
 }
 
-@keyframes swing { 
-    20% { transform: rotate(15deg); } 
-    40% { transform: rotate(-10deg); } 
-    60% { transform: rotate(5deg); } 
-    80% { transform: rotate(-5deg); } 
-    100% { transform: rotate(0deg); } 
-} 
-
+@keyframes swing {
+    20% {
+        transform: rotate(15deg);
+    }
+    40% {
+        transform: rotate(-10deg);
+    }
+    60% {
+        transform: rotate(5deg);
+    }
+    80% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
 
 @media (max-width: 768px) {
-    
     main {
         padding-top: 120px;
     }
@@ -152,14 +160,13 @@ div[class^='wishlist-card-top-'] {
 
     .favorite-container {
         justify-content: center;
-
     }
-    
+
     #wishlist-wrapper {
         flex-direction: column;
     }
-    
-    div[class^='wishlist-card-top-'] {
+
+    div[class^="wishlist-card-top-"] {
         flex-basis: 1;
         flex-direction: column;
     }

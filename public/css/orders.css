@@ -22,19 +22,19 @@ main {
     padding-inline: 70px;
 }
 
-div[class^='order-top'] {
+div[class^="order-top"] {
     background-color: var(--main-accent);
     padding: 10px;
     font-size: large;
     color: var(--white);
     display: flex;
     flex-direction: row;
-    align-items: center;;
+    align-items: center;
     justify-content: space-between;
     cursor: pointer;
 }
 
-div[class^='order-bot'] {
+div[class^="order-bot"] {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -48,7 +48,7 @@ div[class^='order-bot'] {
 
 .order-product {
     display: flex;
-    flex-direction: row;;
+    flex-direction: row;
     align-items: center;
     gap: 20px;
     padding: 10px;

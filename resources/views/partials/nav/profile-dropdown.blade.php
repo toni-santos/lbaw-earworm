@@ -5,10 +5,12 @@
         <a href="{{route('profile', ['id' => Auth::id()])}}"><img id="dropdown-pfp" src={{UploadController::getUserProfilePic(Auth::id())}}></a>
         <a href="{{route('profile', ['id' => Auth::id()])}}">{{Auth::user()->username}}</a>
     </div>
+    @if (!Auth::user()->is_admin)
     <div>
         <a href="{{route('order')}}"><span class="material-icons">inventory_2</span></a>            
         <a href="{{route('order')}}">Orders</a>
     </div>
+    @endif
     <div>
         <a href="{{route('editprofile', ['id' => Auth::id()])}}"><span class="material-icons">settings</span></a>            
         <a href="{{route('editprofile', ['id' => Auth::id()])}}">Settings</a>

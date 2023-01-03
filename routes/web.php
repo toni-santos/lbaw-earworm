@@ -21,7 +21,6 @@ Route::view('/about-us', '/pages/aboutus')->name('about-us');
 // Products
 Route::get('/product/{id}', 'ProductController@show')->name('product');
 Route::get('/products', 'ProductController@catalogue')->name('catalogue');
-Route::get('/product/buy/{id}', 'ProductController@buyProduct')->name('buyProduct');
 
 // Artists
 Route::get('/artist/{id}', 'ArtistController@show')->name('artist');
@@ -35,10 +34,6 @@ Route::get('/get-admin', 'UserController@getAdmin')->name('getadmin');
 //Route::get('/add-to-cart/{id}', 'ProductController@addToCart')->name('addToCart');
 //Route::get('/decrease-from-cart/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
 //Route::get('/remove-from-cart/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
-Route::get('/cart', 'ProductController@cart')->name('cart');
-Route::get('/checkout', 'ProductController@checkout')->name('checkout');
-Route::post('/checkout', 'OrderController@buy')->name('buy');
-Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
 Route::get('/notification', 'NotificationController@showNotifications')->name('notification');
 Route::get('/recover-password', "UserController@showRecoverPassword")->name('recoverPasswordForm');
 
@@ -56,19 +51,29 @@ Route::post('/user/settings/last_fm/login', 'UserController@loginLastFm')->name(
 Route::post('/user/settings/last_fm/logout', 'UserController@logoutLastFm')->name('logoutLastFm');
 Route::get('/user/{id}', 'UserController@show')->name('profile');
 Route::get('/user', 'UserController@ownprofile')->name('ownprofile');
-Route::post('/cart/increase/{id}', 'ProductController@addToCart')->name('addToCart');
-Route::post('/cart/decrease/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
-Route::post('/cart/remove/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
-Route::post('/wishlist/add/{id}', 'ProductController@addToWishlist')->name('addToWishlist');
-Route::post('/wishlist/remove/{id}', 'ProductController@removeFromWishlist')->name('removeFromWishlist');
-Route::post('/product/review/{id}', 'ProductController@addReview')->name('addReview');
-Route::post('/product/edit-review/{user_id}-{product_id}', 'ProductController@editReview')->name('editReview');
 Route::post('/product/delete-review/{user_id}-{product_id}', 'ProductController@deleteReview')->name('deleteReview');
-Route::post('/ticket/submit', 'UserController@submitTicket')->name('submitTicket');
-Route::post('/report/submit', 'UserController@submitReport')->name('submitReport');
-Route::post('/fav-artist/add/{id}', 'UserController@addFavArtist')->name('addFavArtist');
-Route::post('/fav-artist/remove/{id}', 'UserController@removeFavArtist')->name('removeFavArtist');
 
+Route::middleware(['auth', 'isUser'])->group(function () {
+    // Exclusive pages
+    Route::get('/cart', 'ProductController@cart')->name('cart');
+    Route::get('/checkout', 'ProductController@checkout')->name('checkout');
+    Route::get('/wishlist', 'ProductController@wishlist')->name('wishlist');
+
+    // Exclusive actions
+    Route::post('/checkout', 'OrderController@buy')->name('buy');
+    Route::get('/product/buy/{id}', 'ProductController@buyProduct')->name('buyProduct');
+    Route::post('/cart/increase/{id}', 'ProductController@addToCart')->name('addToCart');
+    Route::post('/cart/decrease/{id}', 'ProductController@decreaseFromCart')->name('decreaseFromCart');
+    Route::post('/cart/remove/{id}', 'ProductController@removeFromCart')->name('removeFromCart');
+    Route::post('/wishlist/add/{id}', 'ProductController@addToWishlist')->name('addToWishlist');
+    Route::post('/wishlist/remove/{id}', 'ProductController@removeFromWishlist')->name('removeFromWishlist');
+    Route::post('/product/review/{id}', 'ProductController@addReview')->name('addReview');
+    Route::post('/product/edit-review/{user_id}-{product_id}', 'ProductController@editReview')->name('editReview');
+    Route::post('/ticket/submit', 'UserController@submitTicket')->name('submitTicket');
+    Route::post('/report/submit', 'UserController@submitReport')->name('submitReport');
+    Route::post('/fav-artist/add/{id}', 'UserController@addFavArtist')->name('addFavArtist');
+    Route::post('/fav-artist/remove/{id}', 'UserController@removeFavArtist')->name('removeFavArtist');
+});
 
 
 // Admin

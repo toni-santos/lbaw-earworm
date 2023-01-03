@@ -2,13 +2,15 @@ main {
     padding-top: 90px;
 }
 
-.notification-img, .notification-replacement {
+.notification-img,
+.notification-replacement {
     width: 100px;
     height: 100px;
     object-fit: cover;
 }
 
-a[class^='notification-card-'], div[class^='notification-card-'] {
+a[class^="notification-card-"],
+div[class^="notification-card-"] {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -20,9 +22,9 @@ a[class^='notification-card-'], div[class^='notification-card-'] {
     gap: 10px;
     background-color: var(--light-accent);
     color: var(--white);
-    -webkit-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
-    -moz-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
-    box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
+    -webkit-box-shadow: 0px 0px 40px -10px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 0px 0px 40px -10px rgba(0, 0, 0, 0.33);
+    box-shadow: 0px 0px 40px -10px rgba(0, 0, 0, 0.33);
     position: relative;
 }
 
@@ -71,7 +73,7 @@ a[class^='notification-card-'], div[class^='notification-card-'] {
         flex-direction: column;
     }
 
-    a[class^='notification-card-'] {
+    a[class^="notification-card-"] {
         flex-basis: 1;
     }
 }
@@ -102,10 +104,20 @@ a[class^='notification-card-'], div[class^='notification-card-'] {
     font-size: 2500%;
 }
 
-@keyframes swing { 
-    20% { transform: rotate(15deg); } 
-    40% { transform: rotate(-10deg); } 
-    60% { transform: rotate(5deg); } 
-    80% { transform: rotate(-5deg); } 
-    100% { transform: rotate(0deg); } 
-} 
+@keyframes swing {
+    20% {
+        transform: rotate(15deg);
+    }
+    40% {
+        transform: rotate(-10deg);
+    }
+    60% {
+        transform: rotate(5deg);
+    }
+    80% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}

@@ -90,7 +90,6 @@ function validateForm(form) {
     return true;
 }
 
-
 async function clearMessage(event, id) {
     event.preventDefault();
     document.querySelector(`.message-box-wrapper-${id}`).remove();
@@ -100,17 +99,17 @@ async function clearNotification(event, id) {
     event.preventDefault();
     const response = await fetch(`/notification/clear/${id}`, {
         method: "POST",
-        credentials: 'include',
+        credentials: "include",
         headers: {
-            "X-CSRF-Token": document.querySelectorAll(`meta`)[3].content
-        }
+            "X-CSRF-Token": document.querySelectorAll(`meta`)[3].content,
+        },
     });
-    const success = await response.text(); 
+    const success = await response.text();
     console.log(success);
 
     try {
         document.querySelector(`.notification-card-${id}`).remove();
-    }catch(e) {
+    } catch (e) {
         console.log(e);
     }
     try {

@@ -31,7 +31,8 @@ main {
     padding: 20px;
     text-align: center;
     background-color: var(--light-contrast);
-    margin-inline: 70px;}
+    margin-inline: 70px;
+}
 
 .member-img {
     width: 250px;
@@ -60,14 +61,14 @@ main {
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     margin: 8px;
-    padding: 20px
+    padding: 20px;
 }
 
 .team-info {
     padding: 0 16px;
 }
 
-@media screen and (max-width:750px) {
+@media screen and (max-width: 750px) {
     .team-wrapper-col {
         width: 100%;
         display: block;
@@ -96,7 +97,7 @@ div[id^="faq-section-top-"] {
     flex-direction: row;
     align-items: center;
 
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 3px 10px 0 rgba(0, 0, 0, 0.10);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
     background-color: var(--sub-accent);
     color: var(--light-text);
 }
@@ -108,7 +109,7 @@ div[id^="faq-section-top-"]:hover {
 
 div[id^="faq-section-bot-"] {
     width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     max-height: 0px;
     overflow: hidden;
@@ -116,13 +117,13 @@ div[id^="faq-section-bot-"] {
 }
 
 div[id^="faq-drop-top"] {
-    margin: 8px 0px; 
+    margin: 8px 0px;
     padding: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
 
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 3px 10px 0 rgba(0, 0, 0, 0.10);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
     background-color: var(--light-contrast);
     color: var(--dark-text);
 }
@@ -143,7 +144,7 @@ div[id^="faq-drop-bot"] {
     overflow: hidden;
     transition: all 0.2s ease-in-out;
 
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 3px 10px 0 rgba(0, 0, 0, 0.10);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
     background-color: var(--light-contrast);
     color: var(--dark-text);
 }
@@ -156,7 +157,6 @@ div[id^="faq-drop-bot"] a {
     max-height: 0px;
     overflow: hidden;
     transition: all 0.2s ease-in-out;
-
 }
 
 #tickets-form-wrapper {
@@ -183,9 +183,7 @@ textarea {
 }
 
 @media (max-width: 768px) {
-
     main {
         padding-top: 120px;
     }
-
 }

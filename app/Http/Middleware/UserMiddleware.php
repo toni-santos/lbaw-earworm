@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class UserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->is_admin) {    
+        if (Auth::check() && !(Auth::user()->is_admin)) {
             return $next($request);
         } else {
-            return abort('403', 'You do not have sufficient permissions to access that.');
+            return back()->withErrors('Only regular users can do that.');
         }
     }
 }

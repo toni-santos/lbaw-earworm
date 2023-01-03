@@ -115,7 +115,7 @@ p[class$="-stock"] {
 }
 
 .wishlist-container {
-    display:flex;
+    display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
@@ -217,7 +217,8 @@ p[class$="-stock"] {
     width: 100%;
 }
 
-#reviews-wrapper, #review-box-wrapper {
+#reviews-wrapper,
+#review-box-wrapper {
     padding-inline: 70px;
 }
 

@@ -1,4 +1,4 @@
-main{
+main {
     padding-top: 100px;
     background-color: var(--background-dark);
 }
@@ -17,7 +17,6 @@ main{
     justify-content: center;
 }
 
-
 #sb {
     position: relative;
     width: 100%;
@@ -31,7 +30,7 @@ main{
     color: var(--white);
 }
 
-div[class^='result-top-'] {
+div[class^="result-top-"] {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -41,7 +40,8 @@ div[class^='result-top-'] {
     z-index: 1;
 }
 
-div[class^='result-top-']:hover, div[class^='result-top-']:hover * {
+div[class^="result-top-"]:hover,
+div[class^="result-top-"]:hover * {
     background-color: var(--dark-accent);
     transition: all 0.2s ease-in-out;
 }
@@ -59,7 +59,7 @@ div[class^='result-top-']:hover, div[class^='result-top-']:hover * {
     padding-right: 20px;
 }
 
-div[class^='result-bot-'] {
+div[class^="result-bot-"] {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,7 +72,7 @@ div[class^='result-bot-'] {
     padding-inline: 40px;
 }
 
-div[class^='result-bot-'] >div {
+div[class^="result-bot-"] > div {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -110,7 +110,7 @@ div[class^='result-bot-'] >div {
     align-items: center;
 }
 
-.text-input:is(:not(:placeholder-shown), :focus)+label {
+.text-input:is(:not(:placeholder-shown), :focus) + label {
     color: var(--white);
 }
 
@@ -123,7 +123,6 @@ div[class^='result-bot-'] >div {
 
 #admin-board-wrapper {
     padding-block: 100px;
-
 }
 
 #admin-board {
@@ -150,12 +149,15 @@ div[class^='result-bot-'] >div {
     transition: all 0.2s ease-in-out;
 }
 
-#users-topic, #products-topic, #artists-topic, #orders-topic, #mod-topic {
+#users-topic,
+#products-topic,
+#artists-topic,
+#orders-topic,
+#mod-topic {
     color: var(--white);
     -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
-  
 }
 
 .admin-topic-darken {
@@ -182,13 +184,13 @@ div[class^='result-bot-'] >div {
     gap: 20px;
     background-color: var(--sub-teal);
     width: fit-content;
-    
+
     padding: 10px;
     padding-top: 25px;
     align-items: center;
     justify-content: center;
     align-self: center;
-} 
+}
 
 #misc-notif-form-wrapper > * {
     box-shadow: none;
@@ -203,7 +205,6 @@ div[class^='result-bot-'] >div {
     flex-direction: row;
     align-items: center;
     gap: 10px;
-
 }
 
 .result-img {
@@ -249,7 +250,7 @@ div[class^='result-bot-'] >div {
     padding: 0;
     padding: 10px;
     font-size: medium;
-	outline: inherit;
+    outline: inherit;
     word-wrap: break-word;
     color: inherit;
     background-color: var(--sub-accent);
@@ -264,7 +265,7 @@ div[class^='result-bot-'] >div {
     text-align: start;
 }
 
-.flash-item:hover  {
+.flash-item:hover {
     scale: 1.05;
     transition: scale 0.2s ease-in-out;
 }
@@ -322,7 +323,7 @@ textarea {
         display: flex;
         flex-direction: column;
     }
-    
+
     .flash-card {
         flex-basis: 1;
         flex-shrink: 1;
@@ -330,12 +331,11 @@ textarea {
 }
 
 @media (max-width: 768px) {
-    
     main {
         padding-top: 120px;
     }
 
-    div[class^='result-top-'] {
+    div[class^="result-top-"] {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -406,7 +406,6 @@ textarea {
 #inputs-box-right {
     grid-area: 1 / 2 / 2 / 3;
     height: fit-content;
-
 }
 
 #inputs-box-bottom {
@@ -423,13 +422,15 @@ textarea {
     width: 100%;
 }
 
-section[id^='inputs-box-'] {
+section[id^="inputs-box-"] {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-section[id^='inputs-box-'] .text-input:is(:not(:placeholder-shown), :focus)+label {
+section[id^="inputs-box-"]
+    .text-input:is(:not(:placeholder-shown), :focus)
+    + label {
     color: var(--black);
 }
 

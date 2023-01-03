@@ -5,7 +5,7 @@
 @media (max-width: 768px) {
     #main-wrapper {
         padding-top: 120px;
-    }    
+    }
 }
 
 #nav-tags {
@@ -52,7 +52,7 @@ div[id$="-tag"]:hover {
     opacity: 0.3;
 }
 
-div[class^='user-top-'] {
+div[class^="user-top-"] {
     padding: 10px;
     color: var(--light-text);
     background-color: var(--main-accent);
@@ -60,17 +60,15 @@ div[class^='user-top-'] {
     margin-inline: 70px;
     -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);  
-
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
 }
 
-div[class^='user-top-']:hover {
+div[class^="user-top-"]:hover {
     background-color: var(--dark-accent);
     transition: 0.2s ease-in-out;
-    
 }
 
-div[class^='user-bot-'] {
+div[class^="user-bot-"] {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,7 +81,8 @@ div[class^='user-bot-'] {
     gap: 20px;
 }
 
-#delete-account, #recover-password {
+#delete-account,
+#recover-password {
     padding: 8px;
     font-size: medium;
 }
@@ -96,7 +95,7 @@ div[class^='user-bot-'] {
 
 #aux-wrapper {
     display: grid;
-    align-items:center;
+    align-items: center;
     grid-template-rows: repeat(3, 1fr);
     width: 100%;
     justify-content: center;
@@ -114,13 +113,14 @@ div[class^='user-bot-'] {
     justify-content: center;
 }
 
-#recover-button, #unlink-button {
+#recover-button,
+#unlink-button {
     margin-top: 20px;
 }
 
 @media (max-width: 768px) {
-    div[class^='user-top-'] {
-        font-size:medium;
+    div[class^="user-top-"] {
+        font-size: medium;
     }
 }
 
@@ -141,7 +141,7 @@ div[class^='user-bot-'] {
     padding: 10px;
     -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);  
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
 }
 
 .user-info {
