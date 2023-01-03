@@ -95,8 +95,7 @@
         <link href="{{ asset('css/artist.css') }}" rel="stylesheet">
         <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
         <link href="{{ asset('css/carousel.css') }}" rel="stylesheet">
-        <script type="module" src={{ asset('js/BBCode_to_HTML.js') }} defer></script>
-        <script type="module" src={{ asset('js/artist.js') }} defer></script>
+        <script type="text/javascript" src={{ asset('js/artist.js') }} defer></script>
         <script type="text/javascript" src={{ asset('js/artist_like.js') }} defer></script>
         @break
 
