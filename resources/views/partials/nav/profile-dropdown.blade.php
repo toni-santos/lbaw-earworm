@@ -2,7 +2,7 @@
 <div class="nav-dropdowns" id="profile-dropdown">
     @if (Auth::check())
     <div>
-        <a href="{{route('profile', ['id' => Auth::id()])}}"><img id="dropdown-pfp" src={{UploadController::getUserProfilePic(Auth::id())}}></a>
+        <a href="{{route('profile', ['id' => Auth::id()])}}"><img alt="User Image" id="dropdown-pfp" src={{UploadController::getUserProfilePic(Auth::id())}}></a>
         <a href="{{route('profile', ['id' => Auth::id()])}}">{{Auth::user()->username}}</a>
     </div>
     @if (!Auth::user()->is_admin)

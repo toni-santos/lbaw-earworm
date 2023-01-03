@@ -3,7 +3,7 @@
     @case('Wishlist')
         <a href={{route('product', ['id' => $notif['content_id']])}} class="notification-card-{{$notif['id']}}">
             <div class="notification-details">
-                <img src={{ UploadController::getProductProfilePic($notif['content_id']) }} class="notification-img">
+                <img alt="Product Image" src={{ UploadController::getProductProfilePic($notif['content_id']) }} class="notification-img">
                 <p>{{$notif['sent_at']}}</p>
             </div>
             <div class="notification-description">

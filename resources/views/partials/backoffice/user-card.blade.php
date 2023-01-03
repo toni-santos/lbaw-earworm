@@ -2,7 +2,7 @@
 <div>
     <div class="result-top-{{$user->id}}" onclick="expandOptions(event, {{$user->id}})">
         <div class="result-top-content">
-            <img class="result-img" src={{UploadController::getUserProfilePic($user->id)}}>
+            <img alt="User Image" class="result-img" src={{UploadController::getUserProfilePic($user->id)}}>
             <div class="result-info">
                 <p>ID: {{$user->id}}</p>
                 <p>Email: {{$user->email}}</p>

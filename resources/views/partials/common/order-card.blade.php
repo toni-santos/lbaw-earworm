@@ -8,12 +8,24 @@
             <p>Address: {{$order->address}}</p>
             <p>Payment Method: {{$order->payment_method}}</p>
         </div>
-        <span id="order-expand-{{$order->id}}" class="material-icons">expand_more</span>
+        @if ($order->state == 'Processing')
+        <div>
+            <form method="POST" action="{{route('userCancelOrder', ['id' => $order->id])}}">
+                {{ csrf_field() }}
+                <button type="submit" class="invis-button">Cancel Order</button>
+            </form>
+            <span id="order-expand-{{$order->id}}" class="material-icons">expand_more</span>
+        </div>
+        @else
+        <div>
+            <span id="order-expand-{{$order->id}}" class="material-icons">expand_more</span>
+        </div>
+        @endif
     </div>
     <div class="order-bot-{{$order->id}}">
         @foreach ($products as $product)
         <div class="order-product">
-            <img class="order-img" src={{ UploadController::getProductProfilePic($product['id']) }}>
+            <img alt="Product Image" class="order-img" src={{ UploadController::getProductProfilePic($product['id']) }}>
             <div>
                 <p>Name: {{$product['name']}}</p>
                 <p>Artist: {{$product['artist_name']}}</p>

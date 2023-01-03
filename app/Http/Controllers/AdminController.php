@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AdminController extends Controller
 {
@@ -114,9 +115,7 @@ class AdminController extends Controller
         return view('pages.admin.ticket', ['tickets' => $tickets]);
     }
 
-    public function showUserCreate() 
-    {
-
+    public function showUserCreate() {
         return view('auth.admin-create');
     }
 
@@ -173,7 +172,7 @@ class AdminController extends Controller
      */
     public function updateUser(Request $request, int $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOr($id, fn () => abort(404, 'User not found.'));
         $data = $request->toArray();
 
         $user->username = $data['username'] ?? $user->username;
@@ -189,7 +188,7 @@ class AdminController extends Controller
 
         $data = $request->toArray();
 
-        $user = User::findOrFail(intval($data['user']));
+        $user = User::findOr(intval($data['user']), fn() => abort(404, 'User not found.'));
 
         $user->email = sha1(rand());
         $user->username = sha1(rand());
@@ -245,7 +244,7 @@ class AdminController extends Controller
 
     public function updateProduct(Request $request, $id) {
 
-        $product = Product::findOrFail($id);
+        $product = Product::find($id);
         if (!$product) {
             return back()->withErrors(['error' => "Product not found!"]);
         }
@@ -278,11 +277,7 @@ class AdminController extends Controller
 
     public function updateArtist(Request $request, int $id) {
 
-        $artist = Artist::findOrFail($id);
-        if (!$artist) {
-            abort(404);
-        }
-
+        $artist = Artist::findOr($id, fn() => abort(404, 'Artist not found.'));
         $data = $request->toArray();
 
         $artist->description = $data['message'] ?? $artist->description;
@@ -298,9 +293,7 @@ class AdminController extends Controller
 
         if (!$data['message']) return back()->withErrors(['error' => 'Ticket response cannot be empty.']);
 
-        $user = User::findOrFail($id);
-        if (!$user) return back()->withErrors(['user' => "User doesn't exist."]);
-
+        $user = User::findOr($id, fn() => abort(404, 'User not found.'));
         try {
             Mail::to($user->email)->send(new TicketResponse($user->username,
                                             $data['ticket'],
@@ -327,9 +320,7 @@ class AdminController extends Controller
     public function blockReported(Request $request) {
         $data = $request->toArray();
 
-        $user = User::findOrFail($data['reported_id']);
-        if (!$user) abort(404);
-
+        $user = User::findOr($data['reported_id'], fn() => abort(404, 'User not found'));
         $user->is_blocked = true;
 
         $user->save();

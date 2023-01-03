@@ -2,7 +2,7 @@
 <main id="content-wrapper">
     <div id="product-grid">
         <div id="product-img-wrapper">
-            <img src={{ $pfp }} id="product-img" class="tilt">
+            <img alt="Product Image" src={{ $pfp }} id="product-img" class="tilt">
         </div>
         <div class="product-description">
             <div>

@@ -33,7 +33,7 @@ class ArtistController extends Controller
     {
         $user = Auth::user();
 
-        $artist = Artist::find($id);
+        $artist = Artist::findOr($id, fn() => abort(404, 'Artist not found.'));
         $products = Product::all()->where('artist_id', $id);
 
         foreach ($products as $product) {

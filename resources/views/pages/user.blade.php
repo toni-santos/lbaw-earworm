@@ -6,14 +6,30 @@
                 <img src={{ $pfp }} alt="User Profile Picture" id="user-pfp">
                 <div>
                     <p id="user-name">{{$user['username']}}</p>
+                    @if (Auth::id() == $user['id'])
                     <a id="user-settings-icon" href="{{route('editprofile', ['id' => Auth::id()])}}"><span class="material-icons">settings</span></a>            
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <div id="content-wrapper">
+        @if (Auth::check() && (Auth::user()->is_admin || (Auth::id() == $user['id'])))
+        <section id="buy-history">
+            @include('partials.common.subtitle', ['title' => $user['username'] . "'s Buy History"])
+            @if (count($buyHistory) > 0)
+                <div class="buy-history-wrapper">
+                    @foreach ($buyHistory as $product)
+                        @include('partials.common.buy-history', ['product' => $product])
+                    @endforeach
+                </div>
+            @else
+            @include('partials.common.not-available', ['content' => $user['username'] . " hasn't made any purchases yet"])
+            @endif
+        </section>
+        @endif
         <section id="reviews">
-            @include('partials.common.subtitle', ['title' => "Reviews"])
+            @include('partials.common.subtitle', ['title' => $user['username'] . "'s Reviews"])
             @if (count($reviews) > 0)
             <div id="review-wrapper">
                 @foreach ($reviews as $review)

@@ -6,7 +6,7 @@
 }
 
 #side-image {
-    background-image: url("https://source.unsplash.com/random/1920×1080/?vinyl");
+    background-image: url("https://images.unsplash.com/photo-1596633313465-1256feb1c6d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -27,9 +27,16 @@
 
 #sign-wrapper {
     display: flex;
+    flex-direction: column;
     align-content: center;
     justify-content: center;
     align-items: center;
+}
+
+#sign-wrapper > div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
 }
 
 .inputs-box {

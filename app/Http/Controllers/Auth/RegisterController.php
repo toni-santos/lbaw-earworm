@@ -72,7 +72,7 @@ class RegisterController extends Controller
         }
 
         return $request->wantsJson()
-                    ? new JsonResponse([], 201)
+                    ? new JsonResponse([], 302)
                     : redirect()->intended();
     }
 

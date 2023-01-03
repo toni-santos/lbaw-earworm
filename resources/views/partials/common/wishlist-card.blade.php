@@ -6,7 +6,7 @@
             <span class="discount-label">-{{$product['discount']}}%</span>
             @endif
             <a href="/product/{{$product['id']}}">
-                <img src={{ UploadController::getProductProfilePic($product['id']) }} class="wishlist-img">
+                <img alt="Product Image" src={{ UploadController::getProductProfilePic($product['id']) }} class="wishlist-img">
             </a>
         </div>
         <div class="wishlist-card-specs">

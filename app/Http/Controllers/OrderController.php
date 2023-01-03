@@ -73,7 +73,7 @@ class OrderController extends Controller
     public function userCancel(int $id) {
 
         $order = Order::where('id', $id)->update(['state' => 'Canceled']);
-        return to_route('profile')>with(['message' => 'Order cancelled.']);
+        return to_route('home')->with(['message' => 'Order cancelled successfully!']);
 
     }
 
@@ -138,7 +138,7 @@ class OrderController extends Controller
 
         if (!Auth::check()) abort(403);
 
-        $orders = Auth::user()->orders;
+        $orders = Auth::user()->orders->where('state', '!=', 'Canceled');
 
         foreach($orders as $order) {
             $order = $this->getOrderProducts($order);

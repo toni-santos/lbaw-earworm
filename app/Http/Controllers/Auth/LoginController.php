@@ -62,7 +62,7 @@ class LoginController extends Controller
 
             if (Auth::user()->last_fm) UserController::getLastFmRecommendations();
             
-            return redirect()->intended('/');
+            return redirect()->back();
         }
 
         return back()->withErrors([

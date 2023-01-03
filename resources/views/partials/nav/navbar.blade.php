@@ -2,7 +2,7 @@
 <nav id="navbar-wide" class="navbar">
     <div id="wide-top" class="sub-bar">
         <div id="logo-div">
-            <a href="{{route('home')}}"> <img id="logo" src="https://img.icons8.com/fluency/512/earth-worm.png"> </a> 
+            <a href="{{route('home')}}"> <img alt="Logo" id="logo" src="https://img.icons8.com/fluency/512/earth-worm.png"> </a> 
             <a href="{{route('home')}}"> <p id="site-name">EarWorm</p> </a>
         </div>
         <div class="search-container">
@@ -40,7 +40,7 @@
 <nav id="navbar-mobile" class="navbar">
     <div>
         <div id="logo-div">
-            <a href="{{route('home')}}"><img id="logo" src="https://img.icons8.com/fluency/512/earth-worm.png"></a>
+            <a href="{{route('home')}}"><img alt="Logo" id="logo" src="https://img.icons8.com/fluency/512/earth-worm.png"></a>
             <a href="{{route('home')}}"><p id="site-name">EarWorm</p></a>
         </div>
         <div id="hamburger" data-show="false">
@@ -68,7 +68,7 @@
                 @endif
                 <div id="mobile-nav-profile">
                     <div id="mobile-nav-profile-icon">
-                        <a href="{{route('profile', ['id' => Auth::id()])}}"><img id="dropdown-pfp" src={{UploadController::getUserProfilePic(Auth::id())}}></a>
+                        <a href="{{route('profile', ['id' => Auth::id()])}}"><img alt="User Image" id="dropdown-pfp" src={{UploadController::getUserProfilePic(Auth::id())}}></a>
                         <a href="{{route('profile', ['id' => Auth::id()])}}">{{Auth::user()->username}}</a>
                     </div>
                     <a href="{{route ('logout')}}"><span class="material-icons">logout</span></a>

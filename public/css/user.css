@@ -112,3 +112,32 @@ main {
         padding-top: 0px;
     }
 }
+
+.buy-history-card {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--light-accent);
+    color: var(--white);
+}
+
+.buy-history-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.buy-history-desc {
+    display: flex;
+    flex-direction: column;
+}
+
+.buy-history-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 70px;
+    gap: 10px;
+}

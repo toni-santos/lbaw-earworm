@@ -62,4 +62,56 @@ div[class^="order-bot"] {
     .order-product {
         flex-direction: column;
     }
+    div[class^="order-top"] {
+        flex-direction: column;
+    }
+}
+
+div[class^="order-top"] > div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#empty-order-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+#empty-order-wrapper > a {
+    display: inline-block;
+    width: 400px;
+}
+
+#empty-order-text {
+    text-align: center;
+}
+
+#empty-order-text a {
+    color: var(--sub-accent);
+}
+
+#empty-order-icon {
+    animation: updown 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+    color: var(--main-accent);
+    font-size: 2500%;
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0px);
+
+    }
+    
+    50% {
+        
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+
+    }
 }

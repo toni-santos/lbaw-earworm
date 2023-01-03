@@ -6,11 +6,13 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Notification;
+use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller
 {
@@ -32,13 +34,23 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        if ($user->is_blocked) {
-            abort(404);
+        $user = User::findOr($id, fn() => abort(404, 'User not found.'));
+        if ($user->is_blocked && !(Auth::user()->is_admin)) {
+            abort(403, 'User not available');
         }
 
         $boughtProducts = [];
-
+        $user_orders = Order::where(['user_id' => $id, 'state' => 'Delivered'])->get();
+        
+        foreach($user_orders as $order) {
+            $order_products = $order->products;
+            
+            foreach($order_products as $product) {
+                $boughtProducts[] = $product;
+                $product['artist_name'] = $product->artist->name;
+            }
+        }
+        
         $recommendedProducts = session('for_you') ?? [];
         $recommendation_info = array();
 
@@ -55,7 +67,7 @@ class UserController extends Controller
         $wishlist = $this->getWishlistById($id);
         $wishlistProducts = array();
         foreach ($wishlist as $wishlist_id) {
-            $wishlistProducts[] = Product::findOrFail($wishlist_id);
+            $wishlistProducts[] = Product::findOr($wishlist_id, fn() => abort(404, 'Product not found.'));
         }
 
         foreach ($wishlistProducts as $product) {
@@ -65,7 +77,6 @@ class UserController extends Controller
         }
 
         $reviews = Review::all()->where('reviewer_id', $id);
-        // dd($reviews);
         foreach ($reviews as $review) {
             $review['product'] = Product::all()->find($review['product_id']);
             $review['reviewer'] = User::all()->find($review['reviewer_id']);
@@ -79,6 +90,7 @@ class UserController extends Controller
             'user' => $user,
             'pfp' => $pfp,
             'favArtists' => $favArtists,
+            'buyHistory' => $boughtProducts,
             'wishlistProducts' => $wishlistProducts,
             'recommendedProducts' => $recommendation_info,
             'wishlist' => $wishlist,
@@ -98,7 +110,7 @@ class UserController extends Controller
     }
 
     public static function getWishlistById(int $id) {
-        $user = User::findOrFail($id);
+        $user = User::findOr($id, fn() => abort(404, 'User not found.'));
         $list = $user->wishlist->toArray();
         $wishlist = [];
 
@@ -114,7 +126,7 @@ class UserController extends Controller
 
         if (Auth::check()) {
     
-            $user = User::findOrFail(Auth::id());
+            $user = User::findOr(Auth::id(), fn() => abort(404, 'User not found.'));
             $list = $user->wishlist->toArray();
             $wishlist = [];
     
@@ -134,7 +146,7 @@ class UserController extends Controller
     }
 
     public function editProfile(int $id) {
-        $user = User::findOrFail($id);
+        $user = User::findOr($id, fn() => abort(404, 'User not found.'));
         $email = $user['email'];
         $em   = explode("@",$email);
         $name = implode('@', array_slice($em, 0, count($em)-1));
@@ -155,7 +167,7 @@ class UserController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOr($id, fn() => abort(404, 'User not found.'));
         if ($user->is_blocked) {
             abort(404);
         }
@@ -176,7 +188,7 @@ class UserController extends Controller
 
     public function updatePassword(Request $request, int $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOr($id, fn() => abort(404, 'User not found.'));
         if ($user->is_blocked) {
             abort(404);
         }
@@ -284,19 +296,11 @@ class UserController extends Controller
 
     }
 
-    public function getAdmin() {
-        if (Auth::check()) {
-            $user = User::findOrFail(Auth::id());
-            $user->is_admin = true;
-            $user->save();
-        }
-    }
-
     public function deleteAccount(int $id)
     {
         if (Auth::id() != $id) abort(401);
 
-        $user = User::findOrFail($id);
+        $user = User::findOr($id, fn() => abort(404, 'User not found.'));
 
         $user->email = sha1(rand());
         $user->username = sha1(rand());
@@ -320,9 +324,8 @@ class UserController extends Controller
 
         $data = $request->toArray();
                 
-        $user = User::findOrFail(Auth::id());
-        $reported_user = User::findOrFail($data['user_id']);
-        if (!$user || !$reported_user) abort(401);
+        $user = User::findOr(Auth::id(), fn() => abort(401, 'Logged user not found.'));
+        $reported_user = User::findOr($data['user_id'], fn() => abort(401, 'Reported user not found.'));
         $data = $request->toArray();
 
         DB::table('report')->insert([
@@ -335,8 +338,7 @@ class UserController extends Controller
     }
 
     public function submitTicket(Request $request) {
-        $user = User::findOrFail(Auth::id());
-        if (!$user) abort(401);
+        $user = User::findOr(Auth::id(), fn() => abort(404, 'User not found.'));
         $data = $request->toArray();
 
         DB::table('ticket')->insert([

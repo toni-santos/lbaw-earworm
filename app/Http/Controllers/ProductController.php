@@ -19,7 +19,7 @@ class ProductController extends Controller
     // will be used for product page
     public function show(int $id) {
 
-        $product = Product::findOrFail($id);
+        $product = Product::findOr($id, fn() => abort(404, 'Product not found.'));
         $product['price'] = ProductController::formatPrice($product->price/100);
         $product['discounted_price'] = ProductController::getDiscountedPrice($product->price, $product->discount);
 

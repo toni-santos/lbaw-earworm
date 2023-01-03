@@ -2,7 +2,7 @@
 @switch ($notif['type'])
     @case('Wishlist')
         <a href="{{route('product', ['id' => $notif['content_id']])}}" class="notification-dropdown-item-{{$notif['id']}}">
-            <img src={{ UploadController::getProductProfilePic($notif['content_id']) }} class="notification-dropdown-img">
+            <img alt="Product Image" src={{ UploadController::getProductProfilePic($notif['content_id']) }} class="notification-dropdown-img">
             <div class="notification-dropdown-description">
                 <p title="{{$notif['description']}}">{{$notif['description']}}</p>
             </div>

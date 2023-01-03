@@ -2,7 +2,7 @@
 <div class="result-wrapper">
     <div class="result-top-{{$artist->id}}" onclick="expandOptions(event, {{$artist->id}})">
         <div class="result-top-content">
-            <img class="result-img" src={{UploadController::getArtistProfilePic($artist->id)}}>
+            <img alt="Artist Profile Picture" class="result-img" src={{UploadController::getArtistProfilePic($artist->id)}}>
             <div class="result-info">
                 <p>ID: {{$artist->id}}</p>
                 <p>Name: {{$artist->name}}</p>

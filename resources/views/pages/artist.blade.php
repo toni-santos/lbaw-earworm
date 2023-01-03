@@ -3,7 +3,7 @@
 <main>
     <div id="artist-banner">
         <div id="artist-top">
-            <img src={{ $pfp }} alt="Artist Profile Picture" id="artist-pfp">
+            <img alt="Artist Profile Picture" src={{ $pfp }} alt="Artist Profile Picture" id="artist-pfp">
             @if ($favArtist)
             <div>
                 <p id="artist-name">{{$artist['name']}}</p>

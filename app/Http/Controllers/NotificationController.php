@@ -15,8 +15,7 @@ class NotificationController extends Controller
     // notif types: 'Order', 'Wishlist', 'Misc'
 
     public function showNotifications() {
-        $user = User::findOrFail(Auth::id());
-        if (!$user) to_route('login');
+        $user = User::findOr(Auth::id(), fn() => to_route('login'));
 
         $notifications = $user->notifications;
         foreach($notifications as $notif) {
@@ -28,9 +27,8 @@ class NotificationController extends Controller
 
     static public function notifyWishlist(int $product_id, string $type) {
         if (!Auth::user()->is_admin) abort(403);
-        $product = Product::findOrFail($product_id);
-        if (!$product) abort(404);
-        
+
+        $product = Product::findOr($product_id, fn() => abort(404, 'Product not found.'));        
         $users = $product->inWishlist;
 
         switch ($type) {
@@ -65,9 +63,8 @@ class NotificationController extends Controller
 
     static public function notifyOrder(int $order_id, string $new_state) {
         if (!Auth::user()->is_admin) abort(403);
-        $order = Order::findOrFail($order_id);
-        if (!$order) abort(404);
-        
+
+        $order = Order::findOr($order_id, fn() => abort(404, 'Order not found.'));
         $user = $order->user;
         Notification::insert([
             'user_id' => $user->id,
@@ -95,9 +92,7 @@ class NotificationController extends Controller
     static public function notifyTicket(string $message, int $id) {
         if (!Auth::user()->is_admin) abort(403);   
 
-        $user = User::findOrFail($id);
-        if (!$user) abort(404);
-
+        $user = User::findOr($id, fn() => abort(404, 'User not found.'));
         Notification::insert([
             'user_id' => $user->id,
             'description' => $message,

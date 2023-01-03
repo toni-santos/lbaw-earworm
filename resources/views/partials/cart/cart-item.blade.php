@@ -1,6 +1,6 @@
 <?php use App\Http\Controllers\UploadController; ?>
 <div class="cart-item-{{$id}}">
-    <a href="{{ route('product', ['id' => $id]) }}"><img width="60px" height="60px" src={{ UploadController::getProductProfilePic($id) }} class="cart-img"></a>
+    <a href="{{ route('product', ['id' => $id]) }}"><img alt="Product Image" width="60px" height="60px" src={{ UploadController::getProductProfilePic($id) }} class="cart-img"></a>
     <div class="cart-desc-{{$id}}">
         <a href="/product/{{$id}}">{{$details['name']}}</a>
         <p>{{$details['discounted_price']}}€</p>

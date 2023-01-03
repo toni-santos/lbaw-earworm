@@ -37,7 +37,7 @@
     @else
         <div id="empty-cart-wrapper">
             <h2 id="empty-cart-text">Nothing in cart. <a href="{{route('catalogue')}}">Time to change that!</a></h2>
-            <a href="{{route('catalogue')}}"><img id="empty-cart-catalogue-icon" src="{{url('storage/images/icons/compact-disc-solid.svg')}}"></a>
+            <a href="{{route('catalogue')}}"><img alt="Empty Cart Image" id="empty-cart-catalogue-icon" src="{{url('storage/images/icons/compact-disc-solid.svg')}}"></a>
         </div>
     @endif
 </main>

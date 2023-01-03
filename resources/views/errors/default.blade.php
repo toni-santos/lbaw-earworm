@@ -4,7 +4,7 @@
         <h1 class="error-header">{{$exception->getStatusCode()}}</h1>
         <p class="error-subheader">{{$exception->getMessage()}}</p>
         <div class="error-image-container">
-            <img class="error-image" src="storage/images/unplugged.png">
+            <img alt="Error Image" class="error-image" src="{{url('storage/images/unplugged.png')}}">
         </div>
         <a class="confirm-button" href="{{route('home')}}"id="back-to-home">Return to Home page</a>
     </section>

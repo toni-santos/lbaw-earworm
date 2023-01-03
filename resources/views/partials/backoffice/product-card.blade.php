@@ -2,7 +2,7 @@
 <div class="result-wrapper">
     <div class="result-top-{{$product->id}}" onclick="expandOptions(event, {{$product->id}})">
         <div class="result-top-content">
-            <img class="result-img" src={{UploadController::getProductProfilePic($product->id)}}>
+            <img alt="Product Image" class="result-img" src={{UploadController::getProductProfilePic($product->id)}}>
             <div class="result-info">
                 <p>ID: {{$product->id}}</p>
                 <p>Name: {{$product->name}}</p>
