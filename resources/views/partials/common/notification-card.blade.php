@@ -3,12 +3,12 @@
     @case('Wishlist')
         <a href={{route('product', ['id' => $notif['content_id']])}} class="notification-card-{{$notif['id']}}">
             <div class="notification-details">
-                <img width="60px" height="60px" src={{ UploadController::getProductProfilePic($notif['content_id']) }} class="notification-img">
-                <p> {{$notif['sent_at']}} </p>
+                <img src={{ UploadController::getProductProfilePic($notif['content_id']) }} class="notification-img">
+                <p>{{$notif['sent_at']}}</p>
             </div>
             <div class="notification-description">
                 <span class="material-icons notif-clear" onclick="clearNotification(event, {{$notif['id']}})"> clear </span>
-                <p> {{$notif['description']}}</p>
+                <p title="{{$notif['description']}}">{{$notif['description']}}</p>
             </div>
         </a>
         @break
@@ -16,11 +16,11 @@
         <a href={{route('order')}} class="notification-card-{{$notif['id']}}">
             <div class="notification-details">
                 <span class="material-icons notification-replacement">inventory_2</span>
-                <p> {{$notif['sent_at']}} </p>
+                <p title="{{$notif['description']}}">{{$notif['sent_at']}}</p>
             </div>
             <div class="notification-description">
                 <span class="material-icons notif-clear" onclick="clearNotification(event, {{$notif['id']}})"> clear </span>
-                <p>{{$notif['description']}}</p>
+                <p title="{{$notif['description']}}">{{$notif['description']}}</p>
             </div>
             
         </a>
@@ -33,7 +33,7 @@
             </div>
             <div class="notification-description">
                 <span class="material-icons notif-clear" onclick="clearNotification(event, {{$notif['id']}})"> clear </span>
-                <p> {{$notif['description']}} </p>
+                <p title="{{$notif['description']}}">{{$notif['description']}}</p>
             </div>
         </div>
         @break

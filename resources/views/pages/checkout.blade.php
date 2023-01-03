@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => "checkout"])
+@include('partials.common.head', ['page' => "checkout", 'title' => ' - Checkout'])
 
 <main>
     <div id="checkout-wrapper">

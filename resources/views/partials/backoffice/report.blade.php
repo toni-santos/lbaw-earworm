@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="result-bot-{{$report->id}}">
-        <div>
+        <div class="form-bot-wrapper">
             <form method="POST" class="form-bot" action="{{route('adminBlockReported')}}">
                 {{ csrf_field() }}
                 <input name="reported_id" value="{{$report->reported_id}}" hidden> 
@@ -20,7 +20,7 @@
             </form>
             <form method="POST" class="form-bot" action="{{route('adminDeleteReport', ['id' => $report->id])}}">
                 {{ csrf_field() }}
-                <button class="confirm-button" type="submit">Delete</button>
+                <button class="confirm-button" type="submit">Solve</button>
             </form>
 
         </div>

@@ -1,13 +1,7 @@
-@include('partials.common.head', ['page' => "index"])
+@include('partials.common.head', ['page' => "index", 'title' => ''])
 
 <main>
     @include('partials.common.promocard')
-    {{-- @include('partials.common.carousel', [
-        'carouselTitle' => '',
-        'carouselId' => 'carousel-promos',
-        'type' => 'promo',
-        'content' => []
-    ]) --}}
     @include('partials.common.carousel', [
         'carouselTitle' => 'Trending Products',
         'carouselId' => 'carousel-trending',
@@ -24,16 +18,17 @@
                 'content' => $fyProducts,
                 'wishlist' => $wishlist
             ])
-        @else
-            @if (Auth::user()->lastfm)
-                @include('partials.common.static-carousel', [
-                    'carouselTitle' => 'For You',
-                    'carouselId' => 'static-carousel-fy',
-                    'type' => 'product',
-                    'content' => $fyProducts,
-                    'wishlist' => $wishlist
-                ])
-            @endif
+        @elseif (count($fyProducts) < 5 && count($fyProducts) > 0)
+            @include('partials.common.static-carousel', [
+                'carouselTitle' => 'For You',
+                'carouselId' => 'static-carousel-fy',
+                'type' => 'product',
+                'content' => $fyProducts,
+                'wishlist' => $wishlist
+            ])
+        @elseif (count($fyProducts) == 0)
+            @include('partials.common.subtitle', ['title' => "For You"])
+            @include('partials.common.not-available', ['content' => "You aren't connected to Last.fm"])
         @endif
     @else
         @include('partials.common.index-promos')'

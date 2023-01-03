@@ -6,7 +6,7 @@ use App\Models\Notification;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Order;
-
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +23,7 @@ class NotificationController extends Controller
             $notif['sent_at'] = date("d-m-Y H:i", strtotime($notif['sent_at']));
         }
 
-        return view('pages.notification', ['notifications' => $notifications]);
+        return view('pages.notification', ['notifications' => $notifications->reverse()]);
     }
 
     static public function notifyWishlist(int $product_id, string $type) {
@@ -80,15 +80,31 @@ class NotificationController extends Controller
 
     static public function notifyMisc(string $message) {
         if (!Auth::user()->is_admin) abort(403);        
-        $users = User::where('is_admin', 'false');
-            foreach($users as $user) {
+        $users = User::where('is_admin', 0)->get();
+        foreach($users as $user) {
                 Notification::insert([
                     'user_id' => $user->id,
                     'description' => $message,
                     'type' => "Misc"
                 ]);
-            }
+        }
 
         return 200;
     }
+
+    static public function notifyTicket(string $message, int $id) {
+        if (!Auth::user()->is_admin) abort(403);   
+
+        $user = User::findOrFail($id);
+        if (!$user) abort(404);
+
+        Notification::insert([
+            'user_id' => $user->id,
+            'description' => $message,
+            'type' => "Misc"
+        ]);
+
+        return 200;
+    }
+
 }

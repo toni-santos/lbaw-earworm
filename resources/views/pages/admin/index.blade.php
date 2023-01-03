@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => "admin"])
+@include('partials.common.head', ['page' => "admin", 'title' => ' - Administration Dashboard'])
 
 <main id="index-main">
     @include('partials.backoffice.admin-nav')

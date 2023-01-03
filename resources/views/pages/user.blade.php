@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => "user"])
+@include('partials.common.head', ['page' => "user", 'title' => " - " . $user['username']])
 <main>
     <div id="user-banner">
         <div id="user-banner">
@@ -14,6 +14,7 @@
     <div id="content-wrapper">
         <section id="reviews">
             @include('partials.common.subtitle', ['title' => "Reviews"])
+            @if (count($reviews) > 0)
             <div id="review-wrapper">
                 @foreach ($reviews as $review)
                     @if (Auth::id() == $review['reviewer_id'])
@@ -23,9 +24,13 @@
                     @endif
                 @endforeach
             </div>
+            @else
+            @include('partials.common.not-available', ['content' => "There aren't any reviews"])
+            @endif
         </section>
         <section id="fav-artists">
             @include('partials.common.subtitle', ['title' => $user['username'] . "'s Favorite Artists"])
+            @if (count($favArtists) > 0)
             @if (count($favArtists) >= 5)
                 @include('partials.common.carousel', [
                     'carouselTitle' => '',
@@ -43,19 +48,40 @@
                     'wishlist' => ''
                 ])
             @endif
+            @else
+            @include('partials.common.not-available', ['content' => "There aren't any favorited artists"])
+            @endif
         </section>
         <section id="wishlist-display">
-            @include('partials.common.subtitle', ['title' => "Wishlist"])
-            <div id="wishlist-display-wrapper">
-                @foreach ($wishlistProducts as $product)
-                    @include('partials.user.wishlist-display', ['product' => $product])
-                @endforeach
-            </div>
+            @include('partials.common.subtitle', ['title' => $user['username'] . "'s Wishlist"])
+            @if (count($wishlistProducts) > 0)
+            @if (count($wishlistProducts) >= 5)
+            @include('partials.common.carousel', [
+                'carouselTitle' => '',
+                'carouselId' => 'carousel-wishlist',
+                'type' => 'product',
+                'content' => $wishlistProducts,
+                'wishlist' => $wishlist
+            ])
+            @else
+                @include('partials.common.static-carousel', [
+                    'carouselTitle' => '',
+                    'carouselId' => 'static-carousel-wishlist',
+                    'type' => 'product',
+                    'content' => $wishlistProducts,
+                    'wishlist' => $wishlist
+                ])
+            @endif
+            @else
+            @include('partials.common.not-available', ['content' => "The wishlist is empty"])
+            @endif
         </section>
         <section id="lastfm-recs">
+            @include('partials.common.subtitle', ['title' => $user['username'] . "'s Recommendations"])
+            @if (count($recommendedProducts) > 0)
             @if (count($recommendedProducts) >= 5)
             @include('partials.common.carousel', [
-                'carouselTitle' => 'Last.fm Recommendations',
+                'carouselTitle' => '',
                 'carouselId' => 'carousel-lastfm-recs',
                 'type' => 'product',
                 'content' => $recommendedProducts,
@@ -63,12 +89,15 @@
             ])
             @else
                 @include('partials.common.static-carousel', [
-                    'carouselTitle' => 'Last.fm Recommendations',
+                    'carouselTitle' => '',
                     'carouselId' => 'static-carousel-lastfm-recs',
                     'type' => 'product',
                     'content' => $recommendedProducts,
                     'wishlist' => $wishlist
                 ])
+            @endif
+            @else
+            @include('partials.common.not-available', ['content' => "Not connected to Last.fm"])
             @endif
         </section>
     </div>

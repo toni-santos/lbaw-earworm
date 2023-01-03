@@ -39,7 +39,7 @@ class AdminController extends Controller
 
         $search = (array_key_exists('user', $request->toArray())) ? $request->toArray()['user'] : '';
         
-        $users = User::search($search)->where('is_admin', 0)->where('is_deleted', 0);
+        $users = User::search($search)->where('is_admin', 0)->where('is_deleted', 0)->orderBy('id');
         $users = $users->paginate(20)->withQueryString();
         return view('pages.admin.user', ['users' => $users]);
     }
@@ -50,9 +50,9 @@ class AdminController extends Controller
         $search = (array_key_exists('product', $request->toArray())) ? $request->toArray()['product'] : '';
         if ($search) {
             $products = Product::adminSearch($search);
-            $products = $products->paginate(20)->withQueryString();
+            $products = $products->orderBy('id')->paginate(20)->withQueryString();
         } else {
-            $products = Product::paginate(20)->withQueryString();
+            $products = Product::orderBy('id')->paginate(20)->withQueryString();
         }
         return view('pages.admin.product', ['products' => $products]);
     }
@@ -301,14 +301,19 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
         if (!$user) return back()->withErrors(['user' => "User doesn't exist."]);
 
-        NotificationController::notifyMisc("Your ticket has been answered. Check it out in your email!");
-
-        Mail::to($user->email)->send(new TicketResponse($user->username,
-                                                    $data['ticket'],
-                                                    $data['title'],
-                                                    $data['message']));
-
-        return to_route('adminTicket')->with(['message' => 'Ticket answered!']);
+        try {
+            Mail::to($user->email)->send(new TicketResponse($user->username,
+                                            $data['ticket'],
+                                            $data['title'],
+                                            $data['message']));
+                                            
+            NotificationController::notifyTicket("Your ticket has been answered. Check it out in your email!", $id);
+            return to_route('adminTicket')->with(['message' => 'Ticket answered!']);
+        } catch(\Exception $e) {
+            NotificationController::notifyTicket("There seems to have been an error answering your ticket! Please contact an admin directly.", $id);
+            return to_route('adminTicket')->with(['message' => 'Error answering ticket!']);
+        }
+        
     }
 
     public function deleteTicket(int $id) {
@@ -345,8 +350,6 @@ class AdminController extends Controller
 
         $data = $request->toArray();
         if (!$data['message']) return back()->withErrors(['message' => 'Alert text cannot be empty.']);
-
-
         NotificationController::notifyMisc($data['message']);
 
         return to_route('adminIndex')->with(['message' => 'Alert broadcasted.']);

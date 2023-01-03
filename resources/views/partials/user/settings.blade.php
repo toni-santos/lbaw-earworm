@@ -12,14 +12,14 @@
                 <p>Username: {{$user->username}}</p>
                 <p id="user-email">Email: {{$user->email}}</p>
             </div>
-            <div class="expand">
+            <div class="expand" style="padding-right: 0px;">
                 <p> Change Account Details </p>
                 <span class="material-icons">expand_more</span>
             </div>
         </div>
         <div class="user-bot-info-edit-{{$user->id}}">
             <form method="POST" class="form-bot" action="{{route('editprofilepost', ['id' => $user->id])}}">
-                <h2 class="zone-name">Account Information</h2>
+                <p class="zone-name">Account Information</p>
                 {{ csrf_field() }}
                 <section class="inputs-box">
                     <div class="input-container">
@@ -34,7 +34,7 @@
                 <button class="confirm-button" type="submit">Change</button>
             </form>
             <form method="POST" enctype="multipart/form-data" class="upload-form form-bot" action="{{route('userProfilePic', ['id' => $user->id])}}">
-                <h2 class="zone-name">Profile Picture</h2>
+                <p class="zone-name">Profile Picture</p>
                 {{ csrf_field() }}
                 <section class="inputs-box">
                     <label for="user-pfp" class="upload-button">
@@ -45,7 +45,7 @@
                 </section>
             </form>
             <form method="POST" class="form-bot" action="{{route('deleteAccount', ['id' => $user->id])}}">
-                <h2 class="zone-name">Delete Account</h2>
+                <p class="zone-name">Delete Account</p>
                 {{ csrf_field() }}                    
                 <button class="confirm-button" id="delete-account" type="submit">Delete</button>
             </form>
@@ -54,7 +54,7 @@
 
     <section id="password-section" hidden>
         <div class="user-top-pass-change-{{$user->id}}" onclick="expandUserOptions(event, 'change', {{$user->id}})">
-            <div class="expand">
+            <div class="expand" style="padding-right: 0px;">
                 <p> Change Password </p>
                 <span class="material-icons">expand_more</span>
             </div>
@@ -62,6 +62,7 @@
         <div class="user-bot-pass-change-{{$user->id}}">
             <form method="POST" class="form-bot" action="{{route('editpassword', ['id' => $user->id])}}">
                 {{ csrf_field() }}
+                <div class="form-spacer"></div>
                 <section class="inputs-box">
                     <div class="input-container">
                         <input class="text-input" type="password" name="old-password" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
@@ -81,7 +82,7 @@
         </div>    
 
         <div class="user-top-pass-recover-{{$user->id}}" onclick="expandUserOptions(event, 'recover', {{$user->id}})"  id="recover-button">
-            <div class="expand">
+            <div class="expand" style="padding-right: 0px;">
                 <p> Recover Password </p>
                 <span class="material-icons">expand_more</span>
             </div>
@@ -89,6 +90,7 @@
         <div class="user-bot-pass-recover-{{$user->id}}">
             <form method="POST" class="form-bot" action="{{route('recoverPassword')}}">
                 {{ csrf_field() }}           
+                <div class="form-spacer"></div>
                 <section class="inputs-box">
                     <div class="input-container">
                         <input class="text-input" type="email" name="email" autocomplete="email" placeholder=" " onkeyup="updateForm(event)" onfocus="checkFilled(event)" required>
@@ -112,7 +114,7 @@
                     <p> Last.FM Account: {{$user->last_fm}} </p>
                 </div>
             @endif
-            <div class="expand">
+            <div class="expand" style="padding-right: 0px;">
                 <p> Link Last.FM Account </p>
                 <span class="material-icons">expand_more</span>
             </div>
@@ -120,6 +122,7 @@
         <div class="user-bot-lastfm-link-{{$user->id}}">
             <form method="POST" class="form-bot" action="{{route('loginLastFm')}}">
                 {{ csrf_field() }}
+                <div class="form-spacer"></div>
                 <section class="inputs-box">
                     <div class="input-container">
                         <input class="text-input" type="text" name="username" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
@@ -131,7 +134,7 @@
 
         @if ($user->last_fm != NULL)
             <div class="user-top-lastfm-unlink-{{$user->id}}" onclick="expandUserOptions(event, 'unlink', {{$user->id}})" id="unlink-button">
-                <div class="expand">
+                <div class="expand" style="padding-right: 0px;">
                     <p> Unlink Last.FM Account </p>
                     <span class="material-icons">expand_more</span>
                 </div>

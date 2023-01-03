@@ -74,12 +74,30 @@
         <section class="review">
             <div class="review-head">
                 <div class="reviewer-info">
-                    <img alt="User profile picture" src={{ UploadController::getUserProfilePic($review['reviewer_id']) }} class="reviewer-pfp">
-                    <div>
-                        <p class="reviewer-name">{{$review['reviewer']['username']}}</p>
-                        <p class="reviewer-score subtitle1">{{$review['score']}}<span class="material-icons"  style="color:var(--star);">star</span></p>
-                        <p class="reviewer-date"> {{$review['date']}} </p>
-                    </div>
+                    @if ($review['reviewer']->is_blocked)
+                        <img alt="User profile picture" src={{ UploadController::getUserProfilePic('-1') }} class="reviewer-pfp">
+                        <div>
+                            <p class="reviewer-name">Blocked</p>
+                            <p class="reviewer-score subtitle1">{{$review['score']}}<span class="material-icons"  style="color:var(--star);">star</span></p>
+                            <p class="reviewer-date"> {{$review['date']}} </p>
+                        </div>
+                    @elseif ($review['reviewer']->is_deleted)
+                        <img alt="User profile picture" src={{ UploadController::getUserProfilePic('-1') }} class="reviewer-pfp">
+                        <div>
+                            <p class="reviewer-name">Deleted</p>
+                            <p class="reviewer-score subtitle1">{{$review['score']}}<span class="material-icons"  style="color:var(--star);">star</span></p>
+                            <p class="reviewer-date"> {{$review['date']}} </p>
+                        </div>
+                    @else
+                        <a href={{route('profile', ['id' => $review['reviewer']->id])}}>
+                            <img alt="User profile picture" src={{ UploadController::getUserProfilePic($review['reviewer_id']) }} class="reviewer-pfp">
+                        </a>
+                        <div>
+                            <a href={{route('profile', ['id' => $review['reviewer']->id])}} class="reviewer-name">{{$review['reviewer']['username']}}</a>
+                            <p class="reviewer-score subtitle1">{{$review['score']}}<span class="material-icons"  style="color:var(--star);">star</span></p>
+                            <p class="reviewer-date"> {{$review['date']}} </p>
+                        </div>
+                    @endif
                 </div>
                 @if ($edit)
                 <div id="review-edit-options">

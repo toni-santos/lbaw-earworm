@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => "admin"])
+@include('partials.common.head', ['page' => "admin", 'title' => ' - Create Product'])
 <main id="content-wrapper">
     <div id="side-image">
 

@@ -22,10 +22,11 @@
         </div>
     </div>
     <div class="result-bot-{{$product->id}}">
-        <div>
+        <div class="form-bot-wrapper">
             <form method="POST" class="form-bot" action="{{route('adminUpdateProduct', ['id' => $product->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
+                    <div class="form-spacer"></div>
                     <div class="input-container">
                         <input class="text-input" type="number" name="stock" min="0" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
                         <label class="input-label" for="stock">Stock</label>
@@ -48,7 +49,7 @@
                 </section>
                 <button class="confirm-button" type="submit">Change</button> 
             </form>
-            <form method="POST" enctype="multipart/form-data" class="middle-form form-bot" action="{{route('adminUpdateProductProfilePic', ['id' => $product->id])}}">
+            <form method="POST" enctype="multipart/form-data" class="form-bot" action="{{route('adminUpdateProductProfilePic', ['id' => $product->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
                     <label for="product-pfp-{{$product->id}}" class="upload-button">

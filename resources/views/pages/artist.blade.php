@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => 'artist'])
+@include('partials.common.head', ['page' => 'artist', 'title' => " - " . $artist['name']])
 
 <main>
     <div id="artist-banner">

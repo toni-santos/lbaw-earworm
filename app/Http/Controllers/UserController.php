@@ -52,13 +52,20 @@ class UserController extends Controller
             $suggestProduct['discounted_price'] = ProductController::getDiscountedPrice($suggestProduct->price, $suggestProduct->discount);
         }
 
-        $wishlist = $this->getWishlist();
+        $wishlist = $this->getWishlistById($id);
         $wishlistProducts = array();
-        foreach ($wishlist as $id) {
-            $wishlistProducts[] = Product::findOrFail($id);
-        }  
+        foreach ($wishlist as $wishlist_id) {
+            $wishlistProducts[] = Product::findOrFail($wishlist_id);
+        }
+
+        foreach ($wishlistProducts as $product) {
+            $product['artist_name'] = $product->artist->name;
+            $product['price'] = ProductController::formatPrice($product->price/100);
+            $product['discounted_price'] = ProductController::getDiscountedPrice($product->price, $product->discount);
+        }
 
         $reviews = Review::all()->where('reviewer_id', $id);
+        // dd($reviews);
         foreach ($reviews as $review) {
             $review['product'] = Product::all()->find($review['product_id']);
             $review['reviewer'] = User::all()->find($review['reviewer_id']);
@@ -88,6 +95,19 @@ class UserController extends Controller
         else {
             return to_route('login');
         }
+    }
+
+    public static function getWishlistById(int $id) {
+        $user = User::findOrFail($id);
+        $list = $user->wishlist->toArray();
+        $wishlist = [];
+
+        foreach ($list as $product) {
+            $wishlist[] = $product['id'];
+        }
+        
+        return $wishlist;
+
     }
 
     public static function getWishlist() {
@@ -205,9 +225,9 @@ class UserController extends Controller
 
         foreach($topAlbums as $album) {
             
-            $product = Product::where('name', 'ILIKE', "%{$album['name']}")->get(); 
+            $product = Product::where('name', 'ILIKE', "%{$album['name']}%")->get(); 
             if (!empty($product->toArray())) array_push($recommendations, $product[0]);
-
+           
         }
 
         session(['for_you' => $recommendations]);

@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => "cart"])
+@include('partials.common.head', ['page' => "cart", 'title' => ' - Cart'])
 
 <main>
     @if (session('cart'))
@@ -36,8 +36,8 @@
         </div>
     @else
         <div id="empty-cart-wrapper">
-            <h2 id="empty-cart-text">Nothing in cart. <a>Time to change that!</a></h2>
-            <a href="{{route('catalogue')}}">.<img id="empty-cart-catalogue-icon" src="/storage/images/icons/compact-disc-solid.svg"></a>
+            <h2 id="empty-cart-text">Nothing in cart. <a href="{{route('catalogue')}}">Time to change that!</a></h2>
+            <a href="{{route('catalogue')}}"><img id="empty-cart-catalogue-icon" src="{{url('storage/images/icons/compact-disc-solid.svg')}}"></a>
         </div>
     @endif
 </main>

@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => "about-us"])
+@include('partials.common.head', ['page' => "about-us", 'title' => ' - About Us'])
 
 <main id="about-us-main">
     <section id="about-us-introduction">

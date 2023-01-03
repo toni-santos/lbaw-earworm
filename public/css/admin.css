@@ -1,15 +1,11 @@
 main{
     padding-top: 100px;
-    background-color: var(--black);
+    background-color: var(--background-dark);
 }
 
 .subtitle-container > p {
     color: var(--white);
     border-color: var(--white);
-}
-
-#index-main {
-    padding-bottom: 0px;
 }
 
 #admin-form-wrapper {
@@ -21,11 +17,6 @@ main{
     justify-content: center;
 }
 
-.result-wrapper {
-    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
-}
 
 #sb {
     position: relative;
@@ -50,6 +41,11 @@ div[class^='result-top-'] {
     z-index: 1;
 }
 
+div[class^='result-top-']:hover, div[class^='result-top-']:hover * {
+    background-color: var(--dark-accent);
+    transition: all 0.2s ease-in-out;
+}
+
 .result-info {
     display: flex;
     flex-direction: column;
@@ -71,12 +67,9 @@ div[class^='result-bot-'] {
     max-height: 0px;
     overflow: hidden;
     justify-content: center;
-    background-color: var(--sub-accent);
     color: white;
     transition: all 0.2s ease-in-out;
-    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    padding-inline: 40px;
 }
 
 div[class^='result-bot-'] >div {
@@ -87,8 +80,16 @@ div[class^='result-bot-'] >div {
     justify-content: center;
 }
 
+.form-bot-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
 .confirm-button {
     width: 300px;
+    margin-top: 0px;
 }
 
 .form-bot {
@@ -96,6 +97,12 @@ div[class^='result-bot-'] >div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--sub-teal);
+    padding: 10px;
+    gap: 10px;
+    -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
 }
 
 .inputs-box {
@@ -173,11 +180,19 @@ div[class^='result-bot-'] >div {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    padding: 16px;
-    padding-inline: 70px;
+    background-color: var(--sub-teal);
+    width: fit-content;
+    
+    padding: 10px;
+    padding-top: 25px;
     align-items: center;
     justify-content: center;
+    align-self: center;
 } 
+
+#misc-notif-form-wrapper > * {
+    box-shadow: none;
+}
 
 #welcome-dashboard {
     padding-inline: 70px;
@@ -209,9 +224,10 @@ div[class^='result-bot-'] >div {
 }
 
 #flash-topics {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
     padding-inline: 70px;
     padding-block: 40px;
     justify-content: center;
@@ -244,6 +260,15 @@ div[class^='result-bot-'] >div {
     width: 100%;
 }
 
+.invis-button > div > p:first-child {
+    text-align: start;
+}
+
+.flash-item:hover  {
+    scale: 1.05;
+    transition: scale 0.2s ease-in-out;
+}
+
 .flash-card {
     display: flex;
     flex-direction: column;
@@ -251,10 +276,11 @@ div[class^='result-bot-'] >div {
     background-color: var(--main-accent);
     padding: 20px;
     color: var(--white);
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     min-width: 250px;
-    height: 100%;
-    /* flex-basis: calc(50% - 40px); */
+    /* height: 100%; */
+    flex-basis: calc(50% - 20px);
     -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
@@ -274,6 +300,8 @@ div[class^='result-bot-'] >div {
 
 #artist-card-desc {
     font-size: large;
+    text-align: start;
+    width: 100%;
 }
 
 textarea {
@@ -289,8 +317,24 @@ textarea {
     align-items: flex-start;
 }
 
+@media (max-width: 1000px) {
+    #flash-topics {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .flash-card {
+        flex-basis: 1;
+        flex-shrink: 1;
+    }
+}
+
 @media (max-width: 768px) {
- 
+    
+    main {
+        padding-top: 120px;
+    }
+
     div[class^='result-top-'] {
         display: flex;
         flex-direction: column;
@@ -481,4 +525,8 @@ section[id^='inputs-box-'] .text-input:is(:not(:placeholder-shown), :focus)+labe
     border-top: 1px solid var(--white);
     padding-block: 10px;
     margin-block: 10px;
+}
+
+.pagination {
+    color: var(--white);
 }

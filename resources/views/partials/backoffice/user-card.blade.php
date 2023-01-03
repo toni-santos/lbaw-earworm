@@ -17,10 +17,11 @@
         </div>
     </div>
     <div class="result-bot-{{$user->id}}">
-        <div>
+        <div class="form-bot-wrapper">
             <form method="POST" class="form-bot" action="{{route('adminUpdateUser', ['id' => $user->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
+                    <div class="form-spacer"></div>
                     <div class="input-container">
                         <input class="text-input" type="text" name="username" onkeyup="updateForm(event)" onfocus="checkFilled(event)" placeholder=" ">
                         <label class="input-label" for="username">Name</label>
@@ -42,7 +43,7 @@
                 <button class="confirm-button" type="submit">Change</button>
             </form>
 
-            <form method="POST" enctype="multipart/form-data" class="middle-form form-bot" action="{{route('adminUpdateUserProfilePic', ['id' => $user->id])}}">
+            <form method="POST" enctype="multipart/form-data" class="form-bot" action="{{route('adminUpdateUserProfilePic', ['id' => $user->id])}}">
                 {{ csrf_field() }}
                 <section class="inputs-box">
                     <label for="user-pfp-{{$user->id}}" class="upload-button">

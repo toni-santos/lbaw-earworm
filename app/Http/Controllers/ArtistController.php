@@ -39,6 +39,7 @@ class ArtistController extends Controller
         foreach ($products as $product) {
             $product['artist_name'] = $product->artist->name;
             $product['price'] = $product->price/100;
+            $product['discounted_price'] = ProductController::getDiscountedPrice($product->price, $product->discount);
         }
         
         $wishlist = UserController::getWishlist();

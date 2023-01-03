@@ -10,17 +10,19 @@
   --cedar-chest: #e9785c;
   --chinese-red: #b4482d;
   --vivid-red: #dd2727;
-
+  
   --deep-purple: rgb(42, 26, 87);
   --dark-purple: #1e123d;
   --navy: hsl(256, 54%, 22%);
   --dark-navy: #1e123d;
   --teal: #227C70;
+  --sub-teal: #0F786Aff;
   --dark-teal: #154942;
   --sage: #88A47C;
   --beige: #E6E2C3;
   --old-gold: #CFB53B;
   --flax: #E0CF80;
+  --dark-grey: #121212ff;
   
   --main-accent: var(--navy);
   --sub-accent: var(--teal);
@@ -31,7 +33,7 @@
   --warning-accent: var(--vivid-red);
   
   --background-light: var(--white);
-  --background-dark: var(--raisin-black);
+  --background-dark: var(--dark-grey);
   
   --light-text: var(--white);
   --dark-text: var(--raisin-black);
@@ -377,14 +379,45 @@ div[class^='cart-item-'] {
   grid-template-columns: 2fr 2fr 1fr;
 }
 
-a[class^='notification-item-'] {
+a[class^='notification-dropdown-item-'] {
   display: flex;
   flex-direction: row;
   width: 100%;
   font-size: medium;
   align-items: center;
   gap: 10px;
+  position: relative;
 }
+
+.notification-dropdown-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.notification-dropdown-replacement {
+  width: fit-content;
+  height: fit-content;
+  font-size: 60px;
+}
+
+.notif-dropdown-clear {
+  position: absolute;
+  top: -2px;
+  right: 5px;
+  font-size: medium;
+}
+
+.notification-dropdown-description {
+  width: 400px;
+  min-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 
 .cart-remove {
   margin-left: auto;
@@ -728,6 +761,8 @@ div[class^='cart-desc-'], div[class^='wishlist-item-desc'] {
 }
 
 .dropdown-warning {
+  width: 100%;
+  text-align: center;
   position:absolute;
   top: 50%;
   left: 50%;
@@ -847,6 +882,7 @@ article[id^="review-message-"] {
 
 div[class^="message-box-wrapper"] {
     display: flex;
+    width: 100%;
     flex-direction: row;
     font-size: medium;
     padding: 10px;
@@ -854,15 +890,16 @@ div[class^="message-box-wrapper"] {
     align-items: center;
     align-content: center;
     gap: 10px;
-    background-color: var(--light-accent);
+    background-color: var(--sub-accent);
     color: var(--white);
     flex-basis: calc(50% - 20px);
     -webkit-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
     -moz-box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
     box-shadow: 0px 0px 40px -10px rgba(0,0,0,0.33);
     max-width: 300px;
-
-    position: absolute;
+    
+    position: fixed;
+    z-index: 999;
     margin: 10px;
     bottom: 0;
     right: 0;
@@ -874,4 +911,13 @@ div[class^="message-box-wrapper"] {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+.not-available {
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  font-weight: bold;
+  color: var(--black);
+  width: 100%;
 }

@@ -20,6 +20,17 @@ new Flickity("#carousel-fav-artists", {
     cellSelector: ".artist-card",
 });
 
+new Flickity("#carousel-wishlist", {
+    draggable: true,
+    wrapAround: true,
+    groupCells: "100%",
+    autoPlay: true,
+    dragThreshold: 10,
+    prevNextButtons: true,
+    resize: true,
+    cellSelector: ".product-card",
+});
+
 window.onload = function() {
     let background = document.getElementById('user-banner');
     let image = document.getElementById("user-pfp");
@@ -49,19 +60,4 @@ function toggleEditReview(event, id) {
         prev_review.style.maxHeight = '0px';
         prev_review.style.paddingTop = "0px";
     }
-}
-
-async function clearNotification(event, id) {
-    event.preventDefault();
-    const response = await fetch(`/notification/clear/${id}`, {
-        method: "POST",
-        credentials: 'include',
-        headers: {
-            "X-CSRF-Token": document.querySelectorAll(`meta`)[3].content
-        }
-    });
-    const success = await response.text(); 
-    console.log(success);
-
-    document.querySelector(`.notification-card-${id}`).remove();
 }

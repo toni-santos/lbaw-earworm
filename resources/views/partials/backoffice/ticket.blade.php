@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="result-bot-{{$ticket->id}}">
-        <div>
+        <div class="form-bot-wrapper">
             <form method="POST" class="form-bot" action="{{route('adminAnswerTicket', ['id' => $ticket->ticketer_id])}}">
                 {{ csrf_field() }}
                 <div class="input-container">
@@ -27,7 +27,7 @@
             </form>
             <form method="POST" class="form-bot" action="{{route('adminDeleteTicket', ['id' => $ticket->id])}}">
                 {{ csrf_field() }}
-                <button class="confirm-button" type="submit">Delete</button>
+                <button class="confirm-button" type="submit">Solve</button>
             </form>
         </div>
     </div>

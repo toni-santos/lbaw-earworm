@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="result-bot-{{$order->id}}">
-        <div>
+        <div class="form-bot-wrapper">
             @if ($order->state != "Canceled")
                 <form method="POST" class="form-bot" action="{{route('adminUpdateOrder', ['id' => $order->id])}}">
                     {{ csrf_field() }}

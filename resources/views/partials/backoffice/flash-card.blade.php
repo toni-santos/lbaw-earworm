@@ -46,7 +46,6 @@
                             <p>Report ID: {{$item['id']}}</p>
                             <p>Reporter ID: {{$item['reporter_id']}}</p>
                             <p>Reported ID: {{$item['reported_id']}}</p>
-                            <p title="{{$item['message']}}" class="flash-message">Message: {{$item['message']}}</p>
                         </div>
                     </button>
                 </form>

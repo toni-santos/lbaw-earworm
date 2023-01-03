@@ -6,7 +6,7 @@
                 @include('partials.cart.cart-item', ['id' => $id, 'details' => $details])
             @endforeach
         @else
-            <p class="dropdown-warning">Nothing in cart.</p>
+            <p class="dropdown-warning">Nothing in cart</p>
         @endif
     </div>
     <a href="{{ route('cart')}}" class="nav-button"> Purchase </a>

@@ -1,3 +1,7 @@
+main {
+    padding-top: 100px;
+}
+
 #about-us-main {
     padding-block: 70px;
     display: flex;
@@ -106,6 +110,9 @@ div[id^="faq-section-bot-"] {
     width: 100%;
     display:flex;
     flex-direction: column;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
 }
 
 div[id^="faq-drop-top"] {
@@ -126,11 +133,15 @@ div[id^="faq-drop-top"]:hover {
 }
 
 div[id^="faq-drop-bot"] {
-    margin: 8px;
-    padding: 10px;
+    margin-inline: 8px;
+    padding-inline: 10px;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     align-items: left;
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
 
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 3px 10px 0 rgba(0, 0, 0, 0.10);
     background-color: var(--light-contrast);
@@ -142,6 +153,10 @@ div[id^="faq-drop-bot"] a {
     text-decoration: underline;
     width: auto;
     color: var(--sub-accent);
+    max-height: 0px;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+
 }
 
 #tickets-form-wrapper {
@@ -165,4 +180,12 @@ textarea {
 
 .textarea-container {
     width: 100%;
+}
+
+@media (max-width: 768px) {
+
+    main {
+        padding-top: 120px;
+    }
+
 }

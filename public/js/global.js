@@ -90,23 +90,32 @@ function validateForm(form) {
     return true;
 }
 
-// faq
-
-async function toggleFAQSection(event, section) {
-    section_bot = document.getElementById(`faq-section-bot-${section}`);
-    if (section_bot.style.display == "none") section_bot.style.display = "flex";
-    else section_bot.style.display = "none";
-}
-
-async function toggleFAQ(event, section, id) {
-    faq_bot = document.getElementById(`faq-drop-bot-${section}-${id}`);
-    if (faq_bot.style.display == "none") {
-        faq_bot.style.display = "flex";
-    } else faq_bot.style.display = "none";
-}
-
 
 async function clearMessage(event, id) {
     event.preventDefault();
     document.querySelector(`.message-box-wrapper-${id}`).remove();
+}
+
+async function clearNotification(event, id) {
+    event.preventDefault();
+    const response = await fetch(`/notification/clear/${id}`, {
+        method: "POST",
+        credentials: 'include',
+        headers: {
+            "X-CSRF-Token": document.querySelectorAll(`meta`)[3].content
+        }
+    });
+    const success = await response.text(); 
+    console.log(success);
+
+    try {
+        document.querySelector(`.notification-card-${id}`).remove();
+    }catch(e) {
+        console.log(e);
+    }
+    try {
+        document.querySelector(`.notification-dropdown-item-${id}`).remove();
+    } catch (e) {
+        console.log(e);
+    }
 }

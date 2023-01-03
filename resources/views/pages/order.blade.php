@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => "orders"])
+@include('partials.common.head', ['page' => "orders", 'title' => ' - Orders'])
 
 <main>
     @include('partials.common.subtitle', ['title' => "Orders"])

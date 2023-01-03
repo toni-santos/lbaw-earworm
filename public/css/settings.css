@@ -1,3 +1,13 @@
+#main-wrapper {
+    padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+    #main-wrapper {
+        padding-top: 120px;
+    }    
+}
+
 #nav-tags {
     display: flex;
     flex-direction: row;
@@ -43,12 +53,11 @@ div[id$="-tag"]:hover {
 }
 
 div[class^='user-top-'] {
-    padding: 16px;
+    padding: 10px;
     color: var(--light-text);
-    background-color: var(--sub-accent);
-    font-size: 20px;
-    /* box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10), 0 3px 10px 0 rgba(0, 0, 0, 0.10); */
-    margin-inline: 40px;
+    background-color: var(--main-accent);
+    font-size: large;
+    margin-inline: 70px;
     -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);  
@@ -56,8 +65,8 @@ div[class^='user-top-'] {
 }
 
 div[class^='user-top-']:hover {
-    background-color: var(--sub-dark-accent);
-    transition: 0.3s ease;
+    background-color: var(--dark-accent);
+    transition: 0.2s ease-in-out;
     
 }
 
@@ -121,12 +130,43 @@ div[class^='user-bot-'] {
 
 .zone-name {
     margin: 0px;
+    padding-bottom: 10px;
+    font-size: large;
+    color: white;
 }
 
 .form-bot {
-    background-color: var(--light-accent);
+    background-color: var(--sub-teal);
+    gap: 10px;
     padding: 10px;
     -webkit-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 50px -25px rgba(0, 0, 0, 0.75);  
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text-input:is(:not(:placeholder-shown), :focus) + label,
+.select-input:valid + label {
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    font-size: medium;
+    color: var(--white);
+}
+
+.confirm-button:hover {
+    background-color: var(--dark-accent);
+}
+
+.confirm-button {
+    margin-top: 0px;
+}
+
+.upload-button {
+    margin-top: 0px;
 }

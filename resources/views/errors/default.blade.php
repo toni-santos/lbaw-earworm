@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => "error"])
+@include('partials.common.head', ['page' => "error",'title' => ' - {{$exception->getStatusCode()}}'])
 <main>
     <section class="error-page-wrapper">
         <h1 class="error-header">Something went wrong!</h1>

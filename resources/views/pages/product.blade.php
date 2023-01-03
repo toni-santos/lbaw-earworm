@@ -1,5 +1,4 @@
-@include('partials.common.head', ['page' => "product"])
-
+@include('partials.common.head', ['page' => "product", 'title' => ' - ' . $product->name])
 <main id="content-wrapper">
     <div id="product-grid">
         <div id="product-img-wrapper">
@@ -10,7 +9,7 @@
                 <p id="product-name">{{$product->name}}</p>
                 <a href="/artist/{{$product['artist_id']}}" id="product-artist">{{$product->artist->name}}</a>
                 @if ($product->rating)
-                    <p id="rating">{{$product->rating}}/5<span class="material-icons" style="color:var(--star);">star</span></p>                    
+                    <p id="rating">{{number_format((float)($product->rating), 1, '.', '')}}/5<span class="material-icons" style="color:var(--star);">star</span></p>                    
                 @else
                     <p id="rating">N/A<span class="material-icons" style="color:var(--star);">star</span></p>
                 @endif
@@ -56,16 +55,18 @@
         </div>
     </div>
     @include('partials.common.subtitle', ['title' => "Reviews"])
+    @if (Auth::check() && !isset($product->previous_review)) 
     <div id="review-box-wrapper">
-        @if (Auth::check() && isset($product->previous_review)) 
-            {{-- @include('partials.common.subtitle', ['title' => "Your Previous Review"]) --}}
-            @include('partials.forms.edit-review-form', ['review' => $product->previous_review])
-        @else
-            @include('partials.forms.review-form')
-        @endif
+        {{-- @include('partials.common.subtitle', ['title' => "Your Previous Review"]) --}}
+        @include('partials.forms.review-form')
     </div>
+    @endif
+    {{-- @include('partials.forms.edit-review-form', ['review' => $product->previous_review]) --}}
     <div id="reviews-wrapper">
         <section id="reviews">
+            @if (Auth::check() && isset($product->previous_review))
+                @include('partials.common.review', ['type' => "product", 'review' => $product->previous_review, 'edit' => true])                        
+            @endif
             @foreach ($reviews as $review)
                 @include('partials.common.review', ['type' => "product", 'review' => $review, 'edit' => false])                
             @endforeach

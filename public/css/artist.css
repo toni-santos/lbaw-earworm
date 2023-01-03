@@ -23,15 +23,24 @@
     left: 70px;
 }
 
+#artist-top > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:3px;
+    padding-bottom: 5px;
+}
+
 #artist-name {
     width: 180px;
     font-size: x-large;
     font-weight: bold;
-    padding-bottom: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: horizontal;
+  
 }
 
 #artist-description {

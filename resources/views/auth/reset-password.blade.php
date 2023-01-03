@@ -1,4 +1,4 @@
-@include('partials.common.head', ['page' => "settings"])
+@include('partials.common.head', ['page' => "settings", 'title' => ' - Reset Password'])
 <main id="main-wrapper">
     @include('partials.common.subtitle', ['title' => "Reset Password"])
     <form id="form-signup" method="POST" action= "{{ route('resetPassword')}}">

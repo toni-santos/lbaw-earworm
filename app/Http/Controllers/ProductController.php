@@ -28,7 +28,7 @@ class ProductController extends Controller
         foreach ($products as $suggestProduct) {
             $suggestProduct['artist_name'] = $suggestProduct->artist->name;
             $suggestProduct['price'] = ProductController::formatPrice($suggestProduct->price/100);
-            $suggestProduct['discounted_price'] = ProductController::getDiscountedPrice($product->price, $product->discount);
+            $suggestProduct['discounted_price'] = ProductController::getDiscountedPrice($suggestProduct->price, $suggestProduct->discount);
    
         }
 
@@ -41,9 +41,9 @@ class ProductController extends Controller
         }
         
         $reviews = Review::all()->where('product_id', $id);
+
         $reviewsTrimmed = array();
         foreach ($reviews as $review) {
-            $review['product'] = Product::all()->find($review['product_id']);
             $review['reviewer'] = User::all()->find($review['reviewer_id']);
             if ($logged) {
                 if ($user_id == $review['reviewer_id']) 
@@ -357,7 +357,16 @@ class ProductController extends Controller
     public static function wishlist(Request $request) {
 
         $user = User::findOrFail(Auth::id());
-        $wishlist = $user->wishlist->toArray();
+        $wishlist = $user->wishlist;
+
+        foreach ($wishlist as $product) {
+            
+            $product['artist_name'] = $product->artist->name;
+            $product['price'] = ProductController::formatPrice($product->price / 100);
+            $product['discounted_price'] = ProductController::getDiscountedPrice($product->price, $product->discount);
+
+        }
+
 
         return view('pages.wishlist', ['wishlist' => $wishlist]);
 
