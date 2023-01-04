@@ -1,116 +1,115 @@
 openapi: 3.0.0
 
 info:
- version: '1.0'
- title: 'LBAW EarWorm Web API'
- description: 'Web Resources Specification (A7) for MediaLibrary'
+  version: "1.0"
+  title: "LBAW EarWorm Web API"
+  description: "Web Resources Specification (A7) for MediaLibrary"
 
 servers:
-- url: http://lbaw.fe.up.pt
-  description: Production server
+  - url: http://lbaw.fe.up.pt
+    description: Production server
 
 externalDocs:
 
 tags:
- - name: 'M01: Authentication and Individual Profile'
- - name: 'M02: Products'
- - name: 'M03: Artists'
- - name: 'M04: Reviews'
- - name: 'M05: Wishlist'
- - name: 'M06: Orders'
- - name: 'M07: Cart'
- - name: 'M08: Reports and Tickets'
- - name: 'M09: User Administration'
- - name: 'M10: Static Pages'
+  - name: "M01: Authentication and Individual Profile"
+  - name: "M02: Products"
+  - name: "M03: Artists"
+  - name: "M04: Reviews"
+  - name: "M05: Wishlist"
+  - name: "M06: Orders"
+  - name: "M07: Cart"
+  - name: "M08: Reports and Tickets"
+  - name: "M09: User Administration"
+  - name: "M10: Static Pages"
 
 paths:
-
   # -------------- #
   # M01 - Authentication and Individual Profile #
 
   /login:
-   get:
-     operationId: R101
-     summary: 'R101: Login Form'
-     description: 'Provide login form. Access: VIS'
-     tags:
-       - 'M01: Authentication and Individual Profile'
-     responses:
-       '200':
-         description: 'Ok. Show Login UI'
-   post:
-     operationId: R102
-     summary: 'R102: Login Action'
-     description: 'Process the login form submission. Access: VIS'
-     tags:
-       - 'M01: Authentication and Individual Profile'
-
-     requestBody:
-       required: true
-       content:
-         application/x-www-form-urlencoded:
-           schema:
-             type: object
-             properties:
-               email:  
-                 type: string
-               password:    
-                 type: string
-             required:
-                  - email
-                  - password
-
-     responses:
-       '302':
-         description: 'Redirect after processing the login credentials.'
-         headers:
-           Location:
-             schema:
-               type: string
-             examples:
-               302Success:
-                 description: 'Successful authentication. Redirect to product catalogue.'
-                 value: '/products'
-               302Error:
-                 description: 'Failed authentication. Redirect to login form.'
-                 value: '/login'
-
-  /logout:
-    post:
-      operationId: R103
-      summary: 'R103: Logout Action'
-      description: 'Logout the current authenticated user. Access: CLI, ADM'
+    get:
+      operationId: "R101"
+      summary: "R101: Login Form"
+      description: "Provide login form. Access: VIS"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
       responses:
-        '302':
-          description: 'Redirect after processing logout.'
+        "200":
+          description: "Ok. Show Login UI"
+    post:
+      operationId: "R102"
+      summary: "R102: Login Action"
+      description: "Process the login form submission. Access: VIS"
+      tags:
+        - "M01: Authentication and Individual Profile"
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+
+      responses:
+        "302":
+          description: "Redirect after processing the login credentials."
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful logout. Redirect to login form.'
-                  value: '/login'
+                  description: "Successful authentication. Redirect to product catalogue."
+                  value: "/products"
+                302Error:
+                  description: "Failed authentication. Redirect to login form."
+                  value: "/login"
+
+  /logout:
+    post:
+      operationId: "R103"
+      summary: "R103: Logout Action"
+      description: "Logout the current authenticated user. Access: CLI, ADM"
+      tags:
+        - "M01: Authentication and Individual Profile"
+      responses:
+        "302":
+          description: "Redirect after processing logout."
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: "Successful logout. Redirect to login form."
+                  value: "/login"
 
   /register:
     get:
-      operationId: R104
-      summary: 'R104: Register Form'
-      description: 'Provide new user registration form. Access: VIS'
+      operationId: "R104"
+      summary: "R104: Register Form"
+      description: "Provide new user registration form. Access: VIS"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
       responses:
-        '200':
-          description: 'Ok. Show Sign-Up UI'
+        "200":
+          description: "Ok. Show Sign-Up UI"
 
     post:
-      operationId: R105
-      summary: 'R105: Register Action'
-      description: 'Process the new user registration form submission. Access: VIS'
+      operationId: "R105"
+      summary: "R105: Register Action"
+      description: "Process the new user registration form submission. Access: VIS"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       requestBody:
         required: true
@@ -133,19 +132,19 @@ paths:
                 - password
 
       responses:
-        '302':
-          description: 'Redirect after processing the new user information.'
+        "302":
+          description: "Redirect after processing the new user information."
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to login form so user can login.'
-                  value: '/login'
+                  description: "Successful authentication. Redirect to login form so user can login."
+                  value: "/login"
                 302Error:
-                  description: 'Failed authentication. Redirect to login form.'
-                  value: '/login'
+                  description: "Failed authentication. Redirect to login form."
+                  value: "/login"
 
   /user/{id}:
     parameters:
@@ -156,42 +155,42 @@ paths:
         required: true
 
     get:
-      operationId: R106
-      summary: 'R106: View User Profile'
-      description: 'Show a user profile page. Access: VIS, OWN, ADM'
+      operationId: "R106"
+      summary: "R106: View User Profile"
+      description: "Show a user profile page. Access: VIS, OWN, ADM"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       responses:
-        '200':
-          description: 'Ok. Show User Profile UI'
+        "200":
+          description: "Ok. Show User Profile UI"
 
-  /user/{id}/settings:
+  /user/settings/{id}:
     parameters:
       - in: path
         name: id
         schema:
           type: integer
         required: true
-    
+
     get:
-      operationId: R107
-      summary: 'R107: Edit Profile Form'
-      description: 'Provide edit profile form. Access: OWN'
+      operationId: "R107"
+      summary: "R107: Edit Profile Form"
+      description: "Provide edit profile form. Access: OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
       responses:
-        '200':
-          description: 'Ok. Show Edit Profile UI'
-        '403':
-          description: 'You do not have the required permissions to access this page.'
+        "200":
+          description: "Ok. Show Edit Profile UI"
+        "403":
+          description: "You do not have the required permissions to access this page."
 
     post:
       operationId: R108
-      summary: 'R108: Edit Profile Action'
-      description: 'Process the edit profile form submission. Access: OWN'
+      summary: "R108: Edit Profile Action"
+      description: "Process the edit profile form submission. Access: OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       requestBody:
         required: true
@@ -206,32 +205,31 @@ paths:
                   type: string
 
       responses:
-        '302':
-          description: 'Redirect after processing the new user information.'
+        "302":
+          description: "Redirect after processing the new user information."
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful edit. Redirect to user profile.'
-                  value: '/user/{id}'
+                  description: "Successful edit. Redirect to user profile."
+                  value: "/user/{id}"
                 302Error:
-                  description: 'Failed edit. Redirect to user profile.'
-                  value: '/user/{id}'      
+                  description: "Failed edit. Redirect to user profile."
+                  value: "/user/{id}"
 
   /user:
     get:
-      operationId: 'R109'
-      summary: 'R109: View Own Profile'
-      description: 'Show individual user profile page. Access: OWN'
+      operationId: "R109"
+      summary: "R109: View Own Profile"
+      description: "Show individual user profile page. Access: OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       responses:
-        '200':
-          description: 'Ok. Show User Profile UI'
-
+        "200":
+          description: "Ok. Show User Profile UI"
 
   /user/settings/recover-password:
     parameters:
@@ -239,14 +237,14 @@ paths:
         name: id
         schema:
           type: integer
-        required: true         
+        required: true
 
-     post:
-      operationId: 'R110'
-      summary: 'R110: Recover Password'
-      description: 'Process the recover profile form submission. Access: OWN'
+    post:
+      operationId: "R110"
+      summary: "R110: Recover Password"
+      description: "Process the recover profile form submission. Access: OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       requestBody:
         required: true
@@ -255,12 +253,12 @@ paths:
             schema:
               type: string
             examples:
-                302Success:
-                  description: 'Email successfully sent. Redirect to user profile settings.'
-                  value: '/user/settings/{id}'
-                302Error:
-                  description: 'Failed email. Redirect to user profile settings.'
-                  value: '/user/settings/{id}' 
+              302Success:
+                description: "Email successfully sent. Redirect to user profile settings."
+                value: "/user/settings/{id}"
+              302Error:
+                description: "Failed email. Redirect to user profile settings."
+                value: "/user/settings/{id}"
 
   /user/settings/upload-profile-pic/{id}:
     parameters:
@@ -268,14 +266,14 @@ paths:
         name: id
         schema:
           type: integer
-        required: true         
+        required: true
 
-      post:
-      operationId: 'R111'
-      summary: 'R111: Upload Profile Picture'
-      description: 'Process the new uploaded profile picture. Access: OWN'
+    post:
+      operationId: "R111"
+      summary: "R111: Upload Profile Picture"
+      description: "Process the new uploaded profile picture. Access: OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       requestBody:
         required: true
@@ -284,12 +282,12 @@ paths:
             schema:
               type: image
             examples:
-                302Success:
-                  description: 'Picture successfuly updated. Redirect to user profile settings.'
-                  value: '/user/settings/{id}'
-                302Error:
-                  description: 'Picture successfuly updated. Redirect to user profile settings.'
-                  value: '/user/settings/{id}' 
+              302Success:
+                description: "Picture successfuly updated. Redirect to user profile settings."
+                value: "/user/settings/{id}"
+              302Error:
+                description: "Picture successfuly updated. Redirect to user profile settings."
+                value: "/user/settings/{id}"
 
   /user/settings/change-password/{id}:
     parameters:
@@ -297,14 +295,14 @@ paths:
         name: id
         schema:
           type: integer
-        required: true         
+        required: true
 
-      post:
-      operationId: 'R112'
-      summary: 'R112: Change Account password'
-      description: 'Process the new inputted password. Access: OWN'
+    post:
+      operationId: "R112"
+      summary: "R112: Change Account password"
+      description: "Process the new inputted password. Access: OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       requestBody:
         required: true
@@ -312,38 +310,38 @@ paths:
           application/x-www-form-urlencoded:
             schema:
               properties:
-               old-password:  
-                 type: string
-               new-password:    
-                 type: string
-               repeat-password:
-                 type: string
-             required:
-                  - old-password
-                  - new-password
-                  - repeat-password
+                old-password:
+                  type: string
+                new-password:
+                  type: string
+                repeat-password:
+                  type: string
+              required:
+                - old-password
+                - new-password
+                - repeat-password
             examples:
-                302Success:
-                  description: 'Password successfully updated. Redirect to user profile settings.'
-                  value: '/user/settings/{id}'
-                302Error:
-                  description: 'Password update failed. Redirect to user profile settings.'
-                  value: '/user/settings/{id}' 
-          
+              302Success:
+                description: "Password successfully updated. Redirect to user profile settings."
+                value: "/user/settings/{id}"
+              302Error:
+                description: "Password update failed. Redirect to user profile settings."
+                value: "/user/settings/{id}"
+
   /user/settings/last-fm/login:
     parameters:
       - in: path
         name: id
         schema:
           type: integer
-        required: true         
+        required: true
 
     post:
-      operationId: 'R113'
-      summary: 'R113: Link Last-FM Account'
-      description: 'Process the given Last-FM account and link it to the account. Access: OWN'
+      operationId: "R113"
+      summary: "R113: Link Last-FM Account"
+      description: "Process the given Last-FM account and link it to the account. Access: OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       requestBody:
         required: true
@@ -352,135 +350,178 @@ paths:
             schema:
               type: string
             examples:
-                302Success:
-                  description: 'Last-FM successfully updated. Redirect to user profile settings.'
-                  value: '/user/settings/{id}'
-                302Error:
-                  description: 'Last-FM login failed. Redirect to user profile settings.'
-                  value: '/user/settings/{id}' 
-  
-  /user/settings/last-fm/login:
+              302Success:
+                description: "Last-FM successfully updated. Redirect to user profile settings."
+                value: "/user/settings/{id}"
+              302Error:
+                description: "Last-FM login failed. Redirect to user profile settings."
+                value: "/user/settings/{id}"
+
+  /user/settings/last-fm/logout:
     parameters:
       - in: path
         name: id
         schema:
           type: integer
-        required: true         
-
-      post:
-      operationId: 'R114'
-      summary: 'R114: Unlink Last-FM Account'
-      description: 'Remove the Last-FM account associated with the user. Access: OWN'
-      tags:
-        - 'M01: Authentication and Individual Profile'
-
-      requestBody:
         required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: string
-            examples:
-                302Success:
-                  description: 'Last-FM successfully updated. Redirect to user profile settings.'
-                  value: '/user/settings/{id}'
-  
+
+    post:
+    operationId: "R114"
+    summary: "R114: Unlink Last-FM Account"
+    description: "Remove the Last-FM account associated with the user. Access: OWN"
+    tags:
+      - "M01: Authentication and Individual Profile"
+
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: string
+          examples:
+            302Success:
+              description: "Last-FM successfully updated. Redirect to user profile settings."
+              value: "/user/settings/{id}"
+
   /reset-password:
     post:
-      operationId: 'R115'
-      summary: 'R115: Reset Account Password'
-      description: 'Reset and change account password. Access: OWN'
+      operationId: "R115"
+      summary: "R115: Reset Account Password"
+      description: "Reset and change account password. Access: OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
-            type: object
-             properties:
-               email:  
-                 type: string
-               password:    
-                 type: string
-               repeeat-password:
-                 type: string
-             required:
-                  - email
-                  - new-password
-                  - repeat-password
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                repeeat-password:
+                  type: string
+            required:
+              - email
+              - new-password
+              - repeat-password
             examples:
-                302Success:
-                  description: 'Password reset successful. Redirecting to login.'
-                  value: '/login'
-  
+              302Success:
+                description: "Password reset successful. Redirecting to login."
+                value: "/login"
+
   /reset-password/{token}:
-     parameters:
+    parameters:
       - in: path
         name: token
         schema:
           type: string
-        required: true  
+        required: true
     get:
-      operationId: 'R116'
-      summary: 'R116: Reset Account Password Form'
-      description: 'Show reset account password form. Access: VIS, OWN'
+      operationId: "R116"
+      summary: "R116: Reset Account Password Form"
+      description: "Show reset account password form. Access: VIS, OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
       responses:
-        '200':
-          description: 'Ok. Show Reset Account Password Form UI'
-
+        "200":
+          description: "Ok. Show Reset Account Password Form UI"
 
     post:
-      operationId: 'R117'
-      summary: 'R117: Delete account'
-      description: 'Delete user account. Access: OWN'
+      operationId: "R117"
+      summary: "R117: Delete account"
+      description: "Delete user account. Access: OWN"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
 
     requestBody:
       required: true
       content:
         application/x-www-form-urlencoded:
           examples:
-              302Success:
-                description: 'Email successfully deleted. Redirect to login.'
-                value: '/login'
+            302Success:
+              description: "Email successfully deleted. Redirect to login."
+              value: "/login"
+
+  /notification:
+    get:
+      operationId: "R118"
+      summary: "R118: Show Notification Page"
+      description: "Show notification page. Access: ADM, CLI"
+      tags:
+        - "M01: Authentication and Individual Profile"
+      responses:
+        "200":
+          description: "Ok. Show Notification Page UI"
+
+  /notification/clear/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: "R118"
+      summary: "R118: Delete notification"
+      description: "Delete notification. Access: OWN"
+      tags:
+        - "M01: Authentication and Individual Profile"
+
+    requestBody:
+      required: true
+      content:
+        application/json: {}
+
+  /recover-password:
+    get:
+      operationId: "R119"
+      summary: "R119: Recover Account Password Form"
+      description: "Show recover password request form. Access: VIS"
+      tags:
+        - "M01: Authentication and Individual Profile"
+
+      responses:
+        "200":
+          description: "Ok. Show Recover Account Password Form UI"
 
   # -------------- #
   # M02 - Products #
- 
+
   /api/products:
     get:
-      operationId: R201
-      summary: 'R201: Search Products API'
-      description: 'Search for products and return the results as JSON. Access: VIS, CLI, ADM'
+      operationId: "R201"
+      summary: "R201: Search Products API"
+      description: "Search for products and return the results as JSON. Access: VIS, CLI, ADM"
 
       tags:
-        - 'M02: Products'
+        - "M02: Products"
 
       parameters:
         - in: query
           name: query
-          description: 'String to use for full-text search'
+          description: "String to use for full-text search"
           schema:
             type: string
           required: false
 
         - in: query
           name: genre
-          description: 'Genres of the product'
+          description: "Genres of the product"
           schema:
             type: array
             items:
               type: string
           required: false
 
-          - in: query
+        - in: query
           name: format
-          description: 'Formats of the product'
+          description: "Formats of the product"
           schema:
             type: array
             items:
@@ -489,20 +530,20 @@ paths:
 
         - in: query
           name: min_score
-          description: 'Minimum score of the product'
+          description: "Minimum score of the product"
           schema:
             type: float
           required: false
-          
+
         - in: query
           name: max_score
-          description: 'Maximum score of the product'
+          description: "Maximum score of the product"
           schema:
             type: float
           required: false
 
       responses:
-        '200':
+        "200":
           description: Success
           content:
             application/json:
@@ -532,26 +573,26 @@ paths:
                     score:
                       type: float
                 example:
-                - id: 1
-                  name: "GOAA (Greatest Of All Albums)"
-                  artist_id: 109
-                  price: 12.00
-                  stock: 300
-                  format: "Vinyl"
-                  genre: "Pop"
-                  year: "2020"
-                  description: "The greatest album ever made!!"
-                  score: 1.25
-                - id: 2
-                  name: "Mixtape no.1"
-                  artist_id: 127
-                  price: 5.00
-                  stock: 20
-                  format: "Cassette"
-                  genre: "Rap"
-                  year: "2021"
-                  description: "I was bored and made some music."
-                  score: 4.99
+                  - id: 1
+                    name: "GOAA (Greatest Of All Albums)"
+                    artist_id: 109
+                    price: 12.00
+                    stock: 300
+                    format: "Vinyl"
+                    genre: "Pop"
+                    year: "2020"
+                    description: "The greatest album ever made!!"
+                    score: 1.25
+                  - id: 2
+                    name: "Mixtape no.1"
+                    artist_id: 127
+                    price: 5.00
+                    stock: 20
+                    format: "Cassette"
+                    genre: "Rap"
+                    year: "2021"
+                    description: "I was bored and made some music."
+                    score: 4.99
 
   /products/{id}:
     parameters:
@@ -561,33 +602,33 @@ paths:
         schema:
           type: integer
         required: true
-        
+
     get:
-      operationId: R202
-      summary: 'R202: View Product Page'
+      operationId: "R202"
+      summary: "R202: View Product Page"
       description: "Show a specific product page, where all of its information is displayed. Access: VIS, CLI, ADM"
 
       tags:
-        - 'M02: Products'
+        - "M02: Products"
 
       responses:
-        '200':
-          description: 'Ok. Show Product Page UI'
-        '404':
-          description: 'This product does not exist in our store.'       
+        "200":
+          description: "Ok. Show Product Page UI"
+        "404":
+          description: "This product does not exist in our store."
 
   /products:
     get:
-      operationId: R203
-      summary: 'R203: View Catalogue'
+      operationId: "R203"
+      summary: "R203: View Catalogue"
       description: "Show a page with all of the available products."
 
       tags:
-        - 'M02: Products'
+        - "M02: Products"
 
       responses:
-        '200':
-          description: 'Ok. Show Catalogue UI'
+        "200":
+          description: "Ok. Show Catalogue UI"
 
   /product/buy/{id}:
     parameters:
@@ -597,67 +638,67 @@ paths:
           type: integer
         required: true
     get:
-      operationId: R204
-      summary: 'R204: Add Product to Cart'
+      operationId: "R204"
+      summary: "R204: Add Product to Cart"
       description: "Add displayed product to cart."
 
       tags:
-        - 'M02: Products'
+        - "M02: Products"
 
       responses:
-        '200':
-          description: 'Ok. Show Product Page UI'
+        "200":
+          description: "Ok. Show Product Page UI"
 
   # ------------- #
   # M03 - Artists #
 
   /artist/{id}:
     parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
 
-      get:
-        operationId: 'R301'
-        summary: 'R301: View Artist Profile'
-        description: 'Show an artist profile page. Access: VIS, OWN, ADM'
-        tags:
-          - 'M03: Artists'
+    get:
+      operationId: "R301"
+      summary: "R301: View Artist Profile"
+      description: "Show an artist profile page. Access: VIS, OWN, ADM"
+      tags:
+        - "M03: Artists"
 
-        responses:
-          '200':
-            description: 'Ok. Show Artist Profile UI'
+      responses:
+        "200":
+          description: "Ok. Show Artist Profile UI"
 
   /fav-artist/add/{id}:
-   parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
     post:
-      operationId: '302'
-      summary: 'R302: Add artist to a user`s favourite artists. Access: OWN'
-      description: 'Process artist id given and add it to a user`s favourite account. Access: OWN'
+      operationId: "R302"
+      summary: "R302: Add artist to a user`s favourite artists. Access: OWN"
+      description: "Process artist id given and add it to a user`s favourite account. Access: OWN"
       tags:
-        - 'M03: Artists'
-  
+        - "M03: Artists"
+
   /fav-artist/remove/{id}:
     parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
     post:
-      operationId: '303'
-      summary: 'R303: Remove artist to a user`s favourite artists. Access: OWN'
-      description: 'Process artist id given and remove it to a user`s favourite account. Access: OWN'
+      operationId: "R303"
+      summary: "R303: Remove artist to a user`s favourite artists. Access: OWN"
+      description: "Process artist id given and remove it to a user`s favourite account. Access: OWN"
       tags:
-        - 'M03: Artists'
-    
+        - "M03: Artists"
+
   # ------------- #
   # M04 - Reviews #
 
@@ -667,23 +708,23 @@ paths:
         name: id
         schema:
           type: integer
-        required: true  
-    
+        required: true
+
     post:
-      operationId: '401'
-      summary: 'R401: Review Product'
-      description: 'Process user review for a product.  Access: OWN'
+      operationId: "R401"
+      summary: "R401: Review Product"
+      description: "Process user review for a product.  Access: OWN"
       tags:
-        - 'M04: Reviews'
+        - "M04: Reviews"
 
     requestBody:
       required: true
       content:
         application/x-www-form-urlencoded:
           examples:
-              302Success:
-                description: 'Product reviewed. Redirect to product page.'
-                value: '/product/{id}'
+            302Success:
+              description: "Product reviewed. Redirect to product page."
+              value: "/product/{id}"
 
   /product/edit-review/{user_id}-{product_id}:
     parameters:
@@ -691,27 +732,28 @@ paths:
         name: user_id
         schema:
           type: integer
-        required: true  
+        required: true
+      - in: path
         name: product_id
         schema:
           type: integer
         required: true
-    
+
     post:
-      operationId: '402'
-      summary: 'R402: Review Product'
-      description: 'Edit a user-made product review.  Access: OWN'
+      operationId: "R402"
+      summary: "R402: Review Product"
+      description: "Edit a user-made product review.  Access: OWN"
       tags:
-        - 'M04: Reviews'
+        - "M04: Reviews"
 
     requestBody:
       required: true
       content:
         application/x-www-form-urlencoded:
           examples:
-              302Success:
-                description: 'Product review updated. Redirect to product page.'
-                value: '/product/{product_id}'
+            302Success:
+              description: "Product review updated. Redirect to product page."
+              value: "/product/{product_id}"
 
   /product/delete-review/{user_id}-{product_id}:
     parameters:
@@ -719,62 +761,62 @@ paths:
         name: user_id
         schema:
           type: integer
-        required: true  
+        required: true
+      - in: path
         name: product_id
         schema:
           type: integer
         required: true
-    
+
     post:
-      operationId: '403'
-      summary: 'R403: Delete Product Review'
-      description: 'Delete a user-made product review.  Access: OWN'
+      operationId: "R403"
+      summary: "R403: Delete Product Review"
+      description: "Delete a user-made product review.  Access: OWN"
       tags:
-        - 'M04: Reviews'
+        - "M04: Reviews"
 
     requestBody:
       required: true
       content:
-        empty
+        application/json: {}
         examples:
-            302Success:
-              description: 'Product review deleted. Redirect to product page.'
-              value: '/product/{product_id}'
+          302Success:
+            description: "Product review deleted. Redirect to product page."
+            value: "/product/{product_id}"
 
   # -------------- #
   # M05 - Wishlist #
 
   /wishlist:
-     get:
-        operationId: 'R501'
-        summary: 'R501: View User Wishlist'
-        description: 'Show a user`s wishlist. Access: OWN'
-        tags:
-          - 'M05: Artists'
+    get:
+      operationId: "R501"
+      summary: "R501: View User Wishlist"
+      description: "Show a user`s wishlist. Access: OWN"
+      tags:
+        - "M05: Artists"
 
-        responses:
-          '200':
-            description: 'Ok. Show User Wishlist'
+      responses:
+        "200":
+          description: "Ok. Show User Wishlist"
 
   /wishlist/add/{id}:
-   parameters:
+    parameters:
       - in: path
         name: id
         schema:
           type: integer
-        required: true  
+        required: true
 
-    post:
-      operationId: '502'
-      summary: 'R502: Add Product to Wishlist'
-      description: 'Add a prodcut to the user`s wishlist.  Access: OWN'
-      tags:
-        - 'M05: Wishlist'
+  post:
+    operationId: "R502"
+    summary: "R502: Add Product to Wishlist"
+    description: "Add a prodcut to the user`s wishlist.  Access: OWN"
+    tags:
+      - "M05: Wishlist"
 
     requestBody:
       required: true
-      content:
-        empty
+      content: empty
 
   /wishlist/remove/{id}:
     parameters:
@@ -782,41 +824,39 @@ paths:
         name: id
         schema:
           type: integer
-        required: true  
-
-     post:
-      operationId: '503'
-      summary: 'R503: Remove Product from Wishlist'
-      description: 'Remove a prodcut from a user`s wishlist.  Access: OWN'
-      tags:
-        - 'M05: Wishlist'
-
-      requestBody:
         required: true
-        content:
-          empty
 
+    post:
+    operationId: "R503"
+    summary: "R503: Remove Product from Wishlist"
+    description: "Remove a prodcut from a user`s wishlist.  Access: OWN"
+    tags:
+      - "M05: Wishlist"
+
+    requestBody:
+      required: true
+      content: empty
 
   # ------------ #
   # M06 - Orders #
 
   /checkout:
     get:
-      operationId: R601
-      summary: 'R601: Checkout Form'
-      description: 'Provide checkout form. Access: VIS, OWN'
+      operationId: "R601"
+      summary: "R601: Checkout Form"
+      description: "Provide checkout form. Access: VIS, OWN"
       tags:
-        - 'M06: Order'
+        - "M06: Orders"
       responses:
-        '200':
-          description: 'Ok. Show Checkout UI'
+        "200":
+          description: "Ok. Show Checkout UI"
 
     post:
-      operationId: R602
-      summary: 'R602: Checkout Action'
-      description: 'Process the checkout form submission. Access: VIS, OWN'
+      operationId: "R602"
+      summary: "R602: Checkout Action"
+      description: "Process the checkout form submission. Access: VIS, OWN"
       tags:
-        - 'M06: Order'
+        - "M06: Orders"
 
       requestBody:
         required: true
@@ -840,30 +880,30 @@ paths:
                 - products
 
       responses:
-        '302':
-          description: 'Redirect after processing checkout.'
+        "302":
+          description: "Redirect after processing checkout."
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful checkout. Redirect to home.'
-                  value: '/'
+                  description: "Successful checkout. Redirect to home."
+                  value: "/"
                 302Error:
-                  description: 'Failed checkout. Redirect to checkout.'
-                  value: '/checkout'
+                  description: "Failed checkout. Redirect to checkout."
+                  value: "/checkout"
 
   /order:
     get:
-      operationId: ''
-      summary: 'R1001: Show Home Page'
-      description: 'Show home page. Access: OWN, ADM, VIS'
+      operationId: "R603"
+      summary: "R603: Show Order Page"
+      description: "Show order page. Access: OWN"
       tags:
-        - 'M10: Static Pages'
+        - "M06: Static Pages"
       responses:
-        '200':
-          description: 'Ok. Show Home Page UI'
+        "200":
+          description: "Ok. Show Order Page UI"
 
   /order/cancel/{id}:
     parameters:
@@ -871,22 +911,31 @@ paths:
         name: id
         schema:
           type: integer
-        required: true  
+        required: true
     post:
-      operationId: '603'
-      summary: 'R603: Cancel an order'
-      description: 'Cancel own order.  Access: OWN'
+      operationId: "R604"
+      summary: "R604: Cancel an order"
+      description: "Cancel own order.  Access: OWN"
       tags:
-        - 'M06: Orders'
+        - "M06: Orders"
 
       requestBody:
         required: true
-        content:
-          empty
-    ## TO BE DONE ##
+        content: empty
 
   # ------------ #
   # M07 - Cart   #
+
+  /cart:
+    get:
+      operation: "R701"
+      summary: "R701: Show Cart Page"
+      description: "Show cart page. Access: OWN, VIS"
+      tags:
+        - "M07: Static Pages"
+      responses:
+        "200":
+          description: "Ok. Show Cart Page UI"
 
   /cart/increase/{id}:
     parameters:
@@ -898,11 +947,11 @@ paths:
         required: true
 
     post:
-      operationId: 'R701'
-      summary: 'R701: Increase Product Amount on Cart'
-      description: 'Increases the amount of a product on the cart by one, or adds it to the cart if it is not there already. Access: VIS, CLI'
+      operationId: "R702"
+      summary: "R702: Increase Product Amount on Cart"
+      description: "Increases the amount of a product on the cart by one, or adds it to the cart if it is not there already. Access: VIS, CLI"
       tags:
-        - 'M07 - Cart'
+        - "M07 - Cart"
 
       requestBody:
         required: true
@@ -910,10 +959,10 @@ paths:
           application/json: {}
 
       responses:
-        '200':
-          description: 'Ok. Product successfully added'
-        '404':
-          description: 'Product not found.'
+        "200":
+          description: "Ok. Product successfully added"
+        "404":
+          description: "Product not found."
 
   /cart/decrease/{id}:
     parameters:
@@ -925,11 +974,11 @@ paths:
         required: true
 
     post:
-      operationId: 'R702'
-      summary: 'R702: Decrease Product Amount on Cart'
-      description: 'Decreases the amount of a product on the cart by one. Access: VIS, CLI'
+      operationId: "R703"
+      summary: "R703: Decrease Product Amount on Cart"
+      description: "Decreases the amount of a product on the cart by one. Access: VIS, CLI"
       tags:
-        - 'M07 - Cart'
+        - "M07 - Cart"
 
       requestBody:
         required: true
@@ -937,10 +986,10 @@ paths:
           application/json: {}
 
       responses:
-        '200':
-          description: 'Ok. Product amount successfully decreased'
-        '404':
-          description: 'Product not found in cart.'
+        "200":
+          description: "Ok. Product amount successfully decreased"
+        "404":
+          description: "Product not found in cart."
 
   /cart/remove/{id}:
     parameters:
@@ -952,11 +1001,11 @@ paths:
         required: true
 
     post:
-      operationId: 'R703'
-      summary: 'R703: Remove Product from Cart'
-      description: 'Removes a product from the cart. Access: VIS, CLI'
+      operationId: "R704"
+      summary: "R704: Remove Product from Cart"
+      description: "Removes a product from the cart. Access: VIS, CLI"
       tags:
-        - 'M07 - Cart'
+        - "M07 - Cart"
 
       requestBody:
         required: true
@@ -964,24 +1013,127 @@ paths:
           application/json: {}
 
       responses:
-        '200':
-          description: 'Ok. Product successfully removed from cart'
-        '404':
-          description: 'Product not found in cart.'
+        "200":
+          description: "Ok. Product successfully removed from cart"
+        "404":
+          description: "Product not found in cart."
+
+  # ------------------------ #
+  # M08: Reports and Tickets #
+
+  /ticket/submit:
+    post:
+      operationId: "R801"
+      summary: "R801: Submit Ticket"
+      description: "Submit a ticket to be sent to the site administration. Access: CLI"
+      tags:
+        - "M08 - Reports and Tickets"
+
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+          type: object
+          properties:
+            message:
+              type: string
+        responses:
+          "200":
+            description: "Ok. Ticket submitted successfully"
+
+  /report/submit:
+    post:
+      operationId: "R802"
+      summary: "R802: Submit Report"
+      description: "Submit a report to flag a user. Access: CLI"
+      tags:
+        - "M08 - Reports and Tickets"
+
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        responses:
+        "200":
+          description: "Ok. Report submitted successfully"
 
   # ----------------------------------------- #
-  # M09: User Administration and Static Pages #
+  # M09: User Administration #
 
   /admin:
     get:
-      operationId: R901
-      summary: 'R901: Admin Page'
-      description: 'Show admin page. Access: ADM'
+      operationId: "R901"
+      summary: "R901: Admin Page"
+      description: "Show admin page. Access: ADM"
       tags:
-        - 'M09: User Administration and Static pages'
+        - "M09: User Administration"
       responses:
-        '200':
-          description: 'Ok. Show Admin Page UI'
+        "200":
+          description: "Ok. Show Admin Page UI"
+        "403":
+          description: "Forbidden"
+
+  /admin/user:
+    get:
+      operationId: "R902"
+      summary: "R902: Admin Show User Page"
+      description: "Show admin user page. Access: ADM"
+      tags:
+        - "M09: User Administration"
+      responses:
+        "200":
+          description: "Ok. Show Admin User Page UI"
+        "403":
+          description: "Forbidden"
+
+  /admin/user/create:
+    get:
+      operationId: "R903"
+      summary: "R903: Admin Create User Page"
+      description: "Show admin's user creation page. Access: ADM"
+      tags:
+        - "M09: User Administration"
+      responses:
+        "200":
+          description: "Ok. Show Admin Page UI"
+        "403":
+          description: "Forbidden"
+
+    post:
+      operationId: "R904"
+      summary: "R904: Admin Create User Action"
+      description: "Create a user. Access: ADM"
+      tags:
+        - "M09: User Administration"
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+                is_admin:
+                  type: bool
+              required: -username
+                -password
+                -email
+      responses:
+        "403":
+          description: "Forbidden"
+        "200":
+          description: "Ok. User created successfully."
 
   /admin/user/edit{id}:
     parameters:
@@ -992,11 +1144,11 @@ paths:
         required: true
 
     post:
-      operationId: R902
-      summary: 'R902: Admin Edit User Action'
-      description: 'Processes the changes made by an admin to a user. Access: ADM'
+      operationId: "R905"
+      summary: "R905: Admin Edit User Action"
+      description: "Processes the changes made by an admin to a user. Access: ADM"
       tags:
-        - 'M09: User Administration and Static pages'
+        - "M09: User Administration"
 
       requestBody:
         required: true
@@ -1013,67 +1165,29 @@ paths:
                   type: bool
 
       responses:
-        '302':
-          description: 'Redirect after processing the new user information.'
+        "302":
+          description: "Redirect after processing the new user information."
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful edit. Redirect to admin page.'
-                  value: '/admin'
+                  description: "Successful edit. Redirect to admin page."
+                  value: "/admin"
                 302Error:
-                  description: 'Failed edit. Redirect to admin page.'
-                  value: '/admin'
-
-  /admin/user/create:
-    get:
-      operationId: R903
-      summary: 'R903: Admin User Creation Page'
-      description: 'Show user creation for admin page. Access: ADM'
-      tags:
-        - 'M09: User Administration and Static pages'
-      responses:
-        '200':
-          description: 'Ok. Show User Creation Page UI'
-
-    post:
-      post:
-      operationId: R904
-      summary: 'R904: Admin User Creation Action'
-      description: 'Process the new user registration form submission by an admin. Access: ADM'
-      tags:
-        - 'M01: Authentication and Individual Profile'
-
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                email:
-                  type: string
-                picture:
-                  type: string
-                  format: binary
-                password:
-                  type: string
-              required:
-                - email
-                - password
-
+                  description: "Failed edit. Redirect to admin page."
+                  value: "/admin"
+        "403":
+          description: "Forbidden."
 
   /admin/user/delete:
     post:
-      operationId: R905
-      summary: 'R905: Admin Delete User Action'
-      description: 'Delete user admin page. Access: ADM'
+      operationId: "R906"
+      summary: "R906: Admin Delete User Action"
+      description: "Delete user admin page. Access: ADM"
       tags:
-        - 'M09: User Administration and Static Pages'
+        - "M09: User Administration"
 
       requestBody:
         required: true
@@ -1086,26 +1200,148 @@ paths:
                   type: int
 
       responses:
-        '200':
-          description: 'Successful user deletion. Redirect to admin page'
+        "200":
+          description: "Successful user deletion. Redirect to admin page"
+        "403":
+          description: "Forbidden."
+
+  /admin/user/update-profile-pic/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: "R907"
+      summary: "R907: Upload Profile Picture"
+      description: "Process the new uploaded profile picture. Access: OWN"
+      tags:
+        - "M01: Authentication and Individual Profile"
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: image
+            examples:
+              302Success:
+                description: "Picture successfuly updated. Redirect to user profile settings."
+                value: "/user/settings/{id}"
+              302Error:
+                description: "Picture successfuly updated. Redirect to user profile settings."
+                value: "/user/settings/{id}"
+
+  /admin/product:
+    get:
+      operationId: "R908"
+      summary: "R908: Admin Product Page"
+      description: "Show admin product page. Access: ADM"
+      tags:
+        - "M09: User Administration"
+      responses:
+        "200":
+          description: "Ok. Show Admin Product Page UI"
+        "403":
+          description: "Forbidden"
+
+  /admin/artist/update-profile-pic:
+    post:
+      operationId: "R909"
+      summary: "R909: Admin Update Artist Profile Picture"
+      description: "Update an artist's profile picture. Access: ADM"
+      tags:
+        - "M03: Artists"
+
+      requestBody:
+        required: true
+        content:
+          image/*:
+            schema:
+              type: object
+              properties:
+                image: string
+                format: binary
+
+      responses:
+        "200":
+          description: "Order cancelled successfully."
+        "403":
+          description: "Forbidden."
 
   /admin/product/create:
     get:
-      operationId: R906
-      summary: 'R906: Admin Product Creation Page'
-      description: 'Show product creation for admin page. Access: ADM'
+      operationId: "R910"
+      summary: "R910: Admin Product Create Page"
+      description: "Show admin's product creation page. Access: ADM"
       tags:
-        - 'M09: User Administration and Static pages'
+        - "M02: Product"
       responses:
-        '200':
-          description: 'Ok. Show User Creation Page UI'
-    
+        "200":
+          description: "Ok. Show Admin Product Create Page UI"
+        "403":
+          description: "Forbidden"
+
     post:
-      operationId: R906
-      summary: 'R906: Admin Product Creation Page'
-      description: 'Show product creation for admin page. Access: ADM'
+      operationId: "R911"
+      summary: "R911: Admin Product Create Action"
+      description: "Create a product. Access: ADM"
       tags:
-        - 'M09: User Administration and Static pages'
+        - "M02: Product"
+      responses:
+        "200":
+          description: "Ok. User created successfully."
+        "403":
+          description: "Forbidden"
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                artist_id:
+                  type: integer
+                name:
+                  type: string
+                description:
+                  type: string
+                stock:
+                  type: integer
+                price:
+                  type: integer
+                format:
+                  type: string
+                year:
+                  type: integer
+                genre:
+                  type: array
+              required:
+                - artist_id
+                - name
+                - description
+                - stock
+                - price
+                - format
+                - year
+                - genre
+
+  /admin/product/edit{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: "R912"
+      summary: "R912: Admin Product Edit Action"
+      description: "Edit a prodcut in the database. Access: ADM"
+      tags:
+        - "M09: User Administration"
 
       requestBody:
         required: true
@@ -1114,45 +1350,352 @@ paths:
             schema:
               type: object
               properties:
-                id:
-                  type: int
+                artist_id:
+                  type: integer
+                name:
+                  type: string
+                description:
+                  type: string
+                stock:
+                  type: integer
+                price:
+                  type: integer
+                format:
+                  type: string
+                year:
+                  type: integer
+                genre:
+                  type: array
+              required:
+                - artist_id
+                - name
+                - description
+                - stock
+                - price
+                - format
+                - year
+                - genre
 
       responses:
-        '200':
-          description: 'Successful user deletion. Redirect to admin page'
-      
+        "200":
+          description: "Ok. Artist updated successfully."
+        "403":
+          description: "Forbidden."
+
+  /admin/product/delete:
+    post:
+      operationId: "R913"
+      summary: "R913: Admin Product Delete"
+      description: "Deletes a product in the database. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+
+  /admin/product/update-profile-pic:
+    post:
+      operationId: "R914"
+      summary: "R914: Admin Product Picture Update"
+      description: "Update a product's picture an report. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          schema:
+            type: string
+            format: binary
+
+      responses:
+        "200":
+          description: "Profile picture updated successfully."
+        "403":
+          description: "Forbidden."
+
+  /admin/artist:
+    get:
+      operationId: "R915"
+      summary: "R915: Admin Artist Page"
+      description: "Show admin artist page. Access: ADM"
+      tags:
+        - "M09: User Administration"
+      responses:
+        "200":
+          description: "Ok. Show Admin Artist Page UI"
+        "403":
+          description: "Forbidden."
+
+  /admin/artist/edit{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: "R916"
+      summary: "R916: Admin Artist Edit Action"
+      description: "Edit an artist in the database. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+
+      responses:
+        "200":
+          description: "Ok. Product updated successfully."
+        "403":
+          description: "Forbidden."
+
+  /admin/order:
+    get:
+      operationId: "R917"
+      summary: "R917: Admin Order Page"
+      description: "Show admin order page. Access: ADM"
+      tags:
+        - "M09: User Administration"
+      responses:
+        "200":
+          description: "Ok. Show Admin Order UI"
+        "403":
+          description: "Forbidden."
+
+  /admin/order/edit/{id}:
+    post:
+      operationId: "R918"
+      summary: "R918: Admin Order Edit Action"
+      description: "Update an existent order from given identifier. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: empty
+
+      responses:
+        "200":
+          description: "Order edited successfully"
+        "403":
+          description: "Forbidden."
+
+  /admin/order/cancel/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: "R919"
+      summary: "R919: Admin Cancel Order"
+      description: "Cancel an report. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          schema:
+            type: empty
+
+      responses:
+        "200":
+          description: "Order cancelled successfully."
+        "403":
+          description: "Forbidden."
+
+  /admin/ticket:
+    get:
+      operationId: "R920"
+      summary: "R920: Admin Ticket Page"
+      description: "Show admin ticket page. Access: ADM"
+      tags:
+        - "M09: User Administration"
+      responses:
+        "200":
+          description: "Ok. Show Admin Ticket Page UI"
+        "403":
+          description: "Forbidden."
+
+  /admin/report:
+    get:
+      operationId: "R921"
+      summary: "R921: Admin Report Page"
+      description: "Show admin report page. Access: ADM"
+      tags:
+        - "M09: User Administration"
+      responses:
+        "200":
+          description: "Ok. Show Admin Report Page UI"
+        "403":
+          description: "Forbidden."
+
+  /admin/ticket/answer/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: "R922"
+      summary: "R922: Answer Ticket"
+      description: "Answer a user`s ticket. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+
+      responses:
+        "200":
+          description: "Successful user deletion. Redirect to admin page"
+        "403":
+          description: "Forbidden."
+
+  /admin/ticket/delete/{id}:
+    post:
+      operationId: "R923"
+      summary: "R923: Admin Ticket Deletion"
+      description: "Delete a ticket with the given identifier. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: empty
+
+      responses:
+        "200":
+          description: "Ticket deleted successfully."
+        "403":
+          description: "Forbidden."
+
+  /admin/report/block:
+    post:
+      operationId: "R924"
+      summary: "R924: Admin Block User"
+      description: "Block a reported user. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          schema:
+            type: empty
+
+      responses:
+        "200":
+          description: "User blocked successfully."
+        "403":
+          description: "Forbidden."
+
+  /admin/report/delete/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+
+    post:
+      operationId: "R925"
+      summary: "R925: Admin Delete Report"
+      description: "Delete a report. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          schema:
+            type: empty
+
+      responses:
+        "200":
+          description: "Report deleted successfully."
+        "403":
+          description: "Forbidden."
+
+  /admin/notification/alert:
+    post:
+      operationId: "R926"
+      summary: "R926: Admin Broadcast Notification"
+      description: "Send a broadcast notification to all users. Access: ADM"
+      tags:
+        - "M09: User Administration"
+
+      requestBody:
+        required: true
+        content:
+          schema:
+            type: empty
+
+      responses:
+        "200":
+          description: "Sent notification successfully."
+        "403":
+          description: "Forbidden."
 
   # M10- Static Pages #
 
   /:
     get:
       operationId: R1001
-      summary: 'R1001: Show Home Page'
-      description: 'Show home page. Access: OWN, ADM, VIS'
+      summary: "R1001: Show Home Page"
+      description: "Show home page. Access: OWN, ADM, VIS"
       tags:
-        - 'M10: Static Pages'
+        - "M10: Static Pages"
       responses:
-        '200':
-          description: 'Ok. Show Home Page UI'
+        "200":
+          description: "Ok. Show Home Page UI"
 
   /about-us:
     get:
       operationId: R1002
-      summary: 'R1002: Show About-Us Page'
+      summary: "R1002: Show About-Us Page"
       description: 'Show "about us" page. Access: OWN, ADM, VIS'
       tags:
-        - 'M10: Static Pages'
+        - "M10: Static Pages"
       responses:
-        '200':
-          description: 'Ok. Show About-Us Page UI'
+        "200":
+          description: "Ok. Show About-Us Page UI"
 
   /help:
     get:
       operationId: R1003
-      summary: 'R1003: Show Help Page'
-      description: 'Show help & FAQ page. Access: OWN, ADM, VIS'
+      summary: "R1003: Show Help Page"
+      description: "Show help & FAQ page. Access: OWN, ADM, VIS"
       tags:
-        - 'M10: Static Pages'
+        - "M10: Static Pages"
       responses:
-        '200':
-          description: 'Ok. Show Help Page UI'
+        "200":
+          description: "Ok. Show Help Page UI"
