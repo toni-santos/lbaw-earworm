@@ -55,11 +55,11 @@ Administration URL: ```http://lbaw22123.lbaw.fe.up.pt/admin```
 
 ### 3. Application Help
 
-> Describe where help has been implemented, pointing to working examples.  
-
 Help may be found throughout the website in many forms, sometimes hidden in plain sight through use of colors and layouts, and some other in a more explicit manner.
 
-**INSERT HELP PAGE SCREENSHOT + SCREENSHOT DE UM FORM COM INPUTS REQUIRED**
+![helpPage](help_page.png)
+
+![requiredInputs](billing.png)
 
 ### 4. Input Validation
 
@@ -98,23 +98,14 @@ class UserMiddleware
 
 ### 5. Check Accessibility and Usability
 
-> Provide the results of accessibility and usability tests using the following checklists. Include the results as PDF files in the group's repository. Add individual links to those files here.
->
-> Accessibility: https://ux.sapo.pt/checklists/acessibilidade/  
-> Usability: https://ux.sapo.pt/checklists/usabilidade/  
+Accessibility and usability results can be respectively be found [here](https://git.fe.up.pt/lbaw/lbaw2223/lbaw22123/-/blob/main/docs/AccessibilityResults.pdf) and [here](https://git.fe.up.pt/lbaw/lbaw2223/lbaw22123/-/blob/main/docs/UsabilityResults.pdf).
 
-Accessibility: **_16/18_** 
-
-<br>
-
+Accessibility: **_16/18_**
 Usability: **_24/28_**
 
-### 6. HTML & CSS Validation
+### 6. HTML and CSS Validation
 
-> Provide the results of the validation of the HTML and CSS code using the following tools. Include the results as PDF files in the group's repository. Add individual links to those files here.
->   
-> HTML: https://validator.w3.org/nu/  
-> CSS: https://jigsaw.w3.org/css-validator/  
+Results for [HTML Validation](https://git.fe.up.pt/lbaw/lbaw2223/lbaw22123/-/blob/main/docs/HTMLValidation.pdf) and [CSS Validation](https://git.fe.up.pt/lbaw/lbaw2223/lbaw22123/-/blob/main/docs/CSSValidation.pdf)
 
 ### 7. Revisions to the Project
 
@@ -237,15 +228,6 @@ Earworm prides itself on knowing their customers and offering personalized listi
 > Screenshot of the video plus the link to the lbawYYgg.mp4 file.
 
 ![Making of the Video](video.png)
-
----
-
-
-## Revision history
-
-Changes made to the first submission:
-1. First submission
-1. ..
 
 ***
 GROUP 22123, 03/01/2023
