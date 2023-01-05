@@ -2,7 +2,7 @@
 
 > For music lovers who want a tailored retailer of their favorite artists' releases, EarWorm is a website that provides a trustworthy and all-inclusive selection of music.
 
-![EarWorm](https://github.com/toni-santos/lbaw-earworm/tree/main/docs/home.png)
+![EarWorm](/docs/home.png)
 
 [Small Demonstration Video](https://youtu.be/8hV3KfyZhCw)
 
