@@ -1,92 +1,57 @@
-# lbaw22122
+# lbaw-earworm
 
+> For music lovers who want a tailored retailer of their favorite artists' releases, EarWorm is a website that provides a trustworthy and all-inclusive selection of music.
 
+![EarWorm](https://github.com/toni-santos/lbaw-earworm/tree/main/docs/home.png)
 
-## Getting started
+[Small Demonstration Video](https://youtu.be/8hV3KfyZhCw)
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+The EarWorm website was developed by a small group of FEUP students, with a passion for both music and the preservation of its physical mediums, as a platform targeted at individual users that wish to buy physical musical products.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+The main goal of the project is the development of a web-based and individually stylized music store for browsing and buying musical merchandise such as CDs, vinyls or other music affiliated products. After the initial deployment of the site, a team of administrators is required and will be responsible for managing the system and the stock, as well as ensuring any transaction runs smoothly.
 
-## Add your files
+This online platform grants users access to a vast library of purchaseable musical content, while also keeping track of their on-site transactions. Products are available for worldwide distribution, providing a myriad of payment options. Curated recommendations will be provided to each user based on their listening preferences.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+Users are separated into groups with different permissions. These groups include the site administrators, with complete access and modification privileges, and the registered users, with privileges to enter information, buy and cancel ordered items, browse and inspect the site's products and rate previously obtained items.
 
-```
-cd existing_repo
-git remote add origin https://git.fe.up.pt/lbaw/lbaw2223/lbaw22123.git
-git branch -M main
-git push -uf origin main
-```
+The platform has a responsive design, allowing users to have a pleasant browsing experience not only visually but functionally as well, regardless of the device (desktop, tablet or smartphone).
 
-## Integrate with your tools
+The database information was obtained from the [Discogs](https://www.discogs.com/) website, through a combination of the [discogs API](https://www.discogs.com/developers) and scraping the website for extra resources. Some of the scripts used in these endeavours are available [here](https://github.com/toni-santos/lbaw-earworm/tree/main/scripts).
 
-- [ ] [Set up project integrations](https://git.fe.up.pt/lbaw/lbaw2223/lbaw22123/-/settings/integrations)
+## 1. Installation
 
-## Collaborate with your team
+[Link to the final version of the source code](https://github.com/toni-santos/lbaw-earworm)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+In order to install and run follow these steps:
 
-## Test and Deploy
+> Start by cloning the repository & entering the directoty
+> ```git clone https://git.fe.up.pt/lbaw/lbaw2223/lbaw22123.git & cd lbaw22123```
 
-Use the built-in continuous integration in GitLab.
+> Open a terminal window and link laravel's storage and serve a server
+> ```php artisan storage:link```
+> ```php artisan serve```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+> On a separate window start the composer container for the database
+> ```docker compose up```
 
-***
+> Be sure to check which ```.env``` file you are using during this process (prod or dev)
 
-# Editing this README
+## 2. Usage
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+If you are locally deployed and running your own server, you may visit ```http://127.0.0.1:8000``` to start using the application.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+If you have access to FEUP's VPN server you may also visit the deployed page at ```http://lbaw22123.lbaw.fe.up.pt``` 
 
-## Name
-Choose a self-explaining name for your project.
+### 2.1. Administration Credentials
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Administration URL: ```http://127.0.0.1:8000/admin```  
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+| Username             | Password |
+| -------------------- | -------- |
+| admin@example.com    | password |
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+### 2.2. User Credentials
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+| Type          | Username           | Password     |
+| ------------- | ------------------ | ------------ |
+| basic account | user@example.com   | userpassword |
